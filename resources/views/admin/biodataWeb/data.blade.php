@@ -1,4 +1,4 @@
-@extends('layoutAdmin.main')
+@extends('layout.main')
 
 @section('content')
 <div class="dashboard-main-content">
@@ -106,7 +106,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+                                    {{-- <div class="col-lg-6">
                                         <div class="input-box">
                                             <label class="label-text">Power Harga</label>
                                             <div class="form-group d-flex align-items-center">
@@ -127,7 +127,7 @@
                                             </div>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="btn-box pt-3 pb-4">
                                     <center>
@@ -142,7 +142,7 @@
         </div><!-- end row -->
         
         {{-- footer --}}
-        @include('layoutAdmin.footer')
+        @include('layout.footer')
         {{-- end footer --}}
     </div>
 </div>

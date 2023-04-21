@@ -17,7 +17,7 @@ class ModelAuth extends Model
 
     public function cekEmailUser($email)
     {
-        return DB::table('user')->where('email', $email)->first();
+        return DB::table('users')->where('email', $email)->first();
     }
 
     public function cekEmailAdmin($email)

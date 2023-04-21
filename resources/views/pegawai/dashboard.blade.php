@@ -39,7 +39,7 @@
                     <div class="d-flex pb-3 justify-content-between">
                         <div class="info-content">
                             <p class="info__desc">Jumlah Admin</p>
-                            <h4 class="info__title">{{ $jumlahUser }}</h4>
+                            <h4 class="info__title">33</h4>
                         </div><!-- end info-content -->
                         <div class="info-icon icon-element bg-2">
                             <i class="la la-user"></i>

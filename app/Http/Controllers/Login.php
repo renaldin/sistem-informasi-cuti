@@ -6,7 +6,6 @@ use App\Mail\kirimEmail;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ModelAuth;
 use App\Models\ModelUser;
-use App\Models\ModelAdmin;
 use App\Models\ModelBiodataWeb;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,23 +15,21 @@ class Login extends Controller
     private $ModelAuth;
     private $ModelBiodataWeb;
     private $ModelUser;
-    private $ModelAdmin;
 
     public function __construct()
     {
         $this->ModelAuth = new ModelAuth();
         $this->ModelBiodataWeb = new ModelBiodataWeb();
         $this->ModelUser = new ModelUser();
-        $this->ModelAdmin = new ModelAdmin();
     }
 
     public function index()
     {
         if (Session()->get('email')) {
-            if (Session()->get('status') === 'User') {
-                return redirect()->route('home');
-            } else {
-                return redirect()->route('dashboard');
+            if (Session()->get('role') === 'Admin') {
+                return redirect()->route('dashboardAdmin');
+            } elseif (Session()->get('role') === 'Pegawai') {
+                return redirect()->route('dashboardPegawai');
             }
         }
 
@@ -42,24 +39,6 @@ class Login extends Controller
         ];
 
         return view('auth.login', $data);
-    }
-
-    public function admin()
-    {
-        if (Session()->get('email')) {
-            if (Session()->get('status') === 'User') {
-                return redirect()->route('home');
-            } else {
-                return redirect()->route('dashboard');
-            }
-        }
-
-        $data = [
-            'title' => 'Login Admin',
-            'biodata'  => $this->ModelBiodataWeb->detail(1),
-        ];
-
-        return view('auth.loginAdmin', $data);
     }
 
     public function prosesLogin()
@@ -74,41 +53,34 @@ class Login extends Controller
             'password.min'              => 'Password minimal 6 karakter!',
         ]);
 
-        if (Request()->status === "User") {
-            $cekEmail = $this->ModelAuth->cekEmailUser(Request()->email);
+        $cekEmail = $this->ModelAuth->cekEmailUser(Request()->email);
+
+        if ($cekEmail->role === "Pegawai") {
 
             if ($cekEmail) {
                 if (Hash::check(Request()->password, $cekEmail->password)) {
-                    Session()->put('id_member', $cekEmail->id_member);
-                    Session()->put('nama', $cekEmail->nama);
+                    Session()->put('id_user', $cekEmail->id_user);
                     Session()->put('email', $cekEmail->email);
-                    Session()->put('nama_perusahaan', $cekEmail->nama_perusahaan);
-                    Session()->put('alamat_perusahaan', $cekEmail->alamat_perusahaan);
-                    Session()->put('foto_perusahaan', $cekEmail->foto_perusahaan);
-                    Session()->put('status', $cekEmail->status);
-                    Session()->put('foto_user', $cekEmail->foto_user);
+                    Session()->put('role', $cekEmail->role);
                     Session()->put('log', true);
 
-                    return redirect()->route('home');
+                    return redirect()->route('dashboardPegawai');
                 } else {
                     return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
                 }
             } else {
                 return back()->with('gagal', 'Login gagal! Email belum terdaftar.');
             }
-        } else if (Request()->status === "Admin") {
-            $cekEmail = $this->ModelAuth->cekEmailAdmin(Request()->email);
+        } else if ($cekEmail->role === "Admin") {
 
             if ($cekEmail) {
                 if (Hash::check(Request()->password, $cekEmail->password)) {
-                    Session()->put('id_admin', $cekEmail->id_admin);
-                    Session()->put('nama', $cekEmail->nama);
+                    Session()->put('id_user', $cekEmail->id_user);
                     Session()->put('email', $cekEmail->email);
-                    Session()->put('status', $cekEmail->status);
-                    Session()->put('foto', $cekEmail->foto);
+                    Session()->put('role', $cekEmail->role);
                     Session()->put('log', true);
 
-                    return redirect()->route('dashboard');
+                    return redirect()->route('dashboardAdmin');
                 } else {
                     return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
                 }
@@ -120,26 +92,11 @@ class Login extends Controller
 
     public function logout()
     {
-        if (Session()->get('status') === "User") {
-            Session()->forget('id_member');
-            Session()->forget('nama');
-            Session()->forget('nama_perusahaan');
-            Session()->forget('alamat_perusahaan');
-            Session()->forget('foto_perusahaan');
-            Session()->forget('email');
-            Session()->forget('status');
-            Session()->forget('foto_user');
-            Session()->forget('log');
-            return redirect()->route('login')->with('berhasil', 'Logout berhasil!');
-        } else if (Session()->get('status') === 'Admin') {
-            Session()->forget('id_admin');
-            Session()->forget('nama');
-            Session()->forget('email');
-            Session()->forget('status');
-            Session()->forget('foto');
-            Session()->forget('log');
-            return redirect()->route('admin')->with('berhasil', 'Logout berhasil!');
-        }
+        Session()->forget('id_user');
+        Session()->forget('email');
+        Session()->forget('role');
+        Session()->forget('log');
+        return redirect()->route('login')->with('berhasil', 'Logout berhasil!');
     }
 
     public function lupaPassword()

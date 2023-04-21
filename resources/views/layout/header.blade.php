@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="menu-wrapper">
             <div class="logo mr-5">
-                <a href="index-2.html"><img src="{{ asset('foto_biodata/'.$biodata->logo) }}" alt="logo"></a>
+                <a href="#"><img src="{{ asset('foto_biodata/'.$biodata->logo) }}" alt="logo" width="200px"></a>
                 <div class="menu-toggler">
                     <i class="la la-bars"></i>
                     <i class="la la-times"></i>
@@ -17,8 +17,8 @@
                         <div class="dropdown">
                             <a href="#" class="dropdown-toggle" id="userDropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <div class="d-flex align-items-center">
-                                    <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="@if(Session()->get('foto')){{ asset('foto_admin/'.Session()->get('foto')) }} @else {{ asset('foto_admin/default1.jpg') }} @endif" alt="team-img"></div>
-                                    <span class="font-size-14 font-weight-bold">{{ Session()->get('nama') }}</span>
+                                    <div class="avatar avatar-sm flex-shrink-0 mr-2"><img src="@if($user->foto){{ asset('foto_user/'.$user->foto) }} @else {{ asset('foto_user/default1.jpg') }} @endif" alt="team-img"></div>
+                                    <span class="font-size-14 font-weight-bold">{{ $user->nama }}</span>
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-reveal dropdown-menu-md dropdown-menu-right">
@@ -32,13 +32,6 @@
                                                 <h3 class="title"><i class="la la-user mr-2"></i>Profil</h3>
                                             </div>
                                         </div>
-                                    </a>
-                                    <a href="/kelola-order" class="list-group-item list-group-item-action">
-                                        <div class="msg-body">
-                                            <div class="msg-content">
-                                                <h3 class="title"><i class="la la-shopping-cart mr-2"></i>Orders</h3>
-                                            </div>
-                                        </div><!-- end msg-body -->
                                     </a>
                                     <div class="section-block"></div>
                                     <a href="/logout" class="list-group-item list-group-item-action">

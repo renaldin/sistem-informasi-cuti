@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'revalidate'], function () {
 
     // Home
-    Route::get('/', [Home::class, 'index'])->name('home');
+    Route::get('/', [Login::class, 'index'])->name('login');
 
     // Reklame
     Route::get('/reklame', [Reklame::class, 'reklameUser'])->name('reklame');
@@ -65,7 +65,9 @@ Route::group(['middleware' => 'revalidate'], function () {
     // Logout
     Route::get('/logout', [Login::class, 'logout'])->name('logout');
 
-    Route::group(['middleware' => 'user'], function () {
+    Route::group(['middleware' => 'pegawai'], function () {
+        // dashboard
+        Route::get('/dashboardPegawai', [Dashboard::class, 'index'])->name('dashboardPegawai');
 
         // booking
         Route::get('/booking', [Booking::class, 'index'])->name('booking');
@@ -87,7 +89,7 @@ Route::group(['middleware' => 'revalidate'], function () {
     });
 
     Route::group(['middleware' => 'admin'], function () {
-        Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
+        Route::get('/dashboardAdmin', [Dashboard::class, 'index'])->name('dashboardAdmin');
 
         Route::get('/biodata-website', [BiodataWeb::class, 'index'])->name('biodata-web');
         Route::post('/biodata-website/{id}', [BiodataWeb::class, 'prosesEdit']);

@@ -9,39 +9,40 @@ use Illuminate\Support\Facades\DB;
 class ModelUser extends Model
 {
     use HasFactory;
+    public $table = 'users';
 
-    public function dataUser()
+    public function getData()
     {
-        return DB::table('user')->orderBy('id_member', 'DESC')->get();
+        return DB::table($this->table)->orderBy('id_user', 'DESC')->get();
     }
 
-    public function detail($id_member)
+    public function detail($id_user)
     {
-        return DB::table('user')->where('id_member', $id_member)->first();
+        return DB::table($this->table)->where('id_user', $id_user)->first();
     }
 
     public function detailByEmail($email)
     {
-        return DB::table('user')->where('email', $email)->first();
+        return DB::table($this->table)->where('email', $email)->first();
     }
 
-    public function tambah($data)
+    public function add($data)
     {
-        DB::table('user')->insert($data);
+        DB::table($this->table)->insert($data);
     }
 
     public function edit($data)
     {
-        DB::table('user')->where('id_member', $data['id_member'])->update($data);
+        DB::table($this->table)->where('id_user', $data['id_user'])->update($data);
     }
 
-    public function hapus($id_member)
+    public function deleteUser($id_user)
     {
-        DB::table('user')->where('id_member', $id_member)->delete();
+        DB::table($this->table)->where('id_user', $id_user)->delete();
     }
 
     public function jumlahUser()
     {
-        return DB::table('user')->count();
+        return DB::table($this->table)->count();
     }
 }

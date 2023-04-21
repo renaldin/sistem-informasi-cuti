@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@if ($title) Sistem Booking | {{$title}} @else Sistem Booking @endif </title>
+    <title>@if ($title) SI Cuti | {{$title}} @else SI Cuti @endif </title>
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('template/images/favicon.png') }}">
+    <link rel="icon" href="{{ asset('foto_biodata/'.$biodata->logo) }}">
 
     <!-- Google Fonts -->
     <link href="{{ asset('template/../../../../../../fonts.googleapis.com/css2bff7.css?family=Roboto:wght@100;300;400;500;700;900&amp;display=swap') }}" rel="stylesheet">
@@ -44,26 +44,37 @@
 </div>
 <!-- end cssload-loader -->
 
-<!-- ================================
-            START HEADER AREA
-================================= -->
-@include('layoutUser.header')
-<!-- ================================
-         END HEADER AREA
-================================= -->
+{{-- header --}}
+<section class="info-area padding-top-50px">
+    <div class="container">
+        <div class="row justify-content-center">
+            <a href="/"><img src="{{ asset('foto_biodata/'.$biodata->logo) }}" alt="logo" width="300px"></a>
+        </div>
+    </div>
+</section>
+{{-- end header --}}
 
 {{-- content --}}
 @yield('content')
 {{-- content --}}
 
-<!-- ================================
-       START FOOTER AREA
-================================= -->
-@include('layoutUser.footer')
-<!-- ================================
-       START FOOTER AREA
-================================= -->
-
+{{-- footer --}}
+<section class="footer-area padding-bottom-30px">
+    <div class="section-block mt-4"></div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12 text-center">
+                <div class="copy-right">
+                    <p class="copy__desc">
+                        &copy; Copyright SI Cuti {{ date('Y') }}. di desain oleh
+                         <a href="/">Admin SI Cuti</a>
+                    </p>
+                </div><!-- end copy-right -->
+            </div><!-- end col-lg-7 -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
+{{-- end footer --}}
 <!-- start back-to-top -->
 <div id="back-to-top">
     <i class="la la-angle-up" title="Go top"></i>

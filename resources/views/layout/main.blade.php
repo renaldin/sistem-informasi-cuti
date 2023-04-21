@@ -6,7 +6,7 @@
     <meta name="author" content="TechyDevs">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@if ($subTitle) Sistem Booking | {{$subTitle}} @else Sistem Booking @endif</title>
+    <title>@if ($subTitle) SI Cuti | {{$subTitle}} @else SI Cuti @endif</title>
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('template/images/favicon.png') }}">
 
@@ -55,7 +55,7 @@
                     <div class="notification-item">
                         <a href="#" class="dropdown-item">
                             <div class="d-flex align-items-center">
-                                <span class="font-size-14 font-weight-bold">{{ Session()->get('nama') }}</span>
+                                <span class="font-size-14 font-weight-bold">{{ $user->nama }}</span>
                             </div>
                         </a>
                         <div class="list-group drop-reveal-list user-drop-reveal-list">
@@ -90,7 +90,7 @@
 </div>
 
 {{-- Sidebar --}}
-@include('layoutAdmin.sidebar')
+@include('layout.sidebar')
 {{-- End Sidebar --}}
 
 <section class="dashboard-area">
@@ -98,7 +98,7 @@
         <div class="container-fluid">
 
             {{-- Header --}}
-            @include('layoutAdmin.header')
+            @include('layout.header')
             {{-- End Header --}}
             
         </div>
@@ -109,7 +109,7 @@
             <div class="container-fluid">
 
                 {{-- Breadcrumb --}}
-                @include('layoutAdmin.breadcrumb')
+                @include('layout.breadcrumb')
                 {{-- End Breadcrumb --}}
 
             </div>

@@ -36,7 +36,7 @@ class ModelUser extends Model
         DB::table($this->table)->where('id_user', $data['id_user'])->update($data);
     }
 
-    public function deleteUser($id_user)
+    public function deleteData($id_user)
     {
         DB::table($this->table)->where('id_user', $id_user)->delete();
     }

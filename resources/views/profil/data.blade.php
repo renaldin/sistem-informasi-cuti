@@ -1,4 +1,4 @@
-@extends('layoutAdmin.main')
+@extends('layout.main')
 
 @section('content')
 <div class="dashboard-main-content">
@@ -19,7 +19,7 @@
                                             <label class="label-text">Nama Lengkap</label>
                                             <div class="form-group">
                                                 <span class="la la-user form-icon"></span>
-                                                <input class="form-control" type="text" value="{{ $admin->nama }}" disabled>
+                                                <input class="form-control" type="text" value="{{ $user->nama }}" disabled>
                                             </div>
                                         </div>
                                     </div><!-- end col-lg-6 -->
@@ -28,7 +28,7 @@
                                             <label class="label-text">Email</label>
                                             <div class="form-group">
                                                 <span class="la la-envelope form-icon"></span>
-                                                <input class="form-control" type="text" value="{{ $admin->email }}" disabled>
+                                                <input class="form-control" type="text" value="{{ $user->email }}" disabled>
                                             </div>
                                         </div>
                                     </div><!-- end col-lg-6 -->
@@ -37,7 +37,7 @@
                                             <label class="label-text">Nomor Telepon</label>
                                             <div class="form-group">
                                                 <span class="la la-phone form-icon"></span>
-                                                <input class="form-control" type="text" value="{{ $admin->nomor_telepon }}" disabled>
+                                                <input class="form-control" type="text" value="{{ $user->nomor_telepon }}" disabled>
                                             </div>
                                         </div>
                                     </div><!-- end col-lg-6 -->
@@ -45,7 +45,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Foto</label>
                                             <div class="form-group">
-                                                <img src="@if($admin->foto){{ asset('foto_admin/'.$admin->foto) }} @else {{ asset('foto_admin/default1.jpg') }} @endif" class="user-pro-img" style="width: 8rem;" alt=""> 
+                                                <img src="@if($user->foto){{ asset('foto_user/'.$user->foto) }} @else {{ asset('foto_user/default1.jpg') }} @endif" class="user-pro-img" style="width: 8rem;" alt=""> 
                                             </div>
                                         </div>
                                     </div><!-- end col-lg-6 -->
@@ -63,7 +63,7 @@
                     </div>
                     <div class="form-content">
                         <div class="contact-form-action">
-                            <form action="/profil-admin/{{ $admin->id_admin }}" method="POST" enctype="multipart/form-data">
+                            <form action="@if($user->role === 'Admin') /profil-admin/{{$user->id_user}} @elseif($user->role === 'Wakil Direktur') /profil-wadir/{{$user->id_user}} @elseif($user->role === 'Ketua Jurusan') /profil-kajur/{{$user->id_user}} @elseif($user->role === 'Pegawai') /profil/{{$user->id_user}} @endif" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -84,7 +84,7 @@
                                             <label class="label-text">Nama Lengkap</label>
                                             <div class="form-group">
                                                 <span class="la la-circle form-icon"></span>
-                                                <input class="form-control" name="nama" type="text" value="{{ $admin->nama }}">
+                                                <input class="form-control" name="nama" type="text" value="{{ $user->nama }}">
                                                 @error('nama')
                                                 <div style="margin-top: -16px">
                                                     <small class="text-danger">{{ $message }}</small>
@@ -98,7 +98,7 @@
                                             <label class="label-text">Email</label>
                                             <div class="form-group">
                                                 <span class="la la-circle form-icon"></span>
-                                                <input class="form-control" name="email" type="text" value="{{ $admin->email }}">
+                                                <input class="form-control" name="email" type="text" value="{{ $user->email }}">
                                                 @error('email')
                                                 <div style="margin-top: -16px">
                                                     <small class="text-danger">{{ $message }}</small>
@@ -112,7 +112,7 @@
                                             <label class="label-text">Nomor Telepon</label>
                                             <div class="form-group">
                                                 <span class="la la-circle form-icon"></span>
-                                                <input class="form-control" name="nomor_telepon" type="number" value="{{ $admin->nomor_telepon }}">
+                                                <input class="form-control" name="nomor_telepon" type="number" value="{{ $user->nomor_telepon }}">
                                                 @error('nomor_telepon')
                                                 <div style="margin-top: -16px">
                                                     <small class="text-danger">{{ $message }}</small>
@@ -126,8 +126,8 @@
                                             <label class="label-text">Foto</label>
                                             <div class="form-group">
                                                 <span class="la la-circle form-icon"></span>
-                                                <input class="form-control" name="foto" type="file">
-                                                @error('foto')
+                                                <input class="form-control" name="foto_user" type="file">
+                                                @error('foto_user')
                                                 <div style="margin-top: -16px">
                                                     <small class="text-danger">{{ $message }}</small>
                                                 </div>
@@ -153,23 +153,23 @@
                     </div>
                     <div class="form-content">
                         <div class="contact-form-action">
-                            <form action="/ubah-password/{{ $admin->id_admin }}" method="POST">
+                            <form action="@if($user->role === 'Admin') /ubah-password-admin/{{$user->id_user}} @elseif($user->role === 'Wakil Direktur') /ubah-password-wadir/{{$user->id_user}} @elseif($user->role === 'Ketua Jurusan') /ubah-password-kajur/{{$user->id_user}} @elseif($user->role === 'Pegawai') /ubah-password/{{$user->id_user}} @endif" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="mb-2">
-                                            @if (session('berhasil'))    
+                                            @if (session('berhasil-ubah-password'))    
                                                 <div class="alert bg-primary text-white alert-dismissible">
                                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                                     <h4><i class="icon fa fa-ban"></i> Berhasil!</h4>
-                                                    {{ session('berhasil') }}
+                                                    {{ session('berhasil-ubah-password') }}
                                                 </div>
                                             @endif
-                                            @if (session('gagal'))    
+                                            @if (session('gagal-ubah-password'))    
                                                 <div class="alert bg-danger text-white alert-dismissible">
                                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                                     <h4><i class="icon fa fa-ban"></i> Gagal!</h4>
-                                                    {{ session('gagal') }}
+                                                    {{ session('gagal-ubah-password') }}
                                                 </div>
                                             @endif
                                         </div>
@@ -181,8 +181,8 @@
                                             <label class="label-text">Password Lama</label>
                                             <div class="form-group">
                                                 <span class="la la-lock form-icon"></span>
-                                                <input class="form-control" name="passwordLama" type="password" placeholder="Password Lama">
-                                                @error('passwordLama')
+                                                <input class="form-control" name="password_lama" type="password" placeholder="Password Lama">
+                                                @error('password_lama')
                                                 <div style="margin-top: -16px">
                                                     <small class="text-danger">{{ $message }}</small>
                                                 </div>
@@ -195,8 +195,8 @@
                                             <label class="label-text">Password< Baru</label>
                                             <div class="form-group">
                                                 <span class="la la-lock form-icon"></span>
-                                                <input class="form-control" name="passwordBaru" type="password" placeholder="Password Baru">
-                                                @error('passwordBaru')
+                                                <input class="form-control" name="password_baru" type="password" placeholder="Password Baru">
+                                                @error('password_baru')
                                                 <div style="margin-top: -16px">
                                                     <small class="text-danger">{{ $message }}</small>
                                                 </div>
@@ -217,7 +217,7 @@
             </div><!-- end col-lg-6 -->
         </div><!-- end row -->
         {{-- footer --}}
-        @include('layoutAdmin.footer')
+        @include('layout.footer')
         {{-- end footer --}}
     </div>
 </div>

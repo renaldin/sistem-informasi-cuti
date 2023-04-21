@@ -24,7 +24,7 @@
                 <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardPegawai"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
                 <li class="@if($title === 'Pengajuan Cuti') page-active @endif" ><a href="/pengajuan-cuti"><i class="la la-user mr-2"></i>Pengajuan Cuti</a></li>
                 @endif
-                <li><a href="/logout"><i class="la la-power-off mr-2"></i>Logout</a></li>
+                <li><a data-toggle="modal" data-target="#logout"><i class="la la-power-off mr-2"></i>Logout</a></li>
             </ul>
         </div>
     </div>

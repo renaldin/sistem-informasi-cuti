@@ -26,7 +26,7 @@
                                     <h6 class="title text-uppercase">Selamat Datang!</h6>
                                 </div>
                                 <div class="list-group drop-reveal-list user-drop-reveal-list">
-                                    <a href="/profil-admin" class="list-group-item list-group-item-action">
+                                    <a href="@if($user->role === 'Admin') /profil-admin @elseif($user->role === 'Wakil Direktur') /profil-wadir @elseif($user->role === 'Ketua Jurusan') /profil-kajur @elseif($user->role === 'Pegawai') /profil @endif" class="list-group-item list-group-item-action">
                                         <div class="msg-body">
                                             <div class="msg-content">
                                                 <h3 class="title"><i class="la la-user mr-2"></i>Profil</h3>
@@ -34,7 +34,7 @@
                                         </div>
                                     </a>
                                     <div class="section-block"></div>
-                                    <a href="/logout" class="list-group-item list-group-item-action">
+                                    <a data-toggle="modal" data-target="#logout" class="list-group-item list-group-item-action">
                                         <div class="msg-body">
                                             <div class="msg-content">
                                                 <h3 class="title"><i class="la la-power-off mr-2"></i>Logout</h3>

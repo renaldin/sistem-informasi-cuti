@@ -128,6 +128,30 @@
     </div>
 </section>
 
+<div class="modal fade" id="logout"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Apakah Anda yakin akan logout ?</p>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+        </div>
+    </div>
+</div>
+
 <!-- start scroll top -->
 <div id="back-to-top">
     <i class="la la-angle-up" title="Go top"></i>

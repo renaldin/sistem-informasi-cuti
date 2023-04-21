@@ -55,9 +55,8 @@ class Login extends Controller
 
         $cekEmail = $this->ModelAuth->cekEmailUser(Request()->email);
 
-        if ($cekEmail->role === "Pegawai") {
-
-            if ($cekEmail) {
+        if ($cekEmail) {
+            if ($cekEmail->role === "Pegawai") {
                 if (Hash::check(Request()->password, $cekEmail->password)) {
                     Session()->put('id_user', $cekEmail->id_user);
                     Session()->put('email', $cekEmail->email);
@@ -68,12 +67,8 @@ class Login extends Controller
                 } else {
                     return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
                 }
-            } else {
-                return back()->with('gagal', 'Login gagal! Email belum terdaftar.');
-            }
-        } else if ($cekEmail->role === "Admin") {
+            } else if ($cekEmail->role === "Admin") {
 
-            if ($cekEmail) {
                 if (Hash::check(Request()->password, $cekEmail->password)) {
                     Session()->put('id_user', $cekEmail->id_user);
                     Session()->put('email', $cekEmail->email);
@@ -84,9 +79,9 @@ class Login extends Controller
                 } else {
                     return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
                 }
-            } else {
-                return back()->with('gagal', 'Login gagal! Email belum terdaftar.');
             }
+        } else {
+            return back()->with('gagal', 'Login gagal! Email belum terdaftar.');
         }
     }
 

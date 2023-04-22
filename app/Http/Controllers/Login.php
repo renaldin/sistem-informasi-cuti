@@ -79,6 +79,30 @@ class Login extends Controller
                 } else {
                     return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
                 }
+            } else if ($cekEmail->role === "Wakil Direktur") {
+
+                if (Hash::check(Request()->password, $cekEmail->password)) {
+                    Session()->put('id_user', $cekEmail->id_user);
+                    Session()->put('email', $cekEmail->email);
+                    Session()->put('role', $cekEmail->role);
+                    Session()->put('log', true);
+
+                    return redirect()->route('dashboardWadir');
+                } else {
+                    return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
+                }
+            } else if ($cekEmail->role === "Ketua Jurusan") {
+
+                if (Hash::check(Request()->password, $cekEmail->password)) {
+                    Session()->put('id_user', $cekEmail->id_user);
+                    Session()->put('email', $cekEmail->email);
+                    Session()->put('role', $cekEmail->role);
+                    Session()->put('log', true);
+
+                    return redirect()->route('dashboardKajur');
+                } else {
+                    return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
+                }
             }
         } else {
             return back()->with('gagal', 'Login gagal! Email belum terdaftar.');

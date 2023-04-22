@@ -183,7 +183,7 @@
                                                 <span class="la la-lock form-icon"></span>
                                                 <input class="form-control" name="password_lama" type="password" placeholder="Password Lama">
                                                 @error('password_lama')
-                                                <div style="margin-top: -16px">
+                                                <div>
                                                     <small class="text-danger">{{ $message }}</small>
                                                 </div>
                                                 @enderror
@@ -197,7 +197,7 @@
                                                 <span class="la la-lock form-icon"></span>
                                                 <input class="form-control" name="password_baru" type="password" placeholder="Password Baru">
                                                 @error('password_baru')
-                                                <div style="margin-top: -16px">
+                                                <div>
                                                     <small class="text-danger">{{ $message }}</small>
                                                 </div>
                                                 @enderror

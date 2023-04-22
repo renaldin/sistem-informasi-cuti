@@ -23,6 +23,12 @@
                 @elseif (Session()->get('role') === 'Pegawai')
                 <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardPegawai"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
                 <li class="@if($title === 'Pengajuan Cuti') page-active @endif" ><a href="/pengajuan-cuti"><i class="la la-user mr-2"></i>Pengajuan Cuti</a></li>
+                @elseif (Session()->get('role') === 'Wakil Direktur')
+                <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardWadir"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
+                <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti"><i class="la la-user mr-2"></i>Perizinan Cuti</a></li>
+                @elseif (Session()->get('role') === 'Ketua Jurusan')
+                <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardKajur"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
+                <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti"><i class="la la-user mr-2"></i>Perizinan Cuti</a></li>
                 @endif
                 <li><a data-toggle="modal" data-target="#logout"><i class="la la-power-off mr-2"></i>Logout</a></li>
             </ul>

@@ -59,9 +59,8 @@ Route::group(['middleware' => 'revalidate'], function () {
 
         // Profil User
         Route::get('/profil', [C_Users::class, 'profil'])->name('profil');
-        Route::post('/edit-profil-user/{id}', [C_Users::class, 'editProfil']);
-        Route::get('/ubah-password/{id}', [C_Users::class, 'ubahPassword']);
-        Route::post('/ubah-password-user/{id}', [C_Users::class, 'prosesUbahPassword']);
+        Route::post('/profil/{id}', [C_Users::class, 'editProfilProcess']);
+        Route::post('/ubah-password/{id}', [C_Users::class, 'changePasswordProcess']);
     });
 
     Route::group(['middleware' => 'admin'], function () {
@@ -87,5 +86,25 @@ Route::group(['middleware' => 'revalidate'], function () {
         // Cetak PDF
         Route::post('/cetak-pdf', [Cetak::class, 'index']);
         Route::post('/cetak-pdf-order', [Cetak::class, 'cetakOrder']);
+    });
+
+    Route::group(['middleware' => 'wakildirektur'], function () {
+        // dashboard
+        Route::get('/dashboardWadir', [Dashboard::class, 'index'])->name('dashboardWadir');
+
+        // Profil User
+        Route::get('/profil-wadir', [C_Users::class, 'profil'])->name('profil-wadir');
+        Route::post('/profil-wadir/{id}', [C_Users::class, 'editProfilProcess']);
+        Route::post('/ubah-password-wadir/{id}', [C_Users::class, 'changePasswordProcess']);
+    });
+
+    Route::group(['middleware' => 'ketuajurusan'], function () {
+        // dashboard
+        Route::get('/dashboardKajur', [Dashboard::class, 'index'])->name('dashboardKajur');
+
+        // Profil User
+        Route::get('/profil-kajur', [C_Users::class, 'profil'])->name('profil-kajur');
+        Route::post('/profil-kajur/{id}', [C_Users::class, 'editProfilProcess']);
+        Route::post('/ubah-password-kajur/{id}', [C_Users::class, 'changePasswordProcess']);
     });
 });

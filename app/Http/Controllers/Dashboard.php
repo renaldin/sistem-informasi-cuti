@@ -41,6 +41,22 @@ class Dashboard extends Controller
                 'biodata'               => $this->ModelBiodataWeb->detail(1),
             ];
             return view('pegawai.dashboard', $data);
+        } elseif (Session()->get('role') === 'Wakil Direktur') {
+            $data = [
+                'title'                 => null,
+                'subTitle'              => 'Dashboard',
+                'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
+                'biodata'               => $this->ModelBiodataWeb->detail(1),
+            ];
+            return view('wakildirektur.dashboard', $data);
+        } elseif (Session()->get('role') === 'Ketua Jurusan') {
+            $data = [
+                'title'                 => null,
+                'subTitle'              => 'Dashboard',
+                'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
+                'biodata'               => $this->ModelBiodataWeb->detail(1),
+            ];
+            return view('ketuajurusan.dashboard', $data);
         }
     }
 }

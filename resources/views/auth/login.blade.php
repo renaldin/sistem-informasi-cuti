@@ -65,7 +65,7 @@
                                     </div>
                                 </div>
                                 <div class="btn-box pt-2 pb-1 text-right">
-                                    <a href="/lupa-password">Lupa Password</a>
+                                    {{-- <a href="/lupa-password">Lupa Password</a> --}}
                                 </div>
                                 <div class="btn-box pt-3 pb-4">
                                     <center>

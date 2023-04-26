@@ -50,6 +50,10 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/pengajuan-cuti', [C_PengajuanCuti::class, 'index'])->name('pengajuan-cuti');
         Route::get('/tambah-pengajuan-cuti', [C_PengajuanCuti::class, 'add'])->name('tambah-pengajuan-cuti');
         Route::post('/tambah-pengajuan-cuti', [C_PengajuanCuti::class, 'addProcess']);
+        Route::get('/edit-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'edit'])->name('edit-pengajuan-cuti');
+        Route::post('/edit-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'editProcess'])->name('edit-pengajuan-cuti');
+        Route::get('/kirim-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'sendPengajuanCuti']);
+        Route::get('/hapus-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'deleteProcess']);
 
         // Profil User
         Route::get('/profil', [C_Users::class, 'profil'])->name('profil');
@@ -60,8 +64,12 @@ Route::group(['middleware' => 'revalidate'], function () {
     Route::group(['middleware' => 'admin'], function () {
         Route::get('/dashboardAdmin', [Dashboard::class, 'index'])->name('dashboardAdmin');
 
+        // biodata web
         Route::get('/biodata-website', [BiodataWeb::class, 'index'])->name('biodata-web');
         Route::post('/biodata-website/{id}', [BiodataWeb::class, 'prosesEdit']);
+
+        // kelola pengajuan cuti
+        Route::get('/kelola-pengajuan-cuti', [C_PengajuanCuti::class, 'managePengajuanCuti'])->name('kelola-pengajuan-cuti');
 
         // Kelola User
         Route::get('/kelola-user', [C_Users::class, 'index'])->name('kelola-user');

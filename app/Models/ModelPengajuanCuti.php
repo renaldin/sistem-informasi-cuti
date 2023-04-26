@@ -19,9 +19,30 @@ class ModelPengajuanCuti extends Model
             ->orderBy('id_pengajuan_cuti', 'ASC')->get();
     }
 
+    public function getDataByUser($id_pegawai)
+    {
+        return DB::table($this->table)
+            ->join('pegawai', 'pegawai.id_pegawai', '=', 'pengajuan_cuti.id_pegawai', 'left')
+            ->join('users', 'users.id_user', '=', 'pegawai.id_user', 'left')
+            ->where('pengajuan_cuti.id_pegawai', $id_pegawai)
+            ->orderBy('id_pengajuan_cuti', 'ASC')->get();
+    }
+
+    public function getDataNotByOneStatus($status)
+    {
+        return DB::table($this->table)
+            ->join('pegawai', 'pegawai.id_pegawai', '=', 'pengajuan_cuti.id_pegawai', 'left')
+            ->join('users', 'users.id_user', '=', 'pegawai.id_user', 'left')
+            ->whereNotIn('status_pengajuan', [$status])
+            ->orderBy('id_pengajuan_cuti', 'ASC')->get();
+    }
+
     public function detail($id_pengajuan_cuti)
     {
-        return DB::table($this->table)->where('id_pengajuan_cuti', $id_pengajuan_cuti)->first();
+        return DB::table($this->table)
+            ->join('pegawai', 'pegawai.id_pegawai', '=', 'pengajuan_cuti.id_pegawai', 'left')
+            ->join('users', 'users.id_user', '=', 'pegawai.id_user', 'left')
+            ->where('id_pengajuan_cuti', $id_pengajuan_cuti)->first();
     }
 
     public function add($data)

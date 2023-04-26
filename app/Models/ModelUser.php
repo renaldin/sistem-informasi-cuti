@@ -45,4 +45,9 @@ class ModelUser extends Model
     {
         return DB::table($this->table)->count();
     }
+
+    public function getLastData()
+    {
+        return DB::table($this->table)->orderBy('id_user', 'DESC')->limit(1)->first();
+    }
 }

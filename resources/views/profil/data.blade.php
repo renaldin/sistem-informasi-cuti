@@ -95,6 +95,20 @@
                                     </div><!-- end col-lg-6 -->
                                     <div class="col-lg-6 responsive-column">
                                         <div class="input-box">
+                                            <label class="label-text">NIP</label>
+                                            <div class="form-group">
+                                                <span class="la la-circle form-icon"></span>
+                                                <input class="form-control" type="number" name="nip" placeholder="Masukkan NIP" value="{{ $detail->nip }}">
+                                            </div>
+                                            @error('nip')
+                                            <div style="margin-top: -16px">
+                                                <small class="text-danger">{{ $message }}</small>
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 responsive-column">
+                                        <div class="input-box">
                                             <label class="label-text">Email</label>
                                             <div class="form-group">
                                                 <span class="la la-circle form-icon"></span>

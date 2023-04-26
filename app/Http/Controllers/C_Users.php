@@ -57,6 +57,7 @@ class C_Users extends Controller
         Request()->validate([
             'nama'              => 'required',
             'nomor_telepon'     => 'required|numeric',
+            'nip'               => 'required|numeric',
             'email'             => 'required|unique:users,email|email',
             'password'          => 'min:6|required',
             'role'              => 'required',
@@ -65,6 +66,8 @@ class C_Users extends Controller
             'nama.required'             => 'Nama lengkap harus diisi!',
             'nomor_telepon.required'    => 'Nomor telepon harus diisi!',
             'nomor_telepon.numeric'     => 'Nomor telepon harus angka!',
+            'nip.required'              => 'NIP harus diisi!',
+            'nip.numeric'               => 'NIP harus angka!',
             'email.required'            => 'Email harus diisi!',
             'email.unique'              => 'Email sudah digunakan!',
             'email.email'               => 'Email harus sesuai format! Contoh: contoh@gmail.com',
@@ -83,6 +86,7 @@ class C_Users extends Controller
         $data = [
             'nama'              => Request()->nama,
             'nomor_telepon'     => Request()->nomor_telepon,
+            'nip'               => Request()->nip,
             'email'             => Request()->email,
             'password'          => Hash::make(Request()->password),
             'role'              => Request()->role,
@@ -115,6 +119,7 @@ class C_Users extends Controller
         Request()->validate([
             'nama'              => 'required',
             'nomor_telepon'     => 'required|numeric',
+            'nip'               => 'required|numeric',
             'email'             => 'required|email',
             'role'              => 'required',
             'foto_user'         => 'mimes:jpeg,png,jpg|max:2048',
@@ -122,6 +127,8 @@ class C_Users extends Controller
             'nama.required'             => 'Nama lengkap harus diisi!',
             'nomor_telepon.required'    => 'Nomor telepon harus diisi!',
             'nomor_telepon.numeric'     => 'Nomor telepon harus angka!',
+            'nip.required'              => 'NIP harus diisi!',
+            'nip.numeric'               => 'NIP harus angka!',
             'email.required'            => 'Email harus diisi!',
             'email.email'               => 'Email harus sesuai format! Contoh: contoh@gmail.com',
             'role.required'             => 'Role harus diisi!',
@@ -146,6 +153,7 @@ class C_Users extends Controller
                     'id_user'           => $id_user,
                     'nama'              => Request()->nama,
                     'nomor_telepon'     => Request()->nomor_telepon,
+                    'nip'               => Request()->nip,
                     'email'             => Request()->email,
                     'password'          => Hash::make(Request()->password),
                     'role'              => Request()->role,
@@ -156,6 +164,7 @@ class C_Users extends Controller
                     'id_user'           => $id_user,
                     'nama'              => Request()->nama,
                     'nomor_telepon'     => Request()->nomor_telepon,
+                    'nip'               => Request()->nip,
                     'email'             => Request()->email,
                     'password'          => Hash::make(Request()->password),
                     'role'              => Request()->role,
@@ -177,6 +186,7 @@ class C_Users extends Controller
                     'id_user'           => $id_user,
                     'nama'              => Request()->nama,
                     'nomor_telepon'     => Request()->nomor_telepon,
+                    'nip'               => Request()->nip,
                     'email'             => Request()->email,
                     'role'              => Request()->role,
                     'foto'              => $fileUser,
@@ -186,6 +196,7 @@ class C_Users extends Controller
                     'id_user'           => $id_user,
                     'nama'              => Request()->nama,
                     'nomor_telepon'     => Request()->nomor_telepon,
+                    'nip'               => Request()->nip,
                     'email'             => Request()->email,
                     'role'              => Request()->role,
                 ];
@@ -246,12 +257,15 @@ class C_Users extends Controller
         Request()->validate([
             'nama'              => 'required',
             'nomor_telepon'     => 'required|numeric',
+            'nip'               => 'required|numeric',
             'email'             => 'required|email',
             'foto_user'         => 'mimes:jpeg,png,jpg|max:2048',
         ], [
             'nama.required'             => 'Nama lengkap harus diisi!',
             'nomor_telepon.required'    => 'Nomor telepon harus diisi!',
             'nomor_telepon.numeric'     => 'Nomor telepon harus angka!',
+            'nip.required'              => 'NIP harus diisi!',
+            'nip.numeric'               => 'NIP harus angka!',
             'email.required'            => 'Email harus diisi!',
             'email.email'               => 'Email harus sesuai format! Contoh: contoh@gmail.com',
             'foto_user.mimes'           => 'Format Foto Anda harus jpg/jpeg/png!',
@@ -273,6 +287,7 @@ class C_Users extends Controller
                 'id_user'           => $id_user,
                 'nama'              => Request()->nama,
                 'nomor_telepon'     => Request()->nomor_telepon,
+                'nip'               => Request()->nip,
                 'email'             => Request()->email,
                 'foto'              => $fileUser
             ];
@@ -281,6 +296,7 @@ class C_Users extends Controller
                 'id_user'           => $id_user,
                 'nama'              => Request()->nama,
                 'nomor_telepon'     => Request()->nomor_telepon,
+                'nip'               => Request()->nip,
                 'email'             => Request()->email,
             ];
         }

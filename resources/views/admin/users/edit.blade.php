@@ -19,12 +19,26 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="input-box">
-                                            <label class="label-text">Nama Lengkap</label>
+                                            <label class="label-text">Nama Lengkap + Gelar</label>
                                             <div class="form-group">
                                                 <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="nama" placeholder="Masukkan Nama Lengkap" value="{{ $detail->nama }}" autofocus>
                                             </div>
                                             @error('nama')
+                                            <div style="margin-top: -16px">
+                                                <small class="text-danger">{{ $message }}</small>
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-box">
+                                            <label class="label-text">NIP</label>
+                                            <div class="form-group">
+                                                <span class="la la-circle form-icon"></span>
+                                                <input class="form-control" type="number" name="nip" placeholder="Masukkan NIP" value="{{ $detail->nip }}">
+                                            </div>
+                                            @error('nip')
                                             <div style="margin-top: -16px">
                                                 <small class="text-danger">{{ $message }}</small>
                                             </div>

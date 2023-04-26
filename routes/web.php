@@ -1,17 +1,10 @@
 <?php
 
-use App\Http\Controllers\Booking;
 use App\Http\Controllers\Dashboard;
-use App\Http\Controllers\Home;
-use App\Http\Controllers\KelolaAdmin;
 use App\Http\Controllers\C_Users;
-use App\Http\Controllers\KonfirmasiPembayaran;
-use App\Http\Controllers\Register;
+use App\Http\Controllers\C_Pegawai;
+use App\Http\Controllers\C_PengajuanCuti;
 use App\Http\Controllers\Login;
-use App\Http\Controllers\Order;
-use App\Http\Controllers\Reklame;
-use App\Http\Controllers\Partner;
-use App\Http\Controllers\Faq;
 use App\Http\Controllers\Cetak;
 use App\Http\Controllers\BiodataWeb;
 use Illuminate\Support\Facades\Route;
@@ -31,10 +24,6 @@ Route::group(['middleware' => 'revalidate'], function () {
 
     // Home
     Route::get('/', [Login::class, 'index'])->name('login');
-
-    // Register
-    Route::get('/register', [Register::class, 'index'])->name('register');
-    Route::post('/register', [Register::class, 'prosesRegister']);
 
     // Login User
     Route::get('/login', [Login::class, 'index'])->name('login');
@@ -57,6 +46,11 @@ Route::group(['middleware' => 'revalidate'], function () {
         // dashboard
         Route::get('/dashboardPegawai', [Dashboard::class, 'index'])->name('dashboardPegawai');
 
+        // pengajuan cuti
+        Route::get('/pengajuan-cuti', [C_PengajuanCuti::class, 'index'])->name('pengajuan-cuti');
+        Route::get('/tambah-pengajuan-cuti', [C_PengajuanCuti::class, 'add'])->name('tambah-pengajuan-cuti');
+        Route::post('/tambah-pengajuan-cuti', [C_PengajuanCuti::class, 'addProcess']);
+
         // Profil User
         Route::get('/profil', [C_Users::class, 'profil'])->name('profil');
         Route::post('/profil/{id}', [C_Users::class, 'editProfilProcess']);
@@ -77,6 +71,12 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::post('/edit-user/{id}', [C_Users::class, 'editProcess']);
         Route::get('/detail-user/{id}', [C_Users::class, 'detail'])->name('detail-user');
         Route::get('/hapus-user/{id}', [C_Users::class, 'deleteProcess']);
+
+        // Kelola Pegawai
+        Route::get('/kelola-pegawai', [C_Pegawai::class, 'index'])->name('kelola-pegawai');
+        Route::get('/tambah-pegawai', [C_Pegawai::class, 'add'])->name('tambah-pegawai');
+        Route::post('/tambah-pegawai', [C_Pegawai::class, 'addProcess']);
+        Route::get('/hapus-pegawai/{id}', [C_Pegawai::class, 'deleteProcess']);
 
         // profil
         Route::get('/profil-admin', [C_Users::class, 'profil'])->name('profil-admin');

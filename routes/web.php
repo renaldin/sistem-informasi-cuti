@@ -52,6 +52,7 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::post('/tambah-pengajuan-cuti', [C_PengajuanCuti::class, 'addProcess']);
         Route::get('/edit-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'edit'])->name('edit-pengajuan-cuti');
         Route::post('/edit-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'editProcess'])->name('edit-pengajuan-cuti');
+        Route::get('/detail-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'detail'])->name('detail-pengajuan-cuti');
         Route::get('/kirim-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'sendPengajuanCuti']);
         Route::get('/hapus-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'deleteProcess']);
 
@@ -70,6 +71,7 @@ Route::group(['middleware' => 'revalidate'], function () {
 
         // kelola pengajuan cuti
         Route::get('/kelola-pengajuan-cuti', [C_PengajuanCuti::class, 'managePengajuanCuti'])->name('kelola-pengajuan-cuti');
+        Route::get('/terima-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'acceptPengajuanCuti']);
 
         // Kelola User
         Route::get('/kelola-user', [C_Users::class, 'index'])->name('kelola-user');

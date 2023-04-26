@@ -101,6 +101,23 @@ class C_PengajuanCuti extends Controller
         return redirect()->route('pengajuan-cuti')->with('berhasil', 'Data pengajuan cuti berhasil ditambahkan !');
     }
 
+    public function detail($id_pengajuan_cuti)
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $data = [
+            'title'     => 'Pengajuan Cuti',
+            'subTitle'  => 'Detail Pengajuan Cuti',
+            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'user'      => $this->ModelUser->detail(Session()->get('id_user')),
+            'detail'    => $this->ModelPengajuanCuti->detail($id_pengajuan_cuti)
+        ];
+
+        return view('pegawai.pengajuancuti.detail', $data);
+    }
+
     public function edit($id_pengajuan_cuti)
     {
         if (!Session()->get('email')) {
@@ -200,6 +217,21 @@ class C_PengajuanCuti extends Controller
         ];
 
         return view('admin.pengajuancuti.data', $data);
+    }
+
+    public function acceptPengajuanCuti($id_pengajuan_cuti)
+    {
+        if (Session()->get('role') === 'Admin') {
+            $status = 'Diterima Admin';
+        }
+
+        $data = [
+            'id_pengajuan_cuti' => $id_pengajuan_cuti,
+            'status_pengajuan'  => $status,
+        ];
+
+        $this->ModelPengajuanCuti->edit($data);
+        return redirect()->route('kelola-pengajuan-cuti')->with('berhasil', 'Data pengajuan cuti berhasil diterima !');
     }
     // tutup admin
 }

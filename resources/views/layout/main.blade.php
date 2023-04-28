@@ -200,5 +200,41 @@
         });
     });
 </script>
+
+{{-- perizinan --}}
+<script>
+    $(function() {
+        $("#pertimbangan_atasan").on("change", function() {
+            var pertimbangan_atasan = $(this).val();
+            if (pertimbangan_atasan != 'DISETUJUI') {
+                $('#alasan_izin_cuti').closest('#alasan_izin_cuti').remove();
+                $(".alasan_pertimbangan_atasan").append('<div class="input-box" id="alasan_izin_cuti">\
+                <label class="label-text">Alasan</label>\
+                    <div class="form-group">\
+                        <span class="la la-pencil form-icon"></span>\
+                        <textarea class="message-control form-control" name="alasan_pertimbangan_atasan" placeholder="Silahkan isi alasannya..." required></textarea>\
+                    </div>\
+                </div>');
+            } else {
+                $('#alasan_izin_cuti').closest('#alasan_izin_cuti').remove();
+            }
+        });
+        $("#keputusan_pejabat").on("change", function() {
+            var keputusan_pejabat = $(this).val();
+            if (keputusan_pejabat != 'DISETUJUI') {
+                $('#alasan_izin_cuti').closest('#alasan_izin_cuti').remove();
+                $(".alasan_keputusan_pejabat").append('<div class="input-box" id="alasan_izin_cuti">\
+                <label class="label-text">Alasan</label>\
+                    <div class="form-group">\
+                        <span class="la la-pencil form-icon"></span>\
+                        <textarea class="message-control form-control" name="alasan_keputusan_pejabat" placeholder="Silahkan isi alasannya..." required></textarea>\
+                    </div>\
+                </div>');
+            } else {
+                $('#alasan_izin_cuti').closest('#alasan_izin_cuti').remove();
+            }
+        });
+    });
+</script>
 </body>
 </html>

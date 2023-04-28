@@ -170,10 +170,10 @@
                                             <td width="265px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">TIDAK DISETUJUI ****</td>
                                         </tr>
                                         <tr style="padding-left: 20px;">
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;"></td>
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;"></td>
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;"></td>
-                                            <td width="265px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">&nbsp;</td>
+                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->pertimbangan_atasan === 'DISETUJUI')Ya. @endif</td>
+                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->pertimbangan_atasan === 'PERUBAHAN')Ya. {{$detail->alasan_pertimbangan_atasan}}@endif</td>
+                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->pertimbangan_atasan === 'DITANGGUHKAN')Ya. {{$detail->alasan_pertimbangan_atasan}}@endif</td>
+                                            <td width="265px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->pertimbangan_atasan === 'TIDAK DISETUJUI')Ya. {{$detail->alasan_pertimbangan_atasan}}@endif</td>
                                         </tr>
                                         <tr style="padding-left: 20px;">
                                             <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141;"></td>
@@ -203,10 +203,10 @@
                                             <td width="265px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">TIDAK DISETUJUI ****</td>
                                         </tr>
                                         <tr style="padding-left: 20px;">
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;"></td>
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;"></td>
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;"></td>
-                                            <td width="265px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">&nbsp;</td>
+                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->keputusan_pejabat === 'DISETUJUI')Ya. @endif</td>
+                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->keputusan_pejabat === 'PERUBAHAN')Ya. {{$detail->alasan_keputusan_pejabat}}@endif</td>
+                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->keputusan_pejabat === 'DITANGGUHKAN')Ya. {{$detail->alasan_keputusan_pejabat}}@endif</td>
+                                            <td width="265px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->keputusan_pejabat === 'TIDAK DISETUJUI')Ya. {{$detail->alasan_keputusan_pejabat}}@endif</td>
                                         </tr>
                                         <tr style="padding-left: 20px;">
                                             <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141;"></td>

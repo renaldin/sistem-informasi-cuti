@@ -241,13 +241,32 @@ class C_KelolaPengajuanCuti extends Controller
             return redirect()->route('login');
         }
 
+        $data = [
+            'title'     => 'Perizinan Cuti',
+            'subTitle'  => 'Form Perizinan Cuti',
+            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'user'      => $this->ModelUser->detail(Session()->get('id_user')),
+            'detail'    => $this->ModelPengajuanCuti->detail($id_pengajuan_cuti)
+        ];
+
+        return view('atasan.perizinancuti.permission', $data);
+    }
+
+    public function permissionAtasanProcess($id_pengajuan_cuti)
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
         $user = $this->ModelUser->detail(Session()->get('id_user'));
 
         $data = [
-            'id_pengajuan_cuti' => $id_pengajuan_cuti,
-            'atasan'            => $user->nama,
-            'nip_atasan'        => $user->nip,
-            'status_pengajuan'  => 'Dikirim ke Pejabat',
+            'id_pengajuan_cuti'         => $id_pengajuan_cuti,
+            'atasan'                    => $user->nama,
+            'nip_atasan'                => $user->nip,
+            'pertimbangan_atasan'       => Request()->pertimbangan_atasan,
+            'alasan_pertimbangan_atasan' => Request()->alasan_pertimbangan_atasan,
+            'status_pengajuan'          => 'Dikirim ke Pejabat',
         ];
 
         $this->ModelPengajuanCuti->edit($data);
@@ -294,13 +313,32 @@ class C_KelolaPengajuanCuti extends Controller
             return redirect()->route('login');
         }
 
+        $data = [
+            'title'     => 'Perizinan Cuti',
+            'subTitle'  => 'Form Perizinan Cuti',
+            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'user'      => $this->ModelUser->detail(Session()->get('id_user')),
+            'detail'    => $this->ModelPengajuanCuti->detail($id_pengajuan_cuti)
+        ];
+
+        return view('pejabat.perizinancuti.permission', $data);
+    }
+
+    public function permissionPejabatProcess($id_pengajuan_cuti)
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
         $user = $this->ModelUser->detail(Session()->get('id_user'));
 
         $data = [
-            'id_pengajuan_cuti' => $id_pengajuan_cuti,
-            'pejabat'            => $user->nama,
-            'nip_pejabat'        => $user->nip,
-            'status_pengajuan'  => 'Selesai',
+            'id_pengajuan_cuti'         => $id_pengajuan_cuti,
+            'pejabat'                   => $user->nama,
+            'nip_pejabat'               => $user->nip,
+            'keputusan_pejabat'         => Request()->keputusan_pejabat,
+            'alasan_keputusan_pejabat'  => Request()->alasan_keputusan_pejabat,
+            'status_pengajuan'          => 'Selesai',
         ];
 
         $this->ModelPengajuanCuti->edit($data);

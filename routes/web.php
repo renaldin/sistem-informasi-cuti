@@ -120,6 +120,7 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/detail-pengajuan-cuti-pejabat/{id}', [C_KelolaPengajuanCuti::class, 'detail'])->name('detail-pengajuan-cuti-pejabat');
         Route::get('/terima-pengajuan-cuti-pejabat/{id}', [C_KelolaPengajuanCuti::class, 'acceptPejabat'])->name('terima-pengajuan-cuti-pejabat');
         Route::get('/izin-pejabat/{id}', [C_KelolaPengajuanCuti::class, 'permissionPejabat']);
+        Route::post('/izin-pejabat/{id}', [C_KelolaPengajuanCuti::class, 'permissionPejabatProcess']);
     });
 
     Route::group(['middleware' => 'atasan'], function () {
@@ -136,5 +137,6 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/detail-pengajuan-cuti-atasan/{id}', [C_KelolaPengajuanCuti::class, 'detail'])->name('detail-pengajuan-cuti-atasan');
         Route::get('/terima-pengajuan-cuti-atasan/{id}', [C_KelolaPengajuanCuti::class, 'acceptAtasan'])->name('terima-pengajuan-cuti-atasan');
         Route::get('/izin-atasan/{id}', [C_KelolaPengajuanCuti::class, 'permissionAtasan']);
+        Route::post('/izin-atasan/{id}', [C_KelolaPengajuanCuti::class, 'permissionAtasanProcess']);
     });
 });

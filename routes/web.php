@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\C_Users;
 use App\Http\Controllers\C_Pegawai;
 use App\Http\Controllers\C_PengajuanCuti;
-use App\Http\Controllers\Login;
 use App\Http\Controllers\Cetak;
-use App\Http\Controllers\BiodataWeb;
+use App\Http\Controllers\C_BiodataWeb;
+use App\Http\Controllers\C_Dashboard;
 use App\Http\Controllers\C_KelolaPengajuanCuti;
+use App\Http\Controllers\C_Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,28 +24,28 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'revalidate'], function () {
 
     // Home
-    Route::get('/', [Login::class, 'index'])->name('login');
+    Route::get('/', [C_Login::class, 'index'])->name('login');
 
     // Login User
-    Route::get('/login', [Login::class, 'index'])->name('login');
-    Route::post('/login', [Login::class, 'prosesLogin']);
-    Route::get('/lupa-password', [Login::class, 'lupaPassword']);
-    Route::post('/prosesEmailLupaPassword', [Login::class, 'prosesEmailLupaPassword']);
-    Route::get('/reset-password/{id}', [Login::class, 'resetPassword']);
-    Route::post('/ubah-password', [Login::class, 'prosesUbahPassword']);
+    Route::get('/login', [C_Login::class, 'index'])->name('login');
+    Route::post('/login', [C_Login::class, 'prosesLogin']);
+    Route::get('/lupa-password', [C_Login::class, 'lupaPassword']);
+    Route::post('/prosesEmailLupaPassword', [C_Login::class, 'prosesEmailLupaPassword']);
+    Route::get('/reset-password/{id}', [C_Login::class, 'resetPassword']);
+    Route::post('/ubah-password', [C_Login::class, 'prosesUbahPassword']);
 
     // Login Admin
-    Route::get('/admin', [Login::class, 'admin'])->name('admin');
-    Route::get('/lupa-password-admin', [Login::class, 'lupaPasswordAdmin']);
-    Route::get('/reset-password-admin/{id}', [Login::class, 'resetPasswordAdmin']);
-    Route::post('/ubah-password-admin', [Login::class, 'prosesUbahPasswordAdmin']);
+    Route::get('/admin', [C_Login::class, 'admin'])->name('admin');
+    Route::get('/lupa-password-admin', [C_Login::class, 'lupaPasswordAdmin']);
+    Route::get('/reset-password-admin/{id}', [C_Login::class, 'resetPasswordAdmin']);
+    Route::post('/ubah-password-admin', [C_Login::class, 'prosesUbahPasswordAdmin']);
 
     // Logout
-    Route::get('/logout', [Login::class, 'logout'])->name('logout');
+    Route::get('/logout', [C_Login::class, 'logout'])->name('logout');
 
     Route::group(['middleware' => 'pegawai'], function () {
         // dashboard
-        Route::get('/dashboardPegawai', [Dashboard::class, 'index'])->name('dashboardPegawai');
+        Route::get('/dashboardPegawai', [C_Dashboard::class, 'index'])->name('dashboardPegawai');
 
         // pengajuan cuti
         Route::get('/pengajuan-cuti', [C_PengajuanCuti::class, 'index'])->name('pengajuan-cuti');
@@ -64,11 +64,11 @@ Route::group(['middleware' => 'revalidate'], function () {
     });
 
     Route::group(['middleware' => 'admin'], function () {
-        Route::get('/dashboardAdmin', [Dashboard::class, 'index'])->name('dashboardAdmin');
+        Route::get('/dashboardAdmin', [C_Dashboard::class, 'index'])->name('dashboardAdmin');
 
         // biodata web
-        Route::get('/biodata-website', [BiodataWeb::class, 'index'])->name('biodata-web');
-        Route::post('/biodata-website/{id}', [BiodataWeb::class, 'prosesEdit']);
+        Route::get('/biodata-website', [C_BiodataWeb::class, 'index'])->name('biodata-web');
+        Route::post('/biodata-website/{id}', [C_BiodataWeb::class, 'prosesEdit']);
 
         // kelola pengajuan cuti
         Route::get('/kelola-pengajuan-cuti', [C_KelolaPengajuanCuti::class, 'index'])->name('kelola-pengajuan-cuti');
@@ -107,7 +107,7 @@ Route::group(['middleware' => 'revalidate'], function () {
 
     Route::group(['middleware' => 'wakildirektur'], function () {
         // dashboard
-        Route::get('/dashboardWadir', [Dashboard::class, 'index'])->name('dashboardWadir');
+        Route::get('/dashboardWadir', [C_Dashboard::class, 'index'])->name('dashboardWadir');
 
         // Profil User
         Route::get('/profil-wadir', [C_Users::class, 'profil'])->name('profil-wadir');
@@ -117,7 +117,7 @@ Route::group(['middleware' => 'revalidate'], function () {
 
     Route::group(['middleware' => 'ketuajurusan'], function () {
         // dashboard
-        Route::get('/dashboardKajur', [Dashboard::class, 'index'])->name('dashboardKajur');
+        Route::get('/dashboardKajur', [C_Dashboard::class, 'index'])->name('dashboardKajur');
 
         // Profil User
         Route::get('/profil-kajur', [C_Users::class, 'profil'])->name('profil-kajur');

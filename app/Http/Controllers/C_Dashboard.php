@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ModelUser;
 use App\Models\ModelBiodataWeb;
 
-class Dashboard extends Controller
+class C_Dashboard extends Controller
 {
 
     private $ModelUser;

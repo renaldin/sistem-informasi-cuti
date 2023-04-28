@@ -9,7 +9,7 @@ use App\Models\ModelUser;
 use App\Models\ModelBiodataWeb;
 use Illuminate\Support\Facades\Mail;
 
-class Login extends Controller
+class C_Login extends Controller
 {
 
     private $ModelAuth;

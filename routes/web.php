@@ -77,6 +77,7 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::post('/edit-kelola-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'editProcess']);
         Route::get('/hapus-kelola-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'deleteProcess']);
         Route::get('/download-kelola-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'downloadProcess']);
+        Route::get('/download-semua-pengajuan-cuti', [C_KelolaPengajuanCuti::class, 'downloadAllProcess']);
         Route::get('/terima-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'accept']);
         Route::get('/kirim-atasan/{id}', [C_KelolaPengajuanCuti::class, 'sendToAtasan']);
 

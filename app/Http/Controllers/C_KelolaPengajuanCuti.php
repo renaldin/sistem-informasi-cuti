@@ -128,15 +128,9 @@ class C_KelolaPengajuanCuti extends Controller
             return redirect()->route('login');
         }
 
-        if (Session()->get('role') === 'Pegawai') {
-            $status = 'Dikirim ke Admin';
-        } elseif (Session()->get('role') === 'Admin') {
-            $status = 'Dikirim ke Atasan';
-        }
-
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
-            'status_pengajuan'  => $status,
+            'status_pengajuan'  => 'Dikirim ke Atasan',
         ];
 
         $this->ModelPengajuanCuti->edit($data);
@@ -177,6 +171,22 @@ class C_KelolaPengajuanCuti extends Controller
         ];
 
         $pdf = PDF::loadview('admin/cetak/cetak_pengajuan_cuti', $data);
+        return $pdf->download($data['title'] . ' ' . date('d F Y') . '.pdf');
+    }
+
+    public function downloadAllProcess()
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $data = [
+            'title'             => 'Data Pengajuan Cuti',
+            'biodata'           => $this->ModelBiodataWeb->detail(1),
+            'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataNotByOneStatus('Persiapan')
+        ];
+
+        $pdf = PDF::loadview('admin/cetak/cetak_all_pengajuan_cuti', $data);
         return $pdf->download($data['title'] . ' ' . date('d F Y') . '.pdf');
     }
     // tutup admin

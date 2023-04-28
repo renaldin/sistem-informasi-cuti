@@ -144,7 +144,7 @@
                             <table>
                                 <tr>
                                     <td class="title">
-                                        <img src="https://www.sparksuite.com/images/logo.png" style="width: 100%; max-width: 300px" />
+                                        {{-- <img src="https://www.sparksuite.com/images/logo.png" style="width: 100%; max-width: 300px" /> --}}
                                     </td>
 
                                     <td>
@@ -170,19 +170,21 @@
                         <th>No.</th>
                         <th>Nama Lengkap</th>
                         <th>Nomor Telepon</th>
-                        <th>Perusahaan</th>
-                        <th>Tanggal Daftar</th>
+                        <th>Jenis Cuti</th>
+                        <th>Status pengajuan</th>
+                        <th>Tanggal pengajuan</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?= $no = 1;?>
-                    @foreach ($user as $item)
+                    @foreach ($dataPengajuanCuti as $item)
                     <tr>
                         <td class="text-center" width="20">{{$no++}}</td>
                         <td>{{$item->nama}}</td>
                         <td>{{$item->nomor_telepon}}</td>
-                        <td>{{$item->nama_perusahaan}}</td>
-                        <td>{{ date('d F Y', strtotime($item->tanggal_daftar)) }}</td>
+                        <td>{{$item->jenis_cuti}}</td>
+                        <td>{{$item->status_pengajuan}}</td>
+                        <td>{{ date('d F Y', strtotime($item->tanggal_pengajuan)) }}</td>
                     </tr>
                     @endforeach
                 </tbody>

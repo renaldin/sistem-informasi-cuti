@@ -6,7 +6,7 @@
     <meta name="author" content="TechyDevs">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@if ($subTitle) SI Cuti | {{$subTitle}} @else SI Cuti @endif</title>
+    <title>@if ($subTitle) {{$biodata->nama_website}} | {{$subTitle}} @else {{$biodata->nama_website}} @endif</title>
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('template/images/favicon.png') }}">
 

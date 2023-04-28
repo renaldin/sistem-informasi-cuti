@@ -16,10 +16,10 @@
                 @if (Session()->get('role') === 'Admin')
                     <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardAdmin"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
                     <li class="@if($subTitle === 'Biodata Website') page-active @endif"><a href="/biodata-website"><i class="la la-laptop mr-2"></i>Biodata Web</a></li>
-                    <li class="@if($title === 'Data Pegawai') page-active @endif" ><a href="/kelola-pegawai"><i class="la la-user mr-2"></i>Data Pegawai</a></li>
-                    <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/kelola-absensi"><i class="la la-user mr-2"></i>Data Absensi</a></li>
+                    <li class="@if($title === 'Data Pegawai') page-active @endif" ><a href="/kelola-pegawai"><i class="la la-user mr-2"></i>Kelola Pegawai</a></li>
+                    <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/kelola-absensi"><i class="la la-user mr-2"></i>Kelola Absensi</a></li>
                     <li class="@if($title === 'Pengajuan Cuti') page-active @endif" ><a href="/kelola-pengajuan-cuti"><i class="la la-user mr-2"></i>Kelola Pengajuan Cuti</a></li>
-                    <li class="@if($title === 'Data User') page-active @endif" ><a href="/kelola-user"><i class="la la-user mr-2"></i>Data User</a></li>
+                    <li class="@if($title === 'Data User') page-active @endif" ><a href="/kelola-user"><i class="la la-user mr-2"></i>Kelola User</a></li>
                 @elseif (Session()->get('role') === 'Pegawai')
                     <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardPegawai"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
                     <li class="@if($title === 'Pengajuan Cuti') page-active @endif" ><a href="/pengajuan-cuti"><i class="la la-user mr-2"></i>Pengajuan Cuti</a></li>

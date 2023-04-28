@@ -177,15 +177,13 @@ class C_PengajuanCuti extends Controller
 
     public function sendToAdmin($id_pengajuan_cuti)
     {
-        if (Session()->get('role') === 'Pegawai') {
-            $status = 'Dikirim ke Admin';
-        } elseif (Session()->get('role') === 'Admin') {
-            $status = 'Dikirim ke Atasan';
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
         }
 
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
-            'status_pengajuan'  => $status,
+            'status_pengajuan'  => 'Dikirim ke Admin',
         ];
 
         $this->ModelPengajuanCuti->edit($data);

@@ -186,7 +186,7 @@
                                                 <br>
                                                 <br>
                                                 ( @if($detail->atasan === null) .............................................. @else {{$detail->atasan}} @endif ) <br>
-                                                NIP NIP @if($detail->nip_atasan === null) .............................................. @else {{$detail->nip_atasan}} @endif
+                                                NIP @if($detail->nip_atasan === null) .............................................. @else {{$detail->nip_atasan}} @endif
                                             </td>
                                         </tr>
                                     </table>
@@ -219,13 +219,13 @@
                                                 <br>
                                                 <br>
                                                 ( @if($detail->pejabat === null) .............................................. @else {{$detail->pejabat}} @endif ) <br>
-                                                NIP NIP @if($detail->nip_pejabat === null) .............................................. @else {{$detail->nip_pejabat}} @endif
+                                                NIP @if($detail->nip_pejabat === null) .............................................. @else {{$detail->nip_pejabat}} @endif
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
                                 <div class="col-lg-12 mt-3 text-center">
-                                    <a href="/pengajuan-cuti" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
+                                    <a href="/kelola-pengajuan-cuti" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
                                 </div>
                             </div>
                         </div>

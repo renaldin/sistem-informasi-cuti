@@ -41,22 +41,22 @@ class C_Dashboard extends Controller
                 'biodata'               => $this->ModelBiodataWeb->detail(1),
             ];
             return view('pegawai.dashboard', $data);
-        } elseif (Session()->get('role') === 'Wakil Direktur') {
+        } elseif (Session()->get('role') === 'Pejabat') {
             $data = [
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
                 'biodata'               => $this->ModelBiodataWeb->detail(1),
             ];
-            return view('wakildirektur.dashboard', $data);
-        } elseif (Session()->get('role') === 'Ketua Jurusan') {
+            return view('pejabat.dashboard', $data);
+        } elseif (Session()->get('role') === 'Atasan') {
             $data = [
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
                 'biodata'               => $this->ModelBiodataWeb->detail(1),
             ];
-            return view('ketuajurusan.dashboard', $data);
+            return view('atasan.dashboard', $data);
         }
     }
 }

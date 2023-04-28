@@ -389,7 +389,7 @@
                             <br>
                             <br>
                             ( @if($detail->atasan === null) .............................................. @else {{$detail->atasan}} @endif ) <br>
-                            NIP 
+                            NIP NIP @if($detail->nip_atasan === null) .............................................. @else {{$detail->nip_atasan}} @endif
                         </td>
                     </tr>
                 </table>
@@ -419,8 +419,8 @@
                             <br>
                             <br>
                             <br>
-                            ( @if($detail->pejabat === null) .............................................. @else {{$detail->atasan}} @endif ) <br>
-                            NIP 
+                            ( @if($detail->pejabat === null) .............................................. @else {{$detail->pejabat}} @endif ) <br>
+                            NIP NIP @if($detail->nip_pejabat === null) .............................................. @else {{$detail->nip_pejabat}} @endif
                         </td>
                     </tr>
                 </table>

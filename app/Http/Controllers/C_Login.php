@@ -30,6 +30,10 @@ class C_Login extends Controller
                 return redirect()->route('dashboardAdmin');
             } elseif (Session()->get('role') === 'Pegawai') {
                 return redirect()->route('dashboardPegawai');
+            } elseif (Session()->get('role') === 'Atasan') {
+                return redirect()->route('dashboardAtasan');
+            } elseif (Session()->get('role') === 'Pejabat') {
+                return redirect()->route('dashboardPejabat');
             }
         }
 
@@ -79,7 +83,7 @@ class C_Login extends Controller
                 } else {
                     return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
                 }
-            } else if ($cekEmail->role === "Wakil Direktur") {
+            } else if ($cekEmail->role === "Pejabat") {
 
                 if (Hash::check(Request()->password, $cekEmail->password)) {
                     Session()->put('id_user', $cekEmail->id_user);
@@ -87,11 +91,11 @@ class C_Login extends Controller
                     Session()->put('role', $cekEmail->role);
                     Session()->put('log', true);
 
-                    return redirect()->route('dashboardWadir');
+                    return redirect()->route('dashboardPejabat');
                 } else {
                     return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
                 }
-            } else if ($cekEmail->role === "Ketua Jurusan") {
+            } else if ($cekEmail->role === "Atasan") {
 
                 if (Hash::check(Request()->password, $cekEmail->password)) {
                     Session()->put('id_user', $cekEmail->id_user);
@@ -99,7 +103,7 @@ class C_Login extends Controller
                     Session()->put('role', $cekEmail->role);
                     Session()->put('log', true);
 
-                    return redirect()->route('dashboardKajur');
+                    return redirect()->route('dashboardAtasan');
                 } else {
                     return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
                 }

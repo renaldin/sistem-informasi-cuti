@@ -94,8 +94,8 @@
                                                 <select class="select-contain-select" name="role">
                                                     <option value="">-- Pilih Role --</option>
                                                     <option value="Admin">Admin</option>
-                                                    <option value="Wakil Direktur">Wakil Direktur</option>
-                                                    <option value="Ketua Jurusan">Ketua Jurusan</option>
+                                                    <option value="Pejabat">Pejabat</option>
+                                                    <option value="Atasan">Atasan</option>
                                                     <option value="Pegawai">Pegawai</option>
                                                 </select>
                                             </div>

@@ -24,12 +24,12 @@
                     <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardPegawai"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
                     <li class="@if($title === 'Pengajuan Cuti') page-active @endif" ><a href="/pengajuan-cuti"><i class="la la-user mr-2"></i>Pengajuan Cuti</a></li>
                     <li class="@if($title === 'Riwayat Pengajuan Cuti') page-active @endif" ><a href="/riwayat-pengajuan-cuti"><i class="la la-user mr-2"></i>Riwayat Pengajuan Cuti</a></li>
-                @elseif (Session()->get('role') === 'Wakil Direktur')
-                    <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardWadir"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
-                    <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti"><i class="la la-user mr-2"></i>Perizinan Cuti</a></li>
-                @elseif (Session()->get('role') === 'Ketua Jurusan')
-                    <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardKajur"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
-                    <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti"><i class="la la-user mr-2"></i>Perizinan Cuti</a></li>
+                @elseif (Session()->get('role') === 'Pejabat')
+                    <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardPejabat"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
+                    <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti-pejabat"><i class="la la-user mr-2"></i>Perizinan Cuti</a></li>
+                @elseif (Session()->get('role') === 'Atasan')
+                    <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardAtasan"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
+                    <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti-atasan"><i class="la la-user mr-2"></i>Perizinan Cuti</a></li>
                 @endif
                 <li><a data-toggle="modal" data-target="#logout"><i class="la la-power-off mr-2"></i>Logout</a></li>
             </ul>

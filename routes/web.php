@@ -7,6 +7,7 @@ use App\Http\Controllers\C_PengajuanCuti;
 use App\Http\Controllers\Login;
 use App\Http\Controllers\Cetak;
 use App\Http\Controllers\BiodataWeb;
+use App\Http\Controllers\C_KelolaPengajuanCuti;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,7 +54,7 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/edit-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'edit'])->name('edit-pengajuan-cuti');
         Route::post('/edit-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'editProcess'])->name('edit-pengajuan-cuti');
         Route::get('/detail-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'detail'])->name('detail-pengajuan-cuti');
-        Route::get('/kirim-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'sendPengajuanCuti']);
+        Route::get('/kirim-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'sendToAdmin']);
         Route::get('/hapus-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'deleteProcess']);
 
         // Profil User
@@ -70,8 +71,14 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::post('/biodata-website/{id}', [BiodataWeb::class, 'prosesEdit']);
 
         // kelola pengajuan cuti
-        Route::get('/kelola-pengajuan-cuti', [C_PengajuanCuti::class, 'managePengajuanCuti'])->name('kelola-pengajuan-cuti');
-        Route::get('/terima-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'acceptPengajuanCuti']);
+        Route::get('/kelola-pengajuan-cuti', [C_KelolaPengajuanCuti::class, 'index'])->name('kelola-pengajuan-cuti');
+        Route::get('/detail-kelola-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'detail'])->name('detail-kelola-pengajuan-cuti');
+        Route::get('/edit-kelola-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'edit'])->name('edit-kelola-pengajuan-cuti');
+        Route::post('/edit-kelola-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'editProcess']);
+        Route::get('/hapus-kelola-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'deleteProcess']);
+        Route::get('/download-kelola-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'downloadProcess']);
+        Route::get('/terima-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'accept']);
+        Route::get('/kirim-atasan/{id}', [C_KelolaPengajuanCuti::class, 'sendToAtasan']);
 
         // Kelola User
         Route::get('/kelola-user', [C_Users::class, 'index'])->name('kelola-user');

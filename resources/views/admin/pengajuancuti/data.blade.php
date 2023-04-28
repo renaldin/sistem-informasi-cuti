@@ -64,8 +64,10 @@
                                             <td><span class="badge badge-primary py-1 px-2">{{ $item->status_pengajuan }}</span></td>
                                             <td>
                                                 <div class="table-content">
-                                                    <a href="/detail-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
-                                                    <a href="/edit-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
+                                                    <a href="/detail-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
+                                                    <button type="button" data-toggle="modal" data-target="#kirim-atasan{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Kirim ke Atasan"><i class="la la-check"></i></button>
+                                                    <a href="/download-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Download"><i class="la la-download"></i></a>
+                                                    <a href="/edit-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
                                                     <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
                                                 </div>
                                             </td>
@@ -105,7 +107,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-            <a href="/hapus-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="btn btn-danger">Hapus</a>
+            <a href="/hapus-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="btn btn-danger">Hapus</a>
         </div>
         </div>
     </div>
@@ -133,6 +135,33 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
             <a href="/terima-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="btn btn-primary">Terima</a>
+        </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+{{-- Kirim --}}
+@foreach ($dataPengajuanCuti as $item)
+<div class="modal fade" id="kirim-atasan{{ $item->id_pengajuan_cuti }}"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Kirim Pengajuan Cuti ke Atasan</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Apakah Anda yakin akan kirim data pengajuan cuti <strong>{{$item->nama}}</strong> ?</p>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+            <a href="/kirim-atasan/{{ $item->id_pengajuan_cuti }}" class="btn btn-primary">Kirim</a>
         </div>
         </div>
     </div>

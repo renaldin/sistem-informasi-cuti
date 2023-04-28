@@ -2,7 +2,6 @@
     <div class="col-lg-12">
         <div class="menu-wrapper">
             <div class="logo mr-5">
-                <a href="#"><img src="{{ asset('foto_biodata/'.$biodata->logo) }}" alt="logo" width="200px"></a>
                 <div class="menu-toggler">
                     <i class="la la-bars"></i>
                     <i class="la la-times"></i>

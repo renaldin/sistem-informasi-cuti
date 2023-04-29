@@ -70,8 +70,13 @@ class ModelPengajuanCuti extends Model
         DB::table($this->table)->where('id_pengajuan_cuti', $id_pengajuan_cuti)->delete();
     }
 
-    public function jumlahPegawai()
+    public function jumlahPengajuanCuti()
     {
         return DB::table($this->table)->count();
+    }
+
+    public function jumlahByStatus($status)
+    {
+        return DB::table($this->table)->where('status_pengajuan', $status)->count();
     }
 }

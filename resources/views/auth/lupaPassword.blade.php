@@ -1,4 +1,4 @@
-@extends('layoutUser.main')
+@extends('layoutAuth.main')
 
 @section('content')
 <section class="info-area padding-top-50px padding-bottom-70px">
@@ -14,7 +14,7 @@
                     </div>
                     <div class="card-body">
                         <div class="contact-form-action">
-                            <form action="/prosesEmailLupaPassword" method="POST">
+                            <form action="/lupa-password" method="POST">
                                 @csrf
                                 <div class="row">
                                     @if (session('berhasil'))
@@ -40,7 +40,6 @@
                                             <label class="label-text">Email</label>
                                             <div class="form-group">
                                                 <span class="la la-envelope form-icon"></span>
-                                                <input class="form-control" type="hidden" name="status" value="User">
                                                 <input class="form-control" type="email" name="email" placeholder="Masukkan Email" value="{{ old('email') }}">
                                             </div>
                                             @error('email')

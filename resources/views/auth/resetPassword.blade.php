@@ -1,4 +1,4 @@
-@extends('layoutUser.main')
+@extends('layoutAuth.main')
 
 @section('content')
 <section class="info-area padding-top-50px padding-bottom-70px">
@@ -9,12 +9,12 @@
                     <div class="card-header">
                         <div>
                             <h5 class="modal-title title" id="exampleModalLongTitle">Reset Password</h5>
-                            <p class="font-size-14">Hallo {{$dataUser->nama}}, silahkan ubah dengan password baru!</p>
+                            <p class="font-size-14">Hallo {{$user->nama}}, silahkan ubah dengan password baru!</p>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="contact-form-action">
-                            <form action="/ubah-password" method="POST">
+                            <form action="/reset-password/{{$user->id_user}}" method="POST">
                                 @csrf
                                 <div class="row">
                                     @if (session('berhasil'))
@@ -40,8 +40,7 @@
                                             <label class="label-text">Password Baru</label>
                                             <div class="form-group">
                                                 <span class="la la-envelope form-icon"></span>
-                                                <input class="form-control" type="hidden" name="id_member" value="{{ $dataUser->id_member }}">
-                                                <input class="form-control" type="password" name="password" placeholder="Masukkan Password Baru" value="{{ old('password') }}" autofocus>
+                                                <input class="form-control" type="password" name="password" placeholder="Masukkan Password Baru" autofocus>
                                             </div>
                                             @error('password')
                                             <div style="margin-top: -16px">
@@ -55,7 +54,7 @@
                                             <label class="label-text">Konfirmasi Password</label>
                                             <div class="form-group">
                                                 <span class="la la-envelope form-icon"></span>
-                                                <input class="form-control" type="password" name="password_confirmation" placeholder="Masukkan Konfirmasi Password" value="{{ old('password_confirmation') }}">
+                                                <input class="form-control" type="password" name="password_confirmation" placeholder="Masukkan Konfirmasi Password">
                                             </div>
                                             @error('password_confirmation')
                                             <div style="margin-top: -16px">

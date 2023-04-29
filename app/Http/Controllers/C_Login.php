@@ -122,127 +122,76 @@ class C_Login extends Controller
         return redirect()->route('login')->with('berhasil', 'Logout berhasil!');
     }
 
-    public function lupaPassword()
+    public function forgotPassword()
     {
         if (Session()->get('email')) {
-            if (Session()->get('status') === 'User') {
-                return redirect()->route('home');
-            } else {
-                return redirect()->route('dashboard');
+            if (Session()->get('role') === 'Admin') {
+                return redirect()->route('dashboardAdmin');
+            } elseif (Session()->get('role') === 'Pegawai') {
+                return redirect()->route('dashboardPegawai');
+            } elseif (Session()->get('role') === 'Atasan') {
+                return redirect()->route('dashboardAtasan');
+            } elseif (Session()->get('role') === 'Pejabat') {
+                return redirect()->route('dashboardPejabat');
             }
         }
 
         $data = [
-            'title' => 'Lupa Password',
-            'biodata'  => $this->ModelBiodataWeb->detail(1),
+            'title'     => 'Lupa Password',
+            'biodata'   => $this->ModelBiodataWeb->detail(1),
         ];
 
         return view('auth.lupaPassword', $data);
     }
 
-    public function lupaPasswordAdmin()
+    public function resetPassword($id_user)
     {
         if (Session()->get('email')) {
-            if (Session()->get('status') === 'User') {
-                return redirect()->route('home');
-            } else {
-                return redirect()->route('dashboard');
-            }
-        }
-
-        $data = [
-            'title' => 'Lupa Password',
-            'biodata'  => $this->ModelBiodataWeb->detail(1),
-        ];
-
-        return view('auth.lupaPasswordAdmin', $data);
-    }
-
-    public function resetPassword($id_member)
-    {
-        if (Session()->get('email')) {
-            if (Session()->get('status') === 'User') {
-                return redirect()->route('home');
-            } else {
-                return redirect()->route('dashboard');
+            if (Session()->get('role') === 'Admin') {
+                return redirect()->route('dashboardAdmin');
+            } elseif (Session()->get('role') === 'Pegawai') {
+                return redirect()->route('dashboardPegawai');
+            } elseif (Session()->get('role') === 'Atasan') {
+                return redirect()->route('dashboardAtasan');
+            } elseif (Session()->get('role') === 'Pejabat') {
+                return redirect()->route('dashboardPejabat');
             }
         }
 
         $data = [
             'title'     => 'Reset Password',
-            'dataUser'  => $this->ModelUser->detail($id_member),
             'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'user'      => $this->ModelUser->detail($id_user),
         ];
 
         return view('auth.resetPassword', $data);
     }
 
-    public function resetPasswordAdmin($id_admin)
-    {
-        if (Session()->get('email')) {
-            if (Session()->get('status') === 'User') {
-                return redirect()->route('home');
-            } else {
-                return redirect()->route('dashboard');
-            }
-        }
-
-        $data = [
-            'title'     => 'Reset Password',
-            'dataUser'  => $this->ModelAdmin->detail($id_admin),
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
-        ];
-
-        return view('auth.resetPasswordAdmin', $data);
-    }
-
-    public function prosesEmailLupaPassword()
+    public function forgotPasswordProcess()
     {
         $email = Request()->email;
-        $status = Request()->status;
 
-        if ($status === 'User') {
-            $data = $this->ModelUser->detailByEmail($email);
+        $data = $this->ModelUser->detailByEmail($email);
 
-            if ($data) {
+        if ($data) {
 
-                $data_email = [
-                    'subject'       => 'Lupa Password',
-                    'sender_name'   => 'renaldinoviandi1@gmail.com',
-                    'urlUtama'      => 'http://127.0.0.1:8000',
-                    'urlReset'      => 'http://127.0.0.1:8000/reset-password/' . $data->id_member,
-                    'dataUser'      => $data,
-                    'biodata'       => $this->ModelBiodataWeb->detail(1),
-                ];
+            $data_email = [
+                'subject'       => 'Lupa Password',
+                'sender_name'   => 'renaldinoviandi1@gmail.com',
+                'urlUtama'      => 'http://127.0.0.1:8000',
+                'urlReset'      => 'http://127.0.0.1:8000/reset-password/' . $data->id_user,
+                'dataUser'      => $data,
+                'biodata'       => $this->ModelBiodataWeb->detail(1),
+            ];
 
-                Mail::to($data->email)->send(new kirimEmail($data_email));
-                return redirect()->route('login')->with('berhasil', 'Kami sudah kirim pesan ke email Anda. Silahkan cek email Anda!');
-            } else {
-                return back()->with('gagal', 'Email belum terdaftar. Silahkan daftar terlebih dahulu!');
-            }
-        } elseif ($status === 'Admin') {
-            $data = $this->ModelAdmin->detailByEmail($email);
-
-            if ($data) {
-
-                $data_email = [
-                    'subject'       => 'Lupa Password',
-                    'sender_name'   => 'renaldinoviandi1@gmail.com',
-                    'urlUtama'      => 'http://127.0.0.1:8000',
-                    'urlReset'      => 'http://127.0.0.1:8000/reset-password-admin/' . $data->id_admin,
-                    'dataUser'      => $data,
-                    'biodata'       => $this->ModelBiodataWeb->detail(1),
-                ];
-
-                Mail::to($data->email)->send(new kirimEmail($data_email));
-                return redirect()->route('admin')->with('berhasil', 'Kami sudah kirim pesan ke email Anda. Silahkan cek email Anda!');
-            } else {
-                return back()->with('gagal', 'Email belum terdaftar. Silahkan daftar terlebih dahulu!');
-            }
+            Mail::to($data->email)->send(new kirimEmail($data_email));
+            return redirect()->route('login')->with('berhasil', 'Kami sudah kirim pesan ke email Anda. Silahkan cek email Anda!');
+        } else {
+            return back()->with('gagal', 'Email belum terdaftar. Silahkan hubungi Admin terlebih dahulu!');
         }
     }
 
-    public function prosesUbahPassword()
+    public function resetPasswordProcess($id_user)
     {
         Request()->validate([
             'password' => 'min:6|required|confirmed',
@@ -253,8 +202,8 @@ class C_Login extends Controller
         ]);
 
         $data = [
-            'id_member'         => Request()->id_member,
-            'password'          => Hash::make(Request()->password)
+            'id_user'       => Request()->id_user,
+            'password'      => Hash::make(Request()->password)
         ];
 
         $this->ModelUser->edit($data);

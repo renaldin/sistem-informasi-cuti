@@ -43,11 +43,16 @@ class C_Dashboard extends Controller
             ];
             return view('admin.dashboard', $data);
         } elseif (Session()->get('role') === 'Pegawai') {
+
+            $pegawai = $this->ModelPegawai->detailByIdUser(Session()->get('id_user'));
+
             $data = [
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
                 'biodata'               => $this->ModelBiodataWeb->detail(1),
+                'jumlahPengajuanCuti'   => $this->ModelPengajuanCuti->jumlahByUser($pegawai->id_pegawai),
+                'selesaiPengajuanCuti'  => $this->ModelPengajuanCuti->jumlahByUserStatus($pegawai->id_pegawai, 'Selesai'),
             ];
             return view('pegawai.dashboard', $data);
         } elseif (Session()->get('role') === 'Pejabat') {

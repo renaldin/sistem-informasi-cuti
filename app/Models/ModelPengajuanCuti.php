@@ -79,4 +79,14 @@ class ModelPengajuanCuti extends Model
     {
         return DB::table($this->table)->where('status_pengajuan', $status)->count();
     }
+
+    public function jumlahByUser($id_pegawai)
+    {
+        return DB::table($this->table)->where('id_pegawai', $id_pegawai)->count();
+    }
+
+    public function jumlahByUserStatus($id_pegawai, $status)
+    {
+        return DB::table($this->table)->where('id_pegawai', $id_pegawai)->where('status_pengajuan', $status)->count();
+    }
 }

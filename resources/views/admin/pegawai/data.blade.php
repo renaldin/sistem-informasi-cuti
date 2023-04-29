@@ -57,9 +57,9 @@
                                         <td><span class="badge badge-primary py-1 px-2">{{ $item->unit_kerja }}</span></td>
                                         <td>
                                             <div class="table-content">
-                                                <a href="/detail-pegawai/{{ $item->id_pegawai }}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
-                                                <a href="/edit-pegawai/{{ $item->id_pegawai }}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
-                                                <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_pegawai}}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
+                                                <a href="/detail-pegawai/{{ $item->id_pegawai }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
+                                                <a href="/edit-pegawai/{{ $item->id_pegawai }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
+                                                <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_pegawai}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
                                             </div>
                                         </td>
                                     </tr>

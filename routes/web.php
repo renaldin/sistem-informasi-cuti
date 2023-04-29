@@ -94,6 +94,9 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/kelola-pegawai', [C_Pegawai::class, 'index'])->name('kelola-pegawai');
         Route::get('/tambah-pegawai', [C_Pegawai::class, 'add'])->name('tambah-pegawai');
         Route::post('/tambah-pegawai', [C_Pegawai::class, 'addProcess']);
+        Route::get('/edit-pegawai/{id}', [C_Pegawai::class, 'edit'])->name('edit-pegawai');
+        Route::post('/edit-pegawai/{id}', [C_Pegawai::class, 'editProcess']);
+        Route::get('/detail-pegawai/{id}', [C_Pegawai::class, 'detail'])->name('detail-pegawai');
         Route::get('/hapus-pegawai/{id}', [C_Pegawai::class, 'deleteProcess']);
 
         // profil

@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@if ($subTitle) {{$biodata->nama_website}} | {{$subTitle}} @else {{$biodata->nama_website}} @endif</title>
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('template/images/favicon.png') }}">
+    <link rel="icon" href="{{ asset('foto_biodata/'.$biodata->logo) }}">
 
     <!-- Google Fonts -->
     <link href="{{ asset('template/../../../../../../fonts.googleapis.com/css2bff7.css?family=Roboto:wght@100;300;400;500;700;900&amp;display=swap') }}" rel="stylesheet">

@@ -18,7 +18,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Nama Lengkap</label>
                                             <div class="form-group">
-                                                <span class="la la-user form-icon"></span>
+                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" value="{{ $user->nama }}" disabled>
                                             </div>
                                         </div>
@@ -27,7 +27,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Email</label>
                                             <div class="form-group">
-                                                <span class="la la-envelope form-icon"></span>
+                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" value="{{ $user->email }}" disabled>
                                             </div>
                                         </div>
@@ -36,7 +36,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Nomor Telepon</label>
                                             <div class="form-group">
-                                                <span class="la la-phone form-icon"></span>
+                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" value="{{ $user->nomor_telepon }}" disabled>
                                             </div>
                                         </div>
@@ -194,7 +194,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Password Lama</label>
                                             <div class="form-group">
-                                                <span class="la la-lock form-icon"></span>
+                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" name="password_lama" type="password" placeholder="Password Lama">
                                                 @error('password_lama')
                                                 <div>
@@ -208,7 +208,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Password< Baru</label>
                                             <div class="form-group">
-                                                <span class="la la-lock form-icon"></span>
+                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" name="password_baru" type="password" placeholder="Password Baru">
                                                 @error('password_baru')
                                                 <div>

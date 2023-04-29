@@ -56,9 +56,9 @@
                                         <td><span class="badge badge-primary py-1 px-2">{{ $item->role }}</span></td>
                                         <td>
                                             <div class="table-content">
-                                                <a href="/detail-user/{{ $item->id_user }}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
-                                                <a href="/edit-user/{{ $item->id_user }}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
-                                                <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_user}}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
+                                                <a href="/detail-user/{{ $item->id_user }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
+                                                <a href="/edit-user/{{ $item->id_user }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
+                                                <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_user}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
                                             </div>
                                         </td>
                                     </tr>

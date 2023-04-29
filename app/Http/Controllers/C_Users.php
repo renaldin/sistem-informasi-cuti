@@ -246,7 +246,8 @@ class C_Users extends Controller
             'title'     => 'Profil',
             'subTitle'  => 'Informasi Profil',
             'biodata'   => $this->ModelBiodataWeb->detail(1),
-            'user'      => $this->ModelUser->detail(Session()->get('id_user'))
+            'user'      => $this->ModelUser->detail(Session()->get('id_user')),
+            'detail'    => $this->ModelUser->detail(Session()->get('id_user'))
         ];
 
         return view('profil.data', $data);

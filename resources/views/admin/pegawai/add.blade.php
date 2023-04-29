@@ -343,7 +343,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 mt-3 text-center">
-                                    <a href="/kelola-user" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
+                                    <a href="/kelola-pegawai" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
                                     <button type="submit" class="theme-btn theme-btn-small">Simpan</button>
                                 </div>
                             </form>

@@ -20,7 +20,9 @@ class ModelPegawai extends Model
 
     public function detail($id_pegawai)
     {
-        return DB::table($this->table)->where('id_pegawai', $id_pegawai)->first();
+        return DB::table($this->table)
+            ->join('users', 'users.id_user', '=', 'pegawai.id_user', 'left')
+            ->where('id_pegawai', $id_pegawai)->first();
     }
 
     public function detailByIdUser($id_user)

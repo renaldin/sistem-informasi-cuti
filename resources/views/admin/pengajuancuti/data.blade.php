@@ -64,14 +64,14 @@
                                             <td><span class="badge badge-primary py-1 px-2">{{ $item->status_pengajuan }}</span></td>
                                             <td>
                                                 <div class="table-content">
-                                                    <a href="/detail-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
+                                                    <a href="/detail-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
                                                     @if ($item->status_pengajuan === 'Diterima Admin')
-                                                        <button type="button" data-toggle="modal" data-target="#kirim-atasan{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Kirim ke Atasan"><i class="la la-check"></i></button>
+                                                        <button type="button" data-toggle="modal" data-target="#kirim-atasan{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Kirim ke Atasan"><i class="la la-check"></i></button>
                                                     @endif
-                                                    <a href="/download-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Download"><i class="la la-download"></i></a>
+                                                    <a href="/download-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Download"><i class="la la-download"></i></a>
                                                     @if ($item->status_pengajuan === 'Diterima Admin')
-                                                        <a href="/edit-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
-                                                        <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
+                                                        <a href="/edit-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
+                                                        <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
                                                     @endif
                                                 </div>
                                             </td>

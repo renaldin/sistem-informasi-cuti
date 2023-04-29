@@ -38,6 +38,23 @@ class C_Pegawai extends Controller
         return view('admin.pegawai.data', $data);
     }
 
+    public function detail($id_pegawai)
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $data = [
+            'title'     => 'Data Pegawai',
+            'subTitle'  => 'Detail Pegawai',
+            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'user'      => $this->ModelUser->detail(Session()->get('id_user')),
+            'detail'    => $this->ModelPegawai->detail($id_pegawai)
+        ];
+
+        return view('admin.pegawai.detail', $data);
+    }
+
     public function add()
     {
         if (!Session()->get('email')) {
@@ -146,6 +163,130 @@ class C_Pegawai extends Controller
 
         $this->ModelPegawai->add($dataPegawai);
         return redirect()->route('kelola-pegawai')->with('berhasil', 'Data pegawai berhasil ditambahkan !');
+    }
+
+    public function edit($id_pegawai)
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $data = [
+            'title'     => 'Data Pegawai',
+            'subTitle'  => 'Edit Pegawai',
+            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'user'      => $this->ModelUser->detail(Session()->get('id_user')),
+            'detail'    => $this->ModelPegawai->detail($id_pegawai)
+        ];
+
+        return view('admin.pegawai.edit', $data);
+    }
+
+    public function editProcess($id_pegawai)
+    {
+        Request()->validate([
+            'email'                         => 'required|email',
+            'role'                          => 'required',
+            'foto_user'                     => 'mimes:jpeg,png,jpg|max:2048',
+            'nama'                          => 'required',
+            'nomor_telepon'                 => 'required|numeric',
+            'nip'                           => 'required|numeric',
+            'jabatan'                       => 'required',
+            'unit_kerja'                    => 'required',
+            'masa_kerja'                    => 'required',
+        ], [
+            'email.required'                            => 'Email harus diisi!',
+            'email.email'                               => 'Email harus sesuai format! Contoh: contoh@gmail.com',
+            'foto_user.required'                        => 'Foto Anda harus diisi!',
+            'foto_user.mimes'                           => 'Format Foto Anda harus jpg/jpeg/png!',
+            'foto_user.max'                             => 'Ukuran Foto Anda maksimal 2 mb',
+            'nama.required'                             => 'Nama lengkap harus diisi!',
+            'nomor_telepon.required'                    => 'Nomor telepon harus diisi!',
+            'nomor_telepon.numeric'                     => 'Nomor telepon harus angka!',
+            'nip.required'                              => 'NIP harus diisi!',
+            'nip.numeric'                               => 'NIP harus angka!',
+            'jabatan.required'                          => 'Jabatan harus diisi!',
+            'unit_kerja.required'                       => 'Unit kerja harus diisi!',
+            'masa_kerja.required'                       => 'Masa kerja harus diisi!',
+        ]);
+
+        if (Request()->foto_user <> "") {
+            $pegawai = $this->ModelPegawai->detail($id_pegawai);
+            $user = $this->ModelUser->detail($pegawai->id_user);
+
+            if ($user->foto <> "") {
+                unlink(public_path('foto_user') . '/' . $user->foto);
+            }
+
+            $file1 = Request()->foto_user;
+            $fileUser = date('mdYHis') . Request()->nama . '.' . $file1->extension();
+            $file1->move(public_path('foto_user'), $fileUser);
+
+            $dataUser = [
+                'id_user'           => $user->id_user,
+                'nama'              => Request()->nama,
+                'nomor_telepon'     => Request()->nomor_telepon,
+                'nip'               => Request()->nip,
+                'email'             => Request()->email,
+                'role'              => Request()->role,
+                'foto'              => $fileUser,
+            ];
+            $this->ModelUser->edit($dataUser);
+
+            $dataPegawai = [
+                'id_pegawai'                    => $pegawai->id_pegawai,
+                'id_user'                       => $user->id_user,
+                'jabatan'                       => Request()->jabatan,
+                'unit_kerja'                    => Request()->unit_kerja,
+                'masa_kerja'                    => Request()->masa_kerja,
+                'cuti_n_2'                      => Request()->cuti_n_2,
+                'cuti_n_1'                      => Request()->cuti_n_1,
+                'cuti_n'                        => Request()->cuti_n,
+                'keterangan_n_2'                => Request()->keterangan_n_2,
+                'keterangan_n_1'                => Request()->keterangan_n_1,
+                'keterangan_n'                  => Request()->keterangan_n,
+                'cuti_besar'                    => Request()->cuti_besar,
+                'cuti_sakit'                    => Request()->cuti_sakit,
+                'cuti_melahirkan'               => Request()->cuti_melahirkan,
+                'cuti_karena_alasan_penting'    => Request()->cuti_karena_alasan_penting,
+                'cuti_diluar_tanggungan_negara' => Request()->cuti_diluar_tanggungan_negara,
+            ];
+        } else {
+            $pegawai = $this->ModelPegawai->detail($id_pegawai);
+            $user = $this->ModelUser->detail($pegawai->id_user);
+
+            $dataUser = [
+                'id_user'           => $user->id_user,
+                'nama'              => Request()->nama,
+                'nomor_telepon'     => Request()->nomor_telepon,
+                'nip'               => Request()->nip,
+                'email'             => Request()->email,
+                'role'              => Request()->role,
+            ];
+            $this->ModelUser->edit($dataUser);
+
+            $dataPegawai = [
+                'id_pegawai'                    => $pegawai->id_pegawai,
+                'id_user'                       => $user->id_user,
+                'jabatan'                       => Request()->jabatan,
+                'unit_kerja'                    => Request()->unit_kerja,
+                'masa_kerja'                    => Request()->masa_kerja,
+                'cuti_n_2'                      => Request()->cuti_n_2,
+                'cuti_n_1'                      => Request()->cuti_n_1,
+                'cuti_n'                        => Request()->cuti_n,
+                'keterangan_n_2'                => Request()->keterangan_n_2,
+                'keterangan_n_1'                => Request()->keterangan_n_1,
+                'keterangan_n'                  => Request()->keterangan_n,
+                'cuti_besar'                    => Request()->cuti_besar,
+                'cuti_sakit'                    => Request()->cuti_sakit,
+                'cuti_melahirkan'               => Request()->cuti_melahirkan,
+                'cuti_karena_alasan_penting'    => Request()->cuti_karena_alasan_penting,
+                'cuti_diluar_tanggungan_negara' => Request()->cuti_diluar_tanggungan_negara,
+            ];
+        }
+
+        $this->ModelPegawai->edit($dataPegawai);
+        return redirect()->route('kelola-pegawai')->with('berhasil', 'Data pegawai berhasil diedit !');
     }
 
     public function deleteProcess($id_pegawai)

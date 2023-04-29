@@ -57,6 +57,10 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/kirim-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'sendToAdmin']);
         Route::get('/hapus-pengajuan-cuti/{id}', [C_PengajuanCuti::class, 'deleteProcess']);
 
+        // riwayat pengajuan cuti
+        Route::get('/riwayat-pengajuan-cuti', [C_PengajuanCuti::class, 'history'])->name('riwayat-pengajuan-cuti');
+        Route::get('/download-riwayat-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'downloadProcess']);
+
         // Profil User
         Route::get('/profil', [C_Users::class, 'profil'])->name('profil');
         Route::post('/profil/{id}', [C_Users::class, 'editProfilProcess']);

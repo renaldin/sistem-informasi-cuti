@@ -28,6 +28,16 @@ class ModelPengajuanCuti extends Model
             ->orderBy('id_pengajuan_cuti', 'ASC')->get();
     }
 
+    public function getDataByUserStatus($id_pegawai, $status)
+    {
+        return DB::table($this->table)
+            ->join('pegawai', 'pegawai.id_pegawai', '=', 'pengajuan_cuti.id_pegawai', 'left')
+            ->join('users', 'users.id_user', '=', 'pegawai.id_user', 'left')
+            ->where('pengajuan_cuti.id_pegawai', $id_pegawai)
+            ->where('pengajuan_cuti.status_pengajuan', $status)
+            ->orderBy('id_pengajuan_cuti', 'ASC')->get();
+    }
+
     public function getDataNotByOneStatus($status)
     {
         return DB::table($this->table)

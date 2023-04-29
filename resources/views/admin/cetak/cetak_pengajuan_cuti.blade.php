@@ -376,10 +376,10 @@
                         <td >TIDAK DISETUJUI ****</td>
                     </tr>
                     <tr>
-                        <td ></td>
-                        <td ></td>
-                        <td ></td>
-                        <td >&nbsp;</td>
+                        <td >@if($detail->pertimbangan_atasan === 'DISETUJUI')Ya. @endif</td>
+                        <td >@if($detail->pertimbangan_atasan === 'PERUBAHAN')Ya. {{$detail->alasan_pertimbangan_atasan}}@endif</td>
+                        <td >@if($detail->pertimbangan_atasan === 'DITANGGUHKAN')Ya. {{$detail->alasan_pertimbangan_atasan}}@endif</td>
+                        <td >@if($detail->pertimbangan_atasan === 'TIDAK DISETUJUI')Ya. {{$detail->alasan_pertimbangan_atasan}}@endif</td>
                     </tr>
                     <tr>
                         <td colspan="3" style="text-align: left; border-left: 0px solid; border-bottom: 0px solid;"></td>
@@ -407,10 +407,10 @@
                         <td >TIDAK DISETUJUI ****</td>
                     </tr>
                     <tr>
-                        <td ></td>
-                        <td ></td>
-                        <td ></td>
-                        <td >&nbsp;</td>
+                        <td >@if($detail->keputusan_pejabat === 'DISETUJUI')Ya. @endif</td>
+                        <td >@if($detail->keputusan_pejabat === 'PERUBAHAN')Ya. {{$detail->alasan_keputusan_pejabat}}@endif</td>
+                        <td >@if($detail->keputusan_pejabat === 'DITANGGUHKAN')Ya. {{$detail->alasan_keputusan_pejabat}}@endif</td>
+                        <td >@if($detail->keputusan_pejabat === 'TIDAK DISETUJUI')Ya. {{$detail->alasan_keputusan_pejabat}}@endif</td>
                     </tr>
                     <tr>
                         <td colspan="3" style="text-align: left; border-left: 0px solid; border-bottom: 0px solid;"></td>

@@ -195,5 +195,24 @@ class C_PengajuanCuti extends Controller
         $this->ModelPengajuanCuti->deleteData($id_pengajuan_cuti);
         return redirect()->route('pengajuan-cuti')->with('berhasil', 'Data pengajuan cuti berhasil dihapus !');
     }
+
+    public function history()
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $pegawai = $this->ModelPegawai->detailByIdUser(Session()->get('id_user'));
+
+        $data = [
+            'title'             => 'Riwayat Pengajuan Cuti',
+            'subTitle'          => 'Riwayat Pengajuan Cuti',
+            'biodata'           => $this->ModelBiodataWeb->detail(1),
+            'user'              => $this->ModelUser->detail(Session()->get('id_user')),
+            'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataByUserStatus($pegawai->id_pegawai, 'Selesai')
+        ];
+
+        return view('pegawai.pengajuancuti.history', $data);
+    }
     // tutup pegawai
 }

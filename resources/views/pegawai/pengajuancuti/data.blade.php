@@ -9,7 +9,7 @@
                     <div class="form-title-wrap">
                         <div>
                             <h3 class="title">{{ $subTitle }}</h3>
-                            <p class="font-size-14">Silahkan data pengajuan cuti di tabel bawah!</p>
+                            <p class="font-size-14">Silahkan lihat data pengajuan cuti di tabel bawah!</p>
                         </div>
                     </div>
                     <div class="form-content">

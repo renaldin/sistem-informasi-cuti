@@ -260,13 +260,20 @@ class C_KelolaPengajuanCuti extends Controller
 
         $user = $this->ModelUser->detail(Session()->get('id_user'));
 
+        $pertimbangan_atasan = Request()->pertimbangan_atasan;
+        if ($pertimbangan_atasan !== 'DISETUJUI') {
+            $status_pengajuan = 'Selesai';
+        } else {
+            $status_pengajuan = 'Dikirim ke Pejabat';
+        }
+
         $data = [
             'id_pengajuan_cuti'         => $id_pengajuan_cuti,
             'atasan'                    => $user->nama,
             'nip_atasan'                => $user->nip,
             'pertimbangan_atasan'       => Request()->pertimbangan_atasan,
             'alasan_pertimbangan_atasan' => Request()->alasan_pertimbangan_atasan,
-            'status_pengajuan'          => 'Dikirim ke Pejabat',
+            'status_pengajuan'          => $status_pengajuan,
         ];
 
         $this->ModelPengajuanCuti->edit($data);

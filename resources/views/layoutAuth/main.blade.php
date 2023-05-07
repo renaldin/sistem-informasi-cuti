@@ -32,8 +32,20 @@
     <link rel="stylesheet" href="{{ asset('template/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/datatables/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/datatables/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
+    <style>
+    .main-img {
+        background: url("{{asset("gambar/bg-login.png")}}");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+        width: 100%;
+    }
+    </style>
 </head>
 <body>
+    <main class="main-img">
 <!-- start cssload-loader -->
 <div class="preloader" id="preloader">
     <div class="loader">
@@ -75,6 +87,7 @@
     </div><!-- end container -->
 </section>
 {{-- end footer --}}
+</main>
 <!-- start back-to-top -->
 <div id="back-to-top">
     <i class="la la-angle-up" title="Go top"></i>

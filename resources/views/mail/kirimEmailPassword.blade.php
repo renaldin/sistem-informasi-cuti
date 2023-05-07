@@ -13,7 +13,7 @@ $dataUser = $data_email['dataUser'];
   <meta name="x-apple-disable-message-reformatting">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta content="telephone=no" name="format-detection">
-  <title>Sistem Booking Billboard</title>
+  <title>SI Cuti</title>
   <!--[if (mso 16)]>
     <style type="text/css">
     a {text-decoration: none;}
@@ -375,7 +375,7 @@ $dataUser = $data_email['dataUser'];
                               </tr>
                               <tr style="border-collapse:collapse">
                                 <td align="center" class="es-infoblock es-m-txt-c" style="padding:0;Margin:0;padding-top:20px;padding-bottom:20px;line-height:19px;font-size:16px;color:#000000">
-                                  <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'Open Sans', sans-serif;line-height:19px;color:#000000;font-size:16px">Anda mempunyai masalah lupa password. Silahkan klik tombol dibawah ini untuk melakukan reset password dan membuat password baru!</p>
+                                  <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:'Open Sans', sans-serif;line-height:19px;color:#000000;font-size:16px">Silahkan klik tombol dibawah ini untuk melakukan reset password dan membuat password baru!</p>
                                 </td>
                               </tr>
                               <tr style="border-collapse:collapse">
@@ -386,35 +386,6 @@ $dataUser = $data_email['dataUser'];
                         </tr>
                       </table>
                       <!--[if mso]></td></tr></table><![endif]-->
-                    </td>
-                  </tr>
-                </table>
-              </td>
-            </tr>
-          </table>
-          
-          <table cellpadding="0" cellspacing="0" class="es-content" align="center" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;table-layout:fixed !important;width:100%">
-            <tr style="border-collapse:collapse">
-              <td align="center" style="padding:0;Margin:0">
-                <table bgcolor="transparent" class="es-content-body" align="center" cellpadding="0" cellspacing="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-color:transparent;width:600px">
-                  <tr style="border-collapse:collapse">
-                    <td align="left" style="Margin:0;padding-left:20px;padding-right:20px;padding-top:30px;padding-bottom:30px">
-                      <table width="100%" cellspacing="0" cellpadding="0" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                        <tr style="border-collapse:collapse">
-                          <td valign="top" align="center" style="padding:0;Margin:0;width:560px">
-                            <table width="100%" cellspacing="0" cellpadding="0" role="presentation" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px">
-                              {{-- <tr style="border-collapse:collapse">
-                                <td class="es-infoblock made_with" align="center" style="padding:0;Margin:0;line-height:120%;font-size:0;color:#FFFFFF"><span style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#FFFFFF;font-size:16px"><img src="{{ asset('foto_biodata/'.$biodata->logo) }}" alt width="125" style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"></span></td>
-                              </tr> --}}
-                              <tr style="border-collapse:collapse">
-                                <td class="es-infoblock made_with" align="center" style="padding:0;Margin:0;line-height:120%;font-size:0;color:#FFFFFF"><span style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;text-decoration:none;color:#FFFFFF;font-size:16px">
-                                    <p style="color: black;">{{ $biodata->nama_website }}</p>
-                                  </span></td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                      </table>
                     </td>
                   </tr>
                 </table>

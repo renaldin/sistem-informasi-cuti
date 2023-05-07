@@ -195,14 +195,17 @@ class C_Login extends Controller
     {
         Request()->validate([
             'password' => 'min:6|required|confirmed',
+            'password_confirmation' => 'min:6|required',
         ], [
             'password.required'    => 'Password baru harus diisi!',
             'password.min'         => 'Password baru minimal 6 karakter!',
             'password.confirmed'   => 'Password baru tidak sama!',
+            'password_confirmation.required'    => 'Konfirmasi password harus diisi!',
+            'password_confirmation.min'         => 'Konfirmasi password minimal 6 karakter!',
         ]);
 
         $data = [
-            'id_user'       => Request()->id_user,
+            'id_user'       => $id_user,
             'password'      => Hash::make(Request()->password)
         ];
 

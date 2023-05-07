@@ -316,7 +316,7 @@ class C_Users extends Controller
         return redirect()->route($route)->with('berhasil', 'Profil berhasil diedit !');
     }
 
-    public function ubahPassword($id_member)
+    public function ubahPassword($id_user)
     {
         if (!Session()->get('email')) {
             return redirect()->route('login');
@@ -326,7 +326,7 @@ class C_Users extends Controller
         $data = [
             'title'     => 'Ubah Password',
             'biodata'   => $this->ModelBiodataWeb->detail(1),
-            'user'      => $this->ModelUser->detail($id_member)
+            'user'      => $this->ModelUser->detail($id_user)
         ];
 
         return view('user.profil.ubahPassword', $data);

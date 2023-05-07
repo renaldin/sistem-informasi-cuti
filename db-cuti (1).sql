@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Apr 2023 pada 06.49
--- Versi server: 10.4.24-MariaDB
--- Versi PHP: 8.0.19
+-- Generation Time: May 02, 2023 at 06:54 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `biodata_web`
+-- Table structure for table `biodata_web`
 --
 
 CREATE TABLE `biodata_web` (
@@ -37,16 +37,16 @@ CREATE TABLE `biodata_web` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `biodata_web`
+-- Dumping data for table `biodata_web`
 --
 
 INSERT INTO `biodata_web` (`id_biodata_web`, `nama_website`, `email`, `nomor_telepon`, `alamat`, `logo`) VALUES
-(1, 'Sistem Booking Billboard', 'sistembookingbillboard@gmail.com', '(123) 123-456', 'Jalan Srigunting Raya Nomor 1 Bandung', '04202023074227.png');
+(1, 'SI Cuti', 'sicuti@gmail.com', '(123) 123-456', 'Jalan Si Cuti', '04272023124903.png');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pegawai`
+-- Table structure for table `pegawai`
 --
 
 CREATE TABLE `pegawai` (
@@ -68,10 +68,18 @@ CREATE TABLE `pegawai` (
   `cuti_diluar_tanggungan_negara` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `pegawai`
+--
+
+INSERT INTO `pegawai` (`id_pegawai`, `id_user`, `jabatan`, `unit_kerja`, `masa_kerja`, `cuti_n_2`, `cuti_n_1`, `cuti_n`, `keterangan_n_2`, `keterangan_n_1`, `keterangan_n`, `cuti_besar`, `cuti_sakit`, `cuti_melahirkan`, `cuti_karena_alasan_penting`, `cuti_diluar_tanggungan_negara`) VALUES
+(2, 11, 'Dosen', 'Manajemen Informatika', '5 tahun', '2', '1', '3', 'Keterangan 2', 'Keterangan 1', 'Keterangan 3', 'Ya', 'Ya', 'Tidak', 'Tidak', 'Tidak'),
+(3, 12, 'Dosen', 'Manajemen Informatika', '5 tahun', '2', '1', '3', 'Keterangan 2', 'Keterangan 1', 'Keterangan 3', 'Ya', 'Ya', 'Tidak', 'Tidak', 'Tidak');
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengajuan_cuti`
+-- Table structure for table `pengajuan_cuti`
 --
 
 CREATE TABLE `pengajuan_cuti` (
@@ -86,18 +94,28 @@ CREATE TABLE `pengajuan_cuti` (
   `alamat_selama_cuti` text DEFAULT NULL,
   `pertimbangan_atasan` enum('DISETUJUI','PERUBAHAN','DITANGGUHKAN','TIDAK DISETUJUI') DEFAULT NULL,
   `alasan_pertimbangan_atasan` text DEFAULT NULL,
-  `atasan` int(11) DEFAULT NULL,
+  `atasan` varchar(50) DEFAULT NULL,
+  `nip_atasan` varchar(50) DEFAULT NULL,
   `keputusan_pejabat` enum('DISETUJUI','PERUBAHAN','DITANGGUHKAN','TIDAK DISETUJUI') DEFAULT NULL,
   `alasan_keputusan_pejabat` text DEFAULT NULL,
-  `pejabat` int(11) DEFAULT NULL,
-  `status_pengajuan` enum('Diterima Admin','Diterima Atasan','Diterima Pejabat') DEFAULT NULL,
+  `pejabat` varchar(50) DEFAULT NULL,
+  `nip_pejabat` varchar(50) DEFAULT NULL,
+  `status_pengajuan` enum('Diterima Admin','Diterima Atasan','Diterima Pejabat','Persiapan','Dikirim ke Admin','Dikirim ke Atasan','Dikirim ke Pejabat','Selesai') DEFAULT NULL,
   `tanggal_pengajuan` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengajuan_cuti`
+--
+
+INSERT INTO `pengajuan_cuti` (`id_pengajuan_cuti`, `id_pegawai`, `jenis_cuti`, `alasan_cuti`, `lama_cuti`, `jenis_waktu`, `mulai_tanggal`, `akhir_tanggal`, `alamat_selama_cuti`, `pertimbangan_atasan`, `alasan_pertimbangan_atasan`, `atasan`, `nip_atasan`, `keputusan_pejabat`, `alasan_keputusan_pejabat`, `pejabat`, `nip_pejabat`, `status_pengajuan`, `tanggal_pengajuan`) VALUES
+(2, 2, 'Cuti Tahunan', 'Alasannya tahunan update', 5, 'hari', '2023-04-01', '2023-04-05', 'rumah saya update', 'DITANGGUHKAN', 'Alasan ditangguhkan', 'Tri Herdiawan A., S.ST., M.T.', '198801052019031008', 'PERUBAHAN', 'Alasan Perubahan', 'Oyok Yudiyanto, S.T., M.T.', '198709032019031009', 'Selesai', '2023-04-27'),
+(4, 2, 'Cuti Sakit', 'Alasannya sakit', 5, 'hari', '2023-04-01', '2023-04-05', 'rumah saya', 'DITANGGUHKAN', 'Ditangguhkan', 'Tri Herdiawan A., S.ST., M.T.', '198801052019031008', NULL, NULL, NULL, NULL, 'Selesai', '2023-04-29');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -107,75 +125,76 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `password` text NOT NULL,
   `nomor_telepon` varchar(30) NOT NULL,
-  `role` enum('Admin','Pegawai','Ketua Jurusan','Wakil Direktur') NOT NULL,
+  `role` enum('Admin','Pegawai','Atasan','Pejabat') NOT NULL,
   `foto` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id_user`, `nama`, `nip`, `email`, `password`, `nomor_telepon`, `role`, `foto`) VALUES
 (2, 'Admin Sistem Cuti', '1111111111', 'admincuti@gmail.com', '$2y$10$sa7tb26ENoS9eD5/DreXoOimImMBkdNrhNA55GXA/Gngs6iinLA4e', '0896775651', 'Admin', '04212023145559Admin Sistem Cuti.jpg'),
-(6, 'Renaldi Noviandi', '2222222222', 'renaldinoviandi9@gmail.com', '$2y$10$oHyDZdnvjNRpYl9SFe4tA.b74lqg35kJJN/z3MrwQMfedRpFWSiVa', '08989786441', 'Pegawai', '04222023115410Renaldi Noviandi.jpg'),
-(7, 'Wakil Direktur 1', '3333333333', 'wakildirektur@gmail.com', '$2y$10$kfsbedXHysYQ9M.J60gQo.CfVVZO7vhqNVtRUvE2Y3KUVM/x3OC4y', '08989786444', 'Wakil Direktur', '04222023125107Wakil Direktur 1.jpg'),
-(8, 'Ketua Jurusan', '444444444', 'kajur@gmail.com', '$2y$10$n7gmd2XoxW67sc78liBDKu22E.tXlTO8MdhVpG7SEjn1TrWHzIpZW', '08989786444', 'Ketua Jurusan', '04222023124808Ketua Jurusan.jpg');
+(11, 'Renaldi Noviandi, S.Tr., M.Kom', '2222222222', 'renaldinoviandi9@gmail.com', '$2y$10$WdPIn7lMg38Owd2wmlgAG.36d2KQrVLtn8WpDJI6kv7xsAhhS2G/i', '08989784353', 'Pegawai', '04262023061259Renaldi Noviandi, S.Tr., M.Kom.jpg'),
+(12, 'Renaldi Noviandi, S.Tr., M.Kom', '5555555555', 'renaldinoviandi0@gmail.com', '$2y$10$ErgkGU2t5EX.E6l1zqZiJ.5Ojvs1GIiiLb.2BVXUc.Ggs.CqsDB8e', '08989784353', 'Pegawai', '04292023020119Renaldi Noviandi, S.Tr., M.Kom.jpg'),
+(13, 'Tri Herdiawan A., S.ST., M.T.', '198801052019031008', 'tri@gmail.com', '$2y$10$IYoFMIPxcpym45cGfaIJCuWoVLlWcu9OQDbkukbh.Mm79uV3vUG6C', '08989784353', 'Atasan', '04282023063350Tri Herdiawan A., S.ST., M.T..jpg'),
+(14, 'Oyok Yudiyanto, S.T., M.T.', '198709032019031009', 'oyok@gmail.com', '$2y$10$7QZ3mYSg.USKD7VZchDFZuXhXnuG.at4n2QVNrzNyd2enOtXurNwa', '08989784353', 'Pejabat', '04282023063641Oyok Yudiyanto, S.T., M.T..jpg');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `biodata_web`
+-- Indexes for table `biodata_web`
 --
 ALTER TABLE `biodata_web`
   ADD PRIMARY KEY (`id_biodata_web`);
 
 --
--- Indeks untuk tabel `pegawai`
+-- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id_pegawai`);
 
 --
--- Indeks untuk tabel `pengajuan_cuti`
+-- Indexes for table `pengajuan_cuti`
 --
 ALTER TABLE `pengajuan_cuti`
   ADD PRIMARY KEY (`id_pengajuan_cuti`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `biodata_web`
+-- AUTO_INCREMENT for table `biodata_web`
 --
 ALTER TABLE `biodata_web`
   MODIFY `id_biodata_web` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `pegawai`
+-- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `pengajuan_cuti`
+-- AUTO_INCREMENT for table `pengajuan_cuti`
 --
 ALTER TABLE `pengajuan_cuti`
-  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

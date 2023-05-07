@@ -8,6 +8,7 @@ use App\Http\Controllers\C_BiodataWeb;
 use App\Http\Controllers\C_Dashboard;
 use App\Http\Controllers\C_KelolaPengajuanCuti;
 use App\Http\Controllers\C_Login;
+use App\Http\Controllers\C_Surat;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,6 +79,16 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/download-semua-pengajuan-cuti', [C_KelolaPengajuanCuti::class, 'downloadAllProcess']);
         Route::get('/terima-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'accept']);
         Route::get('/kirim-atasan/{id}', [C_KelolaPengajuanCuti::class, 'sendToAtasan']);
+
+        // Kelola surat
+        Route::get('/kelola-surat', [C_Surat::class, 'index'])->name('kelola-surat');
+        Route::get('/detail-surat/{id}', [C_Surat::class, 'detail'])->name('detail-surat');
+        Route::get('/tambah-surat', [C_Surat::class, 'add'])->name('tambah-surat');
+        Route::post('/tambah-surat', [C_Surat::class, 'addProcess']);
+        Route::get('/edit-surat/{id}', [C_Surat::class, 'edit'])->name('edit-surat');
+        Route::post('/edit-surat/{id}', [C_Surat::class, 'editProcess']);
+        Route::get('/kirim-surat/{id}', [C_Surat::class, 'sendToPegawai'])->name('kirim-surat');
+        Route::get('/hapus-surat/{id}', [C_Surat::class, 'deleteProcess']);
 
         // Kelola User
         Route::get('/kelola-user', [C_Users::class, 'index'])->name('kelola-user');

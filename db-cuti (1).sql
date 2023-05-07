@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2023 at 06:54 AM
+-- Generation Time: May 07, 2023 at 04:25 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -115,6 +115,23 @@ INSERT INTO `pengajuan_cuti` (`id_pengajuan_cuti`, `id_pegawai`, `jenis_cuti`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `surat`
+--
+
+CREATE TABLE `surat` (
+  `id_surat` int(11) NOT NULL,
+  `id_pegawai` int(11) NOT NULL,
+  `no_surat` varchar(30) DEFAULT NULL,
+  `tujuan_surat` varchar(100) DEFAULT NULL,
+  `jenis_surat` varchar(100) DEFAULT NULL,
+  `file_surat` text DEFAULT NULL,
+  `tanggal_upload` date DEFAULT NULL,
+  `status_surat` enum('Belum Dikirim','Sudah Dikirim') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -135,8 +152,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `nama`, `nip`, `email`, `password`, `nomor_telepon`, `role`, `foto`) VALUES
 (2, 'Admin Sistem Cuti', '1111111111', 'admincuti@gmail.com', '$2y$10$sa7tb26ENoS9eD5/DreXoOimImMBkdNrhNA55GXA/Gngs6iinLA4e', '0896775651', 'Admin', '04212023145559Admin Sistem Cuti.jpg'),
-(11, 'Renaldi Noviandi, S.Tr., M.Kom', '2222222222', 'renaldinoviandi9@gmail.com', '$2y$10$WdPIn7lMg38Owd2wmlgAG.36d2KQrVLtn8WpDJI6kv7xsAhhS2G/i', '08989784353', 'Pegawai', '04262023061259Renaldi Noviandi, S.Tr., M.Kom.jpg'),
-(12, 'Renaldi Noviandi, S.Tr., M.Kom', '5555555555', 'renaldinoviandi0@gmail.com', '$2y$10$ErgkGU2t5EX.E6l1zqZiJ.5Ojvs1GIiiLb.2BVXUc.Ggs.CqsDB8e', '08989784353', 'Pegawai', '04292023020119Renaldi Noviandi, S.Tr., M.Kom.jpg'),
+(11, 'Sisna, S.Tr., M.Kom', '2222222222', 'renaldinoviandi9@gmail.com', '$2y$10$vsdWL25USdWjbvZIZSlXpuFfAXffXmZkZ5N1iA6UlJWREjwiWHJ9S', '08989784353', 'Pegawai', '04262023061259Renaldi Noviandi, S.Tr., M.Kom.jpg'),
+(12, 'Joko, S.Tr., M.Kom', '5555555555', 'renaldinoviandi0@gmail.com', '$2y$10$ErgkGU2t5EX.E6l1zqZiJ.5Ojvs1GIiiLb.2BVXUc.Ggs.CqsDB8e', '08989784353', 'Pegawai', '04292023020119Renaldi Noviandi, S.Tr., M.Kom.jpg'),
 (13, 'Tri Herdiawan A., S.ST., M.T.', '198801052019031008', 'tri@gmail.com', '$2y$10$IYoFMIPxcpym45cGfaIJCuWoVLlWcu9OQDbkukbh.Mm79uV3vUG6C', '08989784353', 'Atasan', '04282023063350Tri Herdiawan A., S.ST., M.T..jpg'),
 (14, 'Oyok Yudiyanto, S.T., M.T.', '198709032019031009', 'oyok@gmail.com', '$2y$10$7QZ3mYSg.USKD7VZchDFZuXhXnuG.at4n2QVNrzNyd2enOtXurNwa', '08989784353', 'Pejabat', '04282023063641Oyok Yudiyanto, S.T., M.T..jpg');
 
@@ -161,6 +178,12 @@ ALTER TABLE `pegawai`
 --
 ALTER TABLE `pengajuan_cuti`
   ADD PRIMARY KEY (`id_pengajuan_cuti`);
+
+--
+-- Indexes for table `surat`
+--
+ALTER TABLE `surat`
+  ADD PRIMARY KEY (`id_surat`);
 
 --
 -- Indexes for table `users`
@@ -189,6 +212,12 @@ ALTER TABLE `pegawai`
 --
 ALTER TABLE `pengajuan_cuti`
   MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `surat`
+--
+ALTER TABLE `surat`
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

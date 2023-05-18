@@ -87,9 +87,9 @@
                                     <div class="col-lg-6">
                                         <div class="input-box">
                                             <label class="label-text">Logo</label>
-                                            <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
-                                                <input class="form-control" type="file" name="logo">
+                                            <div class="file-upload-wrap file-upload-wrap-3">
+                                                <input type="file" name="logo" class="multi file-upload-input with-preview" maxlength="3">
+                                                <span class="file-upload-text"><i class="la la-upload mr-2"></i>Upload File</span>
                                             </div>
                                             @error('logo')
                                             <div style="margin-top: -16px">
@@ -131,7 +131,7 @@
                                 </div>
                                 <div class="btn-box pt-3 pb-4">
                                     <center>
-                                        <button type="submit" class="theme-btn w-50">Simpan</button>
+                                        <button type="submit" class="theme-btn theme-btn-small">Simpan</button>
                                     </center>
                                 </div>
                             </form>

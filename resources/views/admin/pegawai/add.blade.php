@@ -74,9 +74,9 @@
                                     <div class="col-lg-6">
                                         <div class="input-box">
                                             <label class="label-text">Foto</label>
-                                            <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
-                                                <input class="form-control" type="file" name="foto_user">
+                                            <div class="file-upload-wrap file-upload-wrap-3">
+                                                <input type="file" name="foto_user" class="multi file-upload-input with-preview" maxlength="3">
+                                                <span class="file-upload-text"><i class="la la-upload mr-2"></i>Upload File</span>
                                             </div>
                                             @error('foto_user')
                                             <div style="margin-top: -16px">

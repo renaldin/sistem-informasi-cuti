@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2023 at 04:25 PM
+-- Generation Time: May 18, 2023 at 09:08 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -129,6 +129,13 @@ CREATE TABLE `surat` (
   `status_surat` enum('Belum Dikirim','Sudah Dikirim') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `surat`
+--
+
+INSERT INTO `surat` (`id_surat`, `id_pegawai`, `no_surat`, `tujuan_surat`, `jenis_surat`, `file_surat`, `tanggal_upload`, `status_surat`) VALUES
+(2, 2, '12345update', 'Tujuan Surat', 'Jenis Surat', '05072023142804 12345update.pdf', '2023-05-07', 'Sudah Dikirim');
+
 -- --------------------------------------------------------
 
 --
@@ -152,7 +159,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `nama`, `nip`, `email`, `password`, `nomor_telepon`, `role`, `foto`) VALUES
 (2, 'Admin Sistem Cuti', '1111111111', 'admincuti@gmail.com', '$2y$10$sa7tb26ENoS9eD5/DreXoOimImMBkdNrhNA55GXA/Gngs6iinLA4e', '0896775651', 'Admin', '04212023145559Admin Sistem Cuti.jpg'),
-(11, 'Sisna, S.Tr., M.Kom', '2222222222', 'renaldinoviandi9@gmail.com', '$2y$10$vsdWL25USdWjbvZIZSlXpuFfAXffXmZkZ5N1iA6UlJWREjwiWHJ9S', '08989784353', 'Pegawai', '04262023061259Renaldi Noviandi, S.Tr., M.Kom.jpg'),
+(11, 'Sisna, S.Tr., M.Kom', '2222222222', 'renaldinoviandi9@gmail.com', '$2y$10$sa7tb26ENoS9eD5/DreXoOimImMBkdNrhNA55GXA/Gngs6iinLA4e', '08989784353', 'Pegawai', '04262023061259Renaldi Noviandi, S.Tr., M.Kom.jpg'),
 (12, 'Joko, S.Tr., M.Kom', '5555555555', 'renaldinoviandi0@gmail.com', '$2y$10$ErgkGU2t5EX.E6l1zqZiJ.5Ojvs1GIiiLb.2BVXUc.Ggs.CqsDB8e', '08989784353', 'Pegawai', '04292023020119Renaldi Noviandi, S.Tr., M.Kom.jpg'),
 (13, 'Tri Herdiawan A., S.ST., M.T.', '198801052019031008', 'tri@gmail.com', '$2y$10$IYoFMIPxcpym45cGfaIJCuWoVLlWcu9OQDbkukbh.Mm79uV3vUG6C', '08989784353', 'Atasan', '04282023063350Tri Herdiawan A., S.ST., M.T..jpg'),
 (14, 'Oyok Yudiyanto, S.T., M.T.', '198709032019031009', 'oyok@gmail.com', '$2y$10$7QZ3mYSg.USKD7VZchDFZuXhXnuG.at4n2QVNrzNyd2enOtXurNwa', '08989784353', 'Pejabat', '04282023063641Oyok Yudiyanto, S.T., M.T..jpg');
@@ -217,7 +224,7 @@ ALTER TABLE `pengajuan_cuti`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

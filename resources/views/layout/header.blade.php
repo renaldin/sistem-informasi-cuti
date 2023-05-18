@@ -33,7 +33,7 @@
                                         </div>
                                     </a>
                                     <div class="section-block"></div>
-                                    <a data-toggle="modal" data-target="#logout" class="list-group-item list-group-item-action">
+                                    <a data-toggle="modal" data-target="#logout" class="list-group-item list-group-item-action" style="cursor: pointer;">
                                         <div class="msg-body">
                                             <div class="msg-content">
                                                 <h3 class="title"><i class="la la-power-off mr-2"></i>Logout</h3>

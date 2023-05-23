@@ -63,7 +63,7 @@
                     </div>
                     <div class="form-content">
                         <div class="contact-form-action">
-                            <form action="@if($user->role === 'Admin') /profil-admin/{{$user->id_user}} @elseif($user->role === 'Wakil Direktur') /profil-wadir/{{$user->id_user}} @elseif($user->role === 'Ketua Jurusan') /profil-kajur/{{$user->id_user}} @elseif($user->role === 'Pegawai') /profil/{{$user->id_user}} @endif" method="POST" enctype="multipart/form-data">
+                            <form action="/profil/{{$user->id_user}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -167,7 +167,7 @@
                     </div>
                     <div class="form-content">
                         <div class="contact-form-action">
-                            <form action="@if($user->role === 'Admin') /ubah-password-admin/{{$user->id_user}} @elseif($user->role === 'Wakil Direktur') /ubah-password-wadir/{{$user->id_user}} @elseif($user->role === 'Ketua Jurusan') /ubah-password-kajur/{{$user->id_user}} @elseif($user->role === 'Pegawai') /ubah-password/{{$user->id_user}} @endif" method="POST">
+                            <form action="/ubah-password/{{$user->id_user}} " method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12">

@@ -38,6 +38,21 @@ Route::group(['middleware' => 'revalidate'], function () {
     // Logout
     Route::get('/logout', [C_Login::class, 'logout'])->name('logout');
 
+    // Profil User
+    Route::get('/profil', [C_Users::class, 'profil'])->name('profil');
+    Route::post('/profil/{id}', [C_Users::class, 'editProfilProcess']);
+    Route::post('/ubah-password/{id}', [C_Users::class, 'changePasswordProcess']);
+
+    // Kelola surat
+    Route::get('/kelola-surat', [C_Surat::class, 'index'])->name('kelola-surat');
+    Route::get('/detail-surat/{id}', [C_Surat::class, 'detail'])->name('detail-surat');
+    Route::get('/tambah-surat', [C_Surat::class, 'add'])->name('tambah-surat');
+    Route::post('/tambah-surat', [C_Surat::class, 'addProcess']);
+    Route::get('/edit-surat/{id}', [C_Surat::class, 'edit'])->name('edit-surat');
+    Route::post('/edit-surat/{id}', [C_Surat::class, 'editProcess']);
+    Route::get('/kirim-surat/{id}', [C_Surat::class, 'sendToPegawai'])->name('kirim-surat');
+    Route::get('/hapus-surat/{id}', [C_Surat::class, 'deleteProcess']);
+
     Route::group(['middleware' => 'pegawai'], function () {
         // dashboard
         Route::get('/dashboardPegawai', [C_Dashboard::class, 'index'])->name('dashboardPegawai');
@@ -55,11 +70,6 @@ Route::group(['middleware' => 'revalidate'], function () {
         // riwayat pengajuan cuti
         Route::get('/riwayat-pengajuan-cuti', [C_PengajuanCuti::class, 'history'])->name('riwayat-pengajuan-cuti');
         Route::get('/download-riwayat-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'downloadProcess']);
-
-        // Profil User
-        Route::get('/profil', [C_Users::class, 'profil'])->name('profil');
-        Route::post('/profil/{id}', [C_Users::class, 'editProfilProcess']);
-        Route::post('/ubah-password/{id}', [C_Users::class, 'changePasswordProcess']);
     });
 
     Route::group(['middleware' => 'admin'], function () {
@@ -80,16 +90,6 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/terima-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'accept']);
         Route::get('/kirim-atasan/{id}', [C_KelolaPengajuanCuti::class, 'sendToAtasan']);
 
-        // Kelola surat
-        Route::get('/kelola-surat', [C_Surat::class, 'index'])->name('kelola-surat');
-        Route::get('/detail-surat/{id}', [C_Surat::class, 'detail'])->name('detail-surat');
-        Route::get('/tambah-surat', [C_Surat::class, 'add'])->name('tambah-surat');
-        Route::post('/tambah-surat', [C_Surat::class, 'addProcess']);
-        Route::get('/edit-surat/{id}', [C_Surat::class, 'edit'])->name('edit-surat');
-        Route::post('/edit-surat/{id}', [C_Surat::class, 'editProcess']);
-        Route::get('/kirim-surat/{id}', [C_Surat::class, 'sendToPegawai'])->name('kirim-surat');
-        Route::get('/hapus-surat/{id}', [C_Surat::class, 'deleteProcess']);
-
         // Kelola User
         Route::get('/kelola-user', [C_Users::class, 'index'])->name('kelola-user');
         Route::get('/tambah-user', [C_Users::class, 'add'])->name('tambah-user');
@@ -108,11 +108,6 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/detail-pegawai/{id}', [C_Pegawai::class, 'detail'])->name('detail-pegawai');
         Route::get('/hapus-pegawai/{id}', [C_Pegawai::class, 'deleteProcess']);
 
-        // profil
-        Route::get('/profil-admin', [C_Users::class, 'profil'])->name('profil-admin');
-        Route::post('/profil-admin/{id}', [C_Users::class, 'editProfilProcess']);
-        Route::post('/ubah-password-admin/{id}', [C_Users::class, 'changePasswordProcess']);
-
         // Cetak PDF
         Route::post('/cetak-pdf', [Cetak::class, 'index']);
         Route::post('/cetak-pdf-order', [Cetak::class, 'cetakOrder']);
@@ -121,11 +116,6 @@ Route::group(['middleware' => 'revalidate'], function () {
     Route::group(['middleware' => 'pejabat'], function () {
         // dashboard
         Route::get('/dashboardPejabat', [C_Dashboard::class, 'index'])->name('dashboardPejabat');
-
-        // Profil User
-        Route::get('/profil-pejabat', [C_Users::class, 'profil'])->name('profil-pejabat');
-        Route::post('/profil-pejabat/{id}', [C_Users::class, 'editProfilProcess']);
-        Route::post('/ubah-password-pejabat/{id}', [C_Users::class, 'changePasswordProcess']);
 
         // perizinan cuti
         Route::get('/perizinan-cuti-pejabat', [C_KelolaPengajuanCuti::class, 'dataCutiPejabat'])->name('perizinan-cuti-pejabat');
@@ -139,16 +129,16 @@ Route::group(['middleware' => 'revalidate'], function () {
         // dashboard
         Route::get('/dashboardAtasan', [C_Dashboard::class, 'index'])->name('dashboardAtasan');
 
-        // Profil User
-        Route::get('/profil-atasan', [C_Users::class, 'profil'])->name('profil-atasan');
-        Route::post('/profil-atasan/{id}', [C_Users::class, 'editProfilProcess']);
-        Route::post('/ubah-password-atasan/{id}', [C_Users::class, 'changePasswordProcess']);
-
         // perizinan cuti
         Route::get('/perizinan-cuti-atasan', [C_KelolaPengajuanCuti::class, 'dataCutiAtasan'])->name('perizinan-cuti-atasan');
         Route::get('/detail-pengajuan-cuti-atasan/{id}', [C_KelolaPengajuanCuti::class, 'detail'])->name('detail-pengajuan-cuti-atasan');
         Route::get('/terima-pengajuan-cuti-atasan/{id}', [C_KelolaPengajuanCuti::class, 'acceptAtasan'])->name('terima-pengajuan-cuti-atasan');
         Route::get('/izin-atasan/{id}', [C_KelolaPengajuanCuti::class, 'permissionAtasan']);
         Route::post('/izin-atasan/{id}', [C_KelolaPengajuanCuti::class, 'permissionAtasanProcess']);
+    });
+
+    Route::group(['middleware' => 'bagianumum'], function () {
+        // dashboard
+        Route::get('/dashboardBagianUmum', [C_Dashboard::class, 'index'])->name('dashboardBagianUmum');
     });
 });

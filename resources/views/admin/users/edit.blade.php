@@ -97,6 +97,7 @@
                                                     <option value="Pejabat">Pejabat</option>
                                                     <option value="Atasan">Atasan</option>
                                                     <option value="Pegawai">Pegawai</option>
+                                                    <option value="Bagian Umum">Bagian Umum</option>
                                                 </select>
                                             </div>
                                             @error('role')

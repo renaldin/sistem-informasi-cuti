@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ModelUser;
 use App\Models\ModelBiodataWeb;
-use GuzzleHttp\Psr7\Request;
 
 class C_Users extends Controller
 {
@@ -302,18 +301,8 @@ class C_Users extends Controller
             ];
         }
 
-        if (Session()->get('role') === 'Admin') {
-            $route = 'profil-admin';
-        } elseif (Session()->get('role') === 'Wakil Direktur') {
-            $route = 'profil-wadir';
-        } elseif (Session()->get('role') === 'Ketua Jurusan') {
-            $route = 'profil-kajur';
-        } elseif (Session()->get('role') === 'Pegawai') {
-            $route = 'profil';
-        }
-
         $this->ModelUser->edit($data);
-        return redirect()->route($route)->with('berhasil', 'Profil berhasil diedit !');
+        return redirect()->route('profil')->with('berhasil', 'Profil berhasil diedit !');
     }
 
     public function ubahPassword($id_user)

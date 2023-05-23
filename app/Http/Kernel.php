@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'pegawai' => \App\Http\Middleware\Pegawai::class,
         'pejabat' => \App\Http\Middleware\Pejabat::class,
         'atasan' => \App\Http\Middleware\Atasan::class,
+        'bagianumum' => \App\Http\Middleware\BagianUmum::class,
     ];
 }

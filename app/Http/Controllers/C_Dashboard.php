@@ -71,6 +71,14 @@ class C_Dashboard extends Controller
                 'biodata'               => $this->ModelBiodataWeb->detail(1),
             ];
             return view('atasan.dashboard', $data);
+        } elseif (Session()->get('role') === 'Bagian Umum') {
+            $data = [
+                'title'                 => null,
+                'subTitle'              => 'Dashboard',
+                'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
+                'biodata'               => $this->ModelBiodataWeb->detail(1),
+            ];
+            return view('bagianumum.dashboard', $data);
         }
     }
 }

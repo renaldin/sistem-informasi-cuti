@@ -34,6 +34,8 @@ class C_Login extends Controller
                 return redirect()->route('dashboardAtasan');
             } elseif (Session()->get('role') === 'Pejabat') {
                 return redirect()->route('dashboardPejabat');
+            } elseif (Session()->get('role') === 'Bagian Umum') {
+                return redirect()->route('dashboardBagianUmum');
             }
         }
 
@@ -107,6 +109,18 @@ class C_Login extends Controller
                 } else {
                     return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
                 }
+            } else if ($cekEmail->role === "Bagian Umum") {
+
+                if (Hash::check(Request()->password, $cekEmail->password)) {
+                    Session()->put('id_user', $cekEmail->id_user);
+                    Session()->put('email', $cekEmail->email);
+                    Session()->put('role', $cekEmail->role);
+                    Session()->put('log', true);
+
+                    return redirect()->route('dashboardBagianUmum');
+                } else {
+                    return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
+                }
             }
         } else {
             return back()->with('gagal', 'Login gagal! Email belum terdaftar.');
@@ -133,6 +147,8 @@ class C_Login extends Controller
                 return redirect()->route('dashboardAtasan');
             } elseif (Session()->get('role') === 'Pejabat') {
                 return redirect()->route('dashboardPejabat');
+            } elseif (Session()->get('role') === 'Bagian Umum') {
+                return redirect()->route('dashboardBagianUmum');
             }
         }
 
@@ -155,6 +171,8 @@ class C_Login extends Controller
                 return redirect()->route('dashboardAtasan');
             } elseif (Session()->get('role') === 'Pejabat') {
                 return redirect()->route('dashboardPejabat');
+            } elseif (Session()->get('role') === 'Bagian Umum') {
+                return redirect()->route('dashboardBagianUmum');
             }
         }
 
@@ -213,22 +231,22 @@ class C_Login extends Controller
         return redirect()->route('login')->with('berhasil', 'Anda baru saja merubah password. Silahkan login!');
     }
 
-    public function prosesUbahPasswordAdmin()
-    {
-        Request()->validate([
-            'password' => 'min:6|required|confirmed',
-        ], [
-            'password.required'    => 'Password baru harus diisi!',
-            'password.min'         => 'Password baru minimal 6 karakter!',
-            'password.confirmed'   => 'Password baru tidak sama!',
-        ]);
+    // public function prosesUbahPasswordAdmin()
+    // {
+    //     Request()->validate([
+    //         'password' => 'min:6|required|confirmed',
+    //     ], [
+    //         'password.required'    => 'Password baru harus diisi!',
+    //         'password.min'         => 'Password baru minimal 6 karakter!',
+    //         'password.confirmed'   => 'Password baru tidak sama!',
+    //     ]);
 
-        $data = [
-            'id_admin'         => Request()->id_admin,
-            'password'          => Hash::make(Request()->password)
-        ];
+    //     $data = [
+    //         'id_admin'         => Request()->id_admin,
+    //         'password'          => Hash::make(Request()->password)
+    //     ];
 
-        $this->ModelAdmin->edit($data);
-        return redirect()->route('admin')->with('berhasil', 'Anda baru saja merubah password. Silahkan login!');
-    }
+    //     $this->ModelAdmin->edit($data);
+    //     return redirect()->route('admin')->with('berhasil', 'Anda baru saja merubah password. Silahkan login!');
+    // }
 }

@@ -32,6 +32,9 @@
                 @elseif (Session()->get('role') === 'Atasan')
                     <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardAtasan"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
                     <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti-atasan"><i class="la la-bookmark-o mr-2"></i>Perizinan Cuti</a></li>
+                @elseif (Session()->get('role') === 'Bagian Umum')
+                    <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardBagianUmum"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
+                    <li class="@if($title === 'Data Surat') page-active @endif" ><a href="/kelola-surat"><i class="la la-file mr-2"></i>Kelola Surat</a></li>
                 @endif
                 <li><a data-toggle="modal" data-target="#logout"><i class="la la-power-off mr-2"></i>Logout</a></li>
             </ul>

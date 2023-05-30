@@ -30,10 +30,10 @@ class C_Login extends Controller
                 return redirect()->route('dashboardAdmin');
             } elseif (Session()->get('role') === 'Pegawai') {
                 return redirect()->route('dashboardPegawai');
-            } elseif (Session()->get('role') === 'Atasan') {
-                return redirect()->route('dashboardAtasan');
-            } elseif (Session()->get('role') === 'Pejabat') {
-                return redirect()->route('dashboardPejabat');
+            } elseif (Session()->get('role') === 'Ketua Jurusan') {
+                return redirect()->route('dashboardKetuaJurusan');
+            } elseif (Session()->get('role') === 'Wakil Direktur') {
+                return redirect()->route('dashboardWakilDirektur');
             } elseif (Session()->get('role') === 'Bagian Umum') {
                 return redirect()->route('dashboardBagianUmum');
             }
@@ -85,7 +85,7 @@ class C_Login extends Controller
                 } else {
                     return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
                 }
-            } else if ($cekEmail->role === "Pejabat") {
+            } else if ($cekEmail->role === "Wakil Direktur") {
 
                 if (Hash::check(Request()->password, $cekEmail->password)) {
                     Session()->put('id_user', $cekEmail->id_user);
@@ -93,11 +93,11 @@ class C_Login extends Controller
                     Session()->put('role', $cekEmail->role);
                     Session()->put('log', true);
 
-                    return redirect()->route('dashboardPejabat');
+                    return redirect()->route('dashboardWakilDirektur');
                 } else {
                     return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
                 }
-            } else if ($cekEmail->role === "Atasan") {
+            } else if ($cekEmail->role === "Ketua Jurusan") {
 
                 if (Hash::check(Request()->password, $cekEmail->password)) {
                     Session()->put('id_user', $cekEmail->id_user);
@@ -105,7 +105,7 @@ class C_Login extends Controller
                     Session()->put('role', $cekEmail->role);
                     Session()->put('log', true);
 
-                    return redirect()->route('dashboardAtasan');
+                    return redirect()->route('dashboardKetuaJurusan');
                 } else {
                     return back()->with('gagal', 'Login gagal! Password tidak sesuai.');
                 }
@@ -143,10 +143,10 @@ class C_Login extends Controller
                 return redirect()->route('dashboardAdmin');
             } elseif (Session()->get('role') === 'Pegawai') {
                 return redirect()->route('dashboardPegawai');
-            } elseif (Session()->get('role') === 'Atasan') {
-                return redirect()->route('dashboardAtasan');
-            } elseif (Session()->get('role') === 'Pejabat') {
-                return redirect()->route('dashboardPejabat');
+            } elseif (Session()->get('role') === 'Ketua Jurusan') {
+                return redirect()->route('dashboardKetuaJurusan');
+            } elseif (Session()->get('role') === 'Wakil Direktur') {
+                return redirect()->route('dashboardWakilDirektur');
             } elseif (Session()->get('role') === 'Bagian Umum') {
                 return redirect()->route('dashboardBagianUmum');
             }
@@ -167,10 +167,10 @@ class C_Login extends Controller
                 return redirect()->route('dashboardAdmin');
             } elseif (Session()->get('role') === 'Pegawai') {
                 return redirect()->route('dashboardPegawai');
-            } elseif (Session()->get('role') === 'Atasan') {
-                return redirect()->route('dashboardAtasan');
-            } elseif (Session()->get('role') === 'Pejabat') {
-                return redirect()->route('dashboardPejabat');
+            } elseif (Session()->get('role') === 'Ketua Jurusan') {
+                return redirect()->route('dashboardKetuaJurusan');
+            } elseif (Session()->get('role') === 'Wakil Direktur') {
+                return redirect()->route('dashboardWakilDirektur');
             } elseif (Session()->get('role') === 'Bagian Umum') {
                 return redirect()->route('dashboardBagianUmum');
             }
@@ -195,7 +195,7 @@ class C_Login extends Controller
 
             $data_email = [
                 'subject'       => 'Lupa Password',
-                'sender_name'   => 'renaldinoviandi1@gmail.com',
+                'sender_name'   => 'sisnawati2023@gmail.com',
                 'urlUtama'      => 'http://127.0.0.1:8000',
                 'urlReset'      => 'http://127.0.0.1:8000/reset-password/' . $data->id_user,
                 'dataUser'      => $data,

@@ -88,7 +88,7 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/download-kelola-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'downloadProcess']);
         Route::get('/download-semua-pengajuan-cuti', [C_KelolaPengajuanCuti::class, 'downloadAllProcess']);
         Route::get('/terima-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'accept']);
-        Route::get('/kirim-atasan/{id}', [C_KelolaPengajuanCuti::class, 'sendToAtasan']);
+        Route::get('/kirim-ketua-jurusan/{id}', [C_KelolaPengajuanCuti::class, 'sendToKetuaJurusan']);
 
         // Kelola User
         Route::get('/kelola-user', [C_Users::class, 'index'])->name('kelola-user');
@@ -113,28 +113,28 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::post('/cetak-pdf-order', [Cetak::class, 'cetakOrder']);
     });
 
-    Route::group(['middleware' => 'pejabat'], function () {
+    Route::group(['middleware' => 'wakildirektur'], function () {
         // dashboard
-        Route::get('/dashboardPejabat', [C_Dashboard::class, 'index'])->name('dashboardPejabat');
+        Route::get('/dashboardWakilDirektur', [C_Dashboard::class, 'index'])->name('dashboardWakilDirektur');
 
         // perizinan cuti
-        Route::get('/perizinan-cuti-pejabat', [C_KelolaPengajuanCuti::class, 'dataCutiPejabat'])->name('perizinan-cuti-pejabat');
-        Route::get('/detail-pengajuan-cuti-pejabat/{id}', [C_KelolaPengajuanCuti::class, 'detail'])->name('detail-pengajuan-cuti-pejabat');
-        Route::get('/terima-pengajuan-cuti-pejabat/{id}', [C_KelolaPengajuanCuti::class, 'acceptPejabat'])->name('terima-pengajuan-cuti-pejabat');
-        Route::get('/izin-pejabat/{id}', [C_KelolaPengajuanCuti::class, 'permissionPejabat']);
-        Route::post('/izin-pejabat/{id}', [C_KelolaPengajuanCuti::class, 'permissionPejabatProcess']);
+        Route::get('/perizinan-cuti-wakil-direktur', [C_KelolaPengajuanCuti::class, 'dataCutiWakilDirektur'])->name('perizinan-cuti-wakil-direktur');
+        Route::get('/detail-pengajuan-cuti-wakil-direktur/{id}', [C_KelolaPengajuanCuti::class, 'detail'])->name('detail-pengajuan-cuti-wakil-direktur');
+        Route::get('/terima-pengajuan-cuti-wakil-direktur/{id}', [C_KelolaPengajuanCuti::class, 'acceptWakilDirektur'])->name('terima-pengajuan-cuti-wakil-direktur');
+        Route::get('/izin-wakil-direktur/{id}', [C_KelolaPengajuanCuti::class, 'permissionWakilDirektur']);
+        Route::post('/izin-wakil-direktur/{id}', [C_KelolaPengajuanCuti::class, 'permissionWakilDirekturProcess']);
     });
 
-    Route::group(['middleware' => 'atasan'], function () {
+    Route::group(['middleware' => 'ketuajurusan'], function () {
         // dashboard
-        Route::get('/dashboardAtasan', [C_Dashboard::class, 'index'])->name('dashboardAtasan');
+        Route::get('/dashboardKetuaJurusan', [C_Dashboard::class, 'index'])->name('dashboardKetuaJurusan');
 
         // perizinan cuti
-        Route::get('/perizinan-cuti-atasan', [C_KelolaPengajuanCuti::class, 'dataCutiAtasan'])->name('perizinan-cuti-atasan');
-        Route::get('/detail-pengajuan-cuti-atasan/{id}', [C_KelolaPengajuanCuti::class, 'detail'])->name('detail-pengajuan-cuti-atasan');
-        Route::get('/terima-pengajuan-cuti-atasan/{id}', [C_KelolaPengajuanCuti::class, 'acceptAtasan'])->name('terima-pengajuan-cuti-atasan');
-        Route::get('/izin-atasan/{id}', [C_KelolaPengajuanCuti::class, 'permissionAtasan']);
-        Route::post('/izin-atasan/{id}', [C_KelolaPengajuanCuti::class, 'permissionAtasanProcess']);
+        Route::get('/perizinan-cuti-ketua-jurusan', [C_KelolaPengajuanCuti::class, 'dataCutiKetuaJurusan'])->name('perizinan-cuti-ketua-jurusan');
+        Route::get('/detail-pengajuan-cuti-ketua-jurusan/{id}', [C_KelolaPengajuanCuti::class, 'detail'])->name('detail-pengajuan-cuti-ketua-jurusan');
+        Route::get('/terima-pengajuan-cuti-ketua-jurusan/{id}', [C_KelolaPengajuanCuti::class, 'acceptKetuaJurusan'])->name('terima-pengajuan-cuti-ketua-jurusan');
+        Route::get('/izin-ketua-jurusan/{id}', [C_KelolaPengajuanCuti::class, 'permissionKetuaJurusan']);
+        Route::post('/izin-ketua-jurusan/{id}', [C_KelolaPengajuanCuti::class, 'permissionKetuaJurusanProcess']);
     });
 
     Route::group(['middleware' => 'bagianumum'], function () {

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Pejabat
+class KetuaJurusan
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class Pejabat
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Session()->get('role') === 'Pejabat') {
+        if (Session()->get('role') === 'Ketua Jurusan') {
             return $next($request);
         } else {
             return redirect()->route('login');

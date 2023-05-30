@@ -28,11 +28,10 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 form-group">
                                         <div class="input-box">
                                             <label class="label-text">Nama Website</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="nama_website" placeholder="Masukkan Nama Website" value="{{ $biodata->nama_website }}" autofocus>
                                             </div>
                                             @error('nama_website')
@@ -46,7 +45,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Email</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="email" placeholder="Masukkan Email" value="{{ $biodata->email }}">
                                             </div>
                                             @error('email')
@@ -60,7 +58,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Nomor Telepon</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="nomor_telepon" placeholder="Masukkan Nomor Telepon" value="{{ $biodata->nomor_telepon }}">
                                             </div>
                                             @error('nomor_telepon')
@@ -74,7 +71,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Alamat</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="alamat" placeholder="Masukkan Alamat" value="{{ $biodata->alamat }}">
                                             </div>
                                             @error('alamat')

@@ -21,7 +21,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Nama Lengkap</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="nama" placeholder="Masukkan Nama Lengkap" value="{{ $detail->nama }}" disabled>
                                             </div>
                                             @error('nama')
@@ -35,7 +34,6 @@
                                         <div class="input-box">
                                             <label class="label-text">No. Telepon</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="number" name="nomor_telepon" placeholder="Masukkan Nomor Telepon" value="{{ $detail->nomor_telepon }}" disabled>
                                             </div>
                                             @error('nomor_telepon')
@@ -49,7 +47,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Email</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="email" name="email" placeholder="Masukkan Email" value="{{ $detail->email }}" disabled>
                                             </div>
                                             @error('email')
@@ -82,7 +79,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Foto</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="file" name="foto_user" disabled>
                                             </div>
                                             @error('foto_user')

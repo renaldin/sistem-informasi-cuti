@@ -48,8 +48,8 @@
                                         <th scope="row">{{ $no++ }}</th>
                                         <td>{{ $item->nama }}</td>
                                         <td>{{ $item->jenis_cuti }}</td>
-                                        <td>{{ $item->pertimbangan_atasan }}</td>
-                                        <td>{{ $item->keputusan_pejabat }}</td>
+                                        <td>{{ $item->pertimbangan_ketua_jurusan }}</td>
+                                        <td>{{ $item->keputusan_wakil_direktur }}</td>
                                         <td>
                                             <div class="table-content">
                                                 <a href="/detail-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>

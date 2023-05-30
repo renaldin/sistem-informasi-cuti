@@ -170,10 +170,10 @@
                                             <td width="265px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">TIDAK DISETUJUI ****</td>
                                         </tr>
                                         <tr style="padding-left: 20px;">
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->pertimbangan_atasan === 'DISETUJUI')Ya. @endif</td>
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->pertimbangan_atasan === 'PERUBAHAN')Ya. {{$detail->alasan_pertimbangan_atasan}}@endif</td>
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->pertimbangan_atasan === 'DITANGGUHKAN')Ya. {{$detail->alasan_pertimbangan_atasan}}@endif</td>
-                                            <td width="265px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->pertimbangan_atasan === 'TIDAK DISETUJUI')Ya. {{$detail->alasan_pertimbangan_atasan}}@endif</td>
+                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->pertimbangan_ketua_jurusan === 'DISETUJUI')Ya. @endif</td>
+                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->pertimbangan_ketua_jurusan === 'PERUBAHAN')Ya. {{$detail->alasan_pertimbangan_ketua_jurusan}}@endif</td>
+                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->pertimbangan_ketua_jurusan === 'DITANGGUHKAN')Ya. {{$detail->alasan_pertimbangan_ketua_jurusan}}@endif</td>
+                                            <td width="265px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->pertimbangan_ketua_jurusan === 'TIDAK DISETUJUI')Ya. {{$detail->alasan_pertimbangan_ketua_jurusan}}@endif</td>
                                         </tr>
                                         <tr style="padding-left: 20px;">
                                             <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141;"></td>
@@ -185,8 +185,8 @@
                                                 <br>
                                                 <br>
                                                 <br>
-                                                ( @if($detail->atasan === null) .............................................. @else {{$detail->atasan}} @endif ) <br>
-                                                NIP NIP @if($detail->nip_atasan === null) .............................................. @else {{$detail->nip_atasan}} @endif
+                                                ( @if($detail->ketua_jurusan === null) .............................................. @else {{$detail->ketua_jurusan}} @endif ) <br>
+                                                NIP NIP @if($detail->nip_ketua_jurusan === null) .............................................. @else {{$detail->nip_ketua_jurusan}} @endif
                                             </td>
                                         </tr>
                                     </table>
@@ -203,10 +203,10 @@
                                             <td width="265px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">TIDAK DISETUJUI ****</td>
                                         </tr>
                                         <tr style="padding-left: 20px;">
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->keputusan_pejabat === 'DISETUJUI')Ya. @endif</td>
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->keputusan_pejabat === 'PERUBAHAN')Ya. {{$detail->alasan_keputusan_pejabat}}@endif</td>
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->keputusan_pejabat === 'DITANGGUHKAN')Ya. {{$detail->alasan_keputusan_pejabat}}@endif</td>
-                                            <td width="265px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->keputusan_pejabat === 'TIDAK DISETUJUI')Ya. {{$detail->alasan_keputusan_pejabat}}@endif</td>
+                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->keputusan_wakil_direktur === 'DISETUJUI')Ya. @endif</td>
+                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->keputusan_wakil_direktur === 'PERUBAHAN')Ya. {{$detail->alasan_keputusan_wakil_direktur}}@endif</td>
+                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->keputusan_wakil_direktur === 'DITANGGUHKAN')Ya. {{$detail->alasan_keputusan_wakil_direktur}}@endif</td>
+                                            <td width="265px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">@if($detail->keputusan_wakil_direktur === 'TIDAK DISETUJUI')Ya. {{$detail->alasan_keputusan_wakil_direktur}}@endif</td>
                                         </tr>
                                         <tr style="padding-left: 20px;">
                                             <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141;"></td>
@@ -218,8 +218,8 @@
                                                 <br>
                                                 <br>
                                                 <br>
-                                                ( @if($detail->pejabat === null) .............................................. @else {{$detail->pejabat}} @endif ) <br>
-                                                NIP NIP @if($detail->nip_pejabat === null) .............................................. @else {{$detail->nip_pejabat}} @endif
+                                                ( @if($detail->wakil_direktur === null) .............................................. @else {{$detail->wakil_direktur}} @endif ) <br>
+                                                NIP NIP @if($detail->nip_wakil_direktur === null) .............................................. @else {{$detail->nip_wakil_direktur}} @endif
                                             </td>
                                         </tr>
                                     </table>

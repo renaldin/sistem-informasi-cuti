@@ -9,7 +9,7 @@
                     <div class="card-header">
                         <div>
                             <h5 class="modal-title title" id="exampleModalLongTitle">Lupa Password</h5>
-                            <p class="font-size-14">Silahkan masukkan wmail yang sudah terdaftar!</p>
+                            <p class="font-size-14">Silahkan masukkan email yang sudah terdaftar!</p>
                         </div>
                     </div>
                     <div class="card-body">

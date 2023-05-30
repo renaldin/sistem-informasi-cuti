@@ -39,7 +39,6 @@
                                         <div class="input-box">
                                             <label class="label-text">No. Surat</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="no_surat" placeholder="Masukkan No. Surat" value="{{ $detail->no_surat }}">
                                             </div>
                                             @error('no_surat')
@@ -53,7 +52,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Tujuan Surat</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="tujuan_surat" placeholder="Masukkan Tujuan Surat" value="{{ $detail->tujuan_surat }}">
                                             </div>
                                             @error('tujuan_surat')
@@ -67,7 +65,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Jenis Surat</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="jenis_surat" placeholder="Masukkan Jenis Surat" value="{{ $detail->jenis_surat }}">
                                             </div>
                                             @error('jenis_surat')

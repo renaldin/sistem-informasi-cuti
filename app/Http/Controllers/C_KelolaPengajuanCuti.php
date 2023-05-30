@@ -51,11 +51,11 @@ class C_KelolaPengajuanCuti extends Controller
         if (Session()->get('role') === 'Admin') {
             $page = 'admin.pengajuancuti.detail';
             $title = 'Pengajuan Cuti';
-        } elseif (Session()->get('role') === 'Atasan') {
-            $page = 'atasan.perizinancuti.detail';
+        } elseif (Session()->get('role') === 'Ketua Jurusan') {
+            $page = 'ketuajurusan.perizinancuti.detail';
             $title = 'Perizinan Cuti';
-        } elseif (Session()->get('role') === 'Pejabat') {
-            $page = 'pejabat.perizinancuti.detail';
+        } elseif (Session()->get('role') === 'Wakil Direktur') {
+            $page = 'wakildirektur.perizinancuti.detail';
             $title = 'Perizinan Cuti';
         }
 
@@ -133,7 +133,7 @@ class C_KelolaPengajuanCuti extends Controller
         return redirect()->route('kelola-pengajuan-cuti')->with('berhasil', 'Data pengajuan cuti berhasil dihapus !');
     }
 
-    public function sendToAtasan($id_pengajuan_cuti)
+    public function sendToKetuaJurusan($id_pengajuan_cuti)
     {
         if (!Session()->get('email')) {
             return redirect()->route('login');
@@ -141,7 +141,7 @@ class C_KelolaPengajuanCuti extends Controller
 
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
-            'status_pengajuan'  => 'Dikirim ke Atasan',
+            'status_pengajuan'  => 'Dikirim ke Ketua Jurusan',
         ];
 
         $this->ModelPengajuanCuti->edit($data);
@@ -202,8 +202,8 @@ class C_KelolaPengajuanCuti extends Controller
     }
     // tutup admin
 
-    // atasan
-    public function dataCutiAtasan()
+    // ketua jurusan
+    public function dataCutiKetuaJurusan()
     {
         if (!Session()->get('email')) {
             return redirect()->route('login');
@@ -214,13 +214,13 @@ class C_KelolaPengajuanCuti extends Controller
             'subTitle'          => 'Data Perizinan Cuti',
             'biodata'           => $this->ModelBiodataWeb->detail(1),
             'user'              => $this->ModelUser->detail(Session()->get('id_user')),
-            'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataByTwoStatus('Dikirim ke Atasan', 'Diterima Atasan')
+            'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataByTwoStatus('Dikirim ke Ketua Jurusan', 'Diterima Ketua Jurusan')
         ];
 
-        return view('atasan.perizinancuti.data', $data);
+        return view('ketuajurusan.perizinancuti.data', $data);
     }
 
-    public function acceptAtasan($id_pengajuan_cuti)
+    public function acceptKetuaJurusan($id_pengajuan_cuti)
     {
         if (!Session()->get('email')) {
             return redirect()->route('login');
@@ -228,14 +228,14 @@ class C_KelolaPengajuanCuti extends Controller
 
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
-            'status_pengajuan'  => 'Diterima Atasan',
+            'status_pengajuan'  => 'Diterima Ketua Jurusan',
         ];
 
         $this->ModelPengajuanCuti->edit($data);
-        return redirect()->route('perizinan-cuti-atasan')->with('berhasil', 'Data pengajuan cuti berhasil diterima !');
+        return redirect()->route('perizinan-cuti-ketua-jurusan')->with('berhasil', 'Data pengajuan cuti berhasil diterima !');
     }
 
-    public function permissionAtasan($id_pengajuan_cuti)
+    public function permissionKetuaJurusan($id_pengajuan_cuti)
     {
         if (!Session()->get('email')) {
             return redirect()->route('login');
@@ -249,10 +249,10 @@ class C_KelolaPengajuanCuti extends Controller
             'detail'    => $this->ModelPengajuanCuti->detail($id_pengajuan_cuti)
         ];
 
-        return view('atasan.perizinancuti.permission', $data);
+        return view('ketuajurusan.perizinancuti.permission', $data);
     }
 
-    public function permissionAtasanProcess($id_pengajuan_cuti)
+    public function permissionKetuaJurusanProcess($id_pengajuan_cuti)
     {
         if (!Session()->get('email')) {
             return redirect()->route('login');
@@ -260,29 +260,29 @@ class C_KelolaPengajuanCuti extends Controller
 
         $user = $this->ModelUser->detail(Session()->get('id_user'));
 
-        $pertimbangan_atasan = Request()->pertimbangan_atasan;
-        if ($pertimbangan_atasan !== 'DISETUJUI') {
+        $pertimbangan_ketua_jurusan = Request()->pertimbangan_ketua_jurusan;
+        if ($pertimbangan_ketua_jurusan !== 'DISETUJUI') {
             $status_pengajuan = 'Selesai';
         } else {
-            $status_pengajuan = 'Dikirim ke Pejabat';
+            $status_pengajuan = 'Dikirim ke Wakil Direktur';
         }
 
         $data = [
             'id_pengajuan_cuti'         => $id_pengajuan_cuti,
-            'atasan'                    => $user->nama,
-            'nip_atasan'                => $user->nip,
-            'pertimbangan_atasan'       => Request()->pertimbangan_atasan,
-            'alasan_pertimbangan_atasan' => Request()->alasan_pertimbangan_atasan,
+            'ketua_jurusan'                    => $user->nama,
+            'nip_ketua_jurusan'                => $user->nip,
+            'pertimbangan_ketua_jurusan'       => Request()->pertimbangan_ketua_jurusan,
+            'alasan_pertimbangan_ketua_jurusan' => Request()->alasan_pertimbangan_ketua_jurusan,
             'status_pengajuan'          => $status_pengajuan,
         ];
 
         $this->ModelPengajuanCuti->edit($data);
-        return redirect()->route('perizinan-cuti-atasan')->with('berhasil', 'Data pengajuan cuti berhasil diberi izin !');
+        return redirect()->route('perizinan-cuti-ketua-jurusan')->with('berhasil', 'Data pengajuan cuti berhasil diberi izin !');
     }
-    // tutup atasan
+    // tutup ketua jurusan
 
-    // pejabat
-    public function dataCutiPejabat()
+    // wakil direktur
+    public function dataCutiWakilDirektur()
     {
         if (!Session()->get('email')) {
             return redirect()->route('login');
@@ -293,13 +293,13 @@ class C_KelolaPengajuanCuti extends Controller
             'subTitle'          => 'Data Perizinan Cuti',
             'biodata'           => $this->ModelBiodataWeb->detail(1),
             'user'              => $this->ModelUser->detail(Session()->get('id_user')),
-            'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataByTwoStatus('Dikirim ke Pejabat', 'Diterima Pejabat')
+            'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataByTwoStatus('Dikirim ke Wakil Direktur', 'Diterima Wakil Direktur')
         ];
 
-        return view('pejabat.perizinancuti.data', $data);
+        return view('wakildirektur.perizinancuti.data', $data);
     }
 
-    public function acceptPejabat($id_pengajuan_cuti)
+    public function acceptWakilDirektur($id_pengajuan_cuti)
     {
         if (!Session()->get('email')) {
             return redirect()->route('login');
@@ -307,14 +307,14 @@ class C_KelolaPengajuanCuti extends Controller
 
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
-            'status_pengajuan'  => 'Diterima Pejabat',
+            'status_pengajuan'  => 'Diterima Wakil Direktur',
         ];
 
         $this->ModelPengajuanCuti->edit($data);
-        return redirect()->route('perizinan-cuti-pejabat')->with('berhasil', 'Data pengajuan cuti berhasil diterima !');
+        return redirect()->route('perizinan-cuti-wakil-direktur')->with('berhasil', 'Data pengajuan cuti berhasil diterima !');
     }
 
-    public function permissionPejabat($id_pengajuan_cuti)
+    public function permissionWakilDirektur($id_pengajuan_cuti)
     {
         if (!Session()->get('email')) {
             return redirect()->route('login');
@@ -328,10 +328,10 @@ class C_KelolaPengajuanCuti extends Controller
             'detail'    => $this->ModelPengajuanCuti->detail($id_pengajuan_cuti)
         ];
 
-        return view('pejabat.perizinancuti.permission', $data);
+        return view('wakildirektur.perizinancuti.permission', $data);
     }
 
-    public function permissionPejabatProcess($id_pengajuan_cuti)
+    public function permissionWakilDirekturProcess($id_pengajuan_cuti)
     {
         if (!Session()->get('email')) {
             return redirect()->route('login');
@@ -341,15 +341,15 @@ class C_KelolaPengajuanCuti extends Controller
 
         $data = [
             'id_pengajuan_cuti'         => $id_pengajuan_cuti,
-            'pejabat'                   => $user->nama,
-            'nip_pejabat'               => $user->nip,
-            'keputusan_pejabat'         => Request()->keputusan_pejabat,
-            'alasan_keputusan_pejabat'  => Request()->alasan_keputusan_pejabat,
+            'wakil_direktur'                   => $user->nama,
+            'nip_wakil_direktur'               => $user->nip,
+            'keputusan_wakil_direktur'         => Request()->keputusan_wakil_direktur,
+            'alasan_keputusan_wakil_direktur'  => Request()->alasan_keputusan_wakil_direktur,
             'status_pengajuan'          => 'Selesai',
         ];
 
         $this->ModelPengajuanCuti->edit($data);
-        return redirect()->route('perizinan-cuti-pejabat')->with('berhasil', 'Data pengajuan cuti berhasil diberi izin !');
+        return redirect()->route('perizinan-cuti-wakil-direktur')->with('berhasil', 'Data pengajuan cuti berhasil diberi izin !');
     }
-    // tutup pejabat
+    // tutup wakil direktur
 }

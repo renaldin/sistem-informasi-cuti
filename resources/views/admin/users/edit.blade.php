@@ -21,7 +21,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Nama Lengkap + Gelar</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="nama" placeholder="Masukkan Nama Lengkap" value="{{ $detail->nama }}" autofocus>
                                             </div>
                                             @error('nama')
@@ -33,10 +32,9 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="input-box">
-                                            <label class="label-text">NIP</label>
+                                            <label class="label-text">NIP/NIK</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
-                                                <input class="form-control" type="number" name="nip" placeholder="Masukkan NIP" value="{{ $detail->nip }}">
+                                                <input class="form-control" type="number" name="nip" placeholder="Masukkan NIP/NIK" value="{{ $detail->nip }}">
                                             </div>
                                             @error('nip')
                                             <div style="margin-top: -16px">
@@ -49,7 +47,6 @@
                                         <div class="input-box">
                                             <label class="label-text">No. Telepon</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="number" name="nomor_telepon" placeholder="Masukkan Nomor Telepon" value="{{ $detail->nomor_telepon }}">
                                             </div>
                                             @error('nomor_telepon')
@@ -63,7 +60,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Email</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="email" name="email" placeholder="Masukkan Email" value="{{ $detail->email }}">
                                             </div>
                                             @error('email')
@@ -77,7 +73,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Password</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="password" name="password" placeholder="Masukkan Password">
                                             </div>
                                             @error('password')
@@ -111,7 +106,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Foto</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="file" name="foto_user">
                                             </div>
                                             @error('foto_user')

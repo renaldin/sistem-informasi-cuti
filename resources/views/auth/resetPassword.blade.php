@@ -39,7 +39,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Password Baru</label>
                                             <div class="form-group">
-                                                <span class="la la-envelope form-icon"></span>
+                                                <span class="la la-lock form-icon"></span>
                                                 <input class="form-control" type="password" name="password" placeholder="Masukkan Password Baru" autofocus>
                                             </div>
                                             @error('password')
@@ -53,7 +53,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Konfirmasi Password</label>
                                             <div class="form-group">
-                                                <span class="la la-envelope form-icon"></span>
+                                                <span class="la la-lock form-icon"></span>
                                                 <input class="form-control" type="password" name="password_confirmation" placeholder="Masukkan Konfirmasi Password">
                                             </div>
                                             @error('password_confirmation')

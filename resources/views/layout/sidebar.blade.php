@@ -26,12 +26,12 @@
                     <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardPegawai"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
                     <li class="@if($title === 'Pengajuan Cuti') page-active @endif" ><a href="/pengajuan-cuti"><i class="la la-bookmark-o mr-2"></i>Pengajuan Cuti</a></li>
                     <li class="@if($title === 'Riwayat Pengajuan Cuti') page-active @endif" ><a href="/riwayat-pengajuan-cuti"><i class="la la-map-signs mr-2"></i>Riwayat Pengajuan Cuti</a></li>
-                @elseif (Session()->get('role') === 'Pejabat')
-                    <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardPejabat"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
-                    <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti-pejabat"><i class="la la-bookmark-o mr-2"></i>Perizinan Cuti</a></li>
-                @elseif (Session()->get('role') === 'Atasan')
-                    <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardAtasan"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
-                    <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti-atasan"><i class="la la-bookmark-o mr-2"></i>Perizinan Cuti</a></li>
+                @elseif (Session()->get('role') === 'Wakil Direktur')
+                    <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardWakilDirektur"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
+                    <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti-wakil-direktur"><i class="la la-bookmark-o mr-2"></i>Perizinan Cuti</a></li>
+                @elseif (Session()->get('role') === 'Ketua Jurusan')
+                    <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardKetuaJurusan"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
+                    <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti-ketua-jurusan"><i class="la la-bookmark-o mr-2"></i>Perizinan Cuti</a></li>
                 @elseif (Session()->get('role') === 'Bagian Umum')
                     <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardBagianUmum"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
                     <li class="@if($title === 'Data Surat') page-active @endif" ><a href="/kelola-surat"><i class="la la-file mr-2"></i>Kelola Surat</a></li>

@@ -55,22 +55,22 @@ class C_Dashboard extends Controller
                 'selesaiPengajuanCuti'  => $this->ModelPengajuanCuti->jumlahByUserStatus($pegawai->id_pegawai, 'Selesai'),
             ];
             return view('pegawai.dashboard', $data);
-        } elseif (Session()->get('role') === 'Pejabat') {
+        } elseif (Session()->get('role') === 'Wakil Direktur') {
             $data = [
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
                 'biodata'               => $this->ModelBiodataWeb->detail(1),
             ];
-            return view('pejabat.dashboard', $data);
-        } elseif (Session()->get('role') === 'Atasan') {
+            return view('wakildirektur.dashboard', $data);
+        } elseif (Session()->get('role') === 'Ketua Jurusan') {
             $data = [
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
                 'biodata'               => $this->ModelBiodataWeb->detail(1),
             ];
-            return view('atasan.dashboard', $data);
+            return view('ketuajurusan.dashboard', $data);
         } elseif (Session()->get('role') === 'Bagian Umum') {
             $data = [
                 'title'                 => null,

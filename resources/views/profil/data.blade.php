@@ -18,7 +18,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Nama Lengkap</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" value="{{ $user->nama }}" disabled>
                                             </div>
                                         </div>
@@ -27,7 +26,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Email</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" value="{{ $user->email }}" disabled>
                                             </div>
                                         </div>
@@ -36,7 +34,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Nomor Telepon</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" value="{{ $user->nomor_telepon }}" disabled>
                                             </div>
                                         </div>
@@ -83,7 +80,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Nama Lengkap</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" name="nama" type="text" value="{{ $user->nama }}">
                                                 @error('nama')
                                                 <div style="margin-top: -16px">
@@ -95,10 +91,9 @@
                                     </div><!-- end col-lg-6 -->
                                     <div class="col-lg-6 responsive-column">
                                         <div class="input-box">
-                                            <label class="label-text">NIP</label>
+                                            <label class="label-text">NIP/NIK</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
-                                                <input class="form-control" type="number" name="nip" placeholder="Masukkan NIP" value="{{ $detail->nip }}">
+                                                <input class="form-control" type="number" name="nip" placeholder="Masukkan NIP/NIK" value="{{ $detail->nip }}">
                                             </div>
                                             @error('nip')
                                             <div style="margin-top: -16px">
@@ -111,7 +106,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Email</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" name="email" type="text" value="{{ $user->email }}">
                                                 @error('email')
                                                 <div style="margin-top: -16px">
@@ -125,7 +119,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Nomor Telepon</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" name="nomor_telepon" type="number" value="{{ $user->nomor_telepon }}">
                                                 @error('nomor_telepon')
                                                 <div style="margin-top: -16px">
@@ -139,7 +132,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Foto</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" name="foto_user" type="file">
                                                 @error('foto_user')
                                                 <div style="margin-top: -16px">
@@ -194,7 +186,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Password Lama</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" name="password_lama" type="password" placeholder="Password Lama">
                                                 @error('password_lama')
                                                 <div>
@@ -208,7 +199,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Password< Baru</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" name="password_baru" type="password" placeholder="Password Baru">
                                                 @error('password_baru')
                                                 <div>

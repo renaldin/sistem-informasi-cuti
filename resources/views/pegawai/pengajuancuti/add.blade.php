@@ -35,7 +35,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Nama</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="hidden" name="id_pegawai" value="{{ $pegawai->id_pegawai }}" readonly>
                                                 <input class="form-control" type="text" name="nama" placeholder="Masukkan Nama" value="{{ $pegawai->nama }}" readonly>
                                             </div>
@@ -50,7 +49,6 @@
                                         <div class="input-box">
                                             <label class="label-text">NIP</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="number" name="nip" placeholder="Masukkan NIP" value="{{ $pegawai->nip }}" readonly>
                                             </div>
                                             @error('nip')
@@ -64,7 +62,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Jabatan</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="jabatan" placeholder="Masukkan Jabatan" value="{{ $pegawai->jabatan }}" readonly>
                                             </div>
                                             @error('jabatan')
@@ -78,7 +75,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Masa Kerja</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="masa_kerja" placeholder="Masukkan Masa Kerja" value="{{ $pegawai->masa_kerja }}" readonly>
                                             </div>
                                             @error('masa_kerja')
@@ -92,7 +88,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Unit Kerja</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="unit_kerja" placeholder="Masukkan Unit Kerja" value="{{ $pegawai->unit_kerja }} POLITEKNIK NEGERI SUBANG" readonly>
                                             </div>
                                             @error('unit_kerja')
@@ -171,7 +166,6 @@
                                         <div class="input-box">
                                             <label class="label-text"><strong>Alasan Cuti</strong></label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="alasan_cuti" placeholder="Masukkan Alasan Cuti" value="{{ old('alasan_cuti') }}">
                                             </div>
                                             @error('alasan_cuti')
@@ -196,7 +190,7 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <span class="la la-circle form-icon"></span>
+    
                                                         <input class="form-control" type="number" name="lama_cuti" value="{{ old('lama_cuti') }}">
                                                     </div>
                                                     @error('lama_cuti')
@@ -245,7 +239,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Sisa Cuti 2 Tahun Sebelumnya (N-2)</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="cuti_n_2" placeholder="Masukkan N-2" value="{{ $pegawai->cuti_n_2 }}" readonly>
                                             </div>
                                             @error('cuti_n_2')
@@ -259,7 +252,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Keterangan Sisa Cuti 2 Tahun Sebelumnya (N-2)</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="keterangan_n_2" placeholder="Masukkan Keterangan N-2" value="{{ $pegawai->keterangan_n_2 }}" readonly>
                                             </div>
                                             @error('keterangan_n_2')
@@ -273,7 +265,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Sisa Cuti 1 Tahun Sebelumnya (N-1)</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="cuti_n_1" placeholder="Masukkan N-1" value="{{ $pegawai->cuti_n_1 }}" readonly>
                                             </div>
                                             @error('cuti_n_1')
@@ -287,7 +278,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Keterangan Sisa Cuti 1 Tahun Sebelumnya (N-1)</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="keterangan_n_1" placeholder="Masukkan Keterangan N-1" value="{{ $pegawai->keterangan_n_1 }}" readonly>
                                             </div>
                                             @error('keterangan_n_1')
@@ -301,7 +291,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Sisa Cuti Tahun Berjalan (N)</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="cuti_n" placeholder="Masukkan N" value="{{ $pegawai->cuti_n }}" readonly>
                                             </div>
                                             @error('cuti_n')
@@ -315,7 +304,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Keterangan Sisa Cuti Tahun Berjalan (N)</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="keterangan_n" placeholder="Masukkan Keterangan N" value="{{ $pegawai->keterangan_n }}" readonly>
                                             </div>
                                             @error('keterangan_n')
@@ -329,7 +317,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Cuti Besar</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="cuti_besar" placeholder="Masukkan Cuti Besar" value="{{ $pegawai->cuti_besar }}" readonly>
                                             </div>
                                             @error('cuti_besar')
@@ -343,7 +330,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Cuti Sakit</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="cuti_sakit" placeholder="Masukkan Cuti Sakit" value="{{ $pegawai->cuti_sakit }}" readonly>
                                             </div>
                                             @error('cuti_sakit')
@@ -357,7 +343,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Cuti Melahirkan</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="cuti_melahirkan" placeholder="Masukkan Cuti Melahirkan" value="{{ $pegawai->cuti_melahirkan }}" readonly>
                                             </div>
                                             @error('cuti_melahirkan')
@@ -371,7 +356,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Cuti Karena Alasan Penting</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="cuti_karena_alasan_penting" placeholder="Masukkan Cuti Karena Alasan Penting" value="{{ $pegawai->cuti_karena_alasan_penting }}" readonly>
                                             </div>
                                             @error('cuti_karena_alasan_penting')
@@ -385,7 +369,6 @@
                                         <div class="input-box">
                                             <label class="label-text">Cuti Di Luar Tanggungan Negara</label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="cuti_diluar_tanggungan_negara" placeholder="Masukkan Cuti Di Luar Tanggungan Negara" value="{{ $pegawai->cuti_diluar_tanggungan_negara }}" readonly>
                                             </div>
                                             @error('cuti_diluar_tanggungan_negara')
@@ -399,7 +382,6 @@
                                         <div class="input-box">
                                             <label class="label-text"><strong>Alamat Selama Menjalankan Cuti</strong></label>
                                             <div class="form-group">
-                                                <span class="la la-circle form-icon"></span>
                                                 <input class="form-control" type="text" name="alamat_selama_cuti" placeholder="Masukkan Alamat Selama Menjalankan Cuti" value="{{ old('alamat_selama_cuti') }}">
                                             </div>
                                             @error('alamat_selama_cuti')

@@ -9,6 +9,7 @@ use App\Http\Controllers\C_Dashboard;
 use App\Http\Controllers\C_KelolaPengajuanCuti;
 use App\Http\Controllers\C_Login;
 use App\Http\Controllers\C_Surat;
+use App\Http\Controllers\C_Absensi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -107,6 +108,12 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::post('/edit-pegawai/{id}', [C_Pegawai::class, 'editProcess']);
         Route::get('/detail-pegawai/{id}', [C_Pegawai::class, 'detail'])->name('detail-pegawai');
         Route::get('/hapus-pegawai/{id}', [C_Pegawai::class, 'deleteProcess']);
+
+        // Kelola absensi
+        Route::get('/kelola-absensi', [C_Absensi::class, 'index'])->name('kelola-absensi');
+        Route::post('/import-absensi', [C_Absensi::class, 'import']);
+        Route::post('/tambah-absensi', [C_Absensi::class, 'addProcess']);
+        Route::post('/edit-absensi/{id}', [C_Absensi::class, 'editProcess']);
 
         // Cetak PDF
         Route::post('/cetak-pdf', [Cetak::class, 'index']);

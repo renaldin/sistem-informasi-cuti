@@ -139,5 +139,16 @@
         });
     });
 </script>
+
+<script>
+    function showPassword() {
+    var passwordInput = document.getElementById("password");
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+    } else {
+        passwordInput.type = "password";
+    }
+    }
+</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2023 at 05:43 PM
+-- Generation Time: Jun 02, 2023 at 10:23 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -230,8 +230,9 @@ INSERT INTO `surat` (`id_surat`, `id_pegawai`, `no_surat`, `tujuan_surat`, `jeni
 
 CREATE TABLE `users` (
   `id_user` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
+  `nama` varchar(100) NOT NULL,
   `nip` varchar(50) DEFAULT NULL,
+  `jurusan` varchar(100) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `password` text NOT NULL,
   `nomor_telepon` varchar(30) NOT NULL,
@@ -243,13 +244,16 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id_user`, `nama`, `nip`, `email`, `password`, `nomor_telepon`, `role`, `foto`) VALUES
-(2, 'Admin Sistem Cuti', '1111111111', 'admincuti@gmail.com', '$2y$10$sa7tb26ENoS9eD5/DreXoOimImMBkdNrhNA55GXA/Gngs6iinLA4e', '0896775651', 'Admin', '04212023145559Admin Sistem Cuti.jpg'),
-(11, 'Sisna, S.Tr., M.Kom', '2222222222', 'sisna1@gmail.com', '$2y$10$lVH8tHmE6uyHFL8c5yWCiO.WqfwaoZ.8UEO17FsNsmJueI1JaR1mO', '08989784353', 'Pegawai', '04262023061259Renaldi Noviandi, S.Tr., M.Kom.jpg'),
-(12, 'Joko, S.Tr., M.Kom', '5555555555', 'sisna2@gmail.com', '$2y$10$ErgkGU2t5EX.E6l1zqZiJ.5Ojvs1GIiiLb.2BVXUc.Ggs.CqsDB8e', '08989784353', 'Pegawai', '04292023020119Renaldi Noviandi, S.Tr., M.Kom.jpg'),
-(13, 'Tri Herdiawan A., S.ST., M.T.', '198801052019031008', 'kajur@gmail.com', '$2y$10$lVH8tHmE6uyHFL8c5yWCiO.WqfwaoZ.8UEO17FsNsmJueI1JaR1mO', '08989784353', 'Ketua Jurusan', '04282023063350Tri Herdiawan A., S.ST., M.T..jpg'),
-(14, 'Oyok Yudiyanto, S.T., M.T.', '198709032019031009', 'wadir@gmail.com', '$2y$10$lVH8tHmE6uyHFL8c5yWCiO.WqfwaoZ.8UEO17FsNsmJueI1JaR1mO', '08989784353', 'Wakil Direktur', '04282023063641Oyok Yudiyanto, S.T., M.T..jpg'),
-(15, 'Sisna, S.Tr.Kom', '222222221', 'bagianumum@gmail.com', '$2y$10$IgAmMMJHke63GMhoAIV1pOfzNDLQy9WaehcAJlZTvRMDQNyof3E5y', '08989784353', 'Bagian Umum', '05232023144304Sisna, S.Tr.Kom1.jpg');
+INSERT INTO `users` (`id_user`, `nama`, `nip`, `jurusan`, `email`, `password`, `nomor_telepon`, `role`, `foto`) VALUES
+(2, 'Admin Sistem Cuti', '1111111111', NULL, 'admincuti@gmail.com', '$2y$10$sa7tb26ENoS9eD5/DreXoOimImMBkdNrhNA55GXA/Gngs6iinLA4e', '0896775651', 'Admin', '04212023145559Admin Sistem Cuti.jpg'),
+(11, 'Sisna, S.Tr., M.Kom', '2222222222', NULL, 'sisna1@gmail.com', '$2y$10$lVH8tHmE6uyHFL8c5yWCiO.WqfwaoZ.8UEO17FsNsmJueI1JaR1mO', '08989784353', 'Pegawai', '04262023061259Renaldi Noviandi, S.Tr., M.Kom.jpg'),
+(12, 'Joko, S.Tr., M.Kom', '5555555555', NULL, 'sisna2@gmail.com', '$2y$10$ErgkGU2t5EX.E6l1zqZiJ.5Ojvs1GIiiLb.2BVXUc.Ggs.CqsDB8e', '08989784353', 'Pegawai', '04292023020119Renaldi Noviandi, S.Tr., M.Kom.jpg'),
+(13, 'Kajur Manajemen Informatika', '198801052019031008', 'Manajemen Informatika', 'kajurmi@gmail.com', '$2y$10$eDz7jC5BxMH2/kPtBVJyU.66FN2.OYUCFd8qkqodOeA6iiC4Av41a', '08989784353', 'Ketua Jurusan', '04282023063350Tri Herdiawan A., S.ST., M.T..jpg'),
+(14, 'Oyok Yudiyanto, S.T., M.T.', '198709032019031009', NULL, 'wadir@gmail.com', '$2y$10$lVH8tHmE6uyHFL8c5yWCiO.WqfwaoZ.8UEO17FsNsmJueI1JaR1mO', '08989784353', 'Wakil Direktur', '04282023063641Oyok Yudiyanto, S.T., M.T..jpg'),
+(15, 'Sisna, S.Tr.Kom', '222222221', NULL, 'bagianumum@gmail.com', '$2y$10$IgAmMMJHke63GMhoAIV1pOfzNDLQy9WaehcAJlZTvRMDQNyof3E5y', '08989784353', 'Bagian Umum', '06022023071330Sisna, S.Tr.Kom.jpg'),
+(19, 'Kajur Agroindustri', '222222222222222222', 'Agroindustri', 'kajuragro@gmail.com', '$2y$10$qvX8GJrVurOQRBZuO4PFbO5jBSmxy3MCrffp91326UHUGtABIG2B6', '08989784353', 'Ketua Jurusan', '06022023073038Kajur Agroindustri.jpg'),
+(20, 'Kajur Teknik Perawatan dan Pemeliharaan Mesin', '333333333333333333', 'Teknik Perawatan dan Perbaikan Mesin', 'kajurmesin@gmail.com', '$2y$10$P9GMWN5ikL5t6l4c0nn.jeSq0txZ93tvJf3gxrsfBjdUEMjBnNrHS', '08989784353', 'Ketua Jurusan', '06022023074801Kajur Teknik Perawatan dan Pemeliharaan Mesin.jpg'),
+(21, 'Kajur Kesehatan', '444444444444444444', 'Kesehatan', 'kajurkes@gmail.com', '$2y$10$GUOwBfo9W9D.NJr1.xRyz.NBEhK8mr5vfYFDMq//4jB6eAuFAaQde', '08989784353', 'Ketua Jurusan', '06022023074911Kajur Kesehatan.jpg');
 
 --
 -- Indexes for dumped tables
@@ -329,7 +333,7 @@ ALTER TABLE `surat`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

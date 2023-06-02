@@ -41,7 +41,6 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
-                                        <th scope="col">Tanggal</th>
                                         <th scope="col">Masuk</th>
                                         <th scope="col">Pulang</th>
                                         <th scope="col">Keterangan</th>
@@ -54,7 +53,6 @@
                                     <tr>
                                         <th scope="row">{{ $no++ }}</th>
                                         <td>{{ $item->nama }}</td>
-                                        <td>{{ date('d F Y', strtotime($item->tanggal)) }}</td>
                                         <td>{{ date('d F Y H:i:s', strtotime($item->masuk)) }}</td>
                                         <td>{{ date('d F Y H:i:s', strtotime($item->pulang)) }}</td>
                                         <td>{{ $item->keterangan }}</td>

@@ -58,6 +58,14 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="input-box">
+                                            <label class="label-text">Foto</label>
+                                            <div class="form-group">
+                                                <img src="@if($detail->foto){{ asset('foto_user/'.$detail->foto) }} @else {{ asset('foto_user/default1.jpg') }} @endif" class="user-pro-img" style="width: 8rem;" alt="Foto User"> 
+                                            </div>
+                                        </div>          
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-box">
                                             <label class="label-text">Role</label>
                                             <div class="form-group select-contain w-100">
                                                 <select class="select-contain-select" name="role" disabled>
@@ -75,27 +83,21 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    @if ($detail->role === 'Ketua Jurusan')
                                     <div class="col-lg-6">
                                         <div class="input-box">
-                                            <label class="label-text">Foto</label>
+                                            <label class="label-text">Jususan</label>
                                             <div class="form-group">
-                                                <input class="form-control" type="file" name="foto_user" disabled>
+                                                <input class="form-control" type="text" name="jurusan" value="{{$detail->jurusan}}" readonly>
                                             </div>
-                                            @error('foto_user')
+                                            @error('jurusan')
                                             <div style="margin-top: -16px">
                                                 <small class="text-danger">{{ $message }}</small>
                                             </div>
                                             @enderror
                                         </div>          
                                     </div>
-                                    <div class="col-lg-6">
-                                        <div class="input-box">
-                                            <label class="label-text">Foto</label>
-                                            <div class="form-group">
-                                                <img src="@if($detail->foto){{ asset('foto_user/'.$detail->foto) }} @else {{ asset('foto_user/default1.jpg') }} @endif" class="user-pro-img" style="width: 8rem;" alt="Foto User"> 
-                                            </div>
-                                        </div>          
-                                    </div>
+                                    @endif
                                 </div>
                             </form>
                         </div>

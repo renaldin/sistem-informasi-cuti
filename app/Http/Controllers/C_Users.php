@@ -55,18 +55,20 @@ class C_Users extends Controller
     {
         Request()->validate([
             'nama'              => 'required',
-            'nomor_telepon'     => 'required|numeric',
-            'nip'               => 'required|numeric',
+            'nomor_telepon'     => 'max:13|required',
+            'nip'               => 'max:18|required',
             'email'             => 'required|unique:users,email|email',
             'password'          => 'min:6|required',
             'role'              => 'required',
             'foto_user'         => 'required|mimes:jpeg,png,jpg|max:2048',
         ], [
             'nama.required'             => 'Nama lengkap harus diisi!',
+            'nomor_telepon.max'         => 'Nomor telepon maksimal 13 angka!',
             'nomor_telepon.required'    => 'Nomor telepon harus diisi!',
-            'nomor_telepon.numeric'     => 'Nomor telepon harus angka!',
+            // 'nomor_telepon.numeric'     => 'Nomor telepon harus angka!',
             'nip.required'              => 'NIP/NIK harus diisi!',
-            'nip.numeric'               => 'NIP/NIK harus angka!',
+            'nip.max'                   => 'NIP/NIK maksimal 18 angka!',
+            // 'nip.numeric'               => 'NIP/NIK harus angka!',
             'email.required'            => 'Email harus diisi!',
             'email.unique'              => 'Email sudah digunakan!',
             'email.email'               => 'Email harus sesuai format! Contoh: contoh@gmail.com',
@@ -86,6 +88,7 @@ class C_Users extends Controller
             'nama'              => Request()->nama,
             'nomor_telepon'     => Request()->nomor_telepon,
             'nip'               => Request()->nip,
+            'jurusan'           => Request()->jurusan,
             'email'             => Request()->email,
             'password'          => Hash::make(Request()->password),
             'role'              => Request()->role,
@@ -117,23 +120,34 @@ class C_Users extends Controller
     {
         Request()->validate([
             'nama'              => 'required',
-            'nomor_telepon'     => 'required|numeric',
-            'nip'               => 'required|numeric',
+            'nomor_telepon'     => 'required|max:13',
+            'nip'               => 'required|max:18',
             'email'             => 'required|email',
             'role'              => 'required',
             'foto_user'         => 'mimes:jpeg,png,jpg|max:2048',
         ], [
             'nama.required'             => 'Nama lengkap harus diisi!',
             'nomor_telepon.required'    => 'Nomor telepon harus diisi!',
-            'nomor_telepon.numeric'     => 'Nomor telepon harus angka!',
+            // 'nomor_telepon.numeric'     => 'Nomor telepon harus angka!',
+            'nomor_telepon.max'         => 'Nomor telepon maksimal 13 angka!',
             'nip.required'              => 'NIP/NIK harus diisi!',
-            'nip.numeric'               => 'NIP/NIK harus angka!',
+            // 'nip.numeric'               => 'NIP/NIK harus angka!',
+            'nip.max'                   => 'NIP/NIK maksimal 18 angka!',
             'email.required'            => 'Email harus diisi!',
             'email.email'               => 'Email harus sesuai format! Contoh: contoh@gmail.com',
             'role.required'             => 'Role harus diisi!',
             'foto_user.mimes'           => 'Format Foto Anda harus jpg/jpeg/png!',
             'foto_user.max'             => 'Ukuran Foto Anda maksimal 2 mb',
         ]);
+
+        $detail = $this->ModelUser->detail($id_user);
+        if (Request()->jurusan) {
+            $jurusan = Request()->jurusan;
+        } elseif (Request()->role !== 'Ketua Jurusan') {
+            $jurusan = null;
+        } else {
+            $jurusan = $detail->jurusan;
+        }
 
         if (Request()->password) {
 
@@ -153,6 +167,7 @@ class C_Users extends Controller
                     'nama'              => Request()->nama,
                     'nomor_telepon'     => Request()->nomor_telepon,
                     'nip'               => Request()->nip,
+                    'jurusan'           => $jurusan,
                     'email'             => Request()->email,
                     'password'          => Hash::make(Request()->password),
                     'role'              => Request()->role,
@@ -164,6 +179,7 @@ class C_Users extends Controller
                     'nama'              => Request()->nama,
                     'nomor_telepon'     => Request()->nomor_telepon,
                     'nip'               => Request()->nip,
+                    'jurusan'           => $jurusan,
                     'email'             => Request()->email,
                     'password'          => Hash::make(Request()->password),
                     'role'              => Request()->role,
@@ -186,6 +202,7 @@ class C_Users extends Controller
                     'nama'              => Request()->nama,
                     'nomor_telepon'     => Request()->nomor_telepon,
                     'nip'               => Request()->nip,
+                    'jurusan'           => $jurusan,
                     'email'             => Request()->email,
                     'role'              => Request()->role,
                     'foto'              => $fileUser,
@@ -196,6 +213,7 @@ class C_Users extends Controller
                     'nama'              => Request()->nama,
                     'nomor_telepon'     => Request()->nomor_telepon,
                     'nip'               => Request()->nip,
+                    'jurusan'           => $jurusan,
                     'email'             => Request()->email,
                     'role'              => Request()->role,
                 ];

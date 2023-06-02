@@ -185,8 +185,9 @@
                                     <div class="col-lg-12 responsive-column">
                                         <div class="input-box">
                                             <label class="label-text">Password Lama</label>
+                                            <span class="label-text" style="float: right; cursor: pointer;" onclick="showPassword()">Show Password</span>
                                             <div class="form-group">
-                                                <input class="form-control" name="password_lama" type="password" placeholder="Password Lama">
+                                                <input class="form-control" name="password_lama" type="password" id="password" placeholder="Password Lama">
                                                 @error('password_lama')
                                                 <div>
                                                     <small class="text-danger">{{ $message }}</small>
@@ -198,8 +199,9 @@
                                     <div class="col-lg-12 responsive-column">
                                         <div class="input-box">
                                             <label class="label-text">Password< Baru</label>
+                                            <span class="label-text" style="float: right; cursor: pointer;" onclick="showPasswordBaru()">Show Password</span>
                                             <div class="form-group">
-                                                <input class="form-control" name="password_baru" type="password" placeholder="Password Baru">
+                                                <input class="form-control" name="password_baru" type="password" id="passwordBaru" placeholder="Password Baru">
                                                 @error('password_baru')
                                                 <div>
                                                     <small class="text-danger">{{ $message }}</small>

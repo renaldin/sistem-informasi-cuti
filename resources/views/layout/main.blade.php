@@ -236,5 +236,52 @@
         });
     });
 </script>
+
+{{-- Hide / Show Jurusan by role --}}
+<script>
+    $(function() {
+        $("#role").on("change", function() {
+            var role = $(this).val();
+            if (role == 'Ketua Jurusan') {
+                $(".jurusan").append('<div class="input-box jurusan2">\
+                    <label class="label-text">Jurusan <span class="text-danger">*</span></label>\
+                    <div class="form-group select-contain w-100">\
+                        <select class="form-control" name="jurusan" required>\
+                            <option value="">-- Pilih Jurusan --</option>\
+                            <option value="Manajemen Informatika">Manajemen Informatika</option>\
+                            <option value="Agroindustri">Agroindustri</option>\
+                            <option value="Teknik Perawatan dan Perbaikan Mesin">Teknik Perawatan dan Perbaikan Mesin</option>\
+                            <option value="Kesehatan">Kesehatan</option>\
+                        </select>\
+                    </div>\
+                </div>');
+            } else {
+                $('#jurusan').closest('#jurusan').remove();
+                $('.jurusan2').closest('.jurusan2').remove();
+            }
+        });
+    });
+</script>
+
+<script>
+    function showPassword() {
+    var passwordInput = document.getElementById("password");
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+    } else {
+        passwordInput.type = "password";
+    }
+    }
+
+    function showPasswordBaru() {
+    var passwordInput = document.getElementById("passwordBaru");
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+    } else {
+        passwordInput.type = "password";
+    }
+    }
+</script>
+
 </body>
 </html>

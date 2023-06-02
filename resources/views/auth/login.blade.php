@@ -52,9 +52,10 @@
                                     <div class="col-lg-12">
                                         <div class="input-box">
                                             <label class="label-text">Password</label>
+                                            <span class="label-text" style="float: right; cursor: pointer;" onclick="showPassword()">Show Password</span>
                                             <div class="form-group">
                                                 <span class="la la-lock form-icon"></span>
-                                                <input class="form-control" type="password" name="password" placeholder="Masukkan Password">
+                                                <input class="form-control" type="password" name="password" id="password" placeholder="Masukkan Password">
                                             </div>
                                             @error('password')
                                             <div style="margin-top: -16px">

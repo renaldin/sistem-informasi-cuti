@@ -60,7 +60,7 @@
 <section class="info-area padding-top-50px">
     <div class="container">
         <div class="row justify-content-center">
-            <a href="/"><img src="{{ asset('foto_biodata/'.$biodata->logo) }}" alt="logo"></a>
+            <a href="/"><img src="{{ asset('foto_biodata/'.$biodata->logo) }}" width="90px" alt="logo"></a>
         </div>
     </div>
 </section>

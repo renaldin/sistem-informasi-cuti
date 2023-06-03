@@ -10,6 +10,7 @@ use App\Http\Controllers\C_KelolaPengajuanCuti;
 use App\Http\Controllers\C_Login;
 use App\Http\Controllers\C_Surat;
 use App\Http\Controllers\C_Absensi;
+use App\Http\Controllers\C_Landing;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +26,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'revalidate'], function () {
 
+    // Landing
+    Route::get('/', [C_Landing::class, 'index'])->name('landing');
+
     // Home
-    Route::get('/', [C_Login::class, 'index'])->name('login');
+    Route::get('/login', [C_Login::class, 'index'])->name('login');
 
     // Login User
     Route::get('/login', [C_Login::class, 'index'])->name('login');

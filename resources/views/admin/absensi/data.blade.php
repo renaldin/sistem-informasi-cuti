@@ -16,8 +16,8 @@
                         <div class="table-form table-responsive">
                             <div class="row mb-2">
                                 <div class="col-lg-12">
-                                    <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#tambah"><i class="la la-plus"></i> Tambah</button>
-                                    <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#import"><i class="la la-plus"></i> Import</button>
+                                    <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#absen"><i class="la la-plus"></i> Tambah</button>
+                                    {{-- <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#cetak"><i class="la la-print"></i> Cetak</button> --}}
                                 </div>
                             </div>
                             <div class="mb-2">
@@ -53,9 +53,13 @@
                                     <tr>
                                         <th scope="row">{{ $no++ }}</th>
                                         <td>{{ $item->nama }}</td>
-                                        <td>{{ date('d F Y H:i:s', strtotime($item->masuk)) }}</td>
-                                        <td>{{ date('d F Y H:i:s', strtotime($item->pulang)) }}</td>
-                                        <td>{{ $item->keterangan }}</td>
+                                        <td>{{ $item->masuk }}</td>
+                                        <td>{{ $item->pulang }}</td>
+                                        @if ($item->keterangan == null)
+                                            <td>Tidak Ada</td>
+                                        @else
+                                            <td>{{ $item->keterangan }}</td>
+                                        @endif
                                         <td>
                                             <div class="table-content">
                                                 <button type="button" data-toggle="modal" data-target="#detail{{$item->id_absensi}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></button>
@@ -76,6 +80,30 @@
         {{-- end footer --}}
     </div>
 </div>
+
+{{-- Modal Absen --}}
+<div class="modal fade" id="absen"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tambah</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <center>
+                <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#tambah"><i class="la la-plus"></i> Tambah Satu</button>
+                <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#import"><i class="la la-plus"></i> Import</button>
+            </center>
+        </div>
+        <div class="modal-footer">
+        </div>
+        </form>
+        </div>
+    </div>
+</div>
+{{-- Tutup --}}
 
 {{-- Modal Import --}}
 <div class="modal fade" id="import"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -121,9 +149,14 @@
                 <form action="/tambah-absensi" method="POST">
                     @csrf
                     <div class="input-box">
-                        <label class="label-text">Nama Lengkap</label>
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="nama" placeholder="Masukkan Nama" required>
+                        <label class="label-text">Pegawai</label>
+                        <div class="form-group select-contain w-100">
+                            <select class="select-contain-select" name="id_pegawai" required>
+                                <option value="">-- Pilih Pegawai --</option>
+                                @foreach ($dataPegawai as $item)
+                                    <option value="{{$item->id_pegawai}}">{{$item->nama}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="input-box">
@@ -179,6 +212,12 @@
                         <label class="label-text">Nama Lengkap</label>
                         <div class="form-group">
                             <input class="form-control" type="text" name="nama" placeholder="Masukkan Nama" value="{{$item->nama}}" required>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <label class="label-text">NIP/NIK</label>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="nip" placeholder="Masukkan NIP/NIK" value="{{$item->nip}}" required>
                         </div>
                     </div>
                     <div class="input-box">
@@ -238,19 +277,24 @@
                             <td>{{$item->nama}}</td>
                         </tr>
                         <tr>
+                            <th width="150px">NIP/NIK</th>
+                            <td width="20px" class="text-center">:</td>
+                            <td>{{$item->nip}}</td>
+                        </tr>
+                        <tr>
                             <th>Tanggal Absensi</th>
                             <td>:</td>
-                            <td>{{date('d F Y', strtotime($item->tanggal))}}</td>
+                            <td>{{$item->tanggal}}</td>
                         </tr>
                         <tr>
                             <th>Masuk</th>
                             <td>:</td>
-                            <td>{{date('d F Y H:i:s', strtotime($item->masuk))}}</td>
+                            <td>{{$item->masuk}}</td>
                         </tr>
                         <tr>
                             <th>Pulang</th>
                             <td>:</td>
-                            <td>{{date('d F Y H:i:s', strtotime($item->pulang))}}</td>
+                            <td>{{$item->pulang}}</td>
                         </tr>
                         <tr>
                             <th>Keterangan</th>

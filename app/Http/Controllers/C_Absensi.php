@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\AbsensiImport;
 use App\Models\ModelUser;
+use App\Models\ModelPegawai;
 use App\Models\ModelBiodataWeb;
 use App\Models\ModelAbsensi;
 use Illuminate\Support\Facades\Hash;
@@ -23,6 +24,7 @@ class C_Absensi extends Controller
         $this->ModelUser = new ModelUser();
         $this->ModelBiodataWeb = new ModelBiodataWeb();
         $this->ModelAbsensi = new ModelAbsensi();
+        $this->ModelPegawai = new ModelPegawai();
     }
 
     public function index()
@@ -36,6 +38,7 @@ class C_Absensi extends Controller
             'subTitle'      => 'Kelola Absensi',
             'biodata'       => $this->ModelBiodataWeb->detail(1),
             'user'          => $this->ModelUser->detail(Session()->get('id_user')),
+            'dataPegawai'   => $this->ModelPegawai->getData(),
             'dataAbsensi'   => $this->ModelAbsensi->getData()
         ];
 
@@ -61,8 +64,11 @@ class C_Absensi extends Controller
             return redirect()->route('login');
         }
 
+        $pegawai = $this->ModelPegawai->detail(Request()->id_pegawai);
+
         $data = [
-            'nama'          => Request()->nama,
+            'nama'          => $pegawai->nama,
+            'nip'           => $pegawai->nip,
             'tanggal'       => date('d/m/Y', strtotime(Request()->tanggal)),
             'masuk'         => date('d-M-y H:i:s', strtotime(Request()->masuk)),
             'pulang'        => date('d-M-y H:i:s', strtotime(Request()->pulang)),
@@ -83,6 +89,7 @@ class C_Absensi extends Controller
         $data = [
             'id_absensi'    => $id_absensi,
             'nama'          => Request()->nama,
+            'nip'           => Request()->nip,
             'tanggal'       => date('d/m/Y', strtotime(Request()->tanggal)),
             'masuk'         => date('d-M-y H:i:s', strtotime(Request()->masuk)),
             'pulang'        => date('d-M-y H:i:s', strtotime(Request()->pulang)),
@@ -93,4 +100,66 @@ class C_Absensi extends Controller
         $this->ModelAbsensi->edit($data);
         return redirect()->back()->with('berhasil', 'Data absensi berhasil diedit !');
     }
+
+    public function show()
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $user = $this->ModelUser->detail(Session()->get('id_user'));
+
+        $data = [
+            'title'         => 'Data Absensi',
+            'subTitle'      => 'Lihat Absensi',
+            'biodata'       => $this->ModelBiodataWeb->detail(1),
+            'user'          => $this->ModelUser->detail(Session()->get('id_user')),
+            'dataAbsensi'   => $this->ModelAbsensi->getDataByNip($user->nip)
+        ];
+
+        if ($user->role == 'Pegawai') {
+            $route = 'pegawai.absensi.data';
+        } elseif ($user->role == 'Bagian Umum') {
+            $route = 'bagianumum.absensi.data';
+        } elseif ($user->role == 'Wakil Direktur') {
+            $route = 'wakildirektur.absensi.data';
+        } elseif ($user->role == 'Ketua Jurusan') {
+            $route = 'ketuajurusan.absensi.data';
+        }
+
+        return view($route, $data);
+    }
+
+    // public function absensiByDate()
+    // {
+    //     if (!Session()->get('email')) {
+    //         return redirect()->route('login');
+    //     }
+
+    //     $tanggalMulai = date('d/m/Y', strtotime(Request()->tanggal_mulai));
+    //     $tanggalAkhir = date('d/m/Y', strtotime(Request()->tanggal_akhir));
+
+    //     $user = $this->ModelUser->detail(Session()->get('id_user'));
+
+    //     $data = [
+    //         'title'         => 'Data Absensi',
+    //         'subTitle'      => 'Lihat Absensi',
+    //         'biodata'       => $this->ModelBiodataWeb->detail(1),
+    //         'user'          => $this->ModelUser->detail(Session()->get('id_user')),
+    //         'dataAbsensi'   => $this->ModelAbsensi->getDataByDate($tanggalMulai, $tanggalAkhir)
+    //     ];
+    //     dd($data);
+
+    //     if ($user->role == 'Pegawai') {
+    //         $route = 'pegawai.absensi.data';
+    //     } elseif ($user->role == 'Bagian Umum') {
+    //         $route = 'bagianumum.absensi.data';
+    //     } elseif ($user->role == 'Wakil Direktur') {
+    //         $route = 'wakildirektur.absensi.data';
+    //     } elseif ($user->role == 'Ketua Jurusan') {
+    //         $route = 'ketuajurusan.absensi.data';
+    //     }
+
+    //     return view($route, $data);
+    // }
 }

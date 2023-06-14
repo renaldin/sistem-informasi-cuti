@@ -58,6 +58,9 @@ Route::group(['middleware' => 'revalidate'], function () {
     Route::get('/kirim-surat/{id}', [C_Surat::class, 'sendToPegawai'])->name('kirim-surat');
     Route::get('/hapus-surat/{id}', [C_Surat::class, 'deleteProcess']);
 
+    // absensi
+    // Route::post('/absensi_tanggal', [C_Absensi::class, 'absensiByDate']);
+
     Route::group(['middleware' => 'pegawai'], function () {
         // dashboard
         Route::get('/dashboardPegawai', [C_Dashboard::class, 'index'])->name('dashboardPegawai');
@@ -75,6 +78,9 @@ Route::group(['middleware' => 'revalidate'], function () {
         // riwayat pengajuan cuti
         Route::get('/riwayat-pengajuan-cuti', [C_PengajuanCuti::class, 'history'])->name('riwayat-pengajuan-cuti');
         Route::get('/download-riwayat-pengajuan-cuti/{id}', [C_KelolaPengajuanCuti::class, 'downloadProcess']);
+
+        // lihat absensi
+        Route::get('/lihat-absensi-pegawai', [C_Absensi::class, 'show'])->name('lihat-absensi-pegawai');
     });
 
     Route::group(['middleware' => 'admin'], function () {
@@ -134,6 +140,9 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/terima-pengajuan-cuti-wakil-direktur/{id}', [C_KelolaPengajuanCuti::class, 'acceptWakilDirektur'])->name('terima-pengajuan-cuti-wakil-direktur');
         Route::get('/izin-wakil-direktur/{id}', [C_KelolaPengajuanCuti::class, 'permissionWakilDirektur']);
         Route::post('/izin-wakil-direktur/{id}', [C_KelolaPengajuanCuti::class, 'permissionWakilDirekturProcess']);
+
+        // lihat absensi
+        Route::get('/lihat-absensi-wakil-direktur', [C_Absensi::class, 'show'])->name('lihat-absensi-wakil-direktur');
     });
 
     Route::group(['middleware' => 'ketuajurusan'], function () {
@@ -146,10 +155,16 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/terima-pengajuan-cuti-ketua-jurusan/{id}', [C_KelolaPengajuanCuti::class, 'acceptKetuaJurusan'])->name('terima-pengajuan-cuti-ketua-jurusan');
         Route::get('/izin-ketua-jurusan/{id}', [C_KelolaPengajuanCuti::class, 'permissionKetuaJurusan']);
         Route::post('/izin-ketua-jurusan/{id}', [C_KelolaPengajuanCuti::class, 'permissionKetuaJurusanProcess']);
+
+        // lihat absensi
+        Route::get('/lihat-absensi-ketua-jurusan', [C_Absensi::class, 'show'])->name('lihat-absensi-ketua-jurusan');
     });
 
     Route::group(['middleware' => 'bagianumum'], function () {
         // dashboard
         Route::get('/dashboardBagianUmum', [C_Dashboard::class, 'index'])->name('dashboardBagianUmum');
+
+        // lihat absensi
+        Route::get('/lihat-absensi-bagian-umum', [C_Absensi::class, 'show'])->name('lihat-absensi-bagian-umum');
     });
 });

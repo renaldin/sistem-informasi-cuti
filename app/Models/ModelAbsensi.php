@@ -18,6 +18,13 @@ class ModelAbsensi extends Model
             ->orderBy('id_absensi', 'DESC')->get();
     }
 
+    public function getDataByNip($nip)
+    {
+        return DB::table($this->table)
+            ->where('nip', $nip)
+            ->orderBy('id_absensi', 'DESC')->get();
+    }
+
     public function add($data)
     {
         DB::table($this->table)->insert($data);

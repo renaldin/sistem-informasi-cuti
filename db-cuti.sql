@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2023 at 05:32 PM
+-- Generation Time: Jun 16, 2023 at 12:10 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -133,15 +133,15 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `id_user`, `jabatan`, `unit_kerja`, `masa_kerja`, `cuti_n_2`, `cuti_n_1`, `cuti_n`, `keterangan_n_2`, `keterangan_n_1`, `keterangan_n`, `cuti_besar`, `cuti_sakit`, `cuti_melahirkan`, `cuti_karena_alasan_penting`, `cuti_diluar_tanggungan_negara`) VALUES
-(1, 22, 'Ketua Jurusan', 'Manajemen Informatika', '5 tahun', '0', '0', '0', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak'),
-(2, 23, 'Ketua Jurusan', 'Agroindustri', '5 tahun', '0', '0', '0', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak'),
-(3, 24, 'Ketua Jurusan', 'Teknik Perawatan dan Perbaikan Mesin', '5 tahun', '0', '0', '0', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak'),
-(4, 25, 'Ketua Jurusan', 'Kesehatan', '5 tahun', '0', '0', '0', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak'),
-(5, 26, 'Wakil Direktur 1', 'Wakil Direktur', '5 tahun', '0', '0', '0', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak'),
-(6, 27, 'Wakil Direktur 2', 'Wakil Direktur', '5 tahun', '0', '0', '0', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', NULL, 'Tidak', 'Tidak', 'Tidak'),
-(7, 28, 'Bagian Umum', 'Bagian Umum', '5 tahun', '0', '0', '0', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak'),
-(8, 29, 'Dosen', 'Manajemen Informatika', '5 tahun', '0', '0', '0', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', NULL, 'Tidak', 'Tidak'),
-(9, 30, 'Dosen', 'Manajemen Informatika', '5 tahun', '0', '0', '0', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', NULL, 'Tidak', 'Tidak');
+(1, 22, 'Ketua Jurusan', 'Manajemen Informatika', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak'),
+(2, 23, 'Ketua Jurusan', 'Agroindustri', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak'),
+(3, 24, 'Ketua Jurusan', 'Teknik Perawatan dan Perbaikan Mesin', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak'),
+(4, 25, 'Ketua Jurusan', 'Kesehatan', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak'),
+(5, 26, 'Wakil Direktur 1', 'Wakil Direktur', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak'),
+(6, 27, 'Wakil Direktur 2', 'Wakil Direktur', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', NULL, 'Tidak', 'Tidak', 'Tidak'),
+(7, 28, 'Bagian Umum', 'Bagian Umum', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak'),
+(8, 29, 'Dosen', 'Manajemen Informatika', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', NULL, 'Tidak', 'Tidak'),
+(9, 30, 'Dosen', 'Manajemen Informatika', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', NULL, 'Tidak', 'Tidak');
 
 -- --------------------------------------------------------
 
@@ -170,6 +170,13 @@ CREATE TABLE `pengajuan_cuti` (
   `status_pengajuan` enum('Diterima Admin','Diterima Ketua Jurusan','Diterima Wakil Direktur','Persiapan','Dikirim ke Admin','Dikirim ke Ketua Jurusan','Dikirim ke Wakil Direktur','Selesai') DEFAULT NULL,
   `tanggal_pengajuan` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengajuan_cuti`
+--
+
+INSERT INTO `pengajuan_cuti` (`id_pengajuan_cuti`, `id_pegawai`, `jenis_cuti`, `alasan_cuti`, `lama_cuti`, `jenis_waktu`, `mulai_tanggal`, `akhir_tanggal`, `alamat_selama_cuti`, `pertimbangan_ketua_jurusan`, `alasan_pertimbangan_ketua_jurusan`, `ketua_jurusan`, `nip_ketua_jurusan`, `keputusan_wakil_direktur`, `alasan_keputusan_wakil_direktur`, `wakil_direktur`, `nip_wakil_direktur`, `status_pengajuan`, `tanggal_pengajuan`) VALUES
+(1, 8, 'Cuti Sakit', 'Alasannya sakit', 3, 'hari', '2023-06-16', '2023-06-19', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-06-15');
 
 -- --------------------------------------------------------
 
@@ -208,6 +215,28 @@ CREATE TABLE `surat` (
   `file_surat` text DEFAULT NULL,
   `tanggal_upload` date DEFAULT NULL,
   `status_surat` enum('Belum Dikirim','Sudah Dikirim','Sudah Dibaca') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `surat`
+--
+
+INSERT INTO `surat` (`id_surat`, `id_pegawai`, `no_surat`, `tujuan_surat`, `jenis_surat`, `file_surat`, `tanggal_upload`, `status_surat`) VALUES
+(1, 8, '12345', 'Tujuan Surat', 'Jenis Surat', '06152023220527 12345.pdf', '2023-06-15', 'Belum Dikirim'),
+(2, 8, '1234544', 'Tujuan Surat', 'Jenis Surat', '06152023220611 1234544.pdf', '2023-06-15', 'Belum Dikirim');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tambah_surat`
+--
+
+CREATE TABLE `tambah_surat` (
+  `id_tambah_surat` int(11) NOT NULL,
+  `id_pegawai` int(11) DEFAULT NULL,
+  `no_surat` varchar(30) DEFAULT NULL,
+  `tujuan_surat` varchar(100) DEFAULT NULL,
+  `file_surat` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -284,6 +313,12 @@ ALTER TABLE `surat`
   ADD PRIMARY KEY (`id_surat`);
 
 --
+-- Indexes for table `tambah_surat`
+--
+ALTER TABLE `tambah_surat`
+  ADD PRIMARY KEY (`id_tambah_surat`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -315,7 +350,7 @@ ALTER TABLE `pegawai`
 -- AUTO_INCREMENT for table `pengajuan_cuti`
 --
 ALTER TABLE `pengajuan_cuti`
-  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -327,7 +362,13 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `tambah_surat`
+--
+ALTER TABLE `tambah_surat`
+  MODIFY `id_tambah_surat` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`

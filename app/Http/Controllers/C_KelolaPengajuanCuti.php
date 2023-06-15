@@ -340,12 +340,12 @@ class C_KelolaPengajuanCuti extends Controller
         $user = $this->ModelUser->detail(Session()->get('id_user'));
 
         $data = [
-            'id_pengajuan_cuti'         => $id_pengajuan_cuti,
+            'id_pengajuan_cuti'                => $id_pengajuan_cuti,
             'wakil_direktur'                   => $user->nama,
             'nip_wakil_direktur'               => $user->nip,
             'keputusan_wakil_direktur'         => Request()->keputusan_wakil_direktur,
             'alasan_keputusan_wakil_direktur'  => Request()->alasan_keputusan_wakil_direktur,
-            'status_pengajuan'          => 'Selesai',
+            'status_pengajuan'                 => 'Selesai',
         ];
 
         $this->ModelPengajuanCuti->edit($data);

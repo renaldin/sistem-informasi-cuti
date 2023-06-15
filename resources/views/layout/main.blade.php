@@ -31,6 +31,20 @@
     <link rel="stylesheet" href="{{ asset('template/datatables/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/datatables/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/datatables/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+    <style>
+        .select2 {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body class="section-bg">
 
@@ -186,6 +200,14 @@
 <script src="{{ asset('template/datatables/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('template/datatables/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('template/datatables/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+    });
+</script>
 
 {{-- CK EDITOR --}}
 {{-- <script src="{{ asset('template/js/ckeditor.js') }}"></script> --}}

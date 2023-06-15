@@ -48,7 +48,7 @@
                                 <tbody>
                                     <?php $no = 1;?>
                                     @foreach ($dataPengajuanCuti as $item)
-                                    @if ($item->status_pengajuan === 'Dikirim ke Pejabat')
+                                    @if ($item->status_pengajuan === 'Dikirim ke Wakil Direktur')
                                         <tr>
                                             <td colspan="5">
                                                 <div class="table-content text-center">
@@ -65,10 +65,10 @@
                                             {{-- <td><span class="badge badge-primary py-1 px-2">{{ $item->status_pengajuan }}</span></td> --}}
                                             <td>
                                                 <div class="table-content">
-                                                    <a href="/detail-pengajuan-cuti-pejabat/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
-                                                    @if ($item->status_pengajuan === 'Diterima Pejabat')
+                                                    @if ($item->status_pengajuan === 'Diterima Wakil Direktur')
                                                         <button type="button" data-toggle="modal" data-target="#izin-pejabat{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Beri Izin"><i class="la la-check"></i></button>
                                                     @endif
+                                                    <a href="/detail-pengajuan-cuti-wakil-direktur/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
                                                     {{-- <a href="/download-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Download"><i class="la la-download"></i></a> --}}
                                                     {{-- @if ($item->status_pengajuan === 'Diterima Admin')
                                                         <a href="/edit-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
@@ -139,7 +139,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-            <a href="/terima-pengajuan-cuti-pejabat/{{ $item->id_pengajuan_cuti }}" class="btn btn-primary">Terima</a>
+            <a href="/terima-pengajuan-cuti-wakil-direktur/{{ $item->id_pengajuan_cuti }}" class="btn btn-primary">Terima</a>
         </div>
         </div>
     </div>
@@ -166,7 +166,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-            <a href="/izin-pejabat/{{ $item->id_pengajuan_cuti }}" class="btn btn-primary">Beri Izin</a>
+            <a href="/izin-wakil-direktur/{{ $item->id_pengajuan_cuti }}" class="btn btn-primary">Beri Izin</a>
         </div>
         </div>
     </div>

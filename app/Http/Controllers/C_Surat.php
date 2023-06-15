@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Hash;
 use App\Models\ModelUser;
 use App\Models\ModelSurat;
 use App\Models\ModelSetting;
 use App\Models\ModelPegawai;
+use PDF;
 
 class C_Surat extends Controller
 {
@@ -211,5 +211,22 @@ class C_Surat extends Controller
 
         $this->ModelSurat->edit($data);
         return redirect()->route('kelola-surat')->with('berhasil', 'Data surat berhasil dikirim ke pegawai !');
+    }
+
+    public function print()
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $data = [
+            'title'     => 'Data Surat',
+            'biodata'   => $this->ModelSetting->detail(1),
+            'user'      => $this->ModelUser->detail(Session()->get('id_user')),
+            'dataSurat' => $this->ModelSurat->getDataByDate(Request()->tanggal_mulai, Request()->tanggal_akhir)
+        ];
+
+        $pdf = PDF::loadview('admin.cetak.cetak_surat', $data);
+        return $pdf->download($data['title'] . ' ' . date('d F Y') . '.pdf');
     }
 }

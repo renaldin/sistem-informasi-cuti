@@ -17,14 +17,14 @@
                             <form action="/tambah-surat" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="input-box">
-                                            <label class="label-text">Pegawai</label>
+                                            <label class="label-text">Penerima</label>
                                             <div class="form-group select-contain w-100">
-                                                <select class="select-contain-select" name="id_pegawai">
+                                                <select class="select2 form-control" name="id_pegawai" id="id_pegawai">
                                                     <option value="">-- Pilih Pegawai --</option>
                                                     @foreach ($dataPegawai as $item)
-                                                        <option value="{{$item->id_pegawai}}">{{$item->nama}}</option>
+                                                        <option value="{{$item->id_pegawai}}">{{$item->nama}} | {{$item->jabatan}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -106,3 +106,21 @@
     </div>
 </div>
 @endsection
+
+{{-- <script>
+    $(document).ready(function() {
+        // Mengambil data dari model User (contoh)
+        var users = {!! json_encode($users) !!};
+
+        // Mengisi data ke dalam elemen select
+        $.each(users, function(index, user) {
+            $('#nama_select').append($('<option>', {
+                value: user.id,
+                text: user.name
+            }));
+        });
+
+        // Menginisialisasi Select2
+        $('.select2').select2();
+    });
+</script> --}}

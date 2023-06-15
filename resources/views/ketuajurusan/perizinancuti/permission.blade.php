@@ -14,14 +14,14 @@
                     </div>
                     <div class="form-content">
                         <div class="contact-form-action">
-                            <form action="/izin-atasan/{{$detail->id_pengajuan_cuti}}" method="POST" enctype="multipart/form-data">
+                            <form action="/izin-ketua-jurusan/{{$detail->id_pengajuan_cuti}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="input-box">
                                             <label class="label-text">Pertimbangan Atasan Langsung **</label>
                                             <div class="form-group select-contain w-100">
-                                                <select class="select-contain-select" name="pertimbangan_atasan" id="pertimbangan_atasan" required>
+                                                <select class="select-contain-select" name="pertimbangan_ketua_jurusan" id="pertimbangan_ketua_jurusan" required>
                                                     <option value="">-- Pilih --</option>
                                                     <option value="DISETUJUI">DISETUJUI</option>
                                                     <option value="PERUBAHAN">PERUBAHAN</option>
@@ -29,19 +29,19 @@
                                                     <option value="TIDAK DISETUJUI">TIDAK DISETUJUI</option>
                                                 </select>
                                             </div>
-                                            @error('pertimbangan_atasan')
+                                            @error('pertimbangan_ketua_jurusan')
                                             <div style="margin-top: -16px">
                                                 <small class="text-danger">{{ $message }}</small>
                                             </div>
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 alasan_pertimbangan_atasan">
+                                    <div class="col-lg-12 alasan_pertimbangan_ketua_jurusan">
                                         {{-- <div class="input-box">
                                             <label class="label-text">Alasan Pertimbangan Atasan Langsung</label>
                                             <div class="form-group">
                                                 <span class="la la-pencil form-icon"></span>
-                                                <textarea class="message-control form-control" name="alasan_pertimbangan_atasan" placeholder="Silahkan isi alasannya..."></textarea>
+                                                <textarea class="message-control form-control" name="alasan_pertimbangan_ketua_jurusan" placeholder="Silahkan isi alasannya..."></textarea>
                                             </div>
                                         </div> --}}
                                     </div>

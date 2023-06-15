@@ -17,14 +17,14 @@
                             <form action="/edit-surat/{{$detail->id_surat}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12">
                                         <div class="input-box">
-                                            <label class="label-text">Pegawai</label>
+                                            <label class="label-text">Penerima</label>
                                             <div class="form-group select-contain w-100">
-                                                <select class="select-contain-select" name="id_pegawai">
-                                                    <option value="{{$detail->id_pegawai}}">{{$detail->nama}}</option>
+                                                <select class="select2 form-control" name="id_pegawai" id="id_pegawai">
+                                                    <option value="{{$detail->id_pegawai}}">{{$detail->nama}} | {{$detail->jabatan}}</option>
                                                     @foreach ($dataPegawai as $item)
-                                                        <option value="{{$item->id_pegawai}}">{{$item->nama}}</option>
+                                                        <option value="{{$item->id_pegawai}}">{{$item->nama}} | {{$item->jabatan}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

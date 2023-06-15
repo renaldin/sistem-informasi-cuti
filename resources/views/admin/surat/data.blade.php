@@ -17,6 +17,7 @@
                             <div class="row mb-2">
                                 <div class="col-lg-12">
                                     <a href="/tambah-surat" class="theme-btn theme-btn-small"><i class="la la-plus"></i> Tambah</a>
+                                    <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#cetak"><i class="la la-print"></i> Cetak</button>
                                 </div>
                             </div>
                             <div class="mb-2">
@@ -39,7 +40,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Nama Pegawai</th>
+                                        <th scope="col">Nama Penerima</th>
                                         <th scope="col">No Surat</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Tanggal Upload</th>
@@ -133,4 +134,41 @@
     </div>
 </div>
 @endforeach
+
+<!-- Modal -->
+<div class="modal fade" id="cetak" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content modal-sm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Rentang Tanggal</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/cetak-surat" method="POST">
+            @csrf
+            <div class="form-group">
+              <label for="tanggal_mulai">Mulai Dari Tanggal</label>
+              <input type="date" class="form-control @error('tanggal_mulai') is-invalid @enderror" name="tanggal_mulai" id="tanggal_mulai" placeholder="Masukkan Tanggal Mulai" required>
+              @error('tanggal_mulai')
+                  <small class="form-text text-danger">{{$message}}</small>
+              @enderror
+            </div>
+            <div class="form-group">
+              <label for="tanggal_akhir">Sampai Dengan</label>
+              <input type="date" class="form-control @error('tanggal_akhir') is-invalid @enderror" name="tanggal_akhir" id="tanggal_akhir" placeholder="Masukkan Tanggal Akhir" required>
+              @error('tanggal_akhir')
+                  <small class="form-text text-danger">{{$message}}</small>
+              @enderror
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+          <button type="submit" class="btn btn-primary">Cetak</button>
+        </div>
+      </form>
+      </div>
+    </div>
+</div>
 @endsection

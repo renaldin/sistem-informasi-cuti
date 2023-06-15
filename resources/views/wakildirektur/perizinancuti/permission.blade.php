@@ -14,14 +14,14 @@
                     </div>
                     <div class="form-content">
                         <div class="contact-form-action">
-                            <form action="/izin-pejabat/{{$detail->id_pengajuan_cuti}}" method="POST" enctype="multipart/form-data">
+                            <form action="/izin-wakil-direktur/{{$detail->id_pengajuan_cuti}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="input-box">
                                             <label class="label-text">Keputusan Pejabat Yang Berwenang Memberikan Cuti</label>
                                             <div class="form-group select-contain w-100">
-                                                <select class="select-contain-select" name="keputusan_pejabat" id="keputusan_pejabat" required>
+                                                <select class="select-contain-select" name="keputusan_wakil_direktur" id="keputusan_wakil_direktur" required>
                                                     <option value="">-- Pilih --</option>
                                                     <option value="DISETUJUI">DISETUJUI</option>
                                                     <option value="PERUBAHAN">PERUBAHAN</option>
@@ -29,14 +29,14 @@
                                                     <option value="TIDAK DISETUJUI">TIDAK DISETUJUI</option>
                                                 </select>
                                             </div>
-                                            @error('keputusan_pejabat')
+                                            @error('keputusan_wakil_direktur')
                                             <div style="margin-top: -16px">
                                                 <small class="text-danger">{{ $message }}</small>
                                             </div>
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 alasan_keputusan_pejabat">
+                                    <div class="col-lg-12 alasan_keputusan_wakil_direktur">
                                         
                                     </div>
                                 </div>

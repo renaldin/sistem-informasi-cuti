@@ -59,6 +59,7 @@ Route::group(['middleware' => 'revalidate'], function () {
     Route::post('/edit-surat/{id}', [C_Surat::class, 'editProcess']);
     Route::get('/kirim-surat/{id}', [C_Surat::class, 'sendToPegawai'])->name('kirim-surat');
     Route::get('/hapus-surat/{id}', [C_Surat::class, 'deleteProcess']);
+    Route::post('/cetak-surat', [C_Surat::class, 'print']);
 
     // absensi
     // Route::post('/absensi_tanggal', [C_Absensi::class, 'absensiByDate']);

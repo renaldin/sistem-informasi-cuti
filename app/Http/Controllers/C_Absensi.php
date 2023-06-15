@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Imports\AbsensiImport;
 use App\Models\ModelUser;
 use App\Models\ModelPegawai;
-use App\Models\ModelBiodataWeb;
+use App\Models\ModelSetting;
 use App\Models\ModelAbsensi;
 use Illuminate\Support\Facades\Hash;
 // use Maatwebsite\Excel\Facades\Excel;
@@ -15,14 +15,14 @@ class C_Absensi extends Controller
 {
 
     private $ModelUser;
-    private $ModelBiodataWeb;
+    private $ModelSetting;
     private $ModelPegawai;
     private $ModelAbsensi;
 
     public function __construct()
     {
         $this->ModelUser = new ModelUser();
-        $this->ModelBiodataWeb = new ModelBiodataWeb();
+        $this->ModelSetting = new ModelSetting();
         $this->ModelAbsensi = new ModelAbsensi();
         $this->ModelPegawai = new ModelPegawai();
     }
@@ -36,7 +36,7 @@ class C_Absensi extends Controller
         $data = [
             'title'         => 'Data Absensi',
             'subTitle'      => 'Kelola Absensi',
-            'biodata'       => $this->ModelBiodataWeb->detail(1),
+            'biodata'       => $this->ModelSetting->detail(1),
             'user'          => $this->ModelUser->detail(Session()->get('id_user')),
             'dataPegawai'   => $this->ModelPegawai->getData(),
             'dataAbsensi'   => $this->ModelAbsensi->getData()
@@ -112,7 +112,7 @@ class C_Absensi extends Controller
         $data = [
             'title'         => 'Data Absensi',
             'subTitle'      => 'Lihat Absensi',
-            'biodata'       => $this->ModelBiodataWeb->detail(1),
+            'biodata'       => $this->ModelSetting->detail(1),
             'user'          => $this->ModelUser->detail(Session()->get('id_user')),
             'dataAbsensi'   => $this->ModelAbsensi->getDataByNip($user->nip)
         ];
@@ -144,7 +144,7 @@ class C_Absensi extends Controller
     //     $data = [
     //         'title'         => 'Data Absensi',
     //         'subTitle'      => 'Lihat Absensi',
-    //         'biodata'       => $this->ModelBiodataWeb->detail(1),
+    //         'biodata'       => $this->ModelSetting->detail(1),
     //         'user'          => $this->ModelUser->detail(Session()->get('id_user')),
     //         'dataAbsensi'   => $this->ModelAbsensi->getDataByDate($tanggalMulai, $tanggalAkhir)
     //     ];

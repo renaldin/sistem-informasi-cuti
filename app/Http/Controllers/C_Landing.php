@@ -4,19 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\ModelAuth;
 use App\Models\ModelUser;
-use App\Models\ModelBiodataWeb;
+use App\Models\ModelSetting;
 
 class C_Landing extends Controller
 {
 
     private $ModelAuth;
-    private $ModelBiodataWeb;
+    private $ModelSetting;
     private $ModelUser;
 
     public function __construct()
     {
         $this->ModelAuth = new ModelAuth();
-        $this->ModelBiodataWeb = new ModelBiodataWeb();
+        $this->ModelSetting = new ModelSetting();
         $this->ModelUser = new ModelUser();
     }
 
@@ -38,7 +38,7 @@ class C_Landing extends Controller
 
         $data = [
             'title' => 'The Future in Your Hands',
-            'biodata'  => $this->ModelBiodataWeb->detail(1),
+            'biodata'  => $this->ModelSetting->detail(1),
         ];
 
         return view('landing.index', $data);

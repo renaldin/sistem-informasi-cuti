@@ -4,13 +4,14 @@ use App\Http\Controllers\C_Users;
 use App\Http\Controllers\C_Pegawai;
 use App\Http\Controllers\C_PengajuanCuti;
 use App\Http\Controllers\Cetak;
-use App\Http\Controllers\C_BiodataWeb;
+use App\Http\Controllers\C_Setting;
 use App\Http\Controllers\C_Dashboard;
 use App\Http\Controllers\C_KelolaPengajuanCuti;
 use App\Http\Controllers\C_Login;
 use App\Http\Controllers\C_Surat;
 use App\Http\Controllers\C_Absensi;
 use App\Http\Controllers\C_Landing;
+use App\Http\Controllers\C_Artikel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -87,8 +88,8 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/dashboardAdmin', [C_Dashboard::class, 'index'])->name('dashboardAdmin');
 
         // biodata web
-        Route::get('/biodata-website', [C_BiodataWeb::class, 'index'])->name('biodata-web');
-        Route::post('/biodata-website/{id}', [C_BiodataWeb::class, 'prosesEdit']);
+        Route::get('/setting', [C_Setting::class, 'index'])->name('setting');
+        Route::post('/setting/{id}', [C_Setting::class, 'prosesEdit']);
 
         // kelola pengajuan cuti
         Route::get('/kelola-pengajuan-cuti', [C_KelolaPengajuanCuti::class, 'index'])->name('kelola-pengajuan-cuti');
@@ -118,6 +119,15 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::post('/edit-pegawai/{id}', [C_Pegawai::class, 'editProcess']);
         Route::get('/detail-pegawai/{id}', [C_Pegawai::class, 'detail'])->name('detail-pegawai');
         Route::get('/hapus-pegawai/{id}', [C_Pegawai::class, 'deleteProcess']);
+
+        // Kelola Artikel
+        Route::get('/kelola-artikel', [C_Artikel::class, 'index'])->name('kelola-artikel');
+        Route::get('/tambah-artikel', [C_Artikel::class, 'add'])->name('tambah-artikel');
+        Route::post('/tambah-artikel', [C_Artikel::class, 'addProcess']);
+        Route::get('/edit-artikel/{id}', [C_Artikel::class, 'edit'])->name('edit-artikel');
+        Route::post('/edit-artikel/{id}', [C_Artikel::class, 'editProcess']);
+        Route::get('/detail-artikel/{id}', [C_Artikel::class, 'detail'])->name('detail-artikel');
+        Route::get('/hapus-artikel/{id}', [C_Artikel::class, 'deleteProcess']);
 
         // Kelola absensi
         Route::get('/kelola-absensi', [C_Absensi::class, 'index'])->name('kelola-absensi');

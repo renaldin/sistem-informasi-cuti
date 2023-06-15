@@ -6,20 +6,20 @@ use App\Mail\kirimEmail;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ModelAuth;
 use App\Models\ModelUser;
-use App\Models\ModelBiodataWeb;
+use App\Models\ModelSetting;
 use Illuminate\Support\Facades\Mail;
 
 class C_Login extends Controller
 {
 
     private $ModelAuth;
-    private $ModelBiodataWeb;
+    private $ModelSetting;
     private $ModelUser;
 
     public function __construct()
     {
         $this->ModelAuth = new ModelAuth();
-        $this->ModelBiodataWeb = new ModelBiodataWeb();
+        $this->ModelSetting = new ModelSetting();
         $this->ModelUser = new ModelUser();
     }
 
@@ -41,7 +41,7 @@ class C_Login extends Controller
 
         $data = [
             'title' => 'Login',
-            'biodata'  => $this->ModelBiodataWeb->detail(1),
+            'biodata'  => $this->ModelSetting->detail(1),
         ];
 
         return view('auth.login', $data);
@@ -154,7 +154,7 @@ class C_Login extends Controller
 
         $data = [
             'title'     => 'Lupa Password',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
         ];
 
         return view('auth.lupaPassword', $data);
@@ -178,7 +178,7 @@ class C_Login extends Controller
 
         $data = [
             'title'     => 'Reset Password',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail($id_user),
         ];
 
@@ -199,7 +199,7 @@ class C_Login extends Controller
                 'urlUtama'      => 'http://127.0.0.1:8000',
                 'urlReset'      => 'http://127.0.0.1:8000/reset-password/' . $data->id_user,
                 'dataUser'      => $data,
-                'biodata'       => $this->ModelBiodataWeb->detail(1),
+                'biodata'       => $this->ModelSetting->detail(1),
             ];
 
             Mail::to($data->email)->send(new kirimEmail($data_email));

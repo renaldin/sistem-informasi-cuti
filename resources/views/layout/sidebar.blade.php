@@ -15,11 +15,11 @@
             <ul class="sidebar-menu toggle-menu list-items">
                 @if (Session()->get('role') === 'Admin')
                     <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardAdmin"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
-                    <li class="@if($subTitle === 'Biodata Website') page-active @endif"><a href="/biodata-website"><i class="la la-laptop mr-2"></i>Biodata Web</a></li>
+                    <li class="@if($subTitle === 'Setting') page-active @endif"><a href="/setting"><i class="la la-laptop mr-2"></i>Setting</a></li>
                     <li class="@if($title === 'Data Pegawai') page-active @endif" ><a href="/kelola-pegawai"><i class="la la-users mr-2"></i>Kelola Pegawai</a></li>
                     <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/kelola-absensi"><i class="la la-list mr-2"></i>Kelola Absensi</a></li>
                     <li class="@if($title === 'Data Surat') page-active @endif" ><a href="/kelola-surat"><i class="la la-file mr-2"></i>Kelola Surat</a></li>
-                    <li class="@if($title === 'Data Pemberitahuan') page-active @endif" ><a href="/kelola-pemberitahuan"><i class="la la-folder-o mr-2"></i>Kelola Pemberitahuan</a></li>
+                    <li class="@if($title === 'Data Artikel') page-active @endif" ><a href="/kelola-artikel"><i class="la la-folder-o mr-2"></i>Kelola Artikel</a></li>
                     <li class="@if($title === 'Pengajuan Cuti') page-active @endif" ><a href="/kelola-pengajuan-cuti"><i class="la la-bookmark-o mr-2"></i>Kelola Pengajuan Cuti</a></li>
                     {{-- <li class="@if($title === 'Data User') page-active @endif" ><a href="/kelola-user"><i class="la la-user mr-2"></i>Kelola User</a></li> --}}
                 @elseif (Session()->get('role') === 'Pegawai')
@@ -30,15 +30,15 @@
                 @elseif (Session()->get('role') === 'Wakil Direktur')
                     <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardWakilDirektur"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
                     <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti-wakil-direktur"><i class="la la-bookmark-o mr-2"></i>Perizinan Cuti</a></li>
-                    <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/lihat-absensi-wakil-direktur"><i class="la la-list mr-2"></i>Lihat Absensi</a></li>
+                    {{-- <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/lihat-absensi-wakil-direktur"><i class="la la-list mr-2"></i>Lihat Absensi</a></li> --}}
                 @elseif (Session()->get('role') === 'Ketua Jurusan')
                     <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardKetuaJurusan"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
                     <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti-ketua-jurusan"><i class="la la-bookmark-o mr-2"></i>Perizinan Cuti</a></li>
-                    <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/lihat-absensi-ketua-jurusan"><i class="la la-list mr-2"></i>Lihat Absensi</a></li>
+                    {{-- <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/lihat-absensi-ketua-jurusan"><i class="la la-list mr-2"></i>Lihat Absensi</a></li> --}}
                 @elseif (Session()->get('role') === 'Bagian Umum')
                     <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardBagianUmum"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
                     <li class="@if($title === 'Data Surat') page-active @endif" ><a href="/kelola-surat"><i class="la la-file mr-2"></i>Kelola Surat</a></li>
-                    <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/lihat-absensi-bagian-umum"><i class="la la-list mr-2"></i>Lihat Absensi</a></li>    
+                    {{-- <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/lihat-absensi-bagian-umum"><i class="la la-list mr-2"></i>Lihat Absensi</a></li>     --}}
                 @endif
                 <li><a data-toggle="modal" data-target="#logout"><i class="la la-power-off mr-2"></i>Logout</a></li>
             </ul>

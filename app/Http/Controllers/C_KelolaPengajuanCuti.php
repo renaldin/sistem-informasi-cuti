@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ModelUser;
-use App\Models\ModelBiodataWeb;
+use App\Models\ModelSetting;
 use App\Models\ModelPengajuanCuti;
 use App\Models\ModelPegawai;
 use PDF;
@@ -12,14 +12,14 @@ class C_KelolaPengajuanCuti extends Controller
 {
 
     private $ModelUser;
-    private $ModelBiodataWeb;
+    private $ModelSetting;
     private $ModelPengajuanCuti;
     private $ModelPegawai;
 
     public function __construct()
     {
         $this->ModelUser = new ModelUser();
-        $this->ModelBiodataWeb = new ModelBiodataWeb();
+        $this->ModelSetting = new ModelSetting();
         $this->ModelPengajuanCuti = new ModelPengajuanCuti();
         $this->ModelPegawai = new ModelPegawai();
     }
@@ -34,7 +34,7 @@ class C_KelolaPengajuanCuti extends Controller
         $data = [
             'title'             => 'Pengajuan Cuti',
             'subTitle'          => 'Kelola Pengajuan Cuti',
-            'biodata'           => $this->ModelBiodataWeb->detail(1),
+            'biodata'           => $this->ModelSetting->detail(1),
             'user'              => $this->ModelUser->detail(Session()->get('id_user')),
             'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataNotByOneStatus('Persiapan')
         ];
@@ -62,7 +62,7 @@ class C_KelolaPengajuanCuti extends Controller
         $data = [
             'title'     => $title,
             'subTitle'  => 'Detail Pengajuan Cuti',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'detail'    => $this->ModelPengajuanCuti->detail($id_pengajuan_cuti)
         ];
@@ -79,7 +79,7 @@ class C_KelolaPengajuanCuti extends Controller
         $data = [
             'title'     => 'Pengajuan Cuti',
             'subTitle'  => 'Edit Pengajuan Cuti',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'detail'    => $this->ModelPengajuanCuti->detail($id_pengajuan_cuti)
         ];
@@ -177,7 +177,7 @@ class C_KelolaPengajuanCuti extends Controller
 
         $data = [
             'title'     => 'Pengajuan Cuti ' . $detail->nama,
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'detail'    => $detail
         ];
 
@@ -193,7 +193,7 @@ class C_KelolaPengajuanCuti extends Controller
 
         $data = [
             'title'             => 'Data Pengajuan Cuti',
-            'biodata'           => $this->ModelBiodataWeb->detail(1),
+            'biodata'           => $this->ModelSetting->detail(1),
             'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataNotByOneStatus('Persiapan')
         ];
 
@@ -212,7 +212,7 @@ class C_KelolaPengajuanCuti extends Controller
         $data = [
             'title'             => 'Perizinan Cuti',
             'subTitle'          => 'Data Perizinan Cuti',
-            'biodata'           => $this->ModelBiodataWeb->detail(1),
+            'biodata'           => $this->ModelSetting->detail(1),
             'user'              => $this->ModelUser->detail(Session()->get('id_user')),
             'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataByTwoStatus('Dikirim ke Ketua Jurusan', 'Diterima Ketua Jurusan')
         ];
@@ -244,7 +244,7 @@ class C_KelolaPengajuanCuti extends Controller
         $data = [
             'title'     => 'Perizinan Cuti',
             'subTitle'  => 'Form Perizinan Cuti',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'detail'    => $this->ModelPengajuanCuti->detail($id_pengajuan_cuti)
         ];
@@ -291,7 +291,7 @@ class C_KelolaPengajuanCuti extends Controller
         $data = [
             'title'             => 'Perizinan Cuti',
             'subTitle'          => 'Data Perizinan Cuti',
-            'biodata'           => $this->ModelBiodataWeb->detail(1),
+            'biodata'           => $this->ModelSetting->detail(1),
             'user'              => $this->ModelUser->detail(Session()->get('id_user')),
             'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataByTwoStatus('Dikirim ke Wakil Direktur', 'Diterima Wakil Direktur')
         ];
@@ -323,7 +323,7 @@ class C_KelolaPengajuanCuti extends Controller
         $data = [
             'title'     => 'Perizinan Cuti',
             'subTitle'  => 'Form Perizinan Cuti',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'detail'    => $this->ModelPengajuanCuti->detail($id_pengajuan_cuti)
         ];

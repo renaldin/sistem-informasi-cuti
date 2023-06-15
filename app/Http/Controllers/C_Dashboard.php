@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ModelUser;
-use App\Models\ModelBiodataWeb;
+use App\Models\ModelSetting;
 use App\Models\ModelPengajuanCuti;
 use App\Models\ModelPegawai;
 
@@ -11,14 +11,14 @@ class C_Dashboard extends Controller
 {
 
     private $ModelUser;
-    private $ModelBiodataWeb;
+    private $ModelSetting;
     private $ModelPengajuanCuti;
     private $ModelPegawai;
 
     public function __construct()
     {
         $this->ModelUser = new ModelUser();
-        $this->ModelBiodataWeb = new ModelBiodataWeb();
+        $this->ModelSetting = new ModelSetting();
         $this->ModelPengajuanCuti = new ModelPengajuanCuti();
         $this->ModelPegawai = new ModelPegawai();
     }
@@ -34,7 +34,7 @@ class C_Dashboard extends Controller
             $data = [
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
-                'biodata'               => $this->ModelBiodataWeb->detail(1),
+                'biodata'               => $this->ModelSetting->detail(1),
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
                 'jumlahUser'            => $this->ModelUser->jumlahUser(),
                 'jumlahPegawai'         => $this->ModelPegawai->jumlahPegawai(),
@@ -50,7 +50,7 @@ class C_Dashboard extends Controller
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
-                'biodata'               => $this->ModelBiodataWeb->detail(1),
+                'biodata'               => $this->ModelSetting->detail(1),
                 'jumlahPengajuanCuti'   => $this->ModelPengajuanCuti->jumlahByUser($pegawai->id_pegawai),
                 'selesaiPengajuanCuti'  => $this->ModelPengajuanCuti->jumlahByUserStatus($pegawai->id_pegawai, 'Selesai'),
             ];
@@ -60,7 +60,7 @@ class C_Dashboard extends Controller
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
-                'biodata'               => $this->ModelBiodataWeb->detail(1),
+                'biodata'               => $this->ModelSetting->detail(1),
             ];
             return view('wakildirektur.dashboard', $data);
         } elseif (Session()->get('role') === 'Ketua Jurusan') {
@@ -68,7 +68,7 @@ class C_Dashboard extends Controller
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
-                'biodata'               => $this->ModelBiodataWeb->detail(1),
+                'biodata'               => $this->ModelSetting->detail(1),
             ];
             return view('ketuajurusan.dashboard', $data);
         } elseif (Session()->get('role') === 'Bagian Umum') {
@@ -76,7 +76,7 @@ class C_Dashboard extends Controller
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
-                'biodata'               => $this->ModelBiodataWeb->detail(1),
+                'biodata'               => $this->ModelSetting->detail(1),
             ];
             return view('bagianumum.dashboard', $data);
         }

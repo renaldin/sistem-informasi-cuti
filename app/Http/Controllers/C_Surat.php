@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use App\Models\ModelUser;
 use App\Models\ModelSurat;
-use App\Models\ModelBiodataWeb;
+use App\Models\ModelSetting;
 use App\Models\ModelPegawai;
 
 class C_Surat extends Controller
@@ -13,14 +13,14 @@ class C_Surat extends Controller
 
     private $ModelUser;
     private $ModelSurat;
-    private $ModelBiodataWeb;
+    private $ModelSetting;
     private $ModelPegawai;
 
     public function __construct()
     {
         $this->ModelSurat = new ModelSurat();
         $this->ModelUser = new ModelUser();
-        $this->ModelBiodataWeb = new ModelBiodataWeb();
+        $this->ModelSetting = new ModelSetting();
         $this->ModelPegawai = new ModelPegawai();
     }
 
@@ -33,7 +33,7 @@ class C_Surat extends Controller
         $data = [
             'title'     => 'Data Surat',
             'subTitle'  => 'Kelola Surat',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'dataSurat' => $this->ModelSurat->getData()
         ];
@@ -50,7 +50,7 @@ class C_Surat extends Controller
         $data = [
             'title'     => 'Data Surat',
             'subTitle'  => 'Tambah Surat',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'dataPegawai' => $this->ModelPegawai->getData(),
             'user'      => $this->ModelUser->detail(Session()->get('id_user'))
         ];
@@ -104,7 +104,7 @@ class C_Surat extends Controller
         $data = [
             'title'     => 'Data Surat',
             'subTitle'  => 'Edit Surat',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'detail'    => $this->ModelSurat->detail($id_surat),
             'dataPegawai' => $this->ModelPegawai->getData(),
             'user'      => $this->ModelUser->detail(Session()->get('id_user'))
@@ -172,7 +172,7 @@ class C_Surat extends Controller
         $data = [
             'title'     => 'Data Surat',
             'subTitle'  => 'Detail Surat',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'detail'    => $this->ModelSurat->detail($id_surat),
             'user'      => $this->ModelUser->detail(Session()->get('id_user'))
         ];

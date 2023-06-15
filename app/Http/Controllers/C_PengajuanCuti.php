@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ModelUser;
-use App\Models\ModelBiodataWeb;
+use App\Models\ModelSetting;
 use App\Models\ModelPengajuanCuti;
 use App\Models\ModelPegawai;
 
@@ -11,14 +11,14 @@ class C_PengajuanCuti extends Controller
 {
 
     private $ModelUser;
-    private $ModelBiodataWeb;
+    private $ModelSetting;
     private $ModelPengajuanCuti;
     private $ModelPegawai;
 
     public function __construct()
     {
         $this->ModelUser = new ModelUser();
-        $this->ModelBiodataWeb = new ModelBiodataWeb();
+        $this->ModelSetting = new ModelSetting();
         $this->ModelPengajuanCuti = new ModelPengajuanCuti();
         $this->ModelPegawai = new ModelPegawai();
     }
@@ -35,7 +35,7 @@ class C_PengajuanCuti extends Controller
         $data = [
             'title'             => 'Pengajuan Cuti',
             'subTitle'          => 'Data Pengajuan Cuti',
-            'biodata'           => $this->ModelBiodataWeb->detail(1),
+            'biodata'           => $this->ModelSetting->detail(1),
             'user'              => $this->ModelUser->detail(Session()->get('id_user')),
             'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataByUser($pegawai->id_pegawai)
         ];
@@ -52,7 +52,7 @@ class C_PengajuanCuti extends Controller
         $data = [
             'title'     => 'Pengajuan Cuti',
             'subTitle'  => 'Tambah Pengajuan Cuti',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'pegawai'   => $this->ModelPegawai->detailByIdUser(Session()->get('id_user')),
             'user'      => $this->ModelUser->detail(Session()->get('id_user'))
         ];
@@ -110,7 +110,7 @@ class C_PengajuanCuti extends Controller
         $data = [
             'title'     => 'Pengajuan Cuti',
             'subTitle'  => 'Detail Pengajuan Cuti',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'detail'    => $this->ModelPengajuanCuti->detail($id_pengajuan_cuti)
         ];
@@ -127,7 +127,7 @@ class C_PengajuanCuti extends Controller
         $data = [
             'title'     => 'Pengajuan Cuti',
             'subTitle'  => 'Edit Pengajuan Cuti',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'detail'    => $this->ModelPengajuanCuti->detail($id_pengajuan_cuti)
         ];
@@ -207,7 +207,7 @@ class C_PengajuanCuti extends Controller
         $data = [
             'title'             => 'Riwayat Pengajuan Cuti',
             'subTitle'          => 'Riwayat Pengajuan Cuti',
-            'biodata'           => $this->ModelBiodataWeb->detail(1),
+            'biodata'           => $this->ModelSetting->detail(1),
             'user'              => $this->ModelUser->detail(Session()->get('id_user')),
             'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataByUserStatus($pegawai->id_pegawai, 'Selesai')
         ];

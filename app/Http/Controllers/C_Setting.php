@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ModelBiodataWeb;
+use App\Models\ModelSetting;
 use App\Models\ModelUser;
 
-class C_BiodataWeb extends Controller
+class C_Setting extends Controller
 {
 
-    private $ModelBiodataWeb;
+    private $ModelSetting;
     private $ModelUser;
 
     public function __construct()
     {
-        $this->ModelBiodataWeb = new ModelBiodataWeb();
+        $this->ModelSetting = new ModelSetting();
         $this->ModelUser = new ModelUser();
     }
 
@@ -25,12 +25,12 @@ class C_BiodataWeb extends Controller
 
         $data = [
             'title'     => '',
-            'subTitle'  => 'Biodata Website',
+            'subTitle'  => 'Setting',
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
-            'biodata'   => $this->ModelBiodataWeb->detail(1)
+            'biodata'   => $this->ModelSetting->detail(1)
         ];
 
-        return view('admin.biodataWeb.data', $data);
+        return view('admin.setting.data', $data);
     }
 
     public function prosesEdit($id_biodata_web)
@@ -52,7 +52,7 @@ class C_BiodataWeb extends Controller
         ]);
 
         if (Request()->logo <> "") {
-            $biodata = $this->ModelBiodataWeb->detail($id_biodata_web);
+            $biodata = $this->ModelSetting->detail($id_biodata_web);
             if ($biodata->logo <> "") {
                 unlink(public_path('foto_biodata') . '/' . $biodata->logo);
             }
@@ -80,7 +80,7 @@ class C_BiodataWeb extends Controller
             ];
         }
 
-        $this->ModelBiodataWeb->edit($data);
-        return redirect()->route('biodata-web')->with('berhasil', 'Data Berhasil Diedit !');
+        $this->ModelSetting->edit($data);
+        return redirect()->route('setting')->with('berhasil', 'Data Berhasil Diedit !');
     }
 }

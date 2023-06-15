@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
 use App\Models\ModelUser;
-use App\Models\ModelBiodataWeb;
+use App\Models\ModelSetting;
 
 class C_Users extends Controller
 {
 
     private $ModelUser;
-    private $ModelBiodataWeb;
+    private $ModelSetting;
 
     public function __construct()
     {
         $this->ModelUser = new ModelUser();
-        $this->ModelBiodataWeb = new ModelBiodataWeb();
+        $this->ModelSetting = new ModelSetting();
     }
 
     public function index()
@@ -27,7 +27,7 @@ class C_Users extends Controller
         $data = [
             'title'     => 'Data User',
             'subTitle'  => 'Kelola User',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'dataUser'  => $this->ModelUser->getData()
         ];
@@ -44,7 +44,7 @@ class C_Users extends Controller
         $data = [
             'title'     => 'Data User',
             'subTitle'  => 'Tambah User',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user'))
         ];
 
@@ -108,7 +108,7 @@ class C_Users extends Controller
         $data = [
             'title'     => 'Data User',
             'subTitle'  => 'Edit User',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'detail'    => $this->ModelUser->detail($id_user),
             'user'      => $this->ModelUser->detail(Session()->get('id_user'))
         ];
@@ -233,7 +233,7 @@ class C_Users extends Controller
         $data = [
             'title'     => 'Data User',
             'subTitle'  => 'Detail User',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'detail'    => $this->ModelUser->detail($id_user),
             'user'      => $this->ModelUser->detail(Session()->get('id_user'))
         ];
@@ -262,7 +262,7 @@ class C_Users extends Controller
         $data = [
             'title'     => 'Profil',
             'subTitle'  => 'Informasi Profil',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'detail'    => $this->ModelUser->detail(Session()->get('id_user'))
         ];
@@ -332,7 +332,7 @@ class C_Users extends Controller
 
         $data = [
             'title'     => 'Ubah Password',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail($id_user)
         ];
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ModelUser;
-use App\Models\ModelBiodataWeb;
+use App\Models\ModelSetting;
 use App\Models\ModelPegawai;
 use Illuminate\Support\Facades\Hash;
 
@@ -11,13 +11,13 @@ class C_Pegawai extends Controller
 {
 
     private $ModelUser;
-    private $ModelBiodataWeb;
+    private $ModelSetting;
     private $ModelPegawai;
 
     public function __construct()
     {
         $this->ModelUser = new ModelUser();
-        $this->ModelBiodataWeb = new ModelBiodataWeb();
+        $this->ModelSetting = new ModelSetting();
         $this->ModelPegawai = new ModelPegawai();
     }
 
@@ -30,7 +30,7 @@ class C_Pegawai extends Controller
         $data = [
             'title'         => 'Data Pegawai',
             'subTitle'      => 'Kelola Pegawai',
-            'biodata'       => $this->ModelBiodataWeb->detail(1),
+            'biodata'       => $this->ModelSetting->detail(1),
             'user'          => $this->ModelUser->detail(Session()->get('id_user')),
             'dataPegawai'   => $this->ModelPegawai->getData()
         ];
@@ -47,7 +47,7 @@ class C_Pegawai extends Controller
         $data = [
             'title'     => 'Data Pegawai',
             'subTitle'  => 'Detail Pegawai',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'detail'    => $this->ModelPegawai->detail($id_pegawai)
         ];
@@ -64,7 +64,7 @@ class C_Pegawai extends Controller
         $data = [
             'title'     => 'Data Pegawai',
             'subTitle'  => 'Tambah Pegawai',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user'))
         ];
 
@@ -174,7 +174,7 @@ class C_Pegawai extends Controller
         $data = [
             'title'     => 'Data Pegawai',
             'subTitle'  => 'Edit Pegawai',
-            'biodata'   => $this->ModelBiodataWeb->detail(1),
+            'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'detail'    => $this->ModelPegawai->detail($id_pegawai)
         ];

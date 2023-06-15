@@ -17,6 +17,13 @@ class ModelArtikel extends Model
             ->orderBy('id_artikel', 'DESC')->get();
     }
 
+    public function detail($id_artikel)
+    {
+        return DB::table($this->table)
+            ->where('id_artikel', $id_artikel)
+            ->first();
+    }
+
     public function add($data)
     {
         DB::table($this->table)->insert($data);

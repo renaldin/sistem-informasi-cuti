@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2023 at 01:10 AM
+-- Generation Time: Jun 15, 2023 at 05:32 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -80,24 +80,28 @@ INSERT INTO `absensi` (`id_absensi`, `nama`, `nip`, `tanggal`, `masuk`, `pulang`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `biodata_web`
+-- Table structure for table `artikel`
 --
 
-CREATE TABLE `biodata_web` (
-  `id_biodata_web` int(11) NOT NULL,
-  `nama_website` varchar(100) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `nomor_telepon` varchar(50) NOT NULL,
-  `alamat` text NOT NULL,
-  `logo` text NOT NULL
+CREATE TABLE `artikel` (
+  `id_artikel` int(11) NOT NULL,
+  `judul` varchar(150) DEFAULT NULL,
+  `deskripsi` text DEFAULT NULL,
+  `dokumen` text DEFAULT NULL,
+  `gambar` text DEFAULT NULL,
+  `tanggal_upload` datetime DEFAULT NULL,
+  `status` enum('Aktif','Tidak Aktif') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `biodata_web`
+-- Dumping data for table `artikel`
 --
 
-INSERT INTO `biodata_web` (`id_biodata_web`, `nama_website`, `email`, `nomor_telepon`, `alamat`, `logo`) VALUES
-(1, 'SI Cuti', 'sicuti@gmail.com', '(123) 123-456', 'Jalan Si Cuti', '04272023124903.png');
+INSERT INTO `artikel` (`id_artikel`, `judul`, `deskripsi`, `dokumen`, `gambar`, `tanggal_upload`, `status`) VALUES
+(2, 'Judul Artikel 1', 'Deskripsi Judul Artikel 1', '06152023143844Judul Artikel 1.pdf', '06152023143844Judul Artikel 1.jpg', '2023-06-15 14:38:44', 'Aktif'),
+(3, 'Judul Artikel 2', 'Deskripsi Judul Artikel 2', '06152023145251Judul Artikel 2.pdf', '06152023145251Judul Artikel 2.jpg', '2023-06-15 14:52:51', 'Aktif'),
+(4, 'Judul Artikel 3', 'Deskripsi Judul Artikel 3', '06152023145326Judul Artikel 3.pdf', '06152023145326Judul Artikel 3.jpg', '2023-06-15 14:53:26', 'Aktif'),
+(5, 'Judul Artikel 4', 'Deskripsi Judul Artikel 4', '06152023145404Judul Artikel 4.pdf', '06152023145404Judul Artikel 4.jpg', '2023-06-15 14:54:04', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -170,6 +174,28 @@ CREATE TABLE `pengajuan_cuti` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `setting`
+--
+
+CREATE TABLE `setting` (
+  `id_setting` int(11) NOT NULL,
+  `nama_website` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `nomor_telepon` varchar(50) NOT NULL,
+  `alamat` text NOT NULL,
+  `logo` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `setting`
+--
+
+INSERT INTO `setting` (`id_setting`, `nama_website`, `email`, `nomor_telepon`, `alamat`, `logo`) VALUES
+(1, 'SI Cuti', 'sicuti@gmail.com', '(123) 123-456', 'Jalan Si Cuti', '04272023124903.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `surat`
 --
 
@@ -228,10 +254,10 @@ ALTER TABLE `absensi`
   ADD PRIMARY KEY (`id_absensi`);
 
 --
--- Indexes for table `biodata_web`
+-- Indexes for table `artikel`
 --
-ALTER TABLE `biodata_web`
-  ADD PRIMARY KEY (`id_biodata_web`);
+ALTER TABLE `artikel`
+  ADD PRIMARY KEY (`id_artikel`);
 
 --
 -- Indexes for table `pegawai`
@@ -244,6 +270,12 @@ ALTER TABLE `pegawai`
 --
 ALTER TABLE `pengajuan_cuti`
   ADD PRIMARY KEY (`id_pengajuan_cuti`);
+
+--
+-- Indexes for table `setting`
+--
+ALTER TABLE `setting`
+  ADD PRIMARY KEY (`id_setting`);
 
 --
 -- Indexes for table `surat`
@@ -268,10 +300,10 @@ ALTER TABLE `absensi`
   MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT for table `biodata_web`
+-- AUTO_INCREMENT for table `artikel`
 --
-ALTER TABLE `biodata_web`
-  MODIFY `id_biodata_web` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `artikel`
+  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -284,6 +316,12 @@ ALTER TABLE `pegawai`
 --
 ALTER TABLE `pengajuan_cuti`
   MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `setting`
+--
+ALTER TABLE `setting`
+  MODIFY `id_setting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `surat`

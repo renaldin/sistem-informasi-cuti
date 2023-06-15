@@ -57,15 +57,24 @@
                         <div class="main-menu-content">
                             <nav>
                                 <ul>
-                                    <li>
-                                        <a href="/">Home</a>
-                                    </li>
-                                    <li>
-                                        <a href="/informasi">Informasi</a>
-                                    </li>
-                                    <li>
-                                        <a href="/kontak">Kontak</a>
-                                    </li>
+                                    @if ($subTitle == 'Home')
+                                        <li>
+                                            <a href="/">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="#tentang">Tentang</a>
+                                        </li>
+                                        <li>
+                                            <a href="#edaran">Edaran</a>
+                                        </li>
+                                        <li>
+                                            <a href="#web">Web Polsub</a>
+                                        </li>
+                                    @elseif($subTitle == 'Detail Edaran')
+                                        <li>
+                                            <a href="/">Home</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </nav>
                         </div><!-- end main-menu-content -->
@@ -94,17 +103,11 @@
             <div class="col-lg-7">
                 <div class="copy-right padding-top-30px">
                     <p class="copy__desc">
-                        &copy; Copyright Trizen 2020. Made with
-                        <span class="la la-heart"></span> by <a href="https://themeforest.net/user/techydevs/portfolio">TechyDevs</a>
+                        &copy; Copyright {{$biodata->nama_website}} {{ date('Y') }}. di desain oleh
+                        <a href="/">Admin {{$biodata->nama_website}}</a>
                     </p>
                 </div><!-- end copy-right -->
             </div><!-- end col-lg-7 -->
-            <div class="col-lg-5">
-                <div class="copy-right-content d-flex align-items-center justify-content-end padding-top-30px">
-                    <h3 class="title font-size-15 pr-2">We Accept</h3>
-                    <img src="{{ asset('template/images/payment-img.png') }}" alt="">
-                </div><!-- end copy-right-content -->
-            </div><!-- end col-lg-5 -->
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end footer-area -->

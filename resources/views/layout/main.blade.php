@@ -187,6 +187,18 @@
 <script src="{{ asset('template/datatables/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('template/datatables/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
+{{-- CK EDITOR --}}
+{{-- <script src="{{ asset('template/js/ckeditor.js') }}"></script> --}}
+
+{{-- Ck Editor --}}
+{{-- <script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script> --}}
+
 <script>
     $(function () {
         $('#example2').DataTable({

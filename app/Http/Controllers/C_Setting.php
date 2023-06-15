@@ -33,7 +33,7 @@ class C_Setting extends Controller
         return view('admin.setting.data', $data);
     }
 
-    public function prosesEdit($id_biodata_web)
+    public function prosesEdit($id_setting)
     {
         Request()->validate([
             'nama_website'       => 'required',
@@ -52,17 +52,17 @@ class C_Setting extends Controller
         ]);
 
         if (Request()->logo <> "") {
-            $biodata = $this->ModelSetting->detail($id_biodata_web);
+            $biodata = $this->ModelSetting->detail($id_setting);
             if ($biodata->logo <> "") {
                 unlink(public_path('foto_biodata') . '/' . $biodata->logo);
             }
 
             $file = Request()->logo;
-            $fileName = date('mdYHis') . Request()->id_biodata_web . '.' . $file->extension();
+            $fileName = date('mdYHis') . Request()->id_setting . '.' . $file->extension();
             $file->move(public_path('foto_biodata'), $fileName);
 
             $data = [
-                'id_biodata_web'    => $id_biodata_web,
+                'id_setting'        => $id_setting,
                 'nama_website'      => Request()->nama_website,
                 'email'             => Request()->email,
                 'alamat'            => Request()->alamat,
@@ -71,7 +71,7 @@ class C_Setting extends Controller
             ];
         } else {
             $data = [
-                'id_biodata_web'    => $id_biodata_web,
+                'id_setting'        => $id_setting,
                 'nama_website'      => Request()->nama_website,
                 'email'             => Request()->email,
                 'alamat'            => Request()->alamat,

@@ -14,7 +14,7 @@
                     </div>
                     <div class="form-content">
                         <div class="contact-form-action">
-                            <form action="/setting/{{ $biodata->id_biodata_web }}" method="Post" enctype="multipart/form-data">
+                            <form action="/setting/{{ $biodata->id_setting }}" method="Post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">

@@ -29,6 +29,7 @@ Route::group(['middleware' => 'revalidate'], function () {
 
     // Landing
     Route::get('/', [C_Landing::class, 'index'])->name('landing');
+    Route::get('/detail-edaran/{id}', [C_Landing::class, 'detailEdaran'])->name('detail-edaran');
 
     // Home
     Route::get('/login', [C_Login::class, 'index'])->name('login');

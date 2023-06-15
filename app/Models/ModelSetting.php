@@ -12,16 +12,16 @@ class ModelSetting extends Model
 
     public function data()
     {
-        return DB::table('biodata_web')->orderBy('id_biodata_web', 'DESC')->get();
+        return DB::table('setting')->orderBy('id_setting', 'DESC')->get();
     }
 
-    public function detail($id_biodata_web)
+    public function detail($id_setting)
     {
-        return DB::table('biodata_web')->where('id_biodata_web', $id_biodata_web)->first();
+        return DB::table('setting')->where('id_setting', $id_setting)->first();
     }
 
     public function edit($data)
     {
-        DB::table('biodata_web')->where('id_biodata_web', $data['id_biodata_web'])->update($data);
+        DB::table('setting')->where('id_setting', $data['id_setting'])->update($data);
     }
 }

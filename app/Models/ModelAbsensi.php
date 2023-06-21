@@ -25,6 +25,21 @@ class ModelAbsensi extends Model
             ->orderBy('id_absensi', 'DESC')->get();
     }
 
+    public function getDataByMonth($bulan, $tahun)
+    {
+        return DB::table($this->table)
+            ->whereMonth('tanggal', $bulan)
+            ->whereYear('tanggal', $tahun)
+            ->orderBy('id_absensi', 'DESC')->get();
+    }
+
+    public function getDataByDate($tanggal_mulai, $tanggal_akhir)
+    {
+        return DB::table($this->table)
+            ->whereBetween('tanggal', [$tanggal_mulai, $tanggal_akhir])
+            ->orderBy('id_absensi', 'DESC')->get();
+    }
+
     public function add($data)
     {
         DB::table($this->table)->insert($data);

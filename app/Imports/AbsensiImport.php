@@ -18,7 +18,7 @@ class AbsensiImport implements ToModel, WithStartRow
         return new ModelAbsensi([
             'nama' => $row[0],
             'nip' => $row[1],
-            'tanggal' => date('d/m/Y', ($row[2] - 25569) * 86400),
+            'tanggal' => date('Y-m-d', ($row[2] - 25569) * 86400),
             'masuk' => $row[3],
             'pulang' => $row[4],
             'keterangan' => $row[5],

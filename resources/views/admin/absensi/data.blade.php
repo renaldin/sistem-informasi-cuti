@@ -148,39 +148,51 @@
         <div class="modal-body">
                 <form action="/tambah-absensi" method="POST">
                     @csrf
-                    <div class="input-box">
-                        <label class="label-text">Pegawai</label>
-                        <div class="form-group select-contain w-100">
-                            <select class="select-contain-select" name="id_pegawai" required>
-                                <option value="">-- Pilih Pegawai --</option>
-                                @foreach ($dataPegawai as $item)
-                                    <option value="{{$item->id_pegawai}}">{{$item->nama}}</option>
-                                @endforeach
-                            </select>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="input-box">
+                                <label class="label-text">Pegawai</label>
+                                <div class="form-group select-contain w-100">
+                                    <select class="select2 form-control" style="width: 100%" name="id_pegawai" required>
+                                        <option value="">-- Pilih Pegawai --</option>
+                                        @foreach ($dataPegawai as $item)
+                                            <option value="{{$item->id_pegawai}}">{{$item->nama}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-box">
-                        <label class="label-text">Tanggal</label>
-                        <div class="form-group">
-                            <input class="form-control" type="date" name="tanggal" placeholder="Masukkan Tanggal" required>
+                        <div class="col-lg-12">
+                            <div class="input-box">
+                                <label class="label-text">Tanggal</label>
+                                <div class="form-group">
+                                    <input class="form-control" type="date" name="tanggal" placeholder="Masukkan Tanggal" required>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-box">
-                        <label class="label-text">Tanggal Masuk</label>
-                        <div class="form-group">
-                            <input class="form-control" type="datetime-local" name="masuk" placeholder="Masukkan Tanggal Masuk" required>
+                        <div class="col-lg-12">
+                            <div class="input-box">
+                                <label class="label-text">Tanggal Masuk</label>
+                                <div class="form-group">
+                                    <input class="form-control" type="datetime-local" name="masuk" placeholder="Masukkan Tanggal Masuk" required>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-box">
-                        <label class="label-text">Tanggal Pulang</label>
-                        <div class="form-group">
-                            <input class="form-control" type="datetime-local" name="pulang" placeholder="Masukkan Tanggal Masuk">
+                        <div class="col-lg-12">
+                            <div class="input-box">
+                                <label class="label-text">Tanggal Pulang</label>
+                                <div class="form-group">
+                                    <input class="form-control" type="datetime-local" name="pulang" placeholder="Masukkan Tanggal Masuk">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-box">
-                        <label class="label-text">Keterangan</label>
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="keterangan" placeholder="Masukkan Keterangan" required>
+                        <div class="col-lg-12">
+                            <div class="input-box">
+                                <label class="label-text">Keterangan</label>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="keterangan" placeholder="Masukkan Keterangan" required>
+                                </div>
+                            </div>
                         </div>
                     </div>
         </div>

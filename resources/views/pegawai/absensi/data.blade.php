@@ -38,6 +38,13 @@
                                     </form>   
                                 </div>
                             </div> --}}
+                            <div class="row mb-4">
+                                <div class="col-lg-12">
+                                    <p class="font-size-14">Filter:</p>
+                                    <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#tanggal"><i class="la la-calendar"></i> Tanggal</button>
+                                    <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#bulan"><i class="la la-calendar"></i> Bulan</button>
+                                </div>
+                            </div>
                             <table class="table" id="example2">
                                 <thead>
                                     <tr>
@@ -52,18 +59,20 @@
                                 <tbody>
                                     <?php $no = 1;?>
                                     @foreach ($dataAbsensi as $item)
-                                    <tr>
-                                        <th scope="row">{{ $no++ }}</th>
-                                        <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->tanggal }}</td>
-                                        <td>{{ $item->masuk }}</td>
-                                        <td>{{ $item->pulang }}</td>
-                                        @if ($item->keterangan == null)
-                                            <td>Tidak Ada</td>
-                                        @else
-                                            <td>{{ $item->keterangan }}</td>
-                                        @endif
-                                    </tr>
+                                    @if ($item->nip == $user->nip)
+                                        <tr>
+                                            <th scope="row">{{ $no++ }}</th>
+                                            <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->tanggal }}</td>
+                                            <td>{{ $item->masuk }}</td>
+                                            <td>{{ $item->pulang }}</td>
+                                            @if ($item->keterangan == null)
+                                                <td>Tidak Ada</td>
+                                            @else
+                                                <td>{{ $item->keterangan }}</td>
+                                            @endif
+                                        </tr>
+                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>
@@ -77,5 +86,104 @@
         {{-- end footer --}}
     </div>
 </div>
+
+{{-- Modal Tanggal --}}
+<div class="modal fade" id="tanggal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Tanggal</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+                <form action="/filter-lihat-absensi" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="input-box">
+                                <label class="label-text">Dari tanggal</label>
+                                <div class="form-group">
+                                    <input class="form-control" type="date" name="tanggal_mulai" placeholder="Masukkan Tanggal" required>
+                                    <input class="form-control" type="hidden" name="filter" value="Tanggal">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="input-box">
+                                <label class="label-text">Sampai Dengan</label>
+                                <div class="form-group">
+                                    <input class="form-control" type="date" name="tanggal_akhir" placeholder="Masukkan Tanggal" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+        </form>
+        </div>
+    </div>
+</div>
+{{-- Tutup --}}
+{{-- Modal Bulan --}}
+<div class="modal fade" id="bulan"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Bulan</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+                <form action="/filter-lihat-absensi" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="input-box">
+                                <label class="label-text">Bulan</label>
+                                <div class="form-group select-contain w-100">
+                                    <input class="form-control" type="hidden" name="filter" value="Bulan">
+                                    <select class="select-contain-select" name="bulan" id="bulan" required>
+                                        <option value="">-- Pilih Bulan --</option>
+                                        <option value="1">Januari</option>
+                                        <option value="2">Februari</option>
+                                        <option value="3">Maret</option>
+                                        <option value="4">April</option>
+                                        <option value="5">Mei</option>
+                                        <option value="6">Juni</option>
+                                        <option value="7">Juli</option>
+                                        <option value="8">Agustus</option>
+                                        <option value="9">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">Desember</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="input-box">
+                                <label class="label-text">Tahun</label>
+                                <div class="form-group">
+                                    <input class="form-control" type="number" name="tahun" min="2000" max="2099" step="1" value="{{date('Y')}}" placeholder="Masukkan Tahun" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </div>
+        </form>
+        </div>
+    </div>
+</div>
+{{-- Tutup --}}
 
 @endsection

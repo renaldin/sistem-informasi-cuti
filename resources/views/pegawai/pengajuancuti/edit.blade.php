@@ -204,6 +204,7 @@
                                                         <select class="select-contain-select" name="jenis_waktu">
                                                             <option value="{{$detail->jenis_waktu}}">{{$detail->jenis_waktu}}</option>
                                                             <option value="hari">hari</option>
+                                                            <option value="minggu">minggu</option>
                                                             <option value="bulan">bulan</option>
                                                             <option value="tahun">tahun</option>
                                                         </select>

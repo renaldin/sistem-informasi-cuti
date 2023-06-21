@@ -9,14 +9,14 @@
                     <div class="form-title-wrap">
                         <div>
                             <h3 class="title">{{ $subTitle }}</h3>
-                            <p class="font-size-14">Silahkan kelola data pegawai di tabel bawah!</p>
+                            <p class="font-size-14">Silahkan kelola data wakil direktur di tabel bawah!</p>
                         </div>
                     </div>
                     <div class="form-content">
                         <div class="table-form table-responsive">
                             <div class="row mb-2">
                                 <div class="col-lg-12">
-                                    <a href="/tambah-pegawai" class="theme-btn theme-btn-small"><i class="la la-plus"></i> Tambah</a>
+                                    <a href="/tambah-wakil-direktur" class="theme-btn theme-btn-small"><i class="la la-plus"></i> Tambah</a>
                                 </div>
                             </div>
                             <div class="mb-2">
@@ -49,7 +49,7 @@
                                 <tbody>
                                     <?php $no = 1;?>
                                     @foreach ($dataPegawai as $item)
-                                    @if ($item->role == 'Pegawai')
+                                    @if ($item->role == 'Wakil Direktur')
                                     <tr>
                                         <th scope="row">{{ $no++ }}</th>
                                         <td>{{ $item->nama }}</td>
@@ -58,8 +58,8 @@
                                         <td><span class="badge badge-primary py-1 px-2">{{ $item->unit_kerja }}</span></td>
                                         <td>
                                             <div class="table-content">
-                                                <a href="/detail-pegawai/{{ $item->id_pegawai }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
-                                                <a href="/edit-pegawai/{{ $item->id_pegawai }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
+                                                <a href="/detail-wakil-direktur/{{ $item->id_pegawai }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
+                                                <a href="/edit-wakil-direktur/{{ $item->id_pegawai }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
                                                 <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_pegawai}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
                                             </div>
                                         </td>
@@ -99,7 +99,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-            <a href="/hapus-pegawai/{{ $item->id_pegawai }}" class="btn btn-danger">Hapus</a>
+            <a href="/hapus-wakil-direktur/{{ $item->id_pegawai }}" class="btn btn-danger">Hapus</a>
         </div>
         </div>
     </div>

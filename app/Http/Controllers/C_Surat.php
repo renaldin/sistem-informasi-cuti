@@ -35,7 +35,8 @@ class C_Surat extends Controller
             'subTitle'  => 'Kelola Surat',
             'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
-            'dataSurat' => $this->ModelSurat->getData()
+            'dataSurat' => $this->ModelSurat->getData(),
+            'dataDetailSurat'   => $this->ModelSurat->getDataPegawai()
         ];
 
         return view('admin.surat.data', $data);
@@ -63,13 +64,13 @@ class C_Surat extends Controller
         Request()->validate([
             'id_pegawai'        => 'required',
             'no_surat'          => 'required',
-            'tujuan_surat'      => 'required',
+            'perihal_surat'      => 'required',
             'jenis_surat'       => 'required',
             'file_surat'        => 'required|mimes:pdf|max:5048',
         ], [
             'id_pegawai.required'       => 'Pegawai harus diisi!',
             'no_surat.required'         => 'No surat harus diisi!',
-            'tujuan_surat.required'     => 'Tujuan surat harus diisi!',
+            'perihal_surat.required'     => 'Tujuan surat harus diisi!',
             'jenis_surat.required'      => 'Janis surat harus diisi!',
             'file_surat.required'       => 'File surat harus diisi!',
             'file_surat.mimes'          => 'Format File surat harus PDF!',
@@ -81,9 +82,11 @@ class C_Surat extends Controller
         $file1->move(public_path('file_surat'), $fileSurat);
 
         $data = [
-            'id_pegawai'        => Request()->id_pegawai,
             'no_surat'          => Request()->no_surat,
-            'tujuan_surat'      => Request()->tujuan_surat,
+            'perihal_surat'      => Request()->perihal_surat,
+            'hari'      => Request()->hari,
+            'tanggal'      => Request()->tanggal,
+            'tempat'      => Request()->tempat,
             'jenis_surat'       => Request()->jenis_surat,
             'tanggal_upload'    => Request()->tanggal_upload,
             'file_surat'        => $fileSurat,
@@ -92,6 +95,17 @@ class C_Surat extends Controller
         ];
 
         $this->ModelSurat->add($data);
+
+        $lastData = $this->ModelSurat->lastData();
+
+        foreach (Request()->id_pegawai as $item) {
+            $dataDetailSurat = [
+                'id_surat'  => $lastData->id_surat,
+                'id_pegawai'    => $item
+            ];
+            $this->ModelSurat->addPegawai($dataDetailSurat);
+        }
+
         return redirect()->route('kelola-surat')->with('berhasil', 'Data surat berhasil ditambahkan !');
     }
 
@@ -116,15 +130,15 @@ class C_Surat extends Controller
     public function editProcess($id_surat)
     {
         Request()->validate([
-            'id_pegawai'        => 'required',
+            // 'id_pegawai'        => 'required',
             'no_surat'          => 'required',
-            'tujuan_surat'      => 'required',
+            'perihal_surat'      => 'required',
             'jenis_surat'       => 'required',
             'file_surat'        => 'mimes:pdf|max:5048',
         ], [
-            'id_pegawai.required'       => 'Pegawai harus diisi!',
+            // 'id_pegawai.required'       => 'Pegawai harus diisi!',
             'no_surat.required'         => 'No surat harus diisi!',
-            'tujuan_surat.required'     => 'Tujuan surat harus diisi!',
+            'perihal_surat.required'     => 'Tujuan surat harus diisi!',
             'jenis_surat.required'      => 'Janis surat harus diisi!',
             'file_surat.mimes'          => 'Format File surat harus PDF!',
             'file_surat.max'            => 'Ukuran File surat maksimal 5 mb',
@@ -143,19 +157,27 @@ class C_Surat extends Controller
 
             $data = [
                 'id_surat'          => $id_surat,
-                'id_pegawai'        => Request()->id_pegawai,
+                // 'id_pegawai'        => Request()->id_pegawai,
                 'no_surat'          => Request()->no_surat,
-                'tujuan_surat'      => Request()->tujuan_surat,
+                'perihal_surat'      => Request()->perihal_surat,
+                'hari'      => Request()->hari,
+                'tanggal'      => Request()->tanggal,
+                'tempat'      => Request()->tempat,
                 'jenis_surat'       => Request()->jenis_surat,
+                'status_terlaksana'       => Request()->status_terlaksana,
                 'file_surat'        => $fileSurat,
             ];
         } else {
             $data = [
                 'id_surat'          => $id_surat,
-                'id_pegawai'        => Request()->id_pegawai,
+                // 'id_pegawai'        => Request()->id_pegawai,
                 'no_surat'          => Request()->no_surat,
-                'tujuan_surat'      => Request()->tujuan_surat,
+                'perihal_surat'      => Request()->perihal_surat,
+                'hari'      => Request()->hari,
+                'tanggal'      => Request()->tanggal,
+                'tempat'      => Request()->tempat,
                 'jenis_surat'       => Request()->jenis_surat,
+                'status_terlaksana'       => Request()->status_terlaksana,
             ];
         }
 
@@ -192,6 +214,7 @@ class C_Surat extends Controller
             unlink(public_path('file_surat') . '/' . $surat->file_surat);
         }
 
+        $this->ModelSurat->deletePegawai($id_surat);
         $this->ModelSurat->deleteData($id_surat);
         return redirect()->route('kelola-surat')->with('berhasil', 'Data surat berhasil dihapus !');
     }

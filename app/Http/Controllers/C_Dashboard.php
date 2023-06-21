@@ -6,6 +6,7 @@ use App\Models\ModelUser;
 use App\Models\ModelSetting;
 use App\Models\ModelPengajuanCuti;
 use App\Models\ModelPegawai;
+use App\Models\ModelSurat;
 
 class C_Dashboard extends Controller
 {
@@ -14,6 +15,7 @@ class C_Dashboard extends Controller
     private $ModelSetting;
     private $ModelPengajuanCuti;
     private $ModelPegawai;
+    private $ModelSurat;
 
     public function __construct()
     {
@@ -21,6 +23,7 @@ class C_Dashboard extends Controller
         $this->ModelSetting = new ModelSetting();
         $this->ModelPengajuanCuti = new ModelPengajuanCuti();
         $this->ModelPegawai = new ModelPegawai();
+        $this->ModelSurat = new ModelSurat();
     }
 
     public function index()
@@ -41,6 +44,7 @@ class C_Dashboard extends Controller
                 'jumlahPengajuanCuti'   => $this->ModelPengajuanCuti->jumlahPengajuanCuti(),
                 'selesaiPengajuanCuti'  => $this->ModelPengajuanCuti->jumlahByStatus('Selesai'),
             ];
+
             return view('admin.dashboard', $data);
         } elseif (Session()->get('role') === 'Pegawai') {
 
@@ -51,6 +55,7 @@ class C_Dashboard extends Controller
                 'subTitle'              => 'Dashboard',
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
                 'biodata'               => $this->ModelSetting->detail(1),
+                'dataSurat'             => $this->ModelSurat->getDataPegawai(),
                 'jumlahPengajuanCuti'   => $this->ModelPengajuanCuti->jumlahByUser($pegawai->id_pegawai),
                 'selesaiPengajuanCuti'  => $this->ModelPengajuanCuti->jumlahByUserStatus($pegawai->id_pegawai, 'Selesai'),
             ];
@@ -59,6 +64,7 @@ class C_Dashboard extends Controller
             $data = [
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
+                'dataSurat'             => $this->ModelSurat->getDataPegawai(),
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
                 'biodata'               => $this->ModelSetting->detail(1),
             ];
@@ -67,6 +73,7 @@ class C_Dashboard extends Controller
             $data = [
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
+                'dataSurat'             => $this->ModelSurat->getDataPegawai(),
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
                 'biodata'               => $this->ModelSetting->detail(1),
             ];

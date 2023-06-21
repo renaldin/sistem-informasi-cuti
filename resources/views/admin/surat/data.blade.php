@@ -52,13 +52,17 @@
                                     @foreach ($dataSurat as $item)
                                     <tr>
                                         <th scope="row">{{ $no++ }}</th>
-                                        <td>{{ $item->nama }}</td>
+                                        <td>
+                                            <button type="button" data-toggle="modal" data-target="#pegawai{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Kirim">Lihat</button>
+                                        </td>
+                                        {{-- <td>{{ $item->nama }}</td> --}}
                                         <td>{{ $item->no_surat }}</td>
                                         <td><span class="badge badge-primary py-1 px-2">{{ $item->status_surat }}</span></td>
                                         <td>{{ $item->tanggal_upload }}</td>
                                         <td>
                                             <div class="table-content">
                                                 @if ($item->status_surat === 'Sudah Dikirim')
+                                                    <a href="/edit-surat/{{ $item->id_surat }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
                                                     <a href="/detail-surat/{{ $item->id_surat }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
                                                 @else
                                                     <button type="button" data-toggle="modal" data-target="#kirim{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Kirim"><i class="la la-send"></i></button>
@@ -82,13 +86,66 @@
     </div>
 </div>
 
+{{-- Pegawai --}}
+@foreach ($dataSurat as $item)
+<div class="modal fade" id="pegawai{{ $item->id_surat }}"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-content">
+                            <div class="table-form table-responsive">
+                                <table class="table" id="example2">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Nama Penerima</th>
+                                            <th scope="col">Jabatan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php
+                                            $no=1;
+                                        @endphp
+                                        @foreach ($dataDetailSurat as $row)
+                                        @if ($item->id_surat == $row->id_surat)
+                                        <tr>
+                                            <td>{{$no++}}</td>
+                                            <td>{{$row->nama}}</td>
+                                            <td>{{$row->jabatan}}</td>
+                                        </tr>
+                                        @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+           
+        </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
 {{-- Hapus --}}
 @foreach ($dataSurat as $item)
 <div class="modal fade" id="hapus{{ $item->id_surat }}"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Penerima</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -122,7 +179,7 @@
         <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <p>Apakah Anda yakin akan kirim surat ini ke pegawai <strong>{{$item->nama}}</strong>?</p>
+                        <p>Apakah Anda yakin akan kirim surat ini?</p>
                     </div>
                 </div>
         </div>

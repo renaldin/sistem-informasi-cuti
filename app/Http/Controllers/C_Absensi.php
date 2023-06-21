@@ -114,7 +114,42 @@ class C_Absensi extends Controller
             'subTitle'      => 'Lihat Absensi',
             'biodata'       => $this->ModelSetting->detail(1),
             'user'          => $this->ModelUser->detail(Session()->get('id_user')),
-            'dataAbsensi'   => $this->ModelAbsensi->getDataByNip($user->nip)
+            'dataAbsensi'   => $this->ModelAbsensi->getData()
+        ];
+
+        if ($user->role == 'Pegawai') {
+            $route = 'pegawai.absensi.data';
+        } elseif ($user->role == 'Bagian Umum') {
+            $route = 'bagianumum.absensi.data';
+        } elseif ($user->role == 'Wakil Direktur') {
+            $route = 'wakildirektur.absensi.data';
+        } elseif ($user->role == 'Ketua Jurusan') {
+            $route = 'ketuajurusan.absensi.data';
+        }
+
+        return view($route, $data);
+    }
+
+    public function filter()
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $user = $this->ModelUser->detail(Session()->get('id_user'));
+
+        if (Request()->filter == 'Tanggal') {
+            $dataAbsensi = $this->ModelAbsensi->getDataByDate(Request()->tanggal_mulai, Request()->tanggal_akhir);
+        } elseif (Request()->filter == 'Bulan') {
+            $dataAbsensi = $this->ModelAbsensi->getDataByMonth(Request()->bulan, Request()->tahun);
+        }
+
+        $data = [
+            'title'         => 'Data Absensi',
+            'subTitle'      => 'Lihat Absensi',
+            'biodata'       => $this->ModelSetting->detail(1),
+            'user'          => $this->ModelUser->detail(Session()->get('id_user')),
+            'dataAbsensi'   => $dataAbsensi
         ];
 
         if ($user->role == 'Pegawai') {

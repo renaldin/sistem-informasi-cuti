@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 16, 2023 at 12:10 AM
+-- Generation Time: Jun 21, 2023 at 03:39 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -31,7 +31,7 @@ CREATE TABLE `absensi` (
   `id_absensi` int(11) NOT NULL,
   `nama` varchar(100) DEFAULT NULL,
   `nip` varchar(50) NOT NULL,
-  `tanggal` varchar(30) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
   `masuk` varchar(30) DEFAULT NULL,
   `pulang` varchar(30) DEFAULT NULL,
   `keterangan` varchar(100) DEFAULT NULL,
@@ -45,37 +45,36 @@ CREATE TABLE `absensi` (
 --
 
 INSERT INTO `absensi` (`id_absensi`, `nama`, `nip`, `tanggal`, `masuk`, `pulang`, `keterangan`, `tanggal_import`, `updated_at`, `created_at`) VALUES
-(1, 'Pegawai 1', '121212121212121212', '03/01/2022', NULL, NULL, 'Bleave', '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(2, 'Pegawai 1', '121212121212121212', '04/01/2022', '04/01/2022 07:51:31', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(3, 'Pegawai 1', '121212121212121212', '05/01/2022', '05/01/2022 07:35:00', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(4, 'Pegawai 1', '121212121212121212', '06/01/2022', '06/01/2022 07:34:09', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(5, 'Pegawai 1', '121212121212121212', '07/01/2022', '07/01/2022 07:20:15', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(6, 'Pegawai 1', '121212121212121212', '10/01/2022', '10/01/2022 07:26:44', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(7, 'Pegawai 1', '121212121212121212', '11/01/2022', NULL, NULL, 'Bleave', '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(8, 'Pegawai 1', '121212121212121212', '12/01/2022', '12/01/2022 07:34:33', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(9, 'Pegawai 1', '121212121212121212', '13/01/2022', '13/01/2022 07:32:44', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(10, 'Pegawai 1', '121212121212121212', '14/01/2022', NULL, NULL, 'Bleave', '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(11, 'Pegawai 1', '121212121212121212', '17/01/2022', '17/01/2022 07:46:15', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(12, 'Pegawai 1', '121212121212121212', '18/01/2022', '18/01/2022 07:13:11', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(13, 'Pegawai 1', '121212121212121212', '19/01/2022', '19/01/2022 07:44:42', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(14, 'Pegawai 1', '121212121212121212', '20/01/2022', '20/01/2022 01:15:43', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(15, 'Pegawai 1', '121212121212121212', '21/01/2022', '21/01/2022 01:19:32', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(16, 'Pegawai 1', '121212121212121212', '24/01/2022', NULL, NULL, 'Bleave', '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(17, 'Pegawai 1', '121212121212121212', '25/01/2022', NULL, NULL, 'Bleave', '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(18, 'Pegawai 1', '121212121212121212', '26/01/2022', '26/01/2022 08:07:36', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(19, 'Pegawai 1', '121212121212121212', '27/01/2022', '27/01/2022 07:43:01', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(20, 'Pegawai 1', '121212121212121212', '28/01/2022', '28/01/2022 07:40:46', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(21, 'Pegawai 1', '121212121212121212', '31/01/2022', '31/01/2022 07:49:42', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(22, 'Pegawai 1', '121212121212121212', '03/01/2022', '03/01/2022 06:32:07', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(23, 'Pegawai 2', '131313131313131313', '04/01/2022', '04-Jan-22 07:18 AM', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(24, 'Pegawai 2', '131313131313131313', '05/01/2022', NULL, NULL, 'Sick', '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(25, 'Pegawai 2', '131313131313131313', '06/01/2022', '06/01/2022 07:00:03', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(26, 'Pegawai 2', '131313131313131313', '07/01/2022', '07/01/2022 06:16:59', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(27, 'Pegawai 2', '131313131313131313', '10/01/2022', '10-Jan-22 07:20 AM', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(28, 'Pegawai 2', '131313131313131313', '11/01/2022', '11-Jan-22 07:10 AM', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(29, 'Pegawai 2', '131313131313131313', '12/01/2022', '12-Jan-22 07:22 AM', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(30, 'Pegawai 2', '131313131313131313', '13/01/2022', '13-Jan-22 07:34 AM', NULL, NULL, '2023-06-14 18:07:43', '2023-06-14 18:07:43', '2023-06-14 18:07:43'),
-(31, 'Pegawai 1', '121212121212121212', '15/06/2023', '15-Jun-23 01:17:00', '15-Jun-23 01:17:00', 'Bleave', '2023-06-14 18:18:01', NULL, NULL);
+(1, 'Pegawai 1', '121212121212121212', '2022-07-03', NULL, NULL, 'Bleave', '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(2, 'Pegawai 1', '121212121212121212', '2022-11-04', '04/01/2022 07:51:31', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(3, 'Pegawai 1', '121212121212121212', '2022-01-05', '05/01/2022 07:35:00', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(4, 'Pegawai 1', '121212121212121212', '2022-01-06', '06/01/2022 07:34:09', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(5, 'Pegawai 1', '121212121212121212', '2022-01-07', '07/01/2022 07:20:15', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(6, 'Pegawai 1', '121212121212121212', '2022-01-10', '10/01/2022 07:26:44', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(7, 'Pegawai 1', '121212121212121212', '2022-01-11', NULL, NULL, 'Bleave', '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(8, 'Pegawai 1', '121212121212121212', '2022-01-12', '12/01/2022 07:34:33', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(9, 'Pegawai 1', '121212121212121212', '2022-01-13', '13/01/2022 07:32:44', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(10, 'Pegawai 1', '121212121212121212', '2022-01-14', NULL, NULL, 'Bleave', '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(11, 'Pegawai 1', '121212121212121212', '2022-01-17', '17/01/2022 07:46:15', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(12, 'Pegawai 1', '121212121212121212', '2022-01-18', '18/01/2022 07:13:11', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(13, 'Pegawai 1', '121212121212121212', '2022-01-19', '19/01/2022 07:44:42', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(14, 'Pegawai 1', '121212121212121212', '2022-01-20', '20/01/2022 01:15:43', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(15, 'Pegawai 1', '121212121212121212', '2022-01-21', '21/01/2022 01:19:32', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(16, 'Pegawai 1', '121212121212121212', '2022-01-24', NULL, NULL, 'Bleave', '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(17, 'Pegawai 1', '121212121212121212', '2022-01-25', NULL, NULL, 'Bleave', '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(18, 'Pegawai 1', '121212121212121212', '2022-01-26', '26/01/2022 08:07:36', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(19, 'Pegawai 1', '121212121212121212', '2022-01-27', '27/01/2022 07:43:01', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(20, 'Pegawai 1', '121212121212121212', '2022-01-28', '28/01/2022 07:40:46', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(21, 'Pegawai 1', '121212121212121212', '2022-01-31', '31/01/2022 07:49:42', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(22, 'Pegawai 1', '121212121212121212', '2022-01-03', '03/01/2022 06:32:07', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(23, 'Pegawai 2', '131313131313131313', '2022-01-04', '04-Jan-22 07:18 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(24, 'Pegawai 2', '131313131313131313', '2022-01-05', NULL, NULL, 'Sick', '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(25, 'Pegawai 2', '131313131313131313', '2022-01-06', '06/01/2022 07:00:03', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(26, 'Pegawai 2', '131313131313131313', '2022-01-07', '07/01/2022 06:16:59', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(27, 'Pegawai 2', '131313131313131313', '2022-01-10', '10-Jan-22 07:20 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(28, 'Pegawai 2', '131313131313131313', '2022-01-11', '11-Jan-22 07:10 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(29, 'Pegawai 2', '131313131313131313', '2022-01-12', '12-Jan-22 07:22 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50'),
+(30, 'Pegawai 2', '131313131313131313', '2022-01-13', '13-Jan-22 07:34 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50');
 
 -- --------------------------------------------------------
 
@@ -102,6 +101,27 @@ INSERT INTO `artikel` (`id_artikel`, `judul`, `deskripsi`, `dokumen`, `gambar`, 
 (3, 'Judul Artikel 2', 'Deskripsi Judul Artikel 2', '06152023145251Judul Artikel 2.pdf', '06152023145251Judul Artikel 2.jpg', '2023-06-15 14:52:51', 'Aktif'),
 (4, 'Judul Artikel 3', 'Deskripsi Judul Artikel 3', '06152023145326Judul Artikel 3.pdf', '06152023145326Judul Artikel 3.jpg', '2023-06-15 14:53:26', 'Aktif'),
 (5, 'Judul Artikel 4', 'Deskripsi Judul Artikel 4', '06152023145404Judul Artikel 4.pdf', '06152023145404Judul Artikel 4.jpg', '2023-06-15 14:54:04', 'Aktif');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_surat`
+--
+
+CREATE TABLE `detail_surat` (
+  `id_detail_surat` int(11) NOT NULL,
+  `id_surat` int(11) NOT NULL,
+  `id_pegawai` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_surat`
+--
+
+INSERT INTO `detail_surat` (`id_detail_surat`, `id_surat`, `id_pegawai`) VALUES
+(1, 1, 9),
+(6, 4, 9),
+(7, 4, 8);
 
 -- --------------------------------------------------------
 
@@ -155,7 +175,7 @@ CREATE TABLE `pengajuan_cuti` (
   `jenis_cuti` enum('Cuti Tahunan','Cuti Besar','Cuti Sakit','Cuti Melahirkan','Cuti Karena Alasan Penting','Cuti di Luar Tanggungan Negara') DEFAULT NULL,
   `alasan_cuti` text DEFAULT NULL,
   `lama_cuti` int(11) DEFAULT NULL,
-  `jenis_waktu` enum('hari','bulan','tahun') DEFAULT NULL,
+  `jenis_waktu` enum('hari','bulan','tahun','minggu') DEFAULT NULL,
   `mulai_tanggal` date DEFAULT NULL,
   `akhir_tanggal` date DEFAULT NULL,
   `alamat_selama_cuti` text DEFAULT NULL,
@@ -208,22 +228,25 @@ INSERT INTO `setting` (`id_setting`, `nama_website`, `email`, `nomor_telepon`, `
 
 CREATE TABLE `surat` (
   `id_surat` int(11) NOT NULL,
-  `id_pegawai` int(11) NOT NULL,
   `no_surat` varchar(30) DEFAULT NULL,
-  `tujuan_surat` varchar(100) DEFAULT NULL,
+  `perihal_surat` varchar(100) DEFAULT NULL,
+  `hari` varchar(20) DEFAULT NULL,
+  `tanggal` datetime DEFAULT NULL,
+  `tempat` varchar(100) DEFAULT NULL,
   `jenis_surat` varchar(100) DEFAULT NULL,
   `file_surat` text DEFAULT NULL,
   `tanggal_upload` date DEFAULT NULL,
-  `status_surat` enum('Belum Dikirim','Sudah Dikirim','Sudah Dibaca') NOT NULL
+  `status_surat` enum('Belum Dikirim','Sudah Dikirim','Sudah Dibaca') NOT NULL,
+  `status_terlaksana` enum('Belum','Sudah','Tidak') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `surat`
 --
 
-INSERT INTO `surat` (`id_surat`, `id_pegawai`, `no_surat`, `tujuan_surat`, `jenis_surat`, `file_surat`, `tanggal_upload`, `status_surat`) VALUES
-(1, 8, '12345', 'Tujuan Surat', 'Jenis Surat', '06152023220527 12345.pdf', '2023-06-15', 'Belum Dikirim'),
-(2, 8, '1234544', 'Tujuan Surat', 'Jenis Surat', '06152023220611 1234544.pdf', '2023-06-15', 'Belum Dikirim');
+INSERT INTO `surat` (`id_surat`, `no_surat`, `perihal_surat`, `hari`, `tanggal`, `tempat`, `jenis_surat`, `file_surat`, `tanggal_upload`, `status_surat`, `status_terlaksana`) VALUES
+(1, '00000', 'Perihal', 'Senin', '2023-06-21 08:13:00', 'Kampus', 'Jenis Surat', '06212023011344 00000.pdf', '2023-06-21', 'Sudah Dikirim', 'Belum'),
+(4, '11111', 'Perihal', 'Senin', '2023-06-21 08:33:00', 'Kampus', 'Jenis Surat', '06212023013344 11111.pdf', '2023-06-21', 'Sudah Dikirim', 'Belum');
 
 -- --------------------------------------------------------
 
@@ -289,6 +312,12 @@ ALTER TABLE `artikel`
   ADD PRIMARY KEY (`id_artikel`);
 
 --
+-- Indexes for table `detail_surat`
+--
+ALTER TABLE `detail_surat`
+  ADD PRIMARY KEY (`id_detail_surat`);
+
+--
 -- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
@@ -332,7 +361,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `artikel`
@@ -341,10 +370,16 @@ ALTER TABLE `artikel`
   MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `detail_surat`
+--
+ALTER TABLE `detail_surat`
+  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pengajuan_cuti`
@@ -362,7 +397,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tambah_surat`
@@ -374,7 +409,7 @@ ALTER TABLE `tambah_surat`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

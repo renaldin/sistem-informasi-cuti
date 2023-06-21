@@ -128,7 +128,7 @@
                                             </div>
                                         </div>
                                     </div><!-- end col-lg-6 -->
-                                    <div class="col-lg-6 responsive-column">
+                                    <div class="col-lg-12 responsive-column">
                                         <div class="input-box">
                                             <label class="label-text">Foto</label>
                                             <div class="form-group">
@@ -198,7 +198,7 @@
                                     </div><!-- end col-lg-6 -->
                                     <div class="col-lg-12 responsive-column">
                                         <div class="input-box">
-                                            <label class="label-text">Password< Baru</label>
+                                            <label class="label-text">Password Baru</label>
                                             <span class="label-text" style="float: right; cursor: pointer;" onclick="showPasswordBaru()">Show Password</span>
                                             <div class="form-group">
                                                 <input class="form-control" name="password_baru" type="password" id="passwordBaru" placeholder="Password Baru">

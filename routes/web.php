@@ -128,22 +128,22 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::get('/hapus-pegawai/{id}', [C_Pegawai::class, 'deleteProcess']);
 
         // Kelola Kertua Jurusan
-        Route::get('/kelola-ketua-jurusan', [C_KetuaJurusan::class, 'index'])->name('kelola-ketua-jurusan');
-        Route::get('/tambah-ketua-jurusan', [C_KetuaJurusan::class, 'add'])->name('tambah-ketua-jurusan');
-        Route::post('/tambah-ketua-jurusan', [C_KetuaJurusan::class, 'addProcess']);
-        Route::get('/edit-ketua-jurusan/{id}', [C_KetuaJurusan::class, 'edit'])->name('edit-ketua-jurusan');
-        Route::post('/edit-ketua-jurusan/{id}', [C_KetuaJurusan::class, 'editProcess']);
-        Route::get('/detail-ketua-jurusan/{id}', [C_KetuaJurusan::class, 'detail'])->name('detail-ketua-jurusan');
-        Route::get('/hapus-ketua-jurusan/{id}', [C_KetuaJurusan::class, 'deleteProcess']);
+        // Route::get('/kelola-ketua-jurusan', [C_KetuaJurusan::class, 'index'])->name('kelola-ketua-jurusan');
+        // Route::get('/tambah-ketua-jurusan', [C_KetuaJurusan::class, 'add'])->name('tambah-ketua-jurusan');
+        // Route::post('/tambah-ketua-jurusan', [C_KetuaJurusan::class, 'addProcess']);
+        // Route::get('/edit-ketua-jurusan/{id}', [C_KetuaJurusan::class, 'edit'])->name('edit-ketua-jurusan');
+        // Route::post('/edit-ketua-jurusan/{id}', [C_KetuaJurusan::class, 'editProcess']);
+        // Route::get('/detail-ketua-jurusan/{id}', [C_KetuaJurusan::class, 'detail'])->name('detail-ketua-jurusan');
+        // Route::get('/hapus-ketua-jurusan/{id}', [C_KetuaJurusan::class, 'deleteProcess']);
 
         // Kelola Wakil Direktur
-        Route::get('/kelola-wakil-direktur', [C_WakilDirektur::class, 'index'])->name('kelola-wakil-direktur');
-        Route::get('/tambah-wakil-direktur', [C_WakilDirektur::class, 'add'])->name('tambah-wakil-direktur');
-        Route::post('/tambah-wakil-direktur', [C_WakilDirektur::class, 'addProcess']);
-        Route::get('/edit-wakil-direktur/{id}', [C_WakilDirektur::class, 'edit'])->name('edit-wakil-direktur');
-        Route::post('/edit-wakil-direktur/{id}', [C_WakilDirektur::class, 'editProcess']);
-        Route::get('/detail-wakil-direktur/{id}', [C_WakilDirektur::class, 'detail'])->name('detail-wakil-direktur');
-        Route::get('/hapus-wakil-direktur/{id}', [C_WakilDirektur::class, 'deleteProcess']);
+        // Route::get('/kelola-wakil-direktur', [C_WakilDirektur::class, 'index'])->name('kelola-wakil-direktur');
+        // Route::get('/tambah-wakil-direktur', [C_WakilDirektur::class, 'add'])->name('tambah-wakil-direktur');
+        // Route::post('/tambah-wakil-direktur', [C_WakilDirektur::class, 'addProcess']);
+        // Route::get('/edit-wakil-direktur/{id}', [C_WakilDirektur::class, 'edit'])->name('edit-wakil-direktur');
+        // Route::post('/edit-wakil-direktur/{id}', [C_WakilDirektur::class, 'editProcess']);
+        // Route::get('/detail-wakil-direktur/{id}', [C_WakilDirektur::class, 'detail'])->name('detail-wakil-direktur');
+        // Route::get('/hapus-wakil-direktur/{id}', [C_WakilDirektur::class, 'deleteProcess']);
 
         // Kelola Artikel
         Route::get('/kelola-artikel', [C_Artikel::class, 'index'])->name('kelola-artikel');

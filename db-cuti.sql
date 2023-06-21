@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2023 at 03:39 AM
+-- Generation Time: Jun 21, 2023 at 02:38 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -109,19 +109,9 @@ INSERT INTO `artikel` (`id_artikel`, `judul`, `deskripsi`, `dokumen`, `gambar`, 
 --
 
 CREATE TABLE `detail_surat` (
-  `id_detail_surat` int(11) NOT NULL,
   `id_surat` int(11) NOT NULL,
   `id_pegawai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `detail_surat`
---
-
-INSERT INTO `detail_surat` (`id_detail_surat`, `id_surat`, `id_pegawai`) VALUES
-(1, 1, 9),
-(6, 4, 9),
-(7, 4, 8);
 
 -- --------------------------------------------------------
 
@@ -228,6 +218,7 @@ INSERT INTO `setting` (`id_setting`, `nama_website`, `email`, `nomor_telepon`, `
 
 CREATE TABLE `surat` (
   `id_surat` int(11) NOT NULL,
+  `id_pegawai` int(11) NOT NULL,
   `no_surat` varchar(30) DEFAULT NULL,
   `perihal_surat` varchar(100) DEFAULT NULL,
   `hari` varchar(20) DEFAULT NULL,
@@ -244,9 +235,10 @@ CREATE TABLE `surat` (
 -- Dumping data for table `surat`
 --
 
-INSERT INTO `surat` (`id_surat`, `no_surat`, `perihal_surat`, `hari`, `tanggal`, `tempat`, `jenis_surat`, `file_surat`, `tanggal_upload`, `status_surat`, `status_terlaksana`) VALUES
-(1, '00000', 'Perihal', 'Senin', '2023-06-21 08:13:00', 'Kampus', 'Jenis Surat', '06212023011344 00000.pdf', '2023-06-21', 'Sudah Dikirim', 'Belum'),
-(4, '11111', 'Perihal', 'Senin', '2023-06-21 08:33:00', 'Kampus', 'Jenis Surat', '06212023013344 11111.pdf', '2023-06-21', 'Sudah Dikirim', 'Belum');
+INSERT INTO `surat` (`id_surat`, `id_pegawai`, `no_surat`, `perihal_surat`, `hari`, `tanggal`, `tempat`, `jenis_surat`, `file_surat`, `tanggal_upload`, `status_surat`, `status_terlaksana`) VALUES
+(1, 8, '12345', 'Tujuan Surat', NULL, NULL, NULL, 'Jenis Surat', '06152023220527 12345.pdf', '2023-06-15', 'Sudah Dikirim', 'Sudah'),
+(2, 8, '1234544', 'Tujuan Surat', NULL, NULL, NULL, 'Jenis Surat', '06152023220611 1234544.pdf', '2023-06-15', 'Belum Dikirim', 'Belum'),
+(3, 9, '1234544', 'Perihal', 'Selasa', '2023-06-21 05:17:00', 'Kampus', 'Jenis Surat', '06202023221800 1234544.pdf', '2023-06-20', 'Sudah Dikirim', 'Belum');
 
 -- --------------------------------------------------------
 
@@ -312,12 +304,6 @@ ALTER TABLE `artikel`
   ADD PRIMARY KEY (`id_artikel`);
 
 --
--- Indexes for table `detail_surat`
---
-ALTER TABLE `detail_surat`
-  ADD PRIMARY KEY (`id_detail_surat`);
-
---
 -- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
@@ -370,12 +356,6 @@ ALTER TABLE `artikel`
   MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `detail_surat`
---
-ALTER TABLE `detail_surat`
-  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
@@ -397,7 +377,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tambah_surat`

@@ -83,9 +83,8 @@
                                     <div class="col-lg-6">
                                         <div class="input-box">
                                             <label class="label-text">Logo</label>
-                                            <div class="file-upload-wrap file-upload-wrap-3">
-                                                <input type="file" name="logo" class="multi file-upload-input with-preview" maxlength="3">
-                                                <span class="file-upload-text"><i class="la la-upload mr-2"></i>Upload File</span>
+                                            <div class="form-group">
+                                                <input type="file" name="logo" class="form-control" maxlength="3" required>
                                             </div>
                                             @error('logo')
                                             <div style="margin-top: -16px">

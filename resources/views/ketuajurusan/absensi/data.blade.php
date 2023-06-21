@@ -52,6 +52,7 @@
                                 <tbody>
                                     <?php $no = 1;?>
                                     @foreach ($dataAbsensi as $item)
+                                    @if ($item->nip == $user->nip)
                                     <tr>
                                         <th scope="row">{{ $no++ }}</th>
                                         <td>{{ $item->nama }}</td>
@@ -64,6 +65,7 @@
                                             <td>{{ $item->keterangan }}</td>
                                         @endif
                                     </tr>
+                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>

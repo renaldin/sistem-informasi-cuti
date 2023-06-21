@@ -12,6 +12,36 @@
                             <p class="font-size-14">Silahkan kelola data surat di tabel bawah!</p>
                         </div>
                     </div>
+                    <div class="form-title-wrap">
+                        <div>
+                            <table>
+                                <tr>
+                                    <td colspan="3">Keterangan Tanggal:</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-success py-1 px-2">Hijau</span></td>
+                                    <td width="5px"></td>
+                                    <td>Berjarak Lebih dari 24 jam</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-warning py-1 px-2">Kuning</span></td>
+                                    <td width="5px"></td>
+                                    <td>Berjarak Lebih dari 30 menit</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-danger py-1 px-2">Merah</span></td>
+                                    <td width="5px"></td>
+                                    <td>Berjarak kurang dari 30 menit <strong>(Segera klik tombol reminder)</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-primary py-1 px-2">Biru</span></td>
+                                    <td width="5px"></td>
+                                    <td>Sudah Selesai</td>
+                                </tr>
+                            </table>
+                            
+                        </div>
+                    </div>
                     <div class="form-content">
                         <div class="table-form table-responsive">
                             <div class="row mb-2">
@@ -36,19 +66,37 @@
                                     </div>
                                 @endif
                             </div>
-                            <table class="table" id="example2">
+                            <table class="table" id="example3">
                                 <thead>
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">Nama Penerima</th>
-                                        <th scope="col">No Surat</th>
+                                        <th scope="col">Perihal Surat</th>
                                         <th scope="col">Status</th>
-                                        <th scope="col">Tanggal Upload</th>
+                                        <th scope="col">Tanggal</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1;?>
+                                    @php
+                                    date_default_timezone_set('Asia/Jakarta');
+                                        function reminder($tanggal) {
+                                            // Mendapatkan waktu sekarang
+                                            $currentDateTime = date('Y-m-d H:i:s');
+
+                                            // Mengubah string waktu menjadi waktu dalam detik
+                                            $timestamp = strtotime($currentDateTime);
+                                            $tanggal_surat = strtotime($tanggal);
+
+                                            $sekarang = floor($timestamp / 60);
+                                            $waktu_surat = floor($tanggal_surat / 60);
+                                            
+                                            // Menghitung selisih waktu antara jam tertentu dengan jam sekarang
+                                            $selisih = $waktu_surat - $sekarang;
+                                            return $selisih;
+                                        }
+                                    @endphp
                                     @foreach ($dataSurat as $item)
                                     <tr>
                                         <th scope="row">{{ $no++ }}</th>
@@ -56,12 +104,31 @@
                                             <button type="button" data-toggle="modal" data-target="#pegawai{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Kirim">Lihat</button>
                                         </td>
                                         {{-- <td>{{ $item->nama }}</td> --}}
-                                        <td>{{ $item->no_surat }}</td>
-                                        <td><span class="badge badge-primary py-1 px-2">{{ $item->status_surat }}</span></td>
-                                        <td>{{ $item->tanggal_upload }}</td>
+                                        <td>{{ $item->perihal_surat }}</td>
+                                        <td>{{ $item->status_surat  }}</td>
+                                        <td>
+                                            @if (reminder($item->tanggal) >= 1440)
+                                                <span class="badge badge-success py-1 px-2">
+                                                    {{ $item->tanggal }}
+                                                </span>
+                                            @elseif(reminder($item->tanggal) >= 30)
+                                                <span class="badge badge-warning py-1 px-2">
+                                                    {{ $item->tanggal }}
+                                                </span>
+                                            @elseif(reminder($item->tanggal) >= 0)
+                                                <span class="badge badge-danger py-1 px-2">
+                                                    {{ $item->tanggal }}
+                                                </span>
+                                            @else
+                                                <span class="badge badge-primary py-1 px-2">
+                                                    {{ $item->tanggal }}
+                                                </span>
+                                            @endif
+                                        </td>
                                         <td>
                                             <div class="table-content">
                                                 @if ($item->status_surat === 'Sudah Dikirim')
+                                                    <button type="button" data-toggle="modal" data-target="#reminder{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Reminder ke WA"><i class="la la-send"></i></button>
                                                     <a href="/edit-surat/{{ $item->id_surat }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
                                                     <a href="/detail-surat/{{ $item->id_surat }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
                                                 @else
@@ -92,14 +159,15 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Penerima</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
-                <div class="row">
-                    <div class="col-lg-12">
+                {{-- <div class="row">
+                    <div class="col-lg-12"> --}}
+                    <div class="form-box">
                         <div class="form-content">
                             <div class="table-form table-responsive">
                                 <table class="table" id="example2">
@@ -128,7 +196,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                    {{-- </div>
+                </div> --}}
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
@@ -145,7 +214,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Penerima</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -160,6 +229,32 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
             <a href="/hapus-surat/{{ $item->id_surat }}" class="btn btn-danger">Hapus</a>
+        </div>
+        </div>
+    </div>
+</div>
+@endforeach
+
+@foreach ($dataSurat as $item)
+<div class="modal fade" id="reminder{{ $item->id_surat }}"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Reminder ke Whatsapp</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Apakah Anda yakin akan memberikan reminder?</p>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+            <a href="#" class="btn btn-primary">Reminder</a>
         </div>
         </div>
     </div>

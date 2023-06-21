@@ -252,4 +252,33 @@ class C_Surat extends Controller
         $pdf = PDF::loadview('admin.cetak.cetak_surat', $data);
         return $pdf->download($data['title'] . ' ' . date('d F Y') . '.pdf');
     }
+
+    public function show()
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $user = $this->ModelUser->detail(Session()->get('id_user'));
+
+        $data = [
+            'title'         => 'Data Surat',
+            'subTitle'      => 'Lihat Surat',
+            'biodata'       => $this->ModelSetting->detail(1),
+            'user'          => $this->ModelUser->detail(Session()->get('id_user')),
+            'dataSurat'     => $this->ModelSurat->getDataPegawai()
+        ];
+
+        if ($user->role == 'Pegawai') {
+            $route = 'pegawai.surat.data';
+        } elseif ($user->role == 'Bagian Umum') {
+            $route = 'bagianumum.surat.data';
+        } elseif ($user->role == 'Wakil Direktur') {
+            $route = 'wakildirektur.surat.data';
+        } elseif ($user->role == 'Ketua Jurusan') {
+            $route = 'ketuajurusan.surat.data';
+        }
+
+        return view($route, $data);
+    }
 }

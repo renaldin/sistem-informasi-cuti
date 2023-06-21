@@ -259,25 +259,40 @@ class C_KelolaPengajuanCuti extends Controller
         }
 
         $user = $this->ModelUser->detail(Session()->get('id_user'));
+        $cuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
 
-        $pertimbangan_ketua_jurusan = Request()->pertimbangan_ketua_jurusan;
-        if ($pertimbangan_ketua_jurusan !== 'DISETUJUI') {
-            $status_pengajuan = 'Selesai';
-        } else {
-            $status_pengajuan = 'Dikirim ke Wakil Direktur';
+        if ($cuti->role == 'Pegawai') {
+            $pertimbangan_ketua_jurusan = Request()->pertimbangan_ketua_jurusan;
+            if ($pertimbangan_ketua_jurusan !== 'DISETUJUI') {
+                $status_pengajuan = 'Selesai';
+            } else {
+                $status_pengajuan = 'Dikirim ke Wakil Direktur';
+            }
+
+            $data = [
+                'id_pengajuan_cuti'         => $id_pengajuan_cuti,
+                'ketua_jurusan'                    => $user->nama,
+                'nip_ketua_jurusan'                => $user->nip,
+                'pertimbangan_ketua_jurusan'       => Request()->pertimbangan_ketua_jurusan,
+                'alasan_pertimbangan_ketua_jurusan' => Request()->alasan_pertimbangan_ketua_jurusan,
+                'status_pengajuan'          => $status_pengajuan,
+            ];
+
+            $route = 'perizinan-cuti-ketua-jurusan';
+        } elseif ($cuti->role == 'Ketua Jurusan') {
+            $data = [
+                'id_pengajuan_cuti'                 => $id_pengajuan_cuti,
+                'ketua_jurusan'                     => $cuti->nama,
+                'nip_ketua_jurusan'                 => $cuti->nip,
+                'pertimbangan_ketua_jurusan'        => 'DISETUJUI',
+                'status_pengajuan'                  => 'Dikirim ke Wakil Direktur'
+            ];
+
+            $route = 'kelola-pengajuan-cuti';
         }
 
-        $data = [
-            'id_pengajuan_cuti'         => $id_pengajuan_cuti,
-            'ketua_jurusan'                    => $user->nama,
-            'nip_ketua_jurusan'                => $user->nip,
-            'pertimbangan_ketua_jurusan'       => Request()->pertimbangan_ketua_jurusan,
-            'alasan_pertimbangan_ketua_jurusan' => Request()->alasan_pertimbangan_ketua_jurusan,
-            'status_pengajuan'          => $status_pengajuan,
-        ];
-
         $this->ModelPengajuanCuti->edit($data);
-        return redirect()->route('perizinan-cuti-ketua-jurusan')->with('berhasil', 'Data pengajuan cuti berhasil diberi izin !');
+        return redirect()->route($route)->with('berhasil', 'Data pengajuan cuti berhasil diberi izin !');
     }
     // tutup ketua jurusan
 

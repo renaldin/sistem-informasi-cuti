@@ -30,18 +30,24 @@
                     <li class="@if($title === 'Riwayat Pengajuan Cuti') page-active @endif" ><a href="/riwayat-pengajuan-cuti"><i class="la la-map-signs mr-2"></i>Riwayat Pengajuan Cuti</a></li>
                     {{-- <li class="@if($title === 'Riwayat Surat Tugas') page-active @endif" ><a href="/riwayat-surat-tugas"><i class="la la-file mr-2"></i>Riwayat Surat Tugas</a></li> --}}
                     <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/lihat-absensi"><i class="la la-list mr-2"></i>Lihat Absensi</a></li>
+                    <li class="@if($title === 'Data Surat') page-active @endif" ><a href="/lihat-surat"><i class="la la-list mr-2"></i>Lihat Surat Tugas</a></li>
+                    
                     @elseif (Session()->get('role') === 'Wakil Direktur')
                     <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardWakilDirektur"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
+                    
                     <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti-wakil-direktur"><i class="la la-bookmark-o mr-2"></i>Perizinan Cuti</a></li>
                     <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/lihat-absensi"><i class="la la-list mr-2"></i>Lihat Absensi</a></li>
+                    <li class="@if($title === 'Data Surat') page-active @endif" ><a href="/lihat-surat"><i class="la la-list mr-2"></i>Lihat Surat Tugas</a></li>
                     {{-- <li class="@if($title === 'Riwayat Surat Tugas') page-active @endif" ><a href="/riwayat-surat-tugas"><i class="la la-file mr-2"></i>Riwayat Surat Tugas</a></li> --}}
                     {{-- <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/lihat-absensi-wakil-direktur"><i class="la la-list mr-2"></i>Lihat Absensi</a></li> --}}
                     @elseif (Session()->get('role') === 'Ketua Jurusan')
                     <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardKetuaJurusan"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
                     <li class="@if($title === 'Perizinan Cuti') page-active @endif" ><a href="/perizinan-cuti-ketua-jurusan"><i class="la la-bookmark-o mr-2"></i>Perizinan Cuti</a></li>
                     <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/lihat-absensi"><i class="la la-list mr-2"></i>Lihat Absensi</a></li>
-                    {{-- <li class="@if($title === 'Riwayat Surat Tugas') page-active @endif" ><a href="/riwayat-surat-tugas"><i class="la la-file mr-2"></i>Riwayat Surat Tugas</a></li> --}}
-                    {{-- <li class="@if($title === 'Data Absensi') page-active @endif" ><a href="/lihat-absensi-ketua-jurusan"><i class="la la-list mr-2"></i>Lihat Absensi</a></li> --}}
+                    <li class="@if($title === 'Data Surat') page-active @endif" ><a href="/lihat-surat"><i class="la la-list mr-2"></i>Lihat Surat Tugas</a></li>
+                    <li class="@if($title === 'Pengajuan Cuti') page-active @endif" ><a href="/pengajuan-cuti-ketua-jurusan"><i class="la la-bookmark-o mr-2"></i>Pengajuan Cuti</a></li>
+                    <li class="@if($title === 'Riwayat Pengajuan Cuti') page-active @endif" ><a href="/riwayat-pengajuan-cuti-ketua-jurusan"><i class="la la-map-signs mr-2"></i>Riwayat Pengajuan Cuti</a></li>
+            
                 @elseif (Session()->get('role') === 'Bagian Umum')
                     <li class="@if($subTitle === 'Dashboard') page-active @endif"><a href="/dashboardBagianUmum"><i class="la la-dashboard mr-2"></i>Dashboard</a></li>
                     <li class="@if($title === 'Data Surat') page-active @endif" ><a href="/kelola-surat"><i class="la la-file mr-2"></i>Kelola Surat</a></li>

@@ -84,6 +84,8 @@ class C_PengajuanCuti extends Controller
 
         ]);
 
+        $user = $this->ModelUser->detail(Session()->get('id_user'));
+
         $data = [
             'id_pegawai'        => Request()->id_pegawai,
             'jenis_cuti'        => Request()->jenis_cuti,
@@ -97,8 +99,14 @@ class C_PengajuanCuti extends Controller
             'tanggal_pengajuan' => date('Y-m-d'),
         ];
 
+        if ($user->role == 'Pegawai') {
+            $route = 'pengajuan-cuti';
+        } elseif ($user->role == 'Ketua Jurusan') {
+            $route = 'pengajuan-cuti-ketua-jurusan';
+        }
+
         $this->ModelPengajuanCuti->add($data);
-        return redirect()->route('pengajuan-cuti')->with('berhasil', 'Data pengajuan cuti berhasil ditambahkan !');
+        return redirect()->route($route)->with('berhasil', 'Data pengajuan cuti berhasil ditambahkan !');
     }
 
     public function detail($id_pengajuan_cuti)
@@ -159,6 +167,8 @@ class C_PengajuanCuti extends Controller
 
         ]);
 
+        $user = $this->ModelUser->detail(Session()->get('id_user'));
+
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
             'id_pegawai'        => Request()->id_pegawai,
@@ -171,8 +181,14 @@ class C_PengajuanCuti extends Controller
             'alamat_selama_cuti' => Request()->alamat_selama_cuti,
         ];
 
+        if ($user->role == 'Pegawai') {
+            $route = 'pengajuan-cuti';
+        } elseif ($user->role == 'Ketua Jurusan') {
+            $route = 'pengajuan-cuti-ketua-jurusan';
+        }
+
         $this->ModelPengajuanCuti->edit($data);
-        return redirect()->route('pengajuan-cuti')->with('berhasil', 'Data pengajuan cuti berhasil diedit !');
+        return redirect()->route($route)->with('berhasil', 'Data pengajuan cuti berhasil diedit !');
     }
 
     public function sendToAdmin($id_pengajuan_cuti)
@@ -186,14 +202,30 @@ class C_PengajuanCuti extends Controller
             'status_pengajuan'  => 'Dikirim ke Admin',
         ];
 
+        $user = $this->ModelUser->detail(Session()->get('id_user'));
+
+        if ($user->role == 'Pegawai') {
+            $route = 'pengajuan-cuti';
+        } elseif ($user->role == 'Ketua Jurusan') {
+            $route = 'pengajuan-cuti-ketua-jurusan';
+        }
+
         $this->ModelPengajuanCuti->edit($data);
-        return redirect()->route('pengajuan-cuti')->with('berhasil', 'Data pengajuan cuti berhasil dikirim !');
+        return redirect()->route($route)->with('berhasil', 'Data pengajuan cuti berhasil dikirim !');
     }
 
     public function deleteProcess($id_pengajuan_cuti)
     {
+        $user = $this->ModelUser->detail(Session()->get('id_user'));
+
+        if ($user->role == 'Pegawai') {
+            $route = 'pengajuan-cuti';
+        } elseif ($user->role == 'Ketua Jurusan') {
+            $route = 'pengajuan-cuti-ketua-jurusan';
+        }
+
         $this->ModelPengajuanCuti->deleteData($id_pengajuan_cuti);
-        return redirect()->route('pengajuan-cuti')->with('berhasil', 'Data pengajuan cuti berhasil dihapus !');
+        return redirect()->route($route())->with('berhasil', 'Data pengajuan cuti berhasil dihapus !');
     }
 
     public function history()

@@ -16,7 +16,7 @@
                         <div class="table-form table-responsive">
                             <div class="row mb-2">
                                 <div class="col-lg-12">
-                                    <a href="/tambah-pengajuan-cuti" class="theme-btn theme-btn-small"><i class="la la-plus"></i> Tambah</a>
+                                    <a href="@if($user->role == 'Pegawai') /tambah-pengajuan-cuti @elseif($user->role == 'Ketua Jurusan') /tambah-pengajuan-cuti-ketua-jurusan @endif" class="theme-btn theme-btn-small"><i class="la la-plus"></i> Tambah</a>
                                 </div>
                             </div>
                             <div class="mb-2">
@@ -56,10 +56,10 @@
                                             <td><span class="badge badge-primary py-1 px-2">{{ $item->status_pengajuan }}</span></td>
                                             <td>
                                                 <div class="table-content">
-                                                    <a href="/detail-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
+                                                    <a href="@if($user->role == 'Pegawai')/detail-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}@elseif($user->role == 'Ketua Jurusan')/detail-pengajuan-cuti-ketua-jurusan/{{ $item->id_pengajuan_cuti }}@endif" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
                                                     @if ($item->status_pengajuan === 'Persiapan')
                                                         <button type="button" data-toggle="modal" data-target="#kirim{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Kirim ke Admin"><i class="la la-check"></i></button>
-                                                        <a href="/edit-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
+                                                        <a href="@if($user->role == 'Pegawai')/edit-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}@elseif($user->role == 'Ketua Jurusan')/edit-pengajuan-cuti-ketua-jurusan/{{ $item->id_pengajuan_cuti }}@endif" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
                                                         <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
                                                     @endif
                                                 </div>
@@ -100,7 +100,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-            <a href="/hapus-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="btn btn-danger">Hapus</a>
+            <a href="@if($user->role == 'Pegawai')/hapus-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}@elseif($user->role == 'Ketua Jurusan')/hapus-pengajuan-cuti-ketua-jurusan/{{ $item->id_pengajuan_cuti }}@endif" class="btn btn-danger">Hapus</a>
         </div>
         </div>
     </div>
@@ -127,7 +127,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-            <a href="/kirim-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="btn btn-primary">Kirim</a>
+            <a href="@if($user->role == 'Pegawai')/kirim-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}@elseif($user->role == 'Ketua Jurusan')/kirim-pengajuan-cuti-ketua-jurusan/{{ $item->id_pengajuan_cuti }}@endif" class="btn btn-primary">Kirim</a>
         </div>
         </div>
     </div>

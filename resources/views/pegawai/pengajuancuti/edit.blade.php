@@ -14,7 +14,7 @@
                     </div>
                     <div class="form-content">
                         <div class="contact-form-action">
-                            <form action="/edit-pengajuan-cuti/{{$detail->id_pengajuan_cuti}}" method="POST" enctype="multipart/form-data">
+                            <form action="@if($user->role == 'Pegawai') /edit-pengajuan-cuti/{{$detail->id_pengajuan_cuti}} @elseif($user->role == 'Ketua Jurusan') /edit-pengajuan-cuti-ketua-jurusan/{{$detail->id_pengajuan_cuti}} @endif" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12 text-center">

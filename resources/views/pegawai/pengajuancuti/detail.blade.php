@@ -225,7 +225,7 @@
                                     </table>
                                 </div>
                                 <div class="col-lg-12 mt-3 text-center">
-                                    <a href="/pengajuan-cuti" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
+                                    <a href="@if($user->role == 'Pegawai') /pengajuan-cuti @elseif($user->role == 'Ketua Jurusan') /pengajuan-cuti-ketua-jurusan @endif" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
                                 </div>
                             </div>
                         </div>

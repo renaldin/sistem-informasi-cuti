@@ -14,7 +14,7 @@
                     </div>
                     <div class="form-content">
                         <div class="contact-form-action">
-                            <form action="/tambah-pengajuan-cuti" method="POST" enctype="multipart/form-data">
+                            <form action="/tambah-pengajuan-cuti-ketua-jurusan" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12 text-center">

@@ -52,8 +52,8 @@
                                         <td>{{ $item->keputusan_wakil_direktur }}</td>
                                         <td>
                                             <div class="table-content">
-                                                <a href="/detail-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
-                                                <a href="/download-riwayat-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Download"><i class="la la-download"></i></a>
+                                                <a href="@if($user->role == 'Pegawai')/detail-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}@elseif($user->role == 'Ketua Jurusan')/detail-pengajuan-cuti-ketua-jurusan/{{ $item->id_pengajuan_cuti }}@endif" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
+                                                <a href="@if($user->role == 'Pegawai')/download-riwayat-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}@elseif($user->role == 'Ketua Jurusan')/download-riwayat-pengajuan-cuti-ketua-jurusan/{{ $item->id_pengajuan_cuti }}@endif" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Download"><i class="la la-download"></i></a>
                                             </div>
                                         </td>
                                     </tr>

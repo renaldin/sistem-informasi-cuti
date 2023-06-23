@@ -16,7 +16,7 @@ class ModelSurat extends Model
         return DB::table($this->table)
             // ->join('pegawai', 'pegawai.id_pegawai', '=', 'surat.id_pegawai', 'left')
             // ->join('users', 'users.id_user', '=', 'pegawai.id_user', 'left')
-            ->orderBy('id_surat', 'ASC')->get();
+            ->orderBy('id_surat', 'DESC')->get();
     }
 
     // public function getDataSurat()
@@ -33,16 +33,18 @@ class ModelSurat extends Model
             ->join('surat', 'surat.id_surat', '=', 'detail_surat.id_surat', 'left')
             ->join('pegawai', 'pegawai.id_pegawai', '=', 'detail_surat.id_pegawai', 'left')
             ->join('users', 'users.id_user', '=', 'pegawai.id_user', 'left')
-            ->orderBy('id_detail_surat', 'ASC')->get();
+            ->orderBy('id_detail_surat', 'DESC')->get();
     }
 
     public function getDataByDate($tanggal_mulai, $tanggal_akhir)
     {
-        return DB::table($this->table)
+        return DB::table('detail_surat')
             // ->join('pegawai', 'pegawai.id_pegawai', '=', 'surat.id_pegawai', 'left')
             // ->join('users', 'users.id_user', '=', 'pegawai.id_user', 'left')
-            ->whereBetween('tanggal_upload', [$tanggal_mulai, $tanggal_akhir])
-            ->orderBy('id_surat', 'ASC')->get();
+            ->join('surat', 'surat.id_surat', '=', 'detail_surat.id_surat', 'left')
+            ->join('pegawai', 'pegawai.id_pegawai', '=', 'detail_surat.id_pegawai', 'left')
+            ->join('users', 'users.id_user', '=', 'pegawai.id_user', 'left')
+            ->whereBetween('tanggal_upload', [$tanggal_mulai, $tanggal_akhir])->get();
     }
 
     public function detail($id_surat)

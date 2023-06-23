@@ -355,7 +355,9 @@
                         <td colspan="2" style="text-align: center; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">
                             Hormat saya,
                             <br>
-                            <br>
+                            @if ($detail->nip !== null)
+                                <img src="https://himmi-polsub.com/gambar/tanda_tangan/pegawai.png" width="29%" alt="">
+                            @endif
                             <br>
                             ( {{$detail->nama}} ) <br>
                             NIP {{$detail->nip}}
@@ -373,7 +375,7 @@
                         <td width="80px" >DISETUJUI</td>
                         <td >PERUBAHAN ****</td>
                         <td >DITANGGUHKAN ****</td>
-                        <td >TIDAK DISETUJUI ****</td>
+                        <td width="276px" >TIDAK DISETUJUI ****</td>
                     </tr>
                     <tr>
                         <td >@if($detail->pertimbangan_ketua_jurusan === 'DISETUJUI')Ya. @endif</td>
@@ -386,10 +388,12 @@
                         <td style="text-align: center; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">
                             Hormat saya,
                             <br>
-                            <br>
+                            @if ($detail->ketua_jurusan !== null)
+                                <img src="https://himmi-polsub.com/gambar/tanda_tangan/kajur.png" width="29%" alt="">
+                            @endif
                             <br>
                             ( @if($detail->ketua_jurusan === null) .............................................. @else {{$detail->ketua_jurusan}} @endif ) <br>
-                            NIP NIP @if($detail->nip_ketua_jurusan === null) .............................................. @else {{$detail->nip_ketua_jurusan}} @endif
+                            NIP @if($detail->nip_ketua_jurusan === null) .............................................. @else {{$detail->nip_ketua_jurusan}} @endif
                         </td>
                     </tr>
                 </table>
@@ -404,7 +408,7 @@
                         <td width="80px" >DISETUJUI</td>
                         <td >PERUBAHAN ****</td>
                         <td >DITANGGUHKAN ****</td>
-                        <td >TIDAK DISETUJUI ****</td>
+                        <td width="276px" >TIDAK DISETUJUI ****</td>
                     </tr>
                     <tr>
                         <td >@if($detail->keputusan_wakil_direktur === 'DISETUJUI')Ya. @endif</td>
@@ -417,7 +421,9 @@
                         <td style="text-align: center; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">
                             Hormat saya,
                             <br>
-                            <br>
+                            @if ($detail->wakil_direktur !== null)
+                                <img src="https://himmi-polsub.com/gambar/tanda_tangan/wadir.png" width="29%" alt="">
+                            @endif
                             <br>
                             ( @if($detail->wakil_direktur === null) .............................................. @else {{$detail->wakil_direktur}} @endif ) <br>
                             NIP NIP @if($detail->nip_wakil_direktur === null) .............................................. @else {{$detail->nip_wakil_direktur}} @endif

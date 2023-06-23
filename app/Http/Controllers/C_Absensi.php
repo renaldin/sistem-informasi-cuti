@@ -70,7 +70,7 @@ class C_Absensi extends Controller
         $data = [
             'nama'          => $pegawai->nama,
             'nip'           => $pegawai->nip,
-            'tanggal'       => date('d/m/Y', strtotime(Request()->tanggal)),
+            'tanggal'       => Request()->tanggal,
             'masuk'         => date('d-M-y H:i:s', strtotime(Request()->masuk)),
             'pulang'        => date('d-M-y H:i:s', strtotime(Request()->pulang)),
             'keterangan'    => Request()->keterangan,

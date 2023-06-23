@@ -10,6 +10,7 @@ use App\Models\ModelAbsensi;
 use Illuminate\Support\Facades\Hash;
 // use Maatwebsite\Excel\Facades\Excel;
 use Excel;
+use GuzzleHttp\Psr7\Request;
 
 class C_Absensi extends Controller
 {
@@ -197,4 +198,40 @@ class C_Absensi extends Controller
 
     //     return view($route, $data);
     // }
+
+    public function editAlasan($id_absensi)
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $detail = $this->ModelAbsensi->detail($id_absensi);
+
+        if (Request()->file_absensi) {
+            if ($detail->file_absensi <> "") {
+                unlink(public_path('file_absensi') . '/' . $detail->file_absensi);
+            }
+
+            $file2 = Request()->file_absensi;
+            $fileAbsensi = date('mdYHis') . $detail->nama . '.' . $file2->extension();
+            $file2->move(public_path('file_absensi'), $fileAbsensi);
+
+            $file_absensi = $fileAbsensi;
+        } else {
+            if ($detail->file_absensi !== null) {
+                $file_absensi = $detail->file_absensi;
+            } else {
+                $file_absensi = null;
+            }
+        }
+
+        $data = [
+            'id_absensi'    => $id_absensi,
+            'alasan'        => Request()->alasan,
+            'file_absensi'          => $file_absensi
+        ];
+
+        $this->ModelAbsensi->edit($data);
+        return redirect()->back()->with('berhasil', 'Data absensi berhasil diedit !');
+    }
 }

@@ -45,6 +45,22 @@
                                     <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#bulan"><i class="la la-calendar"></i> Bulan</button>
                                 </div>
                             </div>
+                            <div class="mb-2">
+                                @if (session('berhasil'))    
+                                    <div class="alert bg-primary text-white alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <h4><i class="icon fa fa-ban"></i> Berhasil!</h4>
+                                        {{ session('berhasil') }}
+                                    </div>
+                                @endif
+                                @if (session('gagal'))    
+                                    <div class="alert bg-danger text-white alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                        <h4><i class="icon fa fa-ban"></i> Gagal!</h4>
+                                        {{ session('gagal') }}
+                                    </div>
+                                @endif
+                            </div>
                             <table class="table" id="example2">
                                 <thead>
                                     <tr>
@@ -54,6 +70,7 @@
                                         <th scope="col">Masuk</th>
                                         <th scope="col">Pulang</th>
                                         <th scope="col">Keterangan</th>
+                                        <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -71,6 +88,9 @@
                                             @else
                                                 <td>{{ $item->keterangan }}</td>
                                             @endif
+                                            <td>
+                                                <button type="button" data-toggle="modal" data-target="#edit{{$item->id_absensi}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></button>  
+                                            </td>
                                         </tr>
                                     @endif
                                     @endforeach
@@ -184,6 +204,55 @@
         </div>
     </div>
 </div>
+{{-- Tutup --}}
+
+{{-- Modal Edit --}}
+@foreach ($dataAbsensi as $item)
+<div class="modal fade" id="edit{{$item->id_absensi}}"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Data</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form action="/edit-alasan/{{$item->id_absensi}}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="input-box">
+                            <label class="label-text">Alasan Tidak Masuk</label>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="alasan" @if($item->alasan)value="{{$item->alasan}}"@endif placeholder="Masukkan Alasan" required>
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <label class="label-text">File</label>
+                            <div class="form-group">
+                                <input class="form-control" type="file" name="file_absensi">
+                            </div>
+                        </div>
+                </div>
+                <br>
+                @if ($item->file_absensi)
+                    <div class="col-lg-12 mt-3 text-center">
+                        <label class="label-text">File Surat</label>
+                        <iframe src="{{ asset('file_absensi/'.$item->file_absensi) }}" frameborder="0" scrolling="auto" width="100%" height="500px"></iframe>
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+        </form>
+        </div>
+    </div>
+</div>
+@endforeach
 {{-- Tutup --}}
 
 @endsection

@@ -71,6 +71,7 @@ Route::group(['middleware' => 'revalidate'], function () {
     // lihat absensi
     Route::get('/lihat-absensi', [C_Absensi::class, 'show'])->name('lihat-absensi');
     Route::post('/filter-lihat-absensi', [C_Absensi::class, 'filter'])->name('filter-lihat-absensi');
+    Route::post('/edit-alasan/{id}', [C_Absensi::class, 'editAlasan']);
 
     // lihat surat
     Route::get('/lihat-surat', [C_Surat::class, 'show'])->name('lihat-surat');

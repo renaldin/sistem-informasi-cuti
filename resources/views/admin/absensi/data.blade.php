@@ -313,8 +313,22 @@
                             <td>:</td>
                             <td>{{$item->keterangan}}</td>
                         </tr>
+                        @if ($item->alasan)
+                        <tr>
+                            <th>Alasan</th>
+                            <td>:</td>
+                            <td>{{$item->alasan}}</td>
+                        </tr>
+                            
+                        @endif
                     </table>
                 </div>
+                @if ($item->file_absensi)
+                    <div class="col-lg-12 mt-3 text-center">
+                        <label class="label-text">File Surat</label>
+                        <iframe src="{{ asset('file_absensi/'.$item->file_absensi) }}" frameborder="0" scrolling="auto" width="100%" height="500px"></iframe>
+                    </div>
+                @endif
             </div>
         </div>
         <div class="modal-footer">

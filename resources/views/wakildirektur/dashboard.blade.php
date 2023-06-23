@@ -22,6 +22,21 @@
                             <h3 class="title">Riwayat Surat Tugas</h3>
                         </div>
                     </div>
+                    <div class="form-title-wrap">
+                        <div>
+                            <table>
+                                <tr>
+                                    <td colspan="3">Keterangan Tanggal:</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="badge badge-danger py-1 px-2">Merah</span></td>
+                                    <td width="5px"></td>
+                                    <td>Berjarak kurang dari 30 menit <strong>(Segera klik tombol reminder)</strong></td>
+                                </tr>
+                            </table>
+                            
+                        </div>
+                    </div>
                     <div class="form-content">
                         <div class="table-form table-responsive">
                             <table class="table" id="example2">
@@ -30,21 +45,57 @@
                                         <th scope="col">No</th>
                                         <th scope="col">No Surat</th>
                                         <th scope="col">Perihal</th>
-                                        <th scope="col">Tanggal Upload</th>
+                                        <th scope="col">Tanggal</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1;?>
+                                    @php
+                                    date_default_timezone_set('Asia/Jakarta');
+                                        function reminder($tanggal) {
+                                            // Mendapatkan waktu sekarang
+                                            $currentDateTime = date('Y-m-d H:i:s');
+
+                                            // Mengubah string waktu menjadi waktu dalam detik
+                                            $timestamp = strtotime($currentDateTime);
+                                            $tanggal_surat = strtotime($tanggal);
+
+                                            $sekarang = floor($timestamp / 60);
+                                            $waktu_surat = floor($tanggal_surat / 60);
+                                            
+                                            // Menghitung selisih waktu antara jam tertentu dengan jam sekarang
+                                            $selisih = $waktu_surat - $sekarang;
+                                            return $selisih;
+                                        }
+                                    @endphp
                                     @foreach ($dataSurat as $item)
-                                    @if ($item->id_user == $user->id_user && $item->status_surat == 'Sudah Dikirim')  
+                                    @if ($item->id_user == $user->id_user && $item->status_surat == 'Sudah Dikirim') 
                                     <tr>
                                         <th scope="row">{{ $no++ }}</th>
                                         <td>{{ $item->no_surat }}</td>
                                         <td>{{ $item->perihal_surat }}</td>
-                                        <td>{{ $item->tanggal_upload }}</td>
-                                        <td><span class="badge badge-primary py-1 px-2">{{ $item->status_terlaksana }} Terlaksana</span></td>
+                                        <td>
+                                            @if (reminder($item->tanggal) >= 1440)
+                                                <span class="badge badge-success py-1 px-2">
+                                                    {{ $item->tanggal }}
+                                                </span>
+                                            @elseif(reminder($item->tanggal) >= 30)
+                                                <span class="badge badge-warning py-1 px-2">
+                                                    {{ $item->tanggal }}
+                                                </span>
+                                            @elseif(reminder($item->tanggal) >= 0)
+                                                <span class="badge badge-danger py-1 px-2">
+                                                    {{ $item->tanggal }}
+                                                </span>
+                                            @else
+                                                <span class="badge badge-primary py-1 px-2">
+                                                    {{ $item->tanggal }}
+                                                </span>
+                                            @endif    
+                                        </td>
+                                        <td>{{ $item->status_terlaksana }} Terlaksana</td>
                                         <td>
                                             <div class="table-content">
                                                 <button type="button" class="theme-btn theme-btn-small mb-1" data-toggle="modal" data-target="#detail{{$item->id_surat}}" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></button>

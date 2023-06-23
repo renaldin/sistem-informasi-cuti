@@ -49,4 +49,11 @@ class ModelAbsensi extends Model
     {
         DB::table($this->table)->where('id_absensi', $data['id_absensi'])->update($data);
     }
+
+    public function detail($id_absensi)
+    {
+        return DB::table($this->table)
+            ->where('id_absensi', $id_absensi)
+            ->first();
+    }
 }

@@ -19,24 +19,9 @@
                                     <td colspan="3">Keterangan Tanggal:</td>
                                 </tr>
                                 <tr>
-                                    <td><span class="badge badge-success py-1 px-2">Hijau</span></td>
-                                    <td width="5px"></td>
-                                    <td>Berjarak Lebih dari 24 jam</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="badge badge-warning py-1 px-2">Kuning</span></td>
-                                    <td width="5px"></td>
-                                    <td>Berjarak Lebih dari 30 menit</td>
-                                </tr>
-                                <tr>
                                     <td><span class="badge badge-danger py-1 px-2">Merah</span></td>
                                     <td width="5px"></td>
                                     <td>Berjarak kurang dari 30 menit <strong>(Segera klik tombol reminder)</strong></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="badge badge-primary py-1 px-2">Biru</span></td>
-                                    <td width="5px"></td>
-                                    <td>Sudah Selesai</td>
                                 </tr>
                             </table>
                             

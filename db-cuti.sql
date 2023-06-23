@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 23, 2023 at 02:03 AM
+-- Generation Time: Jun 23, 2023 at 10:30 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -76,7 +76,9 @@ INSERT INTO `absensi` (`id_absensi`, `nama`, `nip`, `tanggal`, `masuk`, `pulang`
 (27, 'Pegawai 2', '131313131313131313', '2022-01-10', '10-Jan-22 07:20 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
 (28, 'Pegawai 2', '131313131313131313', '2022-01-11', '11-Jan-22 07:10 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
 (29, 'Pegawai 2', '131313131313131313', '2022-01-12', '12-Jan-22 07:22 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(30, 'Pegawai 2', '131313131313131313', '2022-01-13', '13-Jan-22 07:34 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL);
+(30, 'Pegawai 2', '131313131313131313', '2022-01-13', '13-Jan-22 07:34 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
+(31, 'Pegawai 1', '121212121212121212', '2023-06-23', '23-Jun-23 13:00:00', '23-Jun-23 13:00:00', 'Bleave', '2023-06-23 06:00:18', NULL, NULL, 'Alasan', NULL),
+(32, 'Pegawai 2', '131313131313131313', '2023-06-23', '23-Jun-23 15:25:00', '23-Jun-23 19:29:00', 'Bleave', '2023-06-23 08:25:29', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -203,7 +205,8 @@ CREATE TABLE `pengajuan_cuti` (
 
 INSERT INTO `pengajuan_cuti` (`id_pengajuan_cuti`, `id_pegawai`, `jenis_cuti`, `alasan_cuti`, `lama_cuti`, `jenis_waktu`, `mulai_tanggal`, `akhir_tanggal`, `alamat_selama_cuti`, `pertimbangan_ketua_jurusan`, `alasan_pertimbangan_ketua_jurusan`, `ketua_jurusan`, `nip_ketua_jurusan`, `keputusan_wakil_direktur`, `alasan_keputusan_wakil_direktur`, `wakil_direktur`, `nip_wakil_direktur`, `status_pengajuan`, `tanggal_pengajuan`, `tanda_tangan_kabag`, `tanda_tangan_kajur`, `tanda_tangan_pegawai`) VALUES
 (1, 8, 'Cuti Sakit', 'Alasannya sakit', 3, 'hari', '2023-06-16', '2023-06-19', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-06-15', NULL, NULL, NULL),
-(2, 1, 'Cuti Sakit', 'Alasannya sakit', 4, 'hari', '2023-06-21', '2023-06-24', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-06-21', NULL, NULL, NULL);
+(2, 1, 'Cuti Sakit', 'Alasannya sakit', 4, 'hari', '2023-06-21', '2023-06-24', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-06-21', NULL, NULL, NULL),
+(3, 8, 'Cuti Sakit', 'Alasannya sakit', 3, 'hari', '2023-06-24', '2023-06-26', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-06-23', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -368,7 +371,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `artikel`
@@ -392,7 +395,7 @@ ALTER TABLE `pegawai`
 -- AUTO_INCREMENT for table `pengajuan_cuti`
 --
 ALTER TABLE `pengajuan_cuti`
-  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setting`

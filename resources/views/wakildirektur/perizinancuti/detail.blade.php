@@ -150,6 +150,9 @@
                                                 Hormat saya,
                                                 <br>
                                                 <br>
+                                                @if ($detail->nama !== null)
+                                                    <img src="https://himmi-polsub.com/gambar/tanda_tangan/wadir.png" width="29%" alt="">
+                                                @endif
                                                 <br>
                                                 <br>
                                                 ( {{$detail->nama}} ) <br>
@@ -183,10 +186,13 @@
                                                 Hormat saya,
                                                 <br>
                                                 <br>
+                                                @if ($detail->ketua_jurusan !== null)
+                                                    <img src="https://himmi-polsub.com/gambar/tanda_tangan/wadir.png" width="29%" alt="">
+                                                @endif
                                                 <br>
                                                 <br>
                                                 ( @if($detail->ketua_jurusan === null) .............................................. @else {{$detail->ketua_jurusan}} @endif ) <br>
-                                                NIP @if($detail->nip_ketua_jurusan === null) .............................................. @else {{$detail->nip_ketua_jurusan}} @endif
+                                                NIP NIP @if($detail->nip_ketua_jurusan === null) .............................................. @else {{$detail->nip_ketua_jurusan}} @endif
                                             </td>
                                         </tr>
                                     </table>
@@ -216,16 +222,19 @@
                                                 Hormat saya,
                                                 <br>
                                                 <br>
+                                                @if ($detail->wakil_direktur !== null)
+                                                    <img src="https://himmi-polsub.com/gambar/tanda_tangan/wadir.png" width="29%" alt="">
+                                                @endif
                                                 <br>
                                                 <br>
                                                 ( @if($detail->wakil_direktur === null) .............................................. @else {{$detail->wakil_direktur}} @endif ) <br>
-                                                NIP @if($detail->nip_wakil_direktur === null) .............................................. @else {{$detail->nip_wakil_direktur}} @endif
+                                                NIP NIP @if($detail->nip_wakil_direktur === null) .............................................. @else {{$detail->nip_wakil_direktur}} @endif
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
                                 <div class="col-lg-12 mt-3 text-center">
-                                    <a href="/kelola-pengajuan-cuti" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
+                                    <a href="@if($user->role == 'Pegawai') /pengajuan-cuti @elseif($user->role == 'Ketua Jurusan') /pengajuan-cuti-ketua-jurusan @endif" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
                                 </div>
                             </div>
                         </div>

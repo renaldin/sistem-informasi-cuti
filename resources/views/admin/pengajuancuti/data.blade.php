@@ -165,7 +165,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-            <a href="@if($item->role == 'pegawai')/kirim-ketua-jurusan/{{ $item->id_pengajuan_cuti }}@elseif($item->role == 'Ketua Jurusan')/kirim-ke-wadir/{{ $item->id_pengajuan_cuti }}@endif" class="btn btn-primary">Kirim</a>
+            <a href="@if($item->role === 'Pegawai')/kirim-ketua-jurusan/{{ $item->id_pengajuan_cuti }}@elseif($item->role === 'Ketua Jurusan')/kirim-ke-wadir/{{ $item->id_pengajuan_cuti }}@endif" class="btn btn-primary">Kirim</a>
         </div>
         </div>
     </div>

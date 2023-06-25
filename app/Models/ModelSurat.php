@@ -36,6 +36,15 @@ class ModelSurat extends Model
             ->orderBy('id_detail_surat', 'DESC')->get();
     }
 
+    public function detailSuratPegawai($id_surat)
+    {
+        return DB::table('detail_surat')
+            ->join('surat', 'surat.id_surat', '=', 'detail_surat.id_surat', 'left')
+            ->join('pegawai', 'pegawai.id_pegawai', '=', 'detail_surat.id_pegawai', 'left')
+            ->join('users', 'users.id_user', '=', 'pegawai.id_user', 'left')
+            ->where('detail_surat.id_surat', $id_surat)->get();
+    }
+
     public function getDataByDate($tanggal_mulai, $tanggal_akhir)
     {
         return DB::table('detail_surat')

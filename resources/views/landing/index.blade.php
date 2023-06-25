@@ -19,9 +19,9 @@
                     </div><!-- end hero-content -->
                 </div><!-- end col-lg-7 -->
                 <div class="col-lg-5">
-                    <div class="search-fields-container search-fields-container-shape">
-                        <div class="search-fields-container-inner">
-                            <img src="{{ asset('foto_biodata/'.$biodata->logo) }}" alt="hotel-img" style="width: 100%;">
+                    <div class="">
+                        <div class="search-fields-container-inner text-center">
+                            <img src="{{ asset('foto_biodata/'.$biodata->logo) }}" alt="hotel-img" style="width: 70%; opacity: 0.8; margin-top: -40px;">
                         </div>
                     </div>
                 </div><!-- end col-lg-5 -->

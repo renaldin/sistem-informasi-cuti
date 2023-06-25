@@ -18,7 +18,9 @@ class ModelUser extends Model
 
     public function detail($id_user)
     {
-        return DB::table($this->table)->where('id_user', $id_user)->first();
+        return DB::table($this->table)
+            ->join('pegawai', 'pegawai.id_user', '=', 'users.id_user', 'left')
+            ->where('users.id_user', $id_user)->first();
     }
 
     public function detailByEmail($email)

@@ -78,6 +78,7 @@ class C_Pegawai extends Controller
             'password'                      => 'min:6|required',
             'role'                          => 'required',
             'foto_user'                     => 'required|mimes:jpeg,png,jpg|max:2048',
+            'tanda_tangan'                  => 'required|mimes:jpeg,png,jpg|max:2048',
             'nama'                          => 'required',
             'nomor_telepon'                 => 'required|numeric',
             'nip'                           => 'required|numeric',
@@ -105,6 +106,9 @@ class C_Pegawai extends Controller
             'foto_user.required'                        => 'Foto Anda harus diisi!',
             'foto_user.mimes'                           => 'Format Foto Anda harus jpg/jpeg/png!',
             'foto_user.max'                             => 'Ukuran Foto Anda maksimal 2 mb',
+            'tanda_tangan.required'                     => 'Tanda Tangan (QE Code) harus diisi!',
+            'tanda_tangan.mimes'                        => 'Format Tanda Tangan (QE Code) harus jpg/jpeg/png!',
+            'tanda_tangan.max'                          => 'Ukuran Tanda Tangan (QE Code) maksimal 2 mb',
             'nama.required'                             => 'Nama lengkap harus diisi!',
             'nomor_telepon.required'                    => 'Nomor telepon harus diisi!',
             'nomor_telepon.numeric'                     => 'Nomor telepon harus angka!',
@@ -129,6 +133,10 @@ class C_Pegawai extends Controller
         $file1 = Request()->foto_user;
         $fileUser = date('mdYHis') . Request()->nama . '.' . $file1->extension();
         $file1->move(public_path('foto_user'), $fileUser);
+
+        $file = Request()->tanda_tangan;
+        $fileTandaTangan = date('mdYHis') . ' Tanda Tangan ' . Request()->nama . '.' . $file->extension();
+        $file->move(public_path('tanda_tangan'), $fileTandaTangan);
 
         $dataUser = [
             'nama'              => Request()->nama,
@@ -159,6 +167,7 @@ class C_Pegawai extends Controller
             'cuti_melahirkan'               => Request()->cuti_melahirkan,
             'cuti_karena_alasan_penting'    => Request()->cuti_karena_alasan_penting,
             'cuti_diluar_tanggungan_negara' => Request()->cuti_diluar_tanggungan_negara,
+            'tanda_tangan'                  => $fileTandaTangan
         ];
 
         $this->ModelPegawai->add($dataPegawai);
@@ -188,6 +197,7 @@ class C_Pegawai extends Controller
             'email'                         => 'required|email',
             'role'                          => 'required',
             'foto_user'                     => 'mimes:jpeg,png,jpg|max:2048',
+            'tanda_tangan'                  => 'mimes:jpeg,png,jpg|max:2048',
             'nama'                          => 'required',
             'nomor_telepon'                 => 'required|numeric',
             'nip'                           => 'required|numeric',
@@ -200,6 +210,8 @@ class C_Pegawai extends Controller
             'foto_user.required'                        => 'Foto Anda harus diisi!',
             'foto_user.mimes'                           => 'Format Foto Anda harus jpg/jpeg/png!',
             'foto_user.max'                             => 'Ukuran Foto Anda maksimal 2 mb',
+            'tanda_tangan.mimes'                        => 'Format Tanda Tangan (QR Code) harus jpg/jpeg/png!',
+            'tanda_tangan.max'                          => 'Ukuran Tanda Tangan (QR Code) maksimal 2 mb',
             'nama.required'                             => 'Nama lengkap harus diisi!',
             'nomor_telepon.required'                    => 'Nomor telepon harus diisi!',
             'nomor_telepon.numeric'                     => 'Nomor telepon harus angka!',
@@ -210,14 +222,62 @@ class C_Pegawai extends Controller
             'masa_kerja.required'                       => 'Masa kerja harus diisi!',
         ]);
 
-        if (Request()->foto_user <> "") {
-            $pegawai = $this->ModelPegawai->detail($id_pegawai);
-            $user = $this->ModelUser->detail($pegawai->id_user);
+        $pegawai = $this->ModelPegawai->detail($id_pegawai);
+        $user = $this->ModelUser->detail($pegawai->id_user);
 
-            if ($user->foto <> "") {
-                unlink(public_path('foto_user') . '/' . $user->foto);
-            }
+        if (Request()->foto_user <> "" && Request()->tanda_tangan <> "") {
 
+            // foto user
+            // if ($user->foto <> "") {
+            //     unlink(public_path('foto_user') . '/' . $user->foto);
+            // }
+            $file1 = Request()->foto_user;
+            $fileUser = date('mdYHis') . Request()->nama . '.' . $file1->extension();
+            $file1->move(public_path('foto_user'), $fileUser);
+
+            // tanda tangan
+            // if ($pegawai->tanda_tangan <> "") {
+            //     unlink(public_path('tanda_tangan') . '/' . $pegawai->tanda_tangan);
+            // }
+            $file = Request()->tanda_tangan;
+            $fileTandaTangan = date('mdYHis') . ' Tanda Tangan ' . Request()->nama . '.' . $file->extension();
+            $file->move(public_path('tanda_tangan'), $fileTandaTangan);
+
+            $dataUser = [
+                'id_user'           => $user->id_user,
+                'nama'              => Request()->nama,
+                'nomor_telepon'     => Request()->nomor_telepon,
+                'nip'               => Request()->nip,
+                'email'             => Request()->email,
+                'role'              => Request()->role,
+                'foto'              => $fileUser,
+            ];
+            $this->ModelUser->edit($dataUser);
+
+            $dataPegawai = [
+                'id_pegawai'                    => $pegawai->id_pegawai,
+                'id_user'                       => $user->id_user,
+                'jabatan'                       => Request()->jabatan,
+                'unit_kerja'                    => Request()->unit_kerja,
+                'masa_kerja'                    => Request()->masa_kerja,
+                'cuti_n_2'                      => Request()->cuti_n_2,
+                'cuti_n_1'                      => Request()->cuti_n_1,
+                'cuti_n'                        => Request()->cuti_n,
+                'keterangan_n_2'                => Request()->keterangan_n_2,
+                'keterangan_n_1'                => Request()->keterangan_n_1,
+                'keterangan_n'                  => Request()->keterangan_n,
+                'cuti_besar'                    => Request()->cuti_besar,
+                'cuti_sakit'                    => Request()->cuti_sakit,
+                'cuti_melahirkan'               => Request()->cuti_melahirkan,
+                'cuti_karena_alasan_penting'    => Request()->cuti_karena_alasan_penting,
+                'cuti_diluar_tanggungan_negara' => Request()->cuti_diluar_tanggungan_negara,
+                'tanda_tangan'                  => $fileTandaTangan,
+            ];
+        } elseif (Request()->foto_user <> "") {
+            // foto user
+            // if ($user->foto <> "") {
+            //     unlink(public_path('foto_user') . '/' . $user->foto);
+            // }
             $file1 = Request()->foto_user;
             $fileUser = date('mdYHis') . Request()->nama . '.' . $file1->extension();
             $file1->move(public_path('foto_user'), $fileUser);
@@ -249,7 +309,45 @@ class C_Pegawai extends Controller
                 'cuti_sakit'                    => Request()->cuti_sakit,
                 'cuti_melahirkan'               => Request()->cuti_melahirkan,
                 'cuti_karena_alasan_penting'    => Request()->cuti_karena_alasan_penting,
+                'cuti_diluar_tanggungan_negara' => Request()->cuti_diluar_tanggungan_negara
+            ];
+        } elseif (Request()->tanda_tangan <> "") {
+            // tanda tangan
+            // if ($pegawai->tanda_tangan <> "") {
+            //     unlink(public_path('tanda_tangan') . '/' . $pegawai->tanda_tangan);
+            // }
+            $file = Request()->tanda_tangan;
+            $fileTandaTangan = date('mdYHis') . ' Tanda Tangan ' . Request()->nama . '.' . $file->extension();
+            $file->move(public_path('tanda_tangan'), $fileTandaTangan);
+
+            $dataUser = [
+                'id_user'           => $user->id_user,
+                'nama'              => Request()->nama,
+                'nomor_telepon'     => Request()->nomor_telepon,
+                'nip'               => Request()->nip,
+                'email'             => Request()->email,
+                'role'              => Request()->role,
+            ];
+            $this->ModelUser->edit($dataUser);
+
+            $dataPegawai = [
+                'id_pegawai'                    => $pegawai->id_pegawai,
+                'id_user'                       => $user->id_user,
+                'jabatan'                       => Request()->jabatan,
+                'unit_kerja'                    => Request()->unit_kerja,
+                'masa_kerja'                    => Request()->masa_kerja,
+                'cuti_n_2'                      => Request()->cuti_n_2,
+                'cuti_n_1'                      => Request()->cuti_n_1,
+                'cuti_n'                        => Request()->cuti_n,
+                'keterangan_n_2'                => Request()->keterangan_n_2,
+                'keterangan_n_1'                => Request()->keterangan_n_1,
+                'keterangan_n'                  => Request()->keterangan_n,
+                'cuti_besar'                    => Request()->cuti_besar,
+                'cuti_sakit'                    => Request()->cuti_sakit,
+                'cuti_melahirkan'               => Request()->cuti_melahirkan,
+                'cuti_karena_alasan_penting'    => Request()->cuti_karena_alasan_penting,
                 'cuti_diluar_tanggungan_negara' => Request()->cuti_diluar_tanggungan_negara,
+                'tanda_tangan'                  => $fileTandaTangan,
             ];
         } else {
             $pegawai = $this->ModelPegawai->detail($id_pegawai);
@@ -296,6 +394,10 @@ class C_Pegawai extends Controller
 
         if ($user->foto <> "") {
             unlink(public_path('foto_user') . '/' . $user->foto);
+        }
+
+        if ($pegawai->tanda_tangan <> "") {
+            unlink(public_path('tanda_tangan') . '/' . $pegawai->tanda_tangan);
         }
 
         $this->ModelUser->deleteData($pegawai->id_user);

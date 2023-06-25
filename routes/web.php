@@ -62,6 +62,7 @@ Route::group(['middleware' => 'revalidate'], function () {
     Route::get('/kirim-surat/{id}', [C_Surat::class, 'sendToPegawai'])->name('kirim-surat');
     Route::get('/hapus-surat/{id}', [C_Surat::class, 'deleteProcess']);
     Route::post('/cetak-surat', [C_Surat::class, 'print']);
+    Route::get('/reminder-surat/{id}', [C_Surat::class, 'reminder']);
     // riwayat surat tugas
     Route::get('/riwayat-surat-tugas', [C_Surat::class, 'history'])->name('riwayat-surat-tugas');
 

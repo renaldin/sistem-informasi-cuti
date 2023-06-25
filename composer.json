@@ -16,7 +16,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "maatwebsite/excel": "^3.1",
-        "select2/select2": "^4.0"
+        "select2/select2": "^4.0",
+        "twilio/sdk": "^7.4"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

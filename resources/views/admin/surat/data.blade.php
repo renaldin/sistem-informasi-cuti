@@ -239,7 +239,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-            <a href="#" class="btn btn-primary">Reminder</a>
+            <a href="/reminder-surat/{{$item->id_surat}}" class="btn btn-primary">Reminder</a>
         </div>
         </div>
     </div>

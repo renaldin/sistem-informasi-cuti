@@ -150,8 +150,8 @@
                                                 Hormat saya,
                                                 <br>
                                                 <br>
-                                                @if ($detail->nama !== null)
-                                                    <img src="https://himmi-polsub.com/gambar/tanda_tangan/wadir.png" width="29%" alt="">
+                                                @if ($detail->tanda_tangan_pegawai !== null)
+                                                    <img src="{{ asset('tanda_tangan/'.$detail->tanda_tangan_pegawai) }}" width="29%" alt="">
                                                 @endif
                                                 <br>
                                                 <br>
@@ -186,8 +186,8 @@
                                                 Hormat saya,
                                                 <br>
                                                 <br>
-                                                @if ($detail->ketua_jurusan !== null)
-                                                    <img src="https://himmi-polsub.com/gambar/tanda_tangan/wadir.png" width="29%" alt="">
+                                                @if ($detail->tanda_tangan_kajur !== null)
+                                                    <img src="{{ asset('tanda_tangan/'.$detail->tanda_tangan_kajur) }}" width="29%" alt="">
                                                 @endif
                                                 <br>
                                                 <br>
@@ -222,8 +222,9 @@
                                                 Hormat saya,
                                                 <br>
                                                 <br>
-                                                @if ($detail->wakil_direktur !== null)
-                                                    <img src="https://himmi-polsub.com/gambar/tanda_tangan/wadir.png" width="29%" alt="">
+                                                @if ($detail->tanda_tangan_wadir !== null)
+                                                    <img src="{{ asset('tanda_tangan/'.$detail->tanda_tangan_wadir) }}" width="29%" alt="">
+                                                    {{-- <img src="https://himmi-polsub.com/gambar/tanda_tangan/wadir.png" width="29%" alt=""> --}}
                                                 @endif
                                                 <br>
                                                 <br>

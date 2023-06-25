@@ -8,6 +8,7 @@ use App\Models\ModelAuth;
 use App\Models\ModelUser;
 use App\Models\ModelSetting;
 use Illuminate\Support\Facades\Mail;
+use Twilio\Rest\Client;
 
 class C_Login extends Controller
 {
@@ -49,6 +50,33 @@ class C_Login extends Controller
 
     public function prosesLogin()
     {
+        // $sid    = "AC944f941fef8a459f011bb10c3236df78";
+        // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+        // $twilio = new Client($sid, $token);
+
+        // $pdfUrl = "https://himmi-polsub.com/si_ukt/cuti.pdf";
+
+        // $message = $twilio->messages
+        //     ->create(
+        //         "whatsapp:+62895336928026", // to
+        //         array(
+        //             "from" => "whatsapp:+14155238886",
+        //             "body" => "Your appointment is coming up on July 21 at 3PM",
+        //         )
+        //     );
+        // $message2 = $twilio->messages
+        //     ->create(
+        //         "whatsapp:+62895336928026", // to
+        //         array(
+        //             "from" => "whatsapp:+14155238886",
+        //             'mediaUrl' => $pdfUrl,
+        //         )
+        //     );
+
+        // // print($message->sid);
+
+        // dd('Stop');
+
         Request()->validate([
             'email'             => 'required|email',
             'password'          => 'min:6|required',

@@ -57,6 +57,7 @@
                                             </td>
                                         </tr>
                                     @else
+                                    @if ($item->unit_kerja == $user->unit_kerja)
                                         <tr>
                                             <th scope="row">{{ $no++ }}</th>
                                             <td>{{ $item->nama }}</td>
@@ -77,6 +78,7 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                    @endif
                                     @endif
                                     @endforeach
                                 </tbody>

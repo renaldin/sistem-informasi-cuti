@@ -49,7 +49,6 @@
                                 <tbody>
                                     <?php $no = 1;?>
                                     @foreach ($dataPegawai as $item)
-                                    @if ($item->role == 'Pegawai')
                                     <tr>
                                         <th scope="row">{{ $no++ }}</th>
                                         <td>{{ $item->nama }}</td>
@@ -64,7 +63,6 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    @endif
                                     @endforeach
                                 </tbody>
                             </table>

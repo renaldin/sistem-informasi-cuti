@@ -64,6 +64,14 @@
                                             </div>
                                         </div>          
                                     </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-box">
+                                            <label class="label-text">Tanda Tangan (QR Code)</label>
+                                            <div class="form-group">
+                                                <img src="@if($detail->tanda_tangan){{ asset('tanda_tangan/'.$detail->tanda_tangan) }} @else {{ asset('tanda_tangan/default1.jpg') }} @endif" class="user-pro-img" style="width: 8rem;" alt="Tanda Tangan"> 
+                                            </div>
+                                        </div>          
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">

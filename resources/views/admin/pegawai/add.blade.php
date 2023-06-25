@@ -83,6 +83,19 @@
                                             @enderror
                                         </div>          
                                     </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-box">
+                                            <label class="label-text">Tanda Tangan (QR Code)</label>
+                                            <div class="form-group">
+                                                <input type="file" name="tanda_tangan" class="form-control" maxlength="3" required>
+                                            </div>
+                                            @error('tanda_tangan')
+                                            <div style="margin-top: -16px">
+                                                <small class="text-danger">{{ $message }}</small>
+                                            </div>
+                                            @enderror
+                                        </div>          
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -147,8 +160,15 @@
                                     <div class="col-lg-6">
                                         <div class="input-box">
                                             <label class="label-text">Unit Kerja</label>
-                                            <div class="form-group">
-                                                <input class="form-control" type="text" name="unit_kerja" placeholder="Masukkan Unit Kerja" value="{{ old('unit_kerja') }}">
+                                            <div class="form-group select-contain w-100">
+                                                <select class="select-contain-select" name="unit_kerja" required>
+                                                    <option value="">-- Pilih Unit Kerja --</option>
+                                                    <option value="Manajemen Informatika">Manajemen Informatika</option>
+                                                    <option value="Agroindustri">Agroindustri</option>
+                                                    <option value="Kesehatan">Kesehatan</option>
+                                                    <option value="Teknik Perawatan dan Perbaikan Mesin">Teknik Perawatan dan Perbaikan Mesin</option>
+                                                    <option value="Wakil Direktur">Wakil Direktur</option>
+                                                </select>
                                             </div>
                                             @error('unit_kerja')
                                             <div style="margin-top: -16px">

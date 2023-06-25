@@ -233,7 +233,32 @@ class C_Surat extends Controller
             return redirect()->route('login');
         }
 
-        // Kirim WA ATAU EMAIL
+        /// $sid    = "AC944f941fef8a459f011bb10c3236df78";
+        // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+        // $twilio = new Client($sid, $token);
+
+        // $pdfUrl = "https://himmi-polsub.com/si_ukt/cuti.pdf";
+
+        // $message = $twilio->messages
+        //     ->create(
+        //         "whatsapp:+62895336928026", // to
+        //         array(
+        //             "from" => "whatsapp:+14155238886",
+        //             "body" => "Your appointment is coming up on July 21 at 3PM",
+        //         )
+        //     );
+        // $message2 = $twilio->messages
+        //     ->create(
+        //         "whatsapp:+62895336928026", // to
+        //         array(
+        //             "from" => "whatsapp:+14155238886",
+        //             'mediaUrl' => $pdfUrl,
+        //         )
+        //     );
+
+        // // print($message->sid);
+
+        // dd('Stop');
 
         $data = [
             'id_surat'          => $id_surat,
@@ -242,6 +267,44 @@ class C_Surat extends Controller
 
         $this->ModelSurat->edit($data);
         return redirect()->route('kelola-surat')->with('berhasil', 'Data surat berhasil dikirim ke pegawai !');
+    }
+
+    public function reminder($id_surat)
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $detail = $this->ModelSurat->detailSuratPegawai($id_surat);
+        dd($detail);
+
+        /// $sid    = "AC944f941fef8a459f011bb10c3236df78";
+        // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+        // $twilio = new Client($sid, $token);
+
+        // $pdfUrl = "https://himmi-polsub.com/si_ukt/cuti.pdf";
+
+        // $message = $twilio->messages
+        //     ->create(
+        //         "whatsapp:+62895336928026", // to
+        //         array(
+        //             "from" => "whatsapp:+14155238886",
+        //             "body" => "Your appointment is coming up on July 21 at 3PM",
+        //         )
+        //     );
+        // $message2 = $twilio->messages
+        //     ->create(
+        //         "whatsapp:+62895336928026", // to
+        //         array(
+        //             "from" => "whatsapp:+14155238886",
+        //             'mediaUrl' => $pdfUrl,
+        //         )
+        //     );
+
+        // // print($message->sid);
+
+        // dd('Stop');
+        return redirect()->route('kelola-surat')->with('berhasil', 'Anda berhasil reminder pegawai !');
     }
 
     public function print()

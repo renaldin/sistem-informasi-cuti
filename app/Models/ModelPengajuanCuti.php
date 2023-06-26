@@ -16,7 +16,7 @@ class ModelPengajuanCuti extends Model
         return DB::table($this->table)
             ->join('pegawai', 'pegawai.id_pegawai', '=', 'pengajuan_cuti.id_pegawai', 'left')
             ->join('users', 'users.id_user', '=', 'pegawai.id_user', 'left')
-            ->orderBy('id_pengajuan_cuti', 'ASC')->get();
+            ->orderBy('id_pengajuan_cuti', 'DESC')->get();
     }
 
     public function getDataByUser($id_pegawai)
@@ -35,7 +35,7 @@ class ModelPengajuanCuti extends Model
             ->join('users', 'users.id_user', '=', 'pegawai.id_user', 'left')
             ->where('pengajuan_cuti.id_pegawai', $id_pegawai)
             ->where('pengajuan_cuti.status_pengajuan', $status)
-            ->orderBy('id_pengajuan_cuti', 'ASC')->get();
+            ->orderBy('id_pengajuan_cuti', 'DESC')->get();
     }
 
     public function getDataNotByOneStatus($status)
@@ -54,7 +54,7 @@ class ModelPengajuanCuti extends Model
             ->join('users', 'users.id_user', '=', 'pegawai.id_user', 'left')
             ->where('status_pengajuan', $status1)
             ->orWhere('status_pengajuan', $status2)
-            ->orderBy('id_pengajuan_cuti', 'ASC')->get();
+            ->orderBy('id_pengajuan_cuti', 'DESC')->get();
     }
 
     public function detail($id_pengajuan_cuti)

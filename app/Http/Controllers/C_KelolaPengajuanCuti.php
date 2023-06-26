@@ -275,6 +275,7 @@ class C_KelolaPengajuanCuti extends Controller
                 'nip_ketua_jurusan'                => $user->nip,
                 'pertimbangan_ketua_jurusan'       => Request()->pertimbangan_ketua_jurusan,
                 'alasan_pertimbangan_ketua_jurusan' => Request()->alasan_pertimbangan_ketua_jurusan,
+                'tanda_tangan_kajur'   => $user->tanda_tangan,
                 'status_pengajuan'          => $status_pengajuan,
             ];
 
@@ -360,6 +361,7 @@ class C_KelolaPengajuanCuti extends Controller
             'nip_wakil_direktur'               => $user->nip,
             'keputusan_wakil_direktur'         => Request()->keputusan_wakil_direktur,
             'alasan_keputusan_wakil_direktur'  => Request()->alasan_keputusan_wakil_direktur,
+            'tanda_tangan_wadir'   => $user->tanda_tangan,
             'status_pengajuan'                 => 'Selesai',
         ];
 

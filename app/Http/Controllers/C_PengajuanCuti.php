@@ -197,12 +197,14 @@ class C_PengajuanCuti extends Controller
             return redirect()->route('login');
         }
 
+        $user = $this->ModelUser->detail(Session()->get('id_user'));
+
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
             'status_pengajuan'  => 'Dikirim ke Admin',
+            'tanda_tangan_pegawai'   => $user->tanda_tangan,
         ];
 
-        $user = $this->ModelUser->detail(Session()->get('id_user'));
 
         if ($user->role == 'Pegawai') {
             $route = 'pengajuan-cuti';

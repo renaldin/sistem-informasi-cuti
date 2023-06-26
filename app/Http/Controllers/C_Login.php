@@ -50,32 +50,21 @@ class C_Login extends Controller
 
     public function prosesLogin()
     {
-        // $sid    = "AC944f941fef8a459f011bb10c3236df78";
-        // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
         // $twilio = new Client($sid, $token);
-
-        // $pdfUrl = "https://himmi-polsub.com/si_ukt/cuti.pdf";
 
         // $message = $twilio->messages
         //     ->create(
         //         "whatsapp:+62895336928026", // to
         //         array(
         //             "from" => "whatsapp:+14155238886",
-        //             "body" => "Your appointment is coming up on July 21 at 3PM",
-        //         )
-        //     );
-        // $message2 = $twilio->messages
-        //     ->create(
-        //         "whatsapp:+62895336928026", // to
-        //         array(
-        //             "from" => "whatsapp:+14155238886",
-        //             'mediaUrl' => $pdfUrl,
+        //             "body" => "Your appointment is coming up on July 21 at 3PM"
         //         )
         //     );
 
-        // // print($message->sid);
-
-        // dd('Stop');
+        // print($message->sid);
+        // dd('masuk');
 
         Request()->validate([
             'email'             => 'required|email',

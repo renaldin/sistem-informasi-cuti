@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2023 at 02:43 PM
+-- Generation Time: Jun 29, 2023 at 10:13 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -124,8 +124,9 @@ CREATE TABLE `detail_surat` (
 
 INSERT INTO `detail_surat` (`id_detail_surat`, `id_surat`, `id_pegawai`) VALUES
 (1, 1, 9),
-(6, 4, 5),
-(7, 4, 8);
+(6, 4, 9),
+(7, 4, 8),
+(8, 5, 8);
 
 -- --------------------------------------------------------
 
@@ -204,9 +205,7 @@ CREATE TABLE `pengajuan_cuti` (
 --
 
 INSERT INTO `pengajuan_cuti` (`id_pengajuan_cuti`, `id_pegawai`, `jenis_cuti`, `alasan_cuti`, `lama_cuti`, `jenis_waktu`, `mulai_tanggal`, `akhir_tanggal`, `alamat_selama_cuti`, `pertimbangan_ketua_jurusan`, `alasan_pertimbangan_ketua_jurusan`, `ketua_jurusan`, `nip_ketua_jurusan`, `keputusan_wakil_direktur`, `alasan_keputusan_wakil_direktur`, `wakil_direktur`, `nip_wakil_direktur`, `status_pengajuan`, `tanggal_pengajuan`, `tanda_tangan_wadir`, `tanda_tangan_kajur`, `tanda_tangan_pegawai`) VALUES
-(1, 8, 'Cuti Sakit', 'Alasannya sakit', 3, 'hari', '2023-06-16', '2023-06-19', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-06-15', NULL, NULL, NULL),
-(2, 1, 'Cuti Sakit', 'Alasannya sakit', 4, 'hari', '2023-06-21', '2023-06-24', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-06-21', NULL, NULL, NULL),
-(3, 8, 'Cuti Sakit', 'Alasannya sakit', 3, 'hari', '2023-06-24', '2023-06-26', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Diterima Ketua Jurusan', '2023-06-23', NULL, NULL, NULL);
+(1, 8, 'Cuti Sakit', 'Alasannya sakit', 3, 'hari', '2023-06-26', '2023-06-29', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-06-26', '06242023151356 Tanda Tangan Wadir 1 & Gelar.png', '06242023151614 Tanda Tangan Kajur MI & gelar.png', '06242023151159 Tanda Tangan Pegawai 1.png');
 
 -- --------------------------------------------------------
 
@@ -256,7 +255,8 @@ CREATE TABLE `surat` (
 
 INSERT INTO `surat` (`id_surat`, `no_surat`, `perihal_surat`, `hari`, `tanggal`, `tempat`, `jenis_surat`, `file_surat`, `tanggal_upload`, `status_surat`, `status_terlaksana`) VALUES
 (1, '00000', 'Perihal', 'Senin', '2023-06-21 13:00:00', 'Kampus', 'Jenis Surat', '06212023011344 00000.pdf', '2023-06-21', 'Sudah Dikirim', 'Belum'),
-(4, '11111', 'Perihal', 'Senin', '2023-06-21 08:33:00', 'Kampus', 'Jenis Surat', '06212023013344 11111.pdf', '2023-06-21', 'Sudah Dikirim', 'Belum');
+(4, '11111', 'Perihal', 'Senin', '2023-06-21 08:33:00', 'Kampus', 'Jenis Surat', '06212023013344 11111.pdf', '2023-06-21', 'Sudah Dikirim', 'Belum'),
+(5, '22222222', 'Perihal Surat', 'Senin', '2023-07-03 14:49:00', 'Kampus 2', 'Jenis Surat', '06292023074940 22222222.pdf', '2023-06-29', 'Sudah Dikirim', 'Belum');
 
 -- --------------------------------------------------------
 
@@ -295,15 +295,15 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `nama`, `nip`, `email`, `password`, `nomor_telepon`, `role`, `foto`) VALUES
 (2, 'Admin Sistem Cuti', '1111111111', 'admincuti@gmail.com', '$2y$10$sa7tb26ENoS9eD5/DreXoOimImMBkdNrhNA55GXA/Gngs6iinLA4e', '0896775651', 'Admin', '04212023145559Admin Sistem Cuti.jpg'),
-(22, 'Kajur MI & gelar', '111111111111111111', 'kajur_mi@gmail.com', '$2y$10$wZ1rqxuvoyVeXNp//XAfTuqarECvIO41RPOd/0KvMrGG5nWkJRiGy', '08989784353', 'Ketua Jurusan', '06142023115234Kajur MI & gelar.jpg'),
-(23, 'Kajur Agro & Gelar', '222222222222222222', 'kajur_agro@gmail.com', '$2y$10$PBCYTQOSTl8cRLFrewtX5uLYY50RXK87.yZzPJdShXJajMz4C0LS.', '08989784353', 'Ketua Jurusan', '06142023120027Kajur & Gelar.jpg'),
-(24, 'Kajur Mesin & Gelar', '333333333333333333', 'kajur_mesin@gmail.com', '$2y$10$tzyWPGz4DLK3zWqzpdbl6uczBRnQWIVGk4kfWmg3EdY4YRbXtgaBG', '08989784353', 'Ketua Jurusan', '06142023120447Kajur Mesin & Gelar.jpg'),
-(25, 'Kajur Kesehatan & Gelar', '444444444444444444', 'kajur_kep@gmail.com', '$2y$10$jdD3qNcRMQ529ZGNFssdYO5/Z6w2VkIgOMgpshBES6OJuHWTR8VMK', '08989784353', 'Ketua Jurusan', '06142023120700Kajur Kesehatan & Gelar.jpg'),
+(22, 'Kajur MI & gelar', '111111111111111111', 'kajur_mi@gmail.com', '$2y$10$wZ1rqxuvoyVeXNp//XAfTuqarECvIO41RPOd/0KvMrGG5nWkJRiGy', '0895336928026', 'Ketua Jurusan', '06142023115234Kajur MI & gelar.jpg'),
+(23, 'Kajur Agro & Gelar', '222222222222222222', 'kajur_agro@gmail.com', '$2y$10$PBCYTQOSTl8cRLFrewtX5uLYY50RXK87.yZzPJdShXJajMz4C0LS.', '0895336928026', 'Ketua Jurusan', '06142023120027Kajur & Gelar.jpg'),
+(24, 'Kajur Mesin & Gelar', '333333333333333333', 'kajur_mesin@gmail.com', '$2y$10$tzyWPGz4DLK3zWqzpdbl6uczBRnQWIVGk4kfWmg3EdY4YRbXtgaBG', '0895336928026', 'Ketua Jurusan', '06142023120447Kajur Mesin & Gelar.jpg'),
+(25, 'Kajur Kesehatan & Gelar', '444444444444444444', 'kajur_kep@gmail.com', '$2y$10$jdD3qNcRMQ529ZGNFssdYO5/Z6w2VkIgOMgpshBES6OJuHWTR8VMK', '0895336928026', 'Ketua Jurusan', '06142023120700Kajur Kesehatan & Gelar.jpg'),
 (26, 'Wadir 1 & Gelar', '555555555555555555', 'wadir1@gmail.com', '$2y$10$R0NL3dWHCiqj/xXCcX8QBeAN2BfM9uwh9X41xpYwPv.4XCKp/d3nS', '08989784353', 'Wakil Direktur', '06142023120923Wadir 1 & Gelar.jpg'),
 (27, 'Wadir 2 & Gelar', '666666666666666666', 'wadir2@gmail.com', '$2y$10$a2GjSaHsMx3G7TEW34DX2OawQM3zIs7./zZgnoai25OAWs7uCb3tG', '08989784353', 'Wakil Direktur', '06142023121041Wadir 2 & Gelar.jpg'),
 (28, 'Bagian Umum & Gelar', '777777777777777777', 'bagianumum@gmail.com', '$2y$10$ydeWcLluU7v5XmADvrx5TucusmhqjkCavT/96/23.RqOBAfJhdJH6', '08989784353', 'Bagian Umum', '06142023121211Bagian Umum & Gelar.jpg'),
-(29, 'Pegawai 1', '121212121212121212', 'pegawai_1@gmail.com', '$2y$10$dC1xDFO5xakOhrfzgQG.L.X/Bx5IJAhdAKRCZv4onCLHhMagn7vfG', '08989784353', 'Pegawai', '06142023121503Pegawai 1.jpg'),
-(30, 'Pegawai 2', '131313131313131313', 'pegawai_2@gmail.com', '$2y$10$0xYc2rQAtEPiJXxlASoQ6ejGObx0VE0egZ4Fq54c.zkNcjzBnFmXO', '08989784353', 'Pegawai', '06142023164358Pegawai 2.jpg');
+(29, 'Pegawai 1', '121212121212121212', 'pegawai_1@gmail.com', '$2y$10$dC1xDFO5xakOhrfzgQG.L.X/Bx5IJAhdAKRCZv4onCLHhMagn7vfG', '0895336928026', 'Pegawai', '06142023121503Pegawai 1.jpg'),
+(30, 'Pegawai 2', '131313131313131313', 'pegawai_2@gmail.com', '$2y$10$0xYc2rQAtEPiJXxlASoQ6ejGObx0VE0egZ4Fq54c.zkNcjzBnFmXO', '0895336928026', 'Pegawai', '06142023164358Pegawai 2.jpg');
 
 --
 -- Indexes for dumped tables
@@ -383,7 +383,7 @@ ALTER TABLE `artikel`
 -- AUTO_INCREMENT for table `detail_surat`
 --
 ALTER TABLE `detail_surat`
-  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -395,7 +395,7 @@ ALTER TABLE `pegawai`
 -- AUTO_INCREMENT for table `pengajuan_cuti`
 --
 ALTER TABLE `pengajuan_cuti`
-  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -407,7 +407,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tambah_surat`

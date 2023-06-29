@@ -7,6 +7,7 @@ use App\Models\ModelSurat;
 use App\Models\ModelSetting;
 use App\Models\ModelPegawai;
 use PDF;
+use Twilio\Rest\Client;
 
 class C_Surat extends Controller
 {
@@ -265,6 +266,40 @@ class C_Surat extends Controller
             'status_surat'      => 'Sudah Dikirim',
         ];
 
+        $detail = $this->ModelSurat->detailSuratPegawai($id_surat);
+
+        // WA GATEWAY
+        foreach ($detail as $item) {
+            $noHp = substr($item->nomor_telepon, 1);
+            $jam = date('H:i', strtotime($item->tanggal));
+            $tanggal = date('d F Y', strtotime($item->tanggal));
+            $pdfUrl = "https://himmi-polsub.com/si_ukt/cuti.pdf";
+
+            // $sid    = "AC944f941fef8a459f011bb10c3236df78";
+            // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+            $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+            $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+            $twilio = new Client($sid, $token);
+
+            $message = $twilio->messages
+                ->create(
+                    "whatsapp:+62" . $noHp, // to
+                    array(
+                        "from" => "whatsapp:+14155238886",
+                        "body" => "Hallo {$item->nama}!\n\nAda pemberitahuan surat buat Anda dengan deskripsi sebagai berikut:\n\nNo. Surat : {$item->no_surat}\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nUntuk lebih jelasnya Anda bisa cek suratnya dibawah ini!!!\n\nTerima kasih."
+                    )
+                );
+
+            $message2 = $twilio->messages
+                ->create(
+                    "whatsapp:+62" . $noHp, // to
+                    array(
+                        "from" => "whatsapp:+14155238886",
+                        'mediaUrl' => $pdfUrl,
+                    )
+                );
+        }
+
         $this->ModelSurat->edit($data);
         return redirect()->route('kelola-surat')->with('berhasil', 'Data surat berhasil dikirim ke pegawai !');
     }
@@ -276,34 +311,48 @@ class C_Surat extends Controller
         }
 
         $detail = $this->ModelSurat->detailSuratPegawai($id_surat);
-        dd($detail);
 
-        /// $sid    = "AC944f941fef8a459f011bb10c3236df78";
-        // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
         // $twilio = new Client($sid, $token);
-
-        // $pdfUrl = "https://himmi-polsub.com/si_ukt/cuti.pdf";
 
         // $message = $twilio->messages
         //     ->create(
-        //         "whatsapp:+62895336928026", // to
+        //         "whatsapp:+6288222245385", // to
         //         array(
         //             "from" => "whatsapp:+14155238886",
-        //             "body" => "Your appointment is coming up on July 21 at 3PM",
-        //         )
-        //     );
-        // $message2 = $twilio->messages
-        //     ->create(
-        //         "whatsapp:+62895336928026", // to
-        //         array(
-        //             "from" => "whatsapp:+14155238886",
-        //             'mediaUrl' => $pdfUrl,
+        //             "body" => "Datang Rapat"
         //         )
         //     );
 
-        // // print($message->sid);
+        // print($message->sid);
 
-        // dd('Stop');
+        // WA GATEWAY
+        foreach ($detail as $item) {
+            if ($item->status_terlaksana === 'Belum') {
+                $noHp = substr($item->nomor_telepon, 1);
+                $jam = date('H:i', strtotime($item->tanggal));
+                $tanggal = date('d F Y', strtotime($item->tanggal));
+
+                // $sid    = "AC944f941fef8a459f011bb10c3236df78";
+                // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+                $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+                $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+                $twilio = new Client($sid, $token);
+
+                $message = $twilio->messages
+                    ->create(
+                        "whatsapp:+62" . $noHp, // to
+                        array(
+                            "from" => "whatsapp:+14155238886",
+                            "body" => "Hallo {$item->nama}!\n\nAda pemberitahuan rapat buat Anda dengan deskripsi sebagai berikut:\n\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nWaktu rapat memasuki 30 menit terakhir, dimohon segera datang ke tempat rapat!!!\nTerima kasih."
+                        )
+                    );
+
+                print($message->sid);
+            }
+        }
+
         return redirect()->route('kelola-surat')->with('berhasil', 'Anda berhasil reminder pegawai !');
     }
 

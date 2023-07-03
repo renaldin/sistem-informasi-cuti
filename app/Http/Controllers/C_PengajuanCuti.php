@@ -227,7 +227,7 @@ class C_PengajuanCuti extends Controller
         }
 
         $this->ModelPengajuanCuti->deleteData($id_pengajuan_cuti);
-        return redirect()->route($route())->with('berhasil', 'Data pengajuan cuti berhasil dihapus !');
+        return redirect()->route($route)->with('berhasil', 'Data pengajuan cuti berhasil dihapus !');
     }
 
     public function history()

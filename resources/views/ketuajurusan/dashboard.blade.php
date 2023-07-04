@@ -31,7 +31,7 @@
                                 <tr>
                                     <td><span class="badge badge-danger py-1 px-2">Merah</span></td>
                                     <td width="5px"></td>
-                                    <td>Berjarak kurang dari 30 menit <strong>(Segera klik tombol reminder)</strong></td>
+                                    <td>Berjarak kurang dari 30 menit</td>
                                 </tr>
                             </table>
                             

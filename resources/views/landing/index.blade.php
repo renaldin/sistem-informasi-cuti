@@ -140,11 +140,10 @@
                             <div class="card-item mb-0">
                                 <div class="card-img">
                                     <a href="/detail-edaran/{{$item->id_artikel}}" class="d-block">
-                                        <img src="{{ asset('foto_artikel/'.$item->gambar) }}" alt="{{$item->judul}}">
+                                        <center>
+                                            <img src="{{ asset('foto_artikel/'.$item->gambar) }}" alt="{{$item->judul}}" style="width: 200px;">
+                                        </center>
                                     </a>
-                                    <div class="add-to-wishlist icon-element" data-toggle="tooltip" data-placement="top" title="Bookmark">
-                                        <i class="la la-heart-o"></i>
-                                    </div>
                                 </div>
                                 <div class="card-body">
                                     <h3 class="card-title"><a href="hotel-single.html">{{$item->judul}}</a></h3>

@@ -75,17 +75,15 @@ class C_Artikel extends Controller
         Request()->validate([
             'judul'             => 'required',
             'deskripsi'         => 'required',
-            'dokumen'           => 'required|mimes:pdf|max:2048',
-            'gambar'            => 'required|mimes:jpeg,png,jpg|max:2048',
+            'dokumen'           => 'required|mimes:pdf',
+            'gambar'            => 'required|mimes:jpeg,png,jpg',
         ], [
             'judul.required'            => 'Judul artikel harus diisi!',
             'deskripsi.required'        => 'Deskripsi artikel harus diisi!',
             'dokumen.required'          => 'Dokumen harus diisi!',
             'dokumen.mimes'             => 'Format Dokumen harus pdf!',
-            'dokumen.max'               => 'Ukuran Dokumen maksimal 2 mb',
             'gambar.required'           => 'Gambar artikel harus diisi!',
             'gambar.mimes'              => 'Format Gambar artikel harus jpg/jpeg/png!',
-            'gambar.max'                => 'Ukuran Gambar artikel maksimal 2 mb',
         ]);
 
         // Upload Dokumen
@@ -133,16 +131,14 @@ class C_Artikel extends Controller
             'judul'             => 'required',
             'deskripsi'         => 'required',
             'status'            => 'required',
-            'dokumen'           => 'mimes:pdf|max:2048',
-            'gambar'            => 'mimes:jpeg,png,jpg|max:2048',
+            'dokumen'           => 'mimes:pdf',
+            'gambar'            => 'mimes:jpeg,png,jpg',
         ], [
             'judul.required'            => 'Judul artikel harus diisi!',
             'deskripsi.required'        => 'Deskripsi artikel harus diisi!',
             'status.required'           => 'Status artikel harus diisi!',
             'dokumen.mimes'             => 'Format Dokumen harus pdf!',
-            'dokumen.max'               => 'Ukuran Dokumen maksimal 2 mb',
             'gambar.mimes'              => 'Format Gambar artikel harus jpg/jpeg/png!',
-            'gambar.max'                => 'Ukuran Gambar artikel maksimal 2 mb',
         ]);
 
         $detail = $this->ModelArtikel->detail($id_artikel);

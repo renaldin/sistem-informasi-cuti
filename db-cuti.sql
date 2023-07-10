@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2023 at 10:13 AM
+-- Generation Time: Jul 10, 2023 at 04:15 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -78,7 +78,38 @@ INSERT INTO `absensi` (`id_absensi`, `nama`, `nip`, `tanggal`, `masuk`, `pulang`
 (29, 'Pegawai 2', '131313131313131313', '2022-01-12', '12-Jan-22 07:22 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
 (30, 'Pegawai 2', '131313131313131313', '2022-01-13', '13-Jan-22 07:34 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
 (31, 'Pegawai 1', '121212121212121212', '2023-06-23', '23-Jun-23 13:00:00', '23-Jun-23 13:00:00', 'Bleave', '2023-06-23 06:00:18', NULL, NULL, 'Alasan', NULL),
-(32, 'Pegawai 2', '131313131313131313', '2023-06-23', '23-Jun-23 15:25:00', '23-Jun-23 19:29:00', 'Bleave', '2023-06-23 08:25:29', NULL, NULL, NULL, NULL);
+(32, 'Pegawai 2', '131313131313131313', '2023-06-23', '23-Jun-23 15:25:00', '23-Jun-23 19:29:00', 'Bleave', '2023-06-23 08:25:29', NULL, NULL, NULL, NULL),
+(33, 'Pegawai 2', '131313131313131313', '2023-07-01', '01-Jul-23 08:20:00', '01-Jul-23 16:20:00', 'masuk', '2023-07-03 01:21:14', NULL, NULL, NULL, NULL),
+(34, 'Pegawai 1', '121212121212121212', '2022-01-03', NULL, NULL, 'Bleave', '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(35, 'Pegawai 1', '121212121212121212', '2022-01-04', '04/01/2022 07:51:31', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(36, 'Pegawai 1', '121212121212121212', '2022-01-05', '05/01/2022 07:35:00', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(37, 'Pegawai 1', '121212121212121212', '2022-01-06', '06/01/2022 07:34:09', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(38, 'Pegawai 1', '121212121212121212', '2022-01-07', '07/01/2022 07:20:15', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(39, 'Pegawai 1', '121212121212121212', '2022-01-10', '10/01/2022 07:26:44', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(40, 'Pegawai 1', '121212121212121212', '2022-01-11', NULL, NULL, 'Bleave', '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(41, 'Pegawai 1', '121212121212121212', '2022-01-12', '12/01/2022 07:34:33', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(42, 'Pegawai 1', '121212121212121212', '2022-01-13', '13/01/2022 07:32:44', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(43, 'Pegawai 1', '121212121212121212', '2022-01-14', NULL, NULL, 'Bleave', '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(44, 'Pegawai 1', '121212121212121212', '2022-01-17', '17/01/2022 07:46:15', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(45, 'Pegawai 1', '121212121212121212', '2022-01-18', '18/01/2022 07:13:11', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(46, 'Pegawai 1', '121212121212121212', '2022-01-19', '19/01/2022 07:44:42', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(47, 'Pegawai 1', '121212121212121212', '2022-01-20', '20/01/2022 01:15:43', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(48, 'Pegawai 1', '121212121212121212', '2022-01-21', '21/01/2022 01:19:32', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(49, 'Pegawai 1', '121212121212121212', '2022-01-24', NULL, NULL, 'Bleave', '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(50, 'Pegawai 1', '121212121212121212', '2022-01-25', NULL, NULL, 'Bleave', '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(51, 'Pegawai 1', '121212121212121212', '2022-01-26', '26/01/2022 08:07:36', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(52, 'Pegawai 1', '121212121212121212', '2022-01-27', '27/01/2022 07:43:01', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(53, 'Pegawai 1', '121212121212121212', '2022-01-28', '28/01/2022 07:40:46', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(54, 'Pegawai 1', '121212121212121212', '2022-01-31', '31/01/2022 07:49:42', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(55, 'Pegawai 1', '121212121212121212', '2022-01-03', '03/01/2022 06:32:07', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(56, 'Pegawai 2', '131313131313131313', '2022-01-04', '04-Jan-22 07:18 AM', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(57, 'Pegawai 2', '131313131313131313', '2022-01-05', NULL, NULL, 'Sick', '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(58, 'Pegawai 2', '131313131313131313', '2022-01-06', '06/01/2022 07:00:03', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(59, 'Pegawai 2', '131313131313131313', '2022-01-07', '07/01/2022 06:16:59', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(60, 'Pegawai 2', '131313131313131313', '2022-01-10', '10-Jan-22 07:20 AM', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(61, 'Pegawai 2', '131313131313131313', '2022-01-11', '11-Jan-22 07:10 AM', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(62, 'Pegawai 2', '131313131313131313', '2022-01-12', '12-Jan-22 07:22 AM', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
+(63, 'Pegawai 2', '131313131313131313', '2022-01-13', '13-Jan-22 07:34 AM', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -101,10 +132,9 @@ CREATE TABLE `artikel` (
 --
 
 INSERT INTO `artikel` (`id_artikel`, `judul`, `deskripsi`, `dokumen`, `gambar`, `tanggal_upload`, `status`) VALUES
-(2, 'Judul Artikel 1', 'Deskripsi Judul Artikel 1', '06152023143844Judul Artikel 1.pdf', '06152023143844Judul Artikel 1.jpg', '2023-06-15 14:38:44', 'Aktif'),
-(3, 'Judul Artikel 2', 'Deskripsi Judul Artikel 2', '06152023145251Judul Artikel 2.pdf', '06152023145251Judul Artikel 2.jpg', '2023-06-15 14:52:51', 'Aktif'),
-(4, 'Judul Artikel 3', 'Deskripsi Judul Artikel 3', '06152023145326Judul Artikel 3.pdf', '06152023145326Judul Artikel 3.jpg', '2023-06-15 14:53:26', 'Aktif'),
-(5, 'Judul Artikel 4', 'Deskripsi Judul Artikel 4', '06152023145404Judul Artikel 4.pdf', '06152023145404Judul Artikel 4.jpg', '2023-06-15 14:54:04', 'Aktif');
+(7, 'Edaran KP Oktober', 'edaran bulan oktober', '07062023033141Edaran KP Oktober.pdf', '07062023033141Edaran KP Oktober.png', '2023-07-06 03:31:41', 'Aktif'),
+(8, 'Upacara HARDIKNAS', 'Menghadiri upacara Hari Pendidikan Nasional', '07062023033552Upacara HARDIKNAS.pdf', '07062023033552Upacara HARDIKNAS.png', '2023-07-06 03:35:52', 'Aktif'),
+(9, 'Pengumuman Peserta', 'Pengumuman Peserta POLSUB', '07062023033754Pengumuman Peserta.pdf', '07062023033754Pengumuman Peserta.png', '2023-07-06 03:37:54', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -126,7 +156,13 @@ INSERT INTO `detail_surat` (`id_detail_surat`, `id_surat`, `id_pegawai`) VALUES
 (1, 1, 9),
 (6, 4, 9),
 (7, 4, 8),
-(8, 5, 8);
+(8, 5, 1),
+(9, 6, 14),
+(10, 7, 14),
+(11, 7, 9),
+(12, 8, 14),
+(13, 8, 9),
+(14, 8, 8);
 
 -- --------------------------------------------------------
 
@@ -167,7 +203,9 @@ INSERT INTO `pegawai` (`id_pegawai`, `id_user`, `jabatan`, `unit_kerja`, `masa_k
 (6, 27, 'Wakil Direktur 2', 'Wakil Direktur', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', NULL, 'Tidak', 'Tidak', 'Tidak', '06242023151329 Tanda Tangan Wadir 2 & Gelar.png'),
 (7, 28, 'Bagian Umum', 'Bagian Umum', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', '06242023151227 Tanda Tangan Bagian Umum & Gelar.png'),
 (8, 29, 'Dosen', 'Manajemen Informatika', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', NULL, 'Tidak', 'Tidak', '06242023151159 Tanda Tangan Pegawai 1.png'),
-(9, 30, 'Dosen', 'Manajemen Informatika', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', NULL, 'Tidak', 'Tidak', '06242023151118 Tanda Tangan Pegawai 2.png');
+(9, 30, 'Dosen', 'Manajemen Informatika', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', NULL, 'Tidak', 'Tidak', '06242023151118 Tanda Tangan Pegawai 2.png'),
+(14, 35, 'Dosen Pengajar', 'Manajemen Informatika', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '07062023020950 Tanda Tangan sisnawati.png'),
+(15, 36, 'Bagian Umum', 'Bagian Umum', '5 tahun', '2', '5', '3', 'Keterangan 2', 'Keterangan 5', 'Keterangan 3', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', '07092023203546 Tanda Tangan Bagian Umum & Gelar.png');
 
 -- --------------------------------------------------------
 
@@ -205,7 +243,11 @@ CREATE TABLE `pengajuan_cuti` (
 --
 
 INSERT INTO `pengajuan_cuti` (`id_pengajuan_cuti`, `id_pegawai`, `jenis_cuti`, `alasan_cuti`, `lama_cuti`, `jenis_waktu`, `mulai_tanggal`, `akhir_tanggal`, `alamat_selama_cuti`, `pertimbangan_ketua_jurusan`, `alasan_pertimbangan_ketua_jurusan`, `ketua_jurusan`, `nip_ketua_jurusan`, `keputusan_wakil_direktur`, `alasan_keputusan_wakil_direktur`, `wakil_direktur`, `nip_wakil_direktur`, `status_pengajuan`, `tanggal_pengajuan`, `tanda_tangan_wadir`, `tanda_tangan_kajur`, `tanda_tangan_pegawai`) VALUES
-(1, 8, 'Cuti Sakit', 'Alasannya sakit', 3, 'hari', '2023-06-26', '2023-06-29', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-06-26', '06242023151356 Tanda Tangan Wadir 1 & Gelar.png', '06242023151614 Tanda Tangan Kajur MI & gelar.png', '06242023151159 Tanda Tangan Pegawai 1.png');
+(1, 8, 'Cuti Sakit', 'Alasannya sakit', 3, 'hari', '2023-06-26', '2023-06-29', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-06-26', '06242023151356 Tanda Tangan Wadir 1 & Gelar.png', '06242023151614 Tanda Tangan Kajur MI & gelar.png', '06242023151159 Tanda Tangan Pegawai 1.png'),
+(2, 8, 'Cuti Karena Alasan Penting', 'keluarga nikah', 1, 'hari', '2023-07-04', '2023-07-05', 'jakarta', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', NULL, NULL, NULL, NULL, 'Dikirim ke Wakil Direktur', '2023-07-03', NULL, '06242023151614 Tanda Tangan Kajur MI & gelar.png', '06242023151159 Tanda Tangan Pegawai 1.png'),
+(5, 9, 'Cuti Sakit', 'sakit lambung', 1, 'minggu', '2023-07-04', '2023-07-11', 'rumah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dikirim ke Admin', '2023-07-04', NULL, NULL, '06242023151118 Tanda Tangan Pegawai 2.png'),
+(6, 1, 'Cuti Sakit', 'sakit lambung', 2, 'hari', '2023-07-04', '2023-07-06', 'rumah', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-07-04', '06242023151356 Tanda Tangan Wadir 1 & Gelar.png', NULL, '06242023151614 Tanda Tangan Kajur MI & gelar.png'),
+(7, 8, 'Cuti Sakit', 'Alasannya sakit', 4, 'hari', '2023-07-11', '2023-07-14', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-07-10', '06242023151356 Tanda Tangan Wadir 1 & Gelar.png', '06242023151614 Tanda Tangan Kajur MI & gelar.png', '06242023151159 Tanda Tangan Pegawai 1.png');
 
 -- --------------------------------------------------------
 
@@ -227,7 +269,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`id_setting`, `nama_website`, `email`, `nomor_telepon`, `alamat`, `logo`) VALUES
-(1, 'SI Cuti', 'sicuti@gmail.com', '(123) 123-456', 'Jalan Si Cuti', '04272023124903.png');
+(1, 'SIMPEG', 'sicuti@gmail.com', '(123) 123-456', 'Jalan Si Cuti', '04272023124903.png');
 
 -- --------------------------------------------------------
 
@@ -254,9 +296,12 @@ CREATE TABLE `surat` (
 --
 
 INSERT INTO `surat` (`id_surat`, `no_surat`, `perihal_surat`, `hari`, `tanggal`, `tempat`, `jenis_surat`, `file_surat`, `tanggal_upload`, `status_surat`, `status_terlaksana`) VALUES
-(1, '00000', 'Perihal', 'Senin', '2023-06-21 13:00:00', 'Kampus', 'Jenis Surat', '06212023011344 00000.pdf', '2023-06-21', 'Sudah Dikirim', 'Belum'),
-(4, '11111', 'Perihal', 'Senin', '2023-06-21 08:33:00', 'Kampus', 'Jenis Surat', '06212023013344 11111.pdf', '2023-06-21', 'Sudah Dikirim', 'Belum'),
-(5, '22222222', 'Perihal Surat', 'Senin', '2023-07-03 14:49:00', 'Kampus 2', 'Jenis Surat', '06292023074940 22222222.pdf', '2023-06-29', 'Sudah Dikirim', 'Belum');
+(1, '00000', 'Perihal', 'Senin', '2023-06-21 13:00:00', 'Kampus', 'Jenis Surat', '06212023011344 00000.pdf', '2023-06-21', 'Sudah Dikirim', 'Sudah'),
+(4, '11111', 'Perihal', 'Senin', '2023-07-11 08:33:00', 'Kampus', 'Jenis Surat', '06212023013344 11111.pdf', '2023-06-21', 'Sudah Dikirim', 'Sudah'),
+(5, '22222222', 'Perihal Surat', 'Senin', '2023-07-11 00:00:00', 'Kampus 2', 'Jenis Surat', '06292023074940 22222222.pdf', '2023-06-29', 'Sudah Dikirim', 'Belum'),
+(6, '12345678', 'akreditasi', 'Kamis', '2023-07-06 09:30:00', 'gkb', 'surat edaran', '07062023021126 12345678.pdf', '2023-07-06', 'Sudah Dikirim', 'Sudah'),
+(7, '12345678', 'akreditasi', 'Kamis', '2023-07-06 10:20:00', 'gkb', 'surat edaran', '07062023031651 12345678.pdf', '2023-07-06', 'Sudah Dikirim', 'Sudah'),
+(8, '121212', 'Perihal Surat', 'Senin', '2023-07-10 11:00:00', 'Kampus', 'Jenis Surat', '07092023195831 121212.pdf', '2023-07-09', 'Sudah Dikirim', 'Belum');
 
 -- --------------------------------------------------------
 
@@ -301,9 +346,10 @@ INSERT INTO `users` (`id_user`, `nama`, `nip`, `email`, `password`, `nomor_telep
 (25, 'Kajur Kesehatan & Gelar', '444444444444444444', 'kajur_kep@gmail.com', '$2y$10$jdD3qNcRMQ529ZGNFssdYO5/Z6w2VkIgOMgpshBES6OJuHWTR8VMK', '0895336928026', 'Ketua Jurusan', '06142023120700Kajur Kesehatan & Gelar.jpg'),
 (26, 'Wadir 1 & Gelar', '555555555555555555', 'wadir1@gmail.com', '$2y$10$R0NL3dWHCiqj/xXCcX8QBeAN2BfM9uwh9X41xpYwPv.4XCKp/d3nS', '08989784353', 'Wakil Direktur', '06142023120923Wadir 1 & Gelar.jpg'),
 (27, 'Wadir 2 & Gelar', '666666666666666666', 'wadir2@gmail.com', '$2y$10$a2GjSaHsMx3G7TEW34DX2OawQM3zIs7./zZgnoai25OAWs7uCb3tG', '08989784353', 'Wakil Direktur', '06142023121041Wadir 2 & Gelar.jpg'),
-(28, 'Bagian Umum & Gelar', '777777777777777777', 'bagianumum@gmail.com', '$2y$10$ydeWcLluU7v5XmADvrx5TucusmhqjkCavT/96/23.RqOBAfJhdJH6', '08989784353', 'Bagian Umum', '06142023121211Bagian Umum & Gelar.jpg'),
 (29, 'Pegawai 1', '121212121212121212', 'pegawai_1@gmail.com', '$2y$10$dC1xDFO5xakOhrfzgQG.L.X/Bx5IJAhdAKRCZv4onCLHhMagn7vfG', '0895336928026', 'Pegawai', '06142023121503Pegawai 1.jpg'),
-(30, 'Pegawai 2', '131313131313131313', 'pegawai_2@gmail.com', '$2y$10$0xYc2rQAtEPiJXxlASoQ6ejGObx0VE0egZ4Fq54c.zkNcjzBnFmXO', '0895336928026', 'Pegawai', '06142023164358Pegawai 2.jpg');
+(30, 'Pegawai 2', '131313131313131313', 'pegawai_2@gmail.com', '$2y$10$0xYc2rQAtEPiJXxlASoQ6ejGObx0VE0egZ4Fq54c.zkNcjzBnFmXO', '0895336928026', 'Pegawai', '06142023164358Pegawai 2.jpg'),
+(35, 'sisnawati', '2345678973245678', 'sisna@gmail.com', '$2y$10$CoO1viAsI2wp.G2jiZsoBuTFkcDhS7N907cDNMhM8HfW0bZNzNN/q', '0895336928026', 'Pegawai', '07062023020950sisnawati.png'),
+(36, 'Bagian Umum & Gelar', '77777777777777777', 'bagianumum1@gmail.com', '$2y$10$/97TP7/SfqnEFkLJE29BKuU9M3mxXUCz8Unep2Ne/.8NO.lxbkmSm', '0895336928026', 'Bagian Umum', '07092023203545Bagian Umum & Gelar.png');
 
 --
 -- Indexes for dumped tables
@@ -371,31 +417,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `artikel`
 --
 ALTER TABLE `artikel`
-  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `detail_surat`
 --
 ALTER TABLE `detail_surat`
-  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `pengajuan_cuti`
 --
 ALTER TABLE `pengajuan_cuti`
-  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -407,7 +453,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tambah_surat`
@@ -419,7 +465,7 @@ ALTER TABLE `tambah_surat`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

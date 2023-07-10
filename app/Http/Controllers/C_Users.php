@@ -60,7 +60,7 @@ class C_Users extends Controller
             'email'             => 'required|unique:users,email|email',
             'password'          => 'min:6|required',
             'role'              => 'required',
-            'foto_user'         => 'required|mimes:jpeg,png,jpg|max:2048',
+            'foto_user'         => 'required|mimes:jpeg,png,jpg',
         ], [
             'nama.required'             => 'Nama lengkap harus diisi!',
             'nomor_telepon.max'         => 'Nomor telepon maksimal 13 angka!',
@@ -77,7 +77,6 @@ class C_Users extends Controller
             'role.required'             => 'Role harus diisi!',
             'foto_user.required'        => 'Foto Anda harus diisi!',
             'foto_user.mimes'           => 'Format Foto Anda harus jpg/jpeg/png!',
-            'foto_user.max'             => 'Ukuran Foto Anda maksimal 2 mb',
         ]);
 
         $file1 = Request()->foto_user;
@@ -124,7 +123,7 @@ class C_Users extends Controller
             'nip'               => 'required|max:18',
             'email'             => 'required|email',
             'role'              => 'required',
-            'foto_user'         => 'mimes:jpeg,png,jpg|max:2048',
+            'foto_user'         => 'mimes:jpeg,png,jpg',
         ], [
             'nama.required'             => 'Nama lengkap harus diisi!',
             'nomor_telepon.required'    => 'Nomor telepon harus diisi!',
@@ -137,7 +136,6 @@ class C_Users extends Controller
             'email.email'               => 'Email harus sesuai format! Contoh: contoh@gmail.com',
             'role.required'             => 'Role harus diisi!',
             'foto_user.mimes'           => 'Format Foto Anda harus jpg/jpeg/png!',
-            'foto_user.max'             => 'Ukuran Foto Anda maksimal 2 mb',
         ]);
 
         $detail = $this->ModelUser->detail($id_user);
@@ -277,7 +275,7 @@ class C_Users extends Controller
             'nomor_telepon'     => 'required|numeric',
             'nip'               => 'required|numeric',
             'email'             => 'required|email',
-            'foto_user'         => 'mimes:jpeg,png,jpg|max:2048',
+            'foto_user'         => 'mimes:jpeg,png,jpg',
         ], [
             'nama.required'             => 'Nama lengkap harus diisi!',
             'nomor_telepon.required'    => 'Nomor telepon harus diisi!',
@@ -287,7 +285,6 @@ class C_Users extends Controller
             'email.required'            => 'Email harus diisi!',
             'email.email'               => 'Email harus sesuai format! Contoh: contoh@gmail.com',
             'foto_user.mimes'           => 'Format Foto Anda harus jpg/jpeg/png!',
-            'foto_user.max'             => 'Ukuran Foto Anda maksimal 2 mb',
         ]);
 
         $user = $this->ModelUser->detail($id_user);

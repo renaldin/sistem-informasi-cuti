@@ -40,7 +40,7 @@ class C_Setting extends Controller
             'email'              => 'required|email',
             'alamat'             => 'required',
             'nomor_telepon'      => 'required',
-            'logo'               => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'logo'               => 'mimes:jpeg,png,jpg,gif,svg',
         ], [
             'nama_website.required'   => 'Nama website harus diisi!',
             'email.required'          => 'Email harus diisi!',
@@ -48,7 +48,6 @@ class C_Setting extends Controller
             'alamat.required'         => 'Alamat harus diisi!',
             'nomor_telepon.required'  => 'Nomor telepon harus diisi!',
             'logo.mimes'              => 'Format logo harus jpg/jpeg/png/bmp!',
-            'logo.max'                => 'Ukuran logo maksimal 5 mb',
         ]);
 
         if (Request()->logo <> "") {

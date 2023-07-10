@@ -168,6 +168,7 @@
                                                     <option value="Kesehatan">Kesehatan</option>
                                                     <option value="Teknik Perawatan dan Perbaikan Mesin">Teknik Perawatan dan Perbaikan Mesin</option>
                                                     <option value="Wakil Direktur">Wakil Direktur</option>
+                                                    <option value="Bagian Umum">Bagian Umum</option>
                                                 </select>
                                             </div>
                                             @error('unit_kerja')

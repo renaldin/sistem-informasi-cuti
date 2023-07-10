@@ -112,7 +112,7 @@ class C_Absensi extends Controller
 
         $data = [
             'title'         => 'Data Absensi',
-            'subTitle'      => 'Lihat Absensi',
+            'subTitle'      => 'Riwayat Absensi',
             'biodata'       => $this->ModelSetting->detail(1),
             'user'          => $this->ModelUser->detail(Session()->get('id_user')),
             'dataAbsensi'   => $this->ModelAbsensi->getData()
@@ -147,7 +147,7 @@ class C_Absensi extends Controller
 
         $data = [
             'title'         => 'Data Absensi',
-            'subTitle'      => 'Lihat Absensi',
+            'subTitle'      => 'Riwayat Absensi',
             'biodata'       => $this->ModelSetting->detail(1),
             'user'          => $this->ModelUser->detail(Session()->get('id_user')),
             'dataAbsensi'   => $dataAbsensi
@@ -179,7 +179,7 @@ class C_Absensi extends Controller
 
     //     $data = [
     //         'title'         => 'Data Absensi',
-    //         'subTitle'      => 'Lihat Absensi',
+    //         'subTitle'      => 'Riwayat Absensi',
     //         'biodata'       => $this->ModelSetting->detail(1),
     //         'user'          => $this->ModelUser->detail(Session()->get('id_user')),
     //         'dataAbsensi'   => $this->ModelAbsensi->getDataByDate($tanggalMulai, $tanggalAkhir)

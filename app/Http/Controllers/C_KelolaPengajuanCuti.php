@@ -7,6 +7,7 @@ use App\Models\ModelSetting;
 use App\Models\ModelPengajuanCuti;
 use App\Models\ModelPegawai;
 use PDF;
+use Twilio\Rest\Client;
 
 class C_KelolaPengajuanCuti extends Controller
 {
@@ -139,6 +140,26 @@ class C_KelolaPengajuanCuti extends Controller
             return redirect()->route('login');
         }
 
+        $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+
+        $noHp = substr($pengajuanCuti->nomor_telepon, 1);
+
+        $sid    = "AC944f941fef8a459f011bb10c3236df78";
+        $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+
+        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        $twilio = new Client($sid, $token);
+
+        $message = $twilio->messages
+            ->create(
+                "whatsapp:+62" . $noHp, // to
+                array(
+                    "from" => "whatsapp:+14155238886",
+                    "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Ketua Jurusan. Silahkan di cek di website SIMPEG Polsub!"
+                )
+            );
+
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
             'status_pengajuan'  => 'Dikirim ke Ketua Jurusan',
@@ -157,6 +178,26 @@ class C_KelolaPengajuanCuti extends Controller
         if (Session()->get('role') === 'Admin') {
             $status = 'Diterima Admin';
         }
+
+        $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+
+        $noHp = substr($pengajuanCuti->nomor_telepon, 1);
+
+        $sid    = "AC944f941fef8a459f011bb10c3236df78";
+        $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+
+        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        $twilio = new Client($sid, $token);
+
+        $message = $twilio->messages
+            ->create(
+                "whatsapp:+62" . $noHp, // to
+                array(
+                    "from" => "whatsapp:+14155238886",
+                    "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Admin. Silahkan di cek di website SIMPEG Polsub!"
+                )
+            );
 
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
@@ -226,6 +267,26 @@ class C_KelolaPengajuanCuti extends Controller
             return redirect()->route('login');
         }
 
+        $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+
+        $noHp = substr($pengajuanCuti->nomor_telepon, 1);
+
+        $sid    = "AC944f941fef8a459f011bb10c3236df78";
+        $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+
+        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        $twilio = new Client($sid, $token);
+
+        $message = $twilio->messages
+            ->create(
+                "whatsapp:+62" . $noHp, // to
+                array(
+                    "from" => "whatsapp:+14155238886",
+                    "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Ketua Jurusan. Silahkan cek di website SIMPEG Polsub!"
+                )
+            );
+
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
             'status_pengajuan'  => 'Diterima Ketua Jurusan',
@@ -264,8 +325,48 @@ class C_KelolaPengajuanCuti extends Controller
         if ($cuti->role == 'Pegawai') {
             $pertimbangan_ketua_jurusan = Request()->pertimbangan_ketua_jurusan;
             if ($pertimbangan_ketua_jurusan !== 'DISETUJUI') {
+                $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+
+                $noHp = substr($pengajuanCuti->nomor_telepon, 1);
+
+                $sid    = "AC944f941fef8a459f011bb10c3236df78";
+                $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+
+                // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+                // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+                $twilio = new Client($sid, $token);
+
+                $message = $twilio->messages
+                    ->create(
+                        "whatsapp:+62" . $noHp, // to
+                        array(
+                            "from" => "whatsapp:+14155238886",
+                            "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda tidak disetujui oleh Ketua Jurusan. Silahkan cek di website SIMPEG Polsub!"
+                        )
+                    );
+
                 $status_pengajuan = 'Selesai';
             } else {
+                $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+
+                $noHp = substr($pengajuanCuti->nomor_telepon, 1);
+
+                $sid    = "AC944f941fef8a459f011bb10c3236df78";
+                $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+
+                // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+                // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+                $twilio = new Client($sid, $token);
+
+                $message = $twilio->messages
+                    ->create(
+                        "whatsapp:+62" . $noHp, // to
+                        array(
+                            "from" => "whatsapp:+14155238886",
+                            "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Wakil Direktur. Silahkan cek di website SIMPEG Polsub!"
+                        )
+                    );
+
                 $status_pengajuan = 'Dikirim ke Wakil Direktur';
             }
 
@@ -321,6 +422,26 @@ class C_KelolaPengajuanCuti extends Controller
             return redirect()->route('login');
         }
 
+        $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+
+        $noHp = substr($pengajuanCuti->nomor_telepon, 1);
+
+        $sid    = "AC944f941fef8a459f011bb10c3236df78";
+        $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+
+        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        $twilio = new Client($sid, $token);
+
+        $message = $twilio->messages
+            ->create(
+                "whatsapp:+62" . $noHp, // to
+                array(
+                    "from" => "whatsapp:+14155238886",
+                    "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Wakil Direktur. Silahkan cek di website SIMPEG Polsub!"
+                )
+            );
+
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
             'status_pengajuan'  => 'Diterima Wakil Direktur',
@@ -354,6 +475,26 @@ class C_KelolaPengajuanCuti extends Controller
         }
 
         $user = $this->ModelUser->detail(Session()->get('id_user'));
+
+        $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+
+        $noHp = substr($pengajuanCuti->nomor_telepon, 1);
+
+        $sid    = "AC944f941fef8a459f011bb10c3236df78";
+        $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+
+        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        $twilio = new Client($sid, $token);
+
+        $message = $twilio->messages
+            ->create(
+                "whatsapp:+62" . $noHp, // to
+                array(
+                    "from" => "whatsapp:+14155238886",
+                    "body" => "Hallo {$pengajuanCuti->nama}!\n\nPengajuan cuti Anda sudah selesai. Silahkan cek hasilnya di website SIMPEG Polsub!"
+                )
+            );
 
         $data = [
             'id_pengajuan_cuti'                => $id_pengajuan_cuti,

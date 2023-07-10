@@ -19,6 +19,7 @@ class C_Absensi extends Controller
     private $ModelSetting;
     private $ModelPegawai;
     private $ModelAbsensi;
+    private $public_path;
 
     public function __construct()
     {
@@ -26,6 +27,7 @@ class C_Absensi extends Controller
         $this->ModelSetting = new ModelSetting();
         $this->ModelAbsensi = new ModelAbsensi();
         $this->ModelPegawai = new ModelPegawai();
+        $this->public_path = 'file_absensi';
     }
 
     public function index()
@@ -209,12 +211,12 @@ class C_Absensi extends Controller
 
         if (Request()->file_absensi) {
             if ($detail->file_absensi <> "") {
-                unlink(public_path('file_absensi') . '/' . $detail->file_absensi);
+                unlink(public_path($this->public_path) . '/' . $detail->file_absensi);
             }
 
             $file2 = Request()->file_absensi;
             $fileAbsensi = date('mdYHis') . $detail->nama . '.' . $file2->extension();
-            $file2->move(public_path('file_absensi'), $fileAbsensi);
+            $file2->move(public_path($this->public_path), $fileAbsensi);
 
             $file_absensi = $fileAbsensi;
         } else {

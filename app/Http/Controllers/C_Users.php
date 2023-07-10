@@ -11,11 +11,13 @@ class C_Users extends Controller
 
     private $ModelUser;
     private $ModelSetting;
+    private $public_path;
 
     public function __construct()
     {
         $this->ModelUser = new ModelUser();
         $this->ModelSetting = new ModelSetting();
+        $this->public_path = 'foto_user';
     }
 
     public function index()
@@ -81,7 +83,7 @@ class C_Users extends Controller
 
         $file1 = Request()->foto_user;
         $fileUser = date('mdYHis') . Request()->nama . '.' . $file1->extension();
-        $file1->move(public_path('foto_user'), $fileUser);
+        $file1->move(public_path($this->public_path), $fileUser);
 
         $data = [
             'nama'              => Request()->nama,
@@ -153,12 +155,12 @@ class C_Users extends Controller
 
             if (Request()->foto_user <> "") {
                 if ($user->foto <> "") {
-                    unlink(public_path('foto_user') . '/' . $user->foto);
+                    unlink(public_path($this->public_path) . '/' . $user->foto);
                 }
 
                 $file = Request()->foto_user;
                 $fileUser = date('mdYHis') . Request()->nama . '.' . $file->extension();
-                $file->move(public_path('foto_user'), $fileUser);
+                $file->move(public_path($this->public_path), $fileUser);
 
                 $data = [
                     'id_user'           => $id_user,
@@ -188,12 +190,12 @@ class C_Users extends Controller
 
             if (Request()->foto_user <> "") {
                 if ($user->foto <> "") {
-                    unlink(public_path('foto_user') . '/' . $user->foto);
+                    unlink(public_path($this->public_path) . '/' . $user->foto);
                 }
 
                 $file = Request()->foto_user;
                 $fileUser = date('mdYHis') . Request()->nama . '.' . $file->extension();
-                $file->move(public_path('foto_user'), $fileUser);
+                $file->move(public_path($this->public_path), $fileUser);
 
                 $data = [
                     'id_user'           => $id_user,
@@ -244,7 +246,7 @@ class C_Users extends Controller
         $user = $this->ModelUser->detail($id_user);
 
         if ($user->foto <> "") {
-            unlink(public_path('foto_user') . '/' . $user->foto);
+            unlink(public_path($this->public_path) . '/' . $user->foto);
         }
 
         $this->ModelUser->deleteData($id_user);
@@ -291,12 +293,12 @@ class C_Users extends Controller
 
         if (Request()->foto_user <> "") {
             if ($user->foto <> "") {
-                unlink(public_path('foto_user') . '/' . $user->foto);
+                unlink(public_path($this->public_path) . '/' . $user->foto);
             }
 
             $file = Request()->foto_user;
             $fileUser = date('mdYHis') . Request()->nama . '.' . $file->extension();
-            $file->move(public_path('foto_user'), $fileUser);
+            $file->move(public_path($this->public_path), $fileUser);
 
             $data = [
                 'id_user'           => $id_user,

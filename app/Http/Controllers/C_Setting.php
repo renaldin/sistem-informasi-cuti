@@ -10,11 +10,13 @@ class C_Setting extends Controller
 
     private $ModelSetting;
     private $ModelUser;
+    private $public_path;
 
     public function __construct()
     {
         $this->ModelSetting = new ModelSetting();
         $this->ModelUser = new ModelUser();
+        $this->public_path = 'foto_biodata';
     }
 
     public function index()
@@ -53,12 +55,12 @@ class C_Setting extends Controller
         if (Request()->logo <> "") {
             $biodata = $this->ModelSetting->detail($id_setting);
             if ($biodata->logo <> "") {
-                unlink(public_path('foto_biodata') . '/' . $biodata->logo);
+                unlink(public_path($this->public_path) . '/' . $biodata->logo);
             }
 
             $file = Request()->logo;
             $fileName = date('mdYHis') . Request()->id_setting . '.' . $file->extension();
-            $file->move(public_path('foto_biodata'), $fileName);
+            $file->move(public_path($this->public_path), $fileName);
 
             $data = [
                 'id_setting'        => $id_setting,

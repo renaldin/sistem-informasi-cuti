@@ -13,12 +13,16 @@ class C_Pegawai extends Controller
     private $ModelUser;
     private $ModelSetting;
     private $ModelPegawai;
+    private $public_path_user;
+    private $public_path_tanda_tangan;
 
     public function __construct()
     {
         $this->ModelUser = new ModelUser();
         $this->ModelSetting = new ModelSetting();
         $this->ModelPegawai = new ModelPegawai();
+        $this->public_path_user = 'foto_user';
+        $this->public_path_tanda_tangan = 'tanda_tangan';
     }
 
     public function index()
@@ -130,11 +134,11 @@ class C_Pegawai extends Controller
 
         $file1 = Request()->foto_user;
         $fileUser = date('mdYHis') . Request()->nama . '.' . $file1->extension();
-        $file1->move(public_path('foto_user'), $fileUser);
+        $file1->move(public_path($this->public_path_user), $fileUser);
 
         $file = Request()->tanda_tangan;
         $fileTandaTangan = date('mdYHis') . ' Tanda Tangan ' . Request()->nama . '.' . $file->extension();
-        $file->move(public_path('tanda_tangan'), $fileTandaTangan);
+        $file->move(public_path($this->public_path_tanda_tangan), $fileTandaTangan);
 
         $dataUser = [
             'nama'              => Request()->nama,
@@ -225,19 +229,19 @@ class C_Pegawai extends Controller
 
             // foto user
             // if ($user->foto <> "") {
-            //     unlink(public_path('foto_user') . '/' . $user->foto);
+            //     unlink(public_path($this->public_path_user) . '/' . $user->foto);
             // }
             $file1 = Request()->foto_user;
             $fileUser = date('mdYHis') . Request()->nama . '.' . $file1->extension();
-            $file1->move(public_path('foto_user'), $fileUser);
+            $file1->move(public_path($this->public_path_user), $fileUser);
 
             // tanda tangan
             // if ($pegawai->tanda_tangan <> "") {
-            //     unlink(public_path('tanda_tangan') . '/' . $pegawai->tanda_tangan);
+            //     unlink(public_path($this->public_path_tanda_tangan) . '/' . $pegawai->tanda_tangan);
             // }
             $file = Request()->tanda_tangan;
             $fileTandaTangan = date('mdYHis') . ' Tanda Tangan ' . Request()->nama . '.' . $file->extension();
-            $file->move(public_path('tanda_tangan'), $fileTandaTangan);
+            $file->move(public_path($this->public_path_tanda_tangan), $fileTandaTangan);
 
             $dataUser = [
                 'id_user'           => $user->id_user,
@@ -272,11 +276,11 @@ class C_Pegawai extends Controller
         } elseif (Request()->foto_user <> "") {
             // foto user
             // if ($user->foto <> "") {
-            //     unlink(public_path('foto_user') . '/' . $user->foto);
+            //     unlink(public_path($this->public_path_user) . '/' . $user->foto);
             // }
             $file1 = Request()->foto_user;
             $fileUser = date('mdYHis') . Request()->nama . '.' . $file1->extension();
-            $file1->move(public_path('foto_user'), $fileUser);
+            $file1->move(public_path($this->public_path_user), $fileUser);
 
             $dataUser = [
                 'id_user'           => $user->id_user,
@@ -310,11 +314,11 @@ class C_Pegawai extends Controller
         } elseif (Request()->tanda_tangan <> "") {
             // tanda tangan
             // if ($pegawai->tanda_tangan <> "") {
-            //     unlink(public_path('tanda_tangan') . '/' . $pegawai->tanda_tangan);
+            //     unlink(public_path($this->public_path_tanda_tangan) . '/' . $pegawai->tanda_tangan);
             // }
             $file = Request()->tanda_tangan;
             $fileTandaTangan = date('mdYHis') . ' Tanda Tangan ' . Request()->nama . '.' . $file->extension();
-            $file->move(public_path('tanda_tangan'), $fileTandaTangan);
+            $file->move(public_path($this->public_path_tanda_tangan), $fileTandaTangan);
 
             $dataUser = [
                 'id_user'           => $user->id_user,
@@ -389,11 +393,11 @@ class C_Pegawai extends Controller
         $user = $this->ModelUser->detail($pegawai->id_user);
 
         if ($user->foto <> "") {
-            unlink(public_path('foto_user') . '/' . $user->foto);
+            unlink(public_path($this->public_path_user) . '/' . $user->foto);
         }
 
         if ($pegawai->tanda_tangan <> "") {
-            unlink(public_path('tanda_tangan') . '/' . $pegawai->tanda_tangan);
+            unlink(public_path($this->public_path_tanda_tangan) . '/' . $pegawai->tanda_tangan);
         }
 
         $this->ModelUser->deleteData($pegawai->id_user);

@@ -144,11 +144,11 @@ class C_KelolaPengajuanCuti extends Controller
 
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
-        $sid    = "AC944f941fef8a459f011bb10c3236df78";
-        $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+        // $sid    = "AC944f941fef8a459f011bb10c3236df78";
+        // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        $token  = "90d43b2449cc80c3123ca6bda966a0ce";
         $twilio = new Client($sid, $token);
 
         $message = $twilio->messages
@@ -183,11 +183,11 @@ class C_KelolaPengajuanCuti extends Controller
 
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
-        $sid    = "AC944f941fef8a459f011bb10c3236df78";
-        $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+        // $sid    = "AC944f941fef8a459f011bb10c3236df78";
+        // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        $token  = "90d43b2449cc80c3123ca6bda966a0ce";
         $twilio = new Client($sid, $token);
 
         $message = $twilio->messages
@@ -271,11 +271,11 @@ class C_KelolaPengajuanCuti extends Controller
 
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
-        $sid    = "AC944f941fef8a459f011bb10c3236df78";
-        $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+        // $sid    = "AC944f941fef8a459f011bb10c3236df78";
+        // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        $token  = "90d43b2449cc80c3123ca6bda966a0ce";
         $twilio = new Client($sid, $token);
 
         $message = $twilio->messages
@@ -329,11 +329,11 @@ class C_KelolaPengajuanCuti extends Controller
 
                 $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
-                $sid    = "AC944f941fef8a459f011bb10c3236df78";
-                $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+                // $sid    = "AC944f941fef8a459f011bb10c3236df78";
+                // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-                // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-                // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+                $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+                $token  = "90d43b2449cc80c3123ca6bda966a0ce";
                 $twilio = new Client($sid, $token);
 
                 $message = $twilio->messages
@@ -351,11 +351,11 @@ class C_KelolaPengajuanCuti extends Controller
 
                 $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
-                $sid    = "AC944f941fef8a459f011bb10c3236df78";
-                $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+                // $sid    = "AC944f941fef8a459f011bb10c3236df78";
+                // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-                // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-                // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+                $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+                $token  = "90d43b2449cc80c3123ca6bda966a0ce";
                 $twilio = new Client($sid, $token);
 
                 $message = $twilio->messages
@@ -426,11 +426,11 @@ class C_KelolaPengajuanCuti extends Controller
 
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
-        $sid    = "AC944f941fef8a459f011bb10c3236df78";
-        $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+        // $sid    = "AC944f941fef8a459f011bb10c3236df78";
+        // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        $token  = "90d43b2449cc80c3123ca6bda966a0ce";
         $twilio = new Client($sid, $token);
 
         $message = $twilio->messages
@@ -480,11 +480,11 @@ class C_KelolaPengajuanCuti extends Controller
 
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
-        $sid    = "AC944f941fef8a459f011bb10c3236df78";
-        $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+        // $sid    = "AC944f941fef8a459f011bb10c3236df78";
+        // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        $token  = "90d43b2449cc80c3123ca6bda966a0ce";
         $twilio = new Client($sid, $token);
 
         $message = $twilio->messages

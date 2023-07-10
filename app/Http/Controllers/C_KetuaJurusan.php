@@ -13,12 +13,14 @@ class C_KetuaJurusan extends Controller
     private $ModelUser;
     private $ModelSetting;
     private $ModelPegawai;
+    private $public_path;
 
     public function __construct()
     {
         $this->ModelUser = new ModelUser();
         $this->ModelSetting = new ModelSetting();
         $this->ModelPegawai = new ModelPegawai();
+        $this->public_path = 'foto_user';
     }
 
     public function index()
@@ -127,7 +129,7 @@ class C_KetuaJurusan extends Controller
 
         $file1 = Request()->foto_user;
         $fileUser = date('mdYHis') . Request()->nama . '.' . $file1->extension();
-        $file1->move(public_path('foto_user'), $fileUser);
+        $file1->move(public_path($this->public_path), $fileUser);
 
         $dataUser = [
             'nama'              => Request()->nama,
@@ -213,12 +215,12 @@ class C_KetuaJurusan extends Controller
             $user = $this->ModelUser->detail($pegawai->id_user);
 
             if ($user->foto <> "") {
-                unlink(public_path('foto_user') . '/' . $user->foto);
+                unlink(public_path($this->public_path) . '/' . $user->foto);
             }
 
             $file1 = Request()->foto_user;
             $fileUser = date('mdYHis') . Request()->nama . '.' . $file1->extension();
-            $file1->move(public_path('foto_user'), $fileUser);
+            $file1->move(public_path($this->public_path), $fileUser);
 
             $dataUser = [
                 'id_user'           => $user->id_user,
@@ -293,7 +295,7 @@ class C_KetuaJurusan extends Controller
         $user = $this->ModelUser->detail($pegawai->id_user);
 
         if ($user->foto <> "") {
-            unlink(public_path('foto_user') . '/' . $user->foto);
+            unlink(public_path($this->public_path) . '/' . $user->foto);
         }
 
         $this->ModelUser->deleteData($pegawai->id_user);

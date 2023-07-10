@@ -16,6 +16,7 @@ class C_Surat extends Controller
     private $ModelSurat;
     private $ModelSetting;
     private $ModelPegawai;
+    private $public_path;
 
     public function __construct()
     {
@@ -23,6 +24,7 @@ class C_Surat extends Controller
         $this->ModelUser = new ModelUser();
         $this->ModelSetting = new ModelSetting();
         $this->ModelPegawai = new ModelPegawai();
+        $this->public_path = 'file_surat';
     }
 
     public function index()
@@ -84,7 +86,7 @@ class C_Surat extends Controller
 
         $file1 = Request()->file_surat;
         $fileSurat = date('mdYHis') . ' ' . Request()->no_surat . '.' . $file1->extension();
-        $file1->move(public_path('file_surat'), $fileSurat);
+        $file1->move(public_path($this->public_path), $fileSurat);
 
         $data = [
             'no_surat'          => Request()->no_surat,
@@ -194,12 +196,12 @@ class C_Surat extends Controller
 
         if (Request()->file_surat <> "") {
             if ($surat->file_surat <> "") {
-                unlink(public_path('file_surat') . '/' . $surat->file_surat);
+                unlink(public_path($this->public_path) . '/' . $surat->file_surat);
             }
 
             $file = Request()->file_surat;
             $fileSurat = date('mdYHis') . ' ' . Request()->no_surat . '.' . $file->extension();
-            $file->move(public_path('file_surat'), $fileSurat);
+            $file->move(public_path($this->public_path), $fileSurat);
 
             $data = [
                 'id_surat'          => $id_surat,
@@ -257,7 +259,7 @@ class C_Surat extends Controller
         $surat = $this->ModelSurat->detail($id_surat);
 
         if ($surat->file_surat <> "") {
-            unlink(public_path('file_surat') . '/' . $surat->file_surat);
+            unlink(public_path($this->public_path) . '/' . $surat->file_surat);
         }
 
         $this->ModelSurat->deletePegawai($id_surat);

@@ -85,7 +85,7 @@ class C_Surat extends Controller
         ]);
 
         $file1 = Request()->file_surat;
-        $fileSurat = date('mdYHis') . ' ' . Request()->no_surat . '.' . $file1->extension();
+        $fileSurat = date('mdYHis') . '' . Request()->no_surat . '.' . $file1->extension();
         $file1->move(public_path($this->public_path), $fileSurat);
 
         $data = [
@@ -122,13 +122,13 @@ class C_Surat extends Controller
             $noHp = substr($item->nomor_telepon, 1);
             $jam = date('H:i', strtotime($item->tanggal));
             $tanggal = date('d F Y', strtotime($item->tanggal));
-            $pdfUrl = "https://himmi-polsub.com/si_ukt/cuti.pdf";
+            $pdfUrl = "https://sistem-kepegawaian.elearningpolsub.com/file_surat/" . $fileSurat;
 
-            $sid    = "AC944f941fef8a459f011bb10c3236df78";
-            $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+            // $sid    = "AC944f941fef8a459f011bb10c3236df78";
+            // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-            // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-            // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+            $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+            $token  = "90d43b2449cc80c3123ca6bda966a0ce";
             $twilio = new Client($sid, $token);
 
             $message = $twilio->messages
@@ -277,7 +277,7 @@ class C_Surat extends Controller
         // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
         // $twilio = new Client($sid, $token);
 
-        // $pdfUrl = "https://himmi-polsub.com/si_ukt/cuti.pdf";
+        // $pdfUrl = "http://sistem-kepegawaian.elearningpolsub.com/cuti.pdf";
 
         // $message = $twilio->messages
         //     ->create(
@@ -312,7 +312,7 @@ class C_Surat extends Controller
             $noHp = substr($item->nomor_telepon, 1);
             $jam = date('H:i', strtotime($item->tanggal));
             $tanggal = date('d F Y', strtotime($item->tanggal));
-            $pdfUrl = "https://himmi-polsub.com/si_ukt/cuti.pdf";
+            $pdfUrl = "http://sistem-kepegawaian.elearningpolsub.com/cuti.pdf";
 
             // $sid    = "AC944f941fef8a459f011bb10c3236df78";
             // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";

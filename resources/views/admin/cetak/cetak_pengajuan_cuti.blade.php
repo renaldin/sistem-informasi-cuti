@@ -356,7 +356,7 @@
                             Hormat saya,
                             <br>
                             @if ($detail->nip !== null)
-                                <img src="https://himmi-polsub.com/gambar/tanda_tangan/pegawai.png" width="29%" alt="">
+                                <img src="https://sistem-kepegawaian.elearningpolsub.com/tanda_tangan/{{$detail->tanda_tangan_pegawai }}" width="29%" alt="">
                             @endif
                             <br>
                             ( {{$detail->nama}} ) <br>
@@ -389,7 +389,7 @@
                             Hormat saya,
                             <br>
                             @if ($detail->ketua_jurusan !== null)
-                                <img src="https://himmi-polsub.com/gambar/tanda_tangan/kajur.png" width="29%" alt="">
+                                <img src="https://sistem-kepegawaian.elearningpolsub.com/tanda_tangan/{{$detail->tanda_tangan_kajur }}" width="29%" alt="">
                             @endif
                             <br>
                             ( @if($detail->ketua_jurusan === null) .............................................. @else {{$detail->ketua_jurusan}} @endif ) <br>
@@ -399,7 +399,7 @@
                 </table>
             </div>
 
-            <div style="margin-top: 10px;">
+            <div style="margin-top: 80px;">
                 <table class="table" style="width: 100%; border-top: #424141 1px solid; border-right: #424141 1px solid;">
                     <tr>
                         <th colspan="4" style="text-align: left; border-left: 1px solid #424141;">VIII. KEPUTUSAN PEJABAT YANG BERWENANG MEMBERIIKAN CUTI **</th>
@@ -422,7 +422,7 @@
                             Hormat saya,
                             <br>
                             @if ($detail->wakil_direktur !== null)
-                                <img src="https://himmi-polsub.com/gambar/tanda_tangan/wadir.png" width="29%" alt="">
+                                <img src="https://sistem-kepegawaian.elearningpolsub.com/tanda_tangan/{{$detail->tanda_tangan_wadir }}" width="29%" alt="">
                             @endif
                             <br>
                             ( @if($detail->wakil_direktur === null) .............................................. @else {{$detail->wakil_direktur}} @endif ) <br>

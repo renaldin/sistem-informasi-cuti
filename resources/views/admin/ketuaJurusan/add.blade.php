@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="input-box">
-                                            <label class="label-text">Foto</label>
+                                            <label class="label-text">Foto <span class="text-danger">* File format .jpg/jpeg/png</span></label>
                                             <div class="file-upload-wrap file-upload-wrap-3">
                                                 <input type="file" name="foto_user" class="multi file-upload-input with-preview" maxlength="3">
                                                 <span class="file-upload-text"><i class="la la-upload mr-2"></i>Upload File</span>

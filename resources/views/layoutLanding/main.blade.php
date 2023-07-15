@@ -75,12 +75,15 @@
                                             <a href="/">Home</a>
                                         </li>
                                     @endif
+                                        <li>
+                                            <a href="/login">Login</a>
+                                        </li>
                                 </ul>
                             </nav>
                         </div><!-- end main-menu-content -->
-                        <div class="nav-btn">
+                        {{-- <div class="nav-btn">
                             <a href="/login" class="theme-btn">Login</a>
-                        </div><!-- end nav-btn -->
+                        </div><!-- end nav-btn --> --}}
                     </div><!-- end menu-wrapper -->
                 </div><!-- end col-lg-12 -->
             </div><!-- end row -->

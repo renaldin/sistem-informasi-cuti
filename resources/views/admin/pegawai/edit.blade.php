@@ -58,7 +58,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="input-box">
-                                            <label class="label-text">Foto</label>
+                                            <label class="label-text">Foto <span class="text-danger">* File format .jpg/jpeg/png</span></label>
                                             <div class="form-group">
                                                 <input type="file" name="foto_user" class="form-control" maxlength="3">
                                             </div>
@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="input-box">
-                                            <label class="label-text">Tanda Tangan</label>
+                                            <label class="label-text">Tanda Tangan (QR Code) <span class="text-danger">* File format .jpg/jpeg/png</span></label>
                                             <div class="form-group">
                                                 <input type="file" name="tanda_tangan" class="form-control" maxlength="3">
                                             </div>

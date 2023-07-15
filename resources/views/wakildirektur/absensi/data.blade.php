@@ -229,7 +229,7 @@
                             </div>
                         </div>
                         <div class="input-box">
-                            <label class="label-text">File</label>
+                            <label class="label-text">File <span class="text-danger">* File format .pdf</span></label>
                             <div class="form-group">
                                 <input class="form-control" type="file" name="file_absensi">
                             </div>

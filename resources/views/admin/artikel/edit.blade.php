@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="input-box">
-                                            <label class="label-text">Dokumen <span class="text-danger">*</span></label>
+                                            <label class="label-text">Dokumen <span class="text-danger">* File format .pdf</span></label>
                                             <div class="form-group">
                                                 <input type="file" name="dokumen" class="form-control" maxlength="3">
                                                 <span class="file-upload-text"><i class="la la-upload mr-2"></i>Upload File</span>
@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="input-box">
-                                            <label class="label-text">Gambar <span class="text-danger">*</span></label>
+                                            <label class="label-text">Gambar <span class="text-danger">* File format .jpg/jpeg/png</span></label>
                                             <div class="form-group">
                                                 <input type="file" name="gambar" class="form-control" maxlength="3">
                                                 <span class="file-upload-text"><i class="la la-upload mr-2"></i>Upload File</span>

@@ -124,7 +124,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="input-box">
-                                            <label class="label-text">File Surat</label>
+                                            <label class="label-text">File Surat <span class="text-danger">* File format .pdf</label>
                                             <div class="form-group">
                                                 <input type="file" name="file_surat" class="form-control" maxlength="3" required>
                                             </div>

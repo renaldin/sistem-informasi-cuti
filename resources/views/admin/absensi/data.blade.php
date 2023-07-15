@@ -119,7 +119,7 @@
                 <form action="/import-absensi" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="input-box">
-                        <label class="label-text">File Excel</label>
+                        <label class="label-text">File Excel <small class="text-danger">File Format .xlsx</small></label>
                         <div class="form-group">
                             <input class="form-control" type="file" name="file" placeholder="Masukkan File Excel" required>
                         </div>

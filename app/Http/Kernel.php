@@ -2,7 +2,9 @@
 
 namespace App\Http;
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends HttpKernel
 {
@@ -70,4 +72,15 @@ class Kernel extends HttpKernel
         'ketuajurusan' => \App\Http\Middleware\KetuaJurusan::class,
         'bagianumum' => \App\Http\Middleware\BagianUmum::class,
     ];
+
+    protected function schedule(Schedule $schedule)
+    {
+        // Masukkan Kode Anda Disini
+        $schedule->call(function () {
+
+            //Pengecekan apakah cronjob berhasil atau tidak
+            //Mencatat info log 
+            Log::info('Cronjob berhasil dijalankan');
+        })->everyTwoMinutes();
+    }
 }

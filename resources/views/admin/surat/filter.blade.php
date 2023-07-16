@@ -34,6 +34,7 @@
                                     <a href="/tambah-surat" class="theme-btn theme-btn-small"><i class="la la-plus"></i> Tambah</a>
                                     <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#cetak"><i class="la la-print"></i> Cetak</button>
                                     <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#filter"><i class="la la-filter"></i> Filter</button>
+                                    <span style="float: right">Filter = {{$filter}}</span>
                                 </div>
                             </div>
                             <div class="mb-2">
@@ -84,47 +85,49 @@
                                         }
                                     @endphp
                                     @foreach ($dataSurat as $item)
-                                    <tr>
-                                        <th scope="row">{{ $no++ }}</th>
-                                        <td>
-                                            <button type="button" data-toggle="modal" data-target="#pegawai{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Kirim">Lihat</button>
-                                        </td>
-                                        {{-- <td>{{ $item->nama }}</td> --}}
-                                        <td>{{ $item->jenis_surat }}</td>
-                                        <td>{{ $item->status_terlaksana  }} Terlaksana</td>
-                                        <td>
-                                            @if (reminder($item->tanggal) >= 1440)
-                                                <span class="badge badge-success py-1 px-2">
-                                                    {{ $item->tanggal }}
-                                                </span>
-                                            @elseif(reminder($item->tanggal) >= 30)
-                                                <span class="badge badge-warning py-1 px-2">
-                                                    {{ $item->tanggal }}
-                                                </span>
-                                            @elseif(reminder($item->tanggal) >= 0)
-                                                <span class="badge badge-danger py-1 px-2">
-                                                    {{ $item->tanggal }}
-                                                </span>
-                                            @else
-                                                <span class="badge badge-primary py-1 px-2">
-                                                    {{ $item->tanggal }}
-                                                </span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <div class="table-content">
-                                                @if ($item->status_surat === 'Sudah Dikirim')
-                                                    <button type="button" data-toggle="modal" data-target="#reminder{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Reminder ke WA"><i class="la la-send"></i></button>
-                                                    <a href="/edit-surat/{{ $item->id_surat }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
-                                                    <a href="/detail-surat/{{ $item->id_surat }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
-                                                    <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
-                                                @else
-                                                    <a href="/edit-surat/{{ $item->id_surat }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
-                                                    {{-- <button type="button" data-toggle="modal" data-target="#kirim{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Kirim Surat"><i class="la la-check"></i></button> --}}
-                                                @endif
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        @if ($item->jenis_surat === $filter)
+                                            <tr>
+                                                <th scope="row">{{ $no++ }}</th>
+                                                <td>
+                                                    <button type="button" data-toggle="modal" data-target="#pegawai{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Kirim">Lihat</button>
+                                                </td>
+                                                {{-- <td>{{ $item->nama }}</td> --}}
+                                                <td>{{ $item->jenis_surat }}</td>
+                                                <td>{{ $item->status_terlaksana  }} Terlaksana</td>
+                                                <td>
+                                                    @if (reminder($item->tanggal) >= 1440)
+                                                        <span class="badge badge-success py-1 px-2">
+                                                            {{ $item->tanggal }}
+                                                        </span>
+                                                    @elseif(reminder($item->tanggal) >= 30)
+                                                        <span class="badge badge-warning py-1 px-2">
+                                                            {{ $item->tanggal }}
+                                                        </span>
+                                                    @elseif(reminder($item->tanggal) >= 0)
+                                                        <span class="badge badge-danger py-1 px-2">
+                                                            {{ $item->tanggal }}
+                                                        </span>
+                                                    @else
+                                                        <span class="badge badge-primary py-1 px-2">
+                                                            {{ $item->tanggal }}
+                                                        </span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    <div class="table-content">
+                                                        @if ($item->status_surat === 'Sudah Dikirim')
+                                                            <button type="button" data-toggle="modal" data-target="#reminder{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Reminder ke WA"><i class="la la-send"></i></button>
+                                                            <a href="/edit-surat/{{ $item->id_surat }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
+                                                            <a href="/detail-surat/{{ $item->id_surat }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
+                                                            <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
+                                                        @else
+                                                            <a href="/edit-surat/{{ $item->id_surat }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
+                                                            {{-- <button type="button" data-toggle="modal" data-target="#kirim{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Kirim Surat"><i class="la la-check"></i></button> --}}
+                                                        @endif
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>

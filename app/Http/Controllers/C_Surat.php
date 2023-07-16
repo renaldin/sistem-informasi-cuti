@@ -39,10 +39,52 @@ class C_Surat extends Controller
             'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'dataSurat' => $this->ModelSurat->getData(),
+            'jenisSurat' => $this->ModelSurat->filter('jenis_surat'),
             'dataDetailSurat'   => $this->ModelSurat->getDataPegawai()
         ];
 
         return view('admin.surat.data', $data);
+    }
+
+    public function filter()
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $user = $this->ModelUser->detail(Session()->get('id_user'));
+
+        if ($user->role == 'Pegawai') {
+            $route = 'pegawai.surat.filter';
+            $dataUser = $this->ModelSurat->getDataPegawai();
+        } elseif ($user->role == 'Bagian Umum') {
+            $route = 'bagianumum.surat.filter';
+            $dataUser = $this->ModelSurat->getDataPegawai();
+        } elseif ($user->role == 'Wakil Direktur') {
+            $route = 'wakildirektur.surat.filter';
+            $dataUser = $this->ModelSurat->getDataPegawai();
+        } elseif ($user->role == 'Ketua Jurusan') {
+            $route = 'ketuajurusan.surat.filter';
+            $dataUser = $this->ModelSurat->getDataPegawai();
+        } elseif ($user->role == 'Admin') {
+            $route = 'admin.surat.filter';
+            $dataUser = $this->ModelSurat->getData();
+        }
+
+        if (Request()->jenis_filter === 'Jenis Surat') {
+            $data = [
+                'title'     => 'Data Surat',
+                'subTitle'  => 'Kelola Surat',
+                'biodata'   => $this->ModelSetting->detail(1),
+                'user'      => $user,
+                'dataSurat' => $dataUser,
+                'filter'    => Request()->jenis_surat,
+                'jenisSurat' => $this->ModelSurat->filter('jenis_surat'),
+                'dataDetailSurat'   => $this->ModelSurat->getDataPegawai()
+            ];
+        }
+
+        return view($route, $data);
     }
 
     public function add()
@@ -425,6 +467,7 @@ class C_Surat extends Controller
             'subTitle'      => 'Riwayat Surat Tugas',
             'biodata'       => $this->ModelSetting->detail(1),
             'user'          => $this->ModelUser->detail(Session()->get('id_user')),
+            'jenisSurat' => $this->ModelSurat->filter('jenis_surat'),
             'dataSurat'     => $this->ModelSurat->getDataPegawai()
         ];
 

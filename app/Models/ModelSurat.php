@@ -19,6 +19,14 @@ class ModelSurat extends Model
             ->orderBy('id_surat', 'DESC')->get();
     }
 
+    public function filter($filter)
+    {
+        return DB::table($this->table)
+            ->select($filter)
+            ->distinct()
+            ->get();
+    }
+
     // public function getDataSurat()
     // {
     //     return DB::table('de')

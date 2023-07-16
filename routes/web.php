@@ -65,6 +65,7 @@ Route::group(['middleware' => 'revalidate'], function () {
     Route::get('/reminder-surat/{id}', [C_Surat::class, 'reminder']);
     // riwayat surat tugas
     Route::get('/riwayat-surat-tugas', [C_Surat::class, 'history'])->name('riwayat-surat-tugas');
+    Route::post('/filter-surat', [C_Surat::class, 'filter'])->name('filter');
 
     // absensi
     // Route::post('/absensi_tanggal', [C_Absensi::class, 'absensiByDate']);

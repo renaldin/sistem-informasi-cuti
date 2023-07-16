@@ -84,6 +84,7 @@
                             <div class="row mb-2">
                                 <div class="col-lg-12">
                                     <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#filter"><i class="la la-filter"></i> Filter</button>
+                                    <span style="float: right">Filter = {{$filter}}</span>
                                 </div>
                             </div>
                             <table class="table" id="example2">
@@ -118,37 +119,39 @@
                                         }
                                     @endphp
                                     @foreach ($dataSurat as $item)
-                                    @if ($item->id_user == $user->id_user && $item->status_surat == 'Sudah Dikirim')
-                                        <tr>
-                                            <th scope="row">{{ $no++ }}</th>
-                                            <td>{{ $item->no_surat }}</td>
-                                            <td>{{ $item->perihal_surat }}</td>
-                                            <td>
-                                                @if (reminder($item->tanggal) >= 1440)
-                                                    <span class="badge badge-success py-1 px-2">
-                                                        {{ $item->tanggal }}
-                                                    </span>
-                                                @elseif(reminder($item->tanggal) >= 30)
-                                                    <span class="badge badge-warning py-1 px-2">
-                                                        {{ $item->tanggal }}
-                                                    </span>
-                                                @elseif(reminder($item->tanggal) >= 0)
-                                                    <span class="badge badge-danger py-1 px-2">
-                                                        {{ $item->tanggal }}
-                                                    </span>
-                                                @else
-                                                    <span class="badge badge-primary py-1 px-2">
-                                                        {{ $item->tanggal }}
-                                                    </span>
-                                                @endif    
-                                            </td>
-                                            <td>{{ $item->status_terlaksana }} Terlaksana</td>
-                                            <td>
-                                                <div class="table-content">
-                                                    <button type="button" class="theme-btn theme-btn-small mb-1" data-toggle="modal" data-target="#detail{{$item->id_surat}}" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    @if ($item->id_user == $user->id_user && $item->status_surat == 'Sudah Dikirim') 
+                                        @if ($item->jenis_surat === $filter)
+                                            <tr>
+                                                <th scope="row">{{ $no++ }}</th>
+                                                <td>{{ $item->no_surat }}</td>
+                                                <td>{{ $item->perihal_surat }}</td>
+                                                <td>
+                                                    @if (reminder($item->tanggal) >= 1440)
+                                                        <span class="badge badge-success py-1 px-2">
+                                                            {{ $item->tanggal }}
+                                                        </span>
+                                                    @elseif(reminder($item->tanggal) >= 30)
+                                                        <span class="badge badge-warning py-1 px-2">
+                                                            {{ $item->tanggal }}
+                                                        </span>
+                                                    @elseif(reminder($item->tanggal) >= 0)
+                                                        <span class="badge badge-danger py-1 px-2">
+                                                            {{ $item->tanggal }}
+                                                        </span>
+                                                    @else
+                                                        <span class="badge badge-primary py-1 px-2">
+                                                            {{ $item->tanggal }}
+                                                        </span>
+                                                    @endif    
+                                                </td>
+                                                <td>{{ $item->status_terlaksana }} Terlaksana</td>
+                                                <td>
+                                                    <div class="table-content">
+                                                        <button type="button" class="theme-btn theme-btn-small mb-1" data-toggle="modal" data-target="#detail{{$item->id_surat}}" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endif
                                     @endforeach
                                 </tbody>

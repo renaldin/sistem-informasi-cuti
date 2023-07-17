@@ -126,7 +126,7 @@
                                             @enderror
                                         </div>          
                                     </div>
-                                    <div class="col-lg-6">
+                                    {{-- <div class="col-lg-6">
                                         <div class="input-box">
                                             <label class="label-text">Status Terlaksana</label>
                                             <div class="form-group select-contain w-100">
@@ -147,7 +147,7 @@
                                             </div>
                                             @enderror
                                         </div>          
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-6">
                                         <div class="input-box">
                                             <label class="label-text">File Surat <span class="text-danger">* File format .pdf</span></label>

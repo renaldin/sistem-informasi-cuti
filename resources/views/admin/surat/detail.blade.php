@@ -8,8 +8,12 @@
                 <div class="form-box">
                     <div class="form-title-wrap">
                         <div>
-                            <h3 class="title">{{ $subTitle }}</h3>
-                            <p class="font-size-14">Form {{ $subTitle }}</p>
+                            <h3 class="title">{{ $subTitle }} (@if ($detail->tanggal > date('Y-m-d H:i:s'))
+                                Belum Terlaksana
+                            @else
+                                Sudah Terlaksana
+                            @endif)</h3>
+                            <p class="font-size-14">{{ $subTitle }}</p>
                         </div>
                     </div>
                     <div class="form-content">
@@ -124,7 +128,7 @@
                                         </div>          
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                {{-- <div class="col-lg-6">
                                     <div class="input-box">
                                         <label class="label-text">Status Terlaksana</label>
                                         <div class="form-group select-contain w-100">
@@ -145,7 +149,7 @@
                                         </div>
                                         @enderror
                                     </div>          
-                                </div>
+                                </div> --}}
                                 <div class="col-lg-12 mt-3 text-center">
                                     <label class="label-text">File Surat</label>
                                     <iframe src="{{ asset('file_surat/'.$detail->file_surat) }}" frameborder="0" scrolling="auto" width="100%" height="500px"></iframe>

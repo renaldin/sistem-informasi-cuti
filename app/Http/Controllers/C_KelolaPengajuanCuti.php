@@ -147,18 +147,51 @@ class C_KelolaPengajuanCuti extends Controller
         // $sid    = "AC944f941fef8a459f011bb10c3236df78";
         // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-        $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-        $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-        $twilio = new Client($sid, $token);
+        // SENDTALK
+        $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+        $whatsapp_phone = '+62' . $noHp;
 
-        $message = $twilio->messages
-            ->create(
-                "whatsapp:+62" . $noHp, // to
-                array(
-                    "from" => "whatsapp:+14155238886",
-                    "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Ketua Jurusan. Silahkan di cek di website SIMPEG Polsub!"
-                )
-            );
+
+        $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Ketua Jurusan. Silahkan di cek di website SIMPEG Polsub!";
+
+        $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+        $data = [
+            "phone" => $whatsapp_phone,
+            "messageType" => "text",
+            "documentUrl" => $message
+        ];
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = array(
+            "API-Key: $token",
+            "Content-Type: application/json",
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        //for debug only!
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+        curl_exec($curl);
+        curl_close($curl);
+
+        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        // $twilio = new Client($sid, $token);
+
+        // $message = $twilio->messages
+        //     ->create(
+        //         "whatsapp:+62" . $noHp, // to
+        //         array(
+        //             "from" => "whatsapp:+14155238886",
+        //             "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Ketua Jurusan. Silahkan di cek di website SIMPEG Polsub!"
+        //         )
+        //     );
 
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
@@ -183,21 +216,55 @@ class C_KelolaPengajuanCuti extends Controller
 
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
+        // SENDTALK
+        $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+        $whatsapp_phone = '+62' . $noHp;
+
+
+        $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Admin. Silahkan di cek di website SIMPEG Polsub!";
+
+        $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+        $data = [
+            "phone" => $whatsapp_phone,
+            "messageType" => "text",
+            "documentUrl" => $message
+        ];
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = array(
+            "API-Key: $token",
+            "Content-Type: application/json",
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        //for debug only!
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+        curl_exec($curl);
+        curl_close($curl);
+
+        // TWILIO
         // $sid    = "AC944f941fef8a459f011bb10c3236df78";
         // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-        $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-        $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-        $twilio = new Client($sid, $token);
+        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        // $twilio = new Client($sid, $token);
 
-        $message = $twilio->messages
-            ->create(
-                "whatsapp:+62" . $noHp, // to
-                array(
-                    "from" => "whatsapp:+14155238886",
-                    "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Admin. Silahkan di cek di website SIMPEG Polsub!"
-                )
-            );
+        // $message = $twilio->messages
+        //     ->create(
+        //         "whatsapp:+62" . $noHp, // to
+        //         array(
+        //             "from" => "whatsapp:+14155238886",
+        //             "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Admin. Silahkan di cek di website SIMPEG Polsub!"
+        //         )
+        //     );
 
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
@@ -271,21 +338,55 @@ class C_KelolaPengajuanCuti extends Controller
 
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
+        // SENDTALK
+        $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+        $whatsapp_phone = '+62' . $noHp;
+
+
+        $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Ketua Jurusan. Silahkan cek di website SIMPEG Polsub!";
+
+        $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+        $data = [
+            "phone" => $whatsapp_phone,
+            "messageType" => "text",
+            "documentUrl" => $message
+        ];
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = array(
+            "API-Key: $token",
+            "Content-Type: application/json",
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        //for debug only!
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+        curl_exec($curl);
+        curl_close($curl);
+
+        // TWILIO
         // $sid    = "AC944f941fef8a459f011bb10c3236df78";
         // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-        $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-        $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-        $twilio = new Client($sid, $token);
+        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        // $twilio = new Client($sid, $token);
 
-        $message = $twilio->messages
-            ->create(
-                "whatsapp:+62" . $noHp, // to
-                array(
-                    "from" => "whatsapp:+14155238886",
-                    "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Ketua Jurusan. Silahkan cek di website SIMPEG Polsub!"
-                )
-            );
+        // $message = $twilio->messages
+        //     ->create(
+        //         "whatsapp:+62" . $noHp, // to
+        //         array(
+        //             "from" => "whatsapp:+14155238886",
+        //             "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Ketua Jurusan. Silahkan cek di website SIMPEG Polsub!"
+        //         )
+        //     );
 
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
@@ -329,21 +430,55 @@ class C_KelolaPengajuanCuti extends Controller
 
                 $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
+                // SENDTALK
+                $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+                $whatsapp_phone = '+62' . $noHp;
+
+
+                $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda tidak disetujui oleh Ketua Jurusan. Silahkan cek di website SIMPEG Polsub!";
+
+                $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+                $data = [
+                    "phone" => $whatsapp_phone,
+                    "messageType" => "text",
+                    "documentUrl" => $message
+                ];
+
+                $curl = curl_init($url);
+                curl_setopt($curl, CURLOPT_URL, $url);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+                $headers = array(
+                    "API-Key: $token",
+                    "Content-Type: application/json",
+                );
+                curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+                //for debug only!
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+                curl_exec($curl);
+                curl_close($curl);
+
+                // TWILIO
                 // $sid    = "AC944f941fef8a459f011bb10c3236df78";
                 // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-                $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-                $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-                $twilio = new Client($sid, $token);
+                // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+                // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+                // $twilio = new Client($sid, $token);
 
-                $message = $twilio->messages
-                    ->create(
-                        "whatsapp:+62" . $noHp, // to
-                        array(
-                            "from" => "whatsapp:+14155238886",
-                            "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda tidak disetujui oleh Ketua Jurusan. Silahkan cek di website SIMPEG Polsub!"
-                        )
-                    );
+                // $message = $twilio->messages
+                //     ->create(
+                //         "whatsapp:+62" . $noHp, // to
+                //         array(
+                //             "from" => "whatsapp:+14155238886",
+                //             "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda tidak disetujui oleh Ketua Jurusan. Silahkan cek di website SIMPEG Polsub!"
+                //         )
+                //     );
 
                 $status_pengajuan = 'Selesai';
             } else {
@@ -351,21 +486,56 @@ class C_KelolaPengajuanCuti extends Controller
 
                 $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
+                // SENDTALK
+                $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+                $whatsapp_phone = '+62' . $noHp;
+
+
+                $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Wakil Direktur. Silahkan cek di website SIMPEG Polsub!";
+
+                $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+                $data = [
+                    "phone" => $whatsapp_phone,
+                    "messageType" => "text",
+                    "documentUrl" => $message
+                ];
+
+                $curl = curl_init($url);
+                curl_setopt($curl, CURLOPT_URL, $url);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+                $headers = array(
+                    "API-Key: $token",
+                    "Content-Type: application/json",
+                );
+                curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+                //for debug only!
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+                curl_exec($curl);
+                curl_close($curl);
+
+                // TWILIO
+
                 // $sid    = "AC944f941fef8a459f011bb10c3236df78";
                 // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-                $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-                $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-                $twilio = new Client($sid, $token);
+                // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+                // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+                // $twilio = new Client($sid, $token);
 
-                $message = $twilio->messages
-                    ->create(
-                        "whatsapp:+62" . $noHp, // to
-                        array(
-                            "from" => "whatsapp:+14155238886",
-                            "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Wakil Direktur. Silahkan cek di website SIMPEG Polsub!"
-                        )
-                    );
+                // $message = $twilio->messages
+                //     ->create(
+                //         "whatsapp:+62" . $noHp, // to
+                //         array(
+                //             "from" => "whatsapp:+14155238886",
+                //             "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Wakil Direktur. Silahkan cek di website SIMPEG Polsub!"
+                //         )
+                //     );
 
                 $status_pengajuan = 'Dikirim ke Wakil Direktur';
             }
@@ -426,21 +596,56 @@ class C_KelolaPengajuanCuti extends Controller
 
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
+        // SENDTALK
+        $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+        $whatsapp_phone = '+62' . $noHp;
+
+
+        $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Wakil Direktur. Silahkan cek di website SIMPEG Polsub!";
+
+        $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+        $data = [
+            "phone" => $whatsapp_phone,
+            "messageType" => "text",
+            "documentUrl" => $message
+        ];
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = array(
+            "API-Key: $token",
+            "Content-Type: application/json",
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        //for debug only!
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+        curl_exec($curl);
+        curl_close($curl);
+
+        // TWILIO
+
         // $sid    = "AC944f941fef8a459f011bb10c3236df78";
         // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-        $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-        $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-        $twilio = new Client($sid, $token);
+        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        // $twilio = new Client($sid, $token);
 
-        $message = $twilio->messages
-            ->create(
-                "whatsapp:+62" . $noHp, // to
-                array(
-                    "from" => "whatsapp:+14155238886",
-                    "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Wakil Direktur. Silahkan cek di website SIMPEG Polsub!"
-                )
-            );
+        // $message = $twilio->messages
+        //     ->create(
+        //         "whatsapp:+62" . $noHp, // to
+        //         array(
+        //             "from" => "whatsapp:+14155238886",
+        //             "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Wakil Direktur. Silahkan cek di website SIMPEG Polsub!"
+        //         )
+        //     );
 
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
@@ -480,21 +685,56 @@ class C_KelolaPengajuanCuti extends Controller
 
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
+        // SENDTALK
+        $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+        $whatsapp_phone = '+62' . $noHp;
+
+
+        $message = "Hallo {$pengajuanCuti->nama}!\n\nPengajuan cuti Anda sudah selesai. Silahkan cek hasilnya di website SIMPEG Polsub!";
+
+        $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+        $data = [
+            "phone" => $whatsapp_phone,
+            "messageType" => "text",
+            "documentUrl" => $message
+        ];
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = array(
+            "API-Key: $token",
+            "Content-Type: application/json",
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        //for debug only!
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+        curl_exec($curl);
+        curl_close($curl);
+
+        // TWILIO
+
         // $sid    = "AC944f941fef8a459f011bb10c3236df78";
         // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-        $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-        $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-        $twilio = new Client($sid, $token);
+        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+        // $twilio = new Client($sid, $token);
 
-        $message = $twilio->messages
-            ->create(
-                "whatsapp:+62" . $noHp, // to
-                array(
-                    "from" => "whatsapp:+14155238886",
-                    "body" => "Hallo {$pengajuanCuti->nama}!\n\nPengajuan cuti Anda sudah selesai. Silahkan cek hasilnya di website SIMPEG Polsub!"
-                )
-            );
+        // $message = $twilio->messages
+        //     ->create(
+        //         "whatsapp:+62" . $noHp, // to
+        //         array(
+        //             "from" => "whatsapp:+14155238886",
+        //             "body" => "Hallo {$pengajuanCuti->nama}!\n\nPengajuan cuti Anda sudah selesai. Silahkan cek hasilnya di website SIMPEG Polsub!"
+        //         )
+        //     );
 
         $data = [
             'id_pengajuan_cuti'                => $id_pengajuan_cuti,

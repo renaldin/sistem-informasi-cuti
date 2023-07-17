@@ -91,7 +91,13 @@
                                         </td>
                                         {{-- <td>{{ $item->nama }}</td> --}}
                                         <td>{{ $item->jenis_surat }}</td>
-                                        <td>{{ $item->status_terlaksana  }} Terlaksana</td>
+                                        <td>
+                                            @if ($item->tanggal > date('Y-m-d H:i:s'))
+                                                Belum Terlaksana
+                                            @else
+                                                Sudah Terlaksana
+                                            @endif  
+                                        </td>
                                         <td>
                                             @if (reminder($item->tanggal) >= 1440)
                                                 <span class="badge badge-success py-1 px-2">

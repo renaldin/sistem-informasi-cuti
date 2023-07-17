@@ -181,7 +181,13 @@
                         <td class="text-center" width="20">{{$no++}}</td>
                         <td>{{ $item->nama }}</td>
 						<td>{{ $item->no_surat }}</td>
-						<td>{{ $item->status_surat }}</span></td>
+						<td>
+							@if ($item->tanggal > date('Y-m-d H:i:s'))
+								Belum Terlaksana
+							@else
+								Sudah Terlaksana
+							@endif	
+						</td>
 						<td>{{ date('d F Y', strtotime($item->tanggal_upload)) }}</td>
                     </tr>
                     @endforeach

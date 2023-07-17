@@ -73,14 +73,11 @@ class Kernel extends HttpKernel
         'bagianumum' => \App\Http\Middleware\BagianUmum::class,
     ];
 
-    protected function schedule(Schedule $schedule)
-    {
-        // Masukkan Kode Anda Disini
-        $schedule->call(function () {
-
-            //Pengecekan apakah cronjob berhasil atau tidak
-            //Mencatat info log 
-            Log::info('Cronjob berhasil dijalankan');
-        })->everyTwoMinutes();
-    }
+    // protected function schedule(Schedule $schedule)
+    // {
+    //     $schedule->call(function () {
+    //         // Panggil fungsi Anda di sini
+    //         // myFunction();
+    //     })->dailyAt('08:00');
+    // }
 }

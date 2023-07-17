@@ -142,7 +142,13 @@
                                                     </span>
                                                 @endif    
                                             </td>
-                                            <td>{{ $item->status_terlaksana }} Terlaksana</td>
+                                            <td>
+                                                @if ($item->tanggal > date('Y-m-d H:i:s'))
+                                                    Belum Terlaksana
+                                                @else
+                                                    Sudah Terlaksana
+                                                @endif
+                                            </td>
                                             <td>
                                                 <div class="table-content">
                                                     <button type="button" class="theme-btn theme-btn-small mb-1" data-toggle="modal" data-target="#detail{{$item->id_surat}}" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></button>
@@ -249,7 +255,13 @@
                         <tr>
                             <th>Status Surat</th>
                             <td>:</td>
-                            <td>{{$item->status_terlaksana}} Terlaksana</td>
+                            <td>
+                                @if ($item->tanggal > date('Y-m-d H:i:s'))
+                                    Belum Terlaksana
+                                @else
+                                    Sudah Terlaksana
+                                @endif    
+                            </td>
                         </tr>
                     </table>
                 </div>

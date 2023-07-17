@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2023 at 04:15 AM
+-- Generation Time: Jul 17, 2023 at 08:40 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -162,7 +162,13 @@ INSERT INTO `detail_surat` (`id_detail_surat`, `id_surat`, `id_pegawai`) VALUES
 (11, 7, 9),
 (12, 8, 14),
 (13, 8, 9),
-(14, 8, 8);
+(14, 8, 8),
+(15, 9, 9),
+(16, 9, 8),
+(17, 10, 9),
+(18, 10, 8),
+(19, 11, 9),
+(20, 12, 8);
 
 -- --------------------------------------------------------
 
@@ -301,7 +307,11 @@ INSERT INTO `surat` (`id_surat`, `no_surat`, `perihal_surat`, `hari`, `tanggal`,
 (5, '22222222', 'Perihal Surat', 'Senin', '2023-07-11 00:00:00', 'Kampus 2', 'Jenis Surat', '06292023074940 22222222.pdf', '2023-06-29', 'Sudah Dikirim', 'Belum'),
 (6, '12345678', 'akreditasi', 'Kamis', '2023-07-06 09:30:00', 'gkb', 'surat edaran', '07062023021126 12345678.pdf', '2023-07-06', 'Sudah Dikirim', 'Sudah'),
 (7, '12345678', 'akreditasi', 'Kamis', '2023-07-06 10:20:00', 'gkb', 'surat edaran', '07062023031651 12345678.pdf', '2023-07-06', 'Sudah Dikirim', 'Sudah'),
-(8, '121212', 'Perihal Surat', 'Senin', '2023-07-10 11:00:00', 'Kampus', 'Jenis Surat', '07092023195831 121212.pdf', '2023-07-09', 'Sudah Dikirim', 'Belum');
+(8, '121212', 'Perihal Surat', 'Senin', '2023-07-10 11:00:00', 'Kampus', 'Jenis Surat', '07092023195831 121212.pdf', '2023-07-09', 'Sudah Dikirim', 'Belum'),
+(9, '111111222', 'Perihal', 'Senin', '2023-07-18 23:41:00', 'Kampus', 'Jenis Surat', '07172023164219111111222.pdf', '2023-07-17', 'Sudah Dikirim', 'Belum'),
+(10, '2123242', 'Perihal', 'Senin', '2023-07-18 23:43:00', 'Kampus', 'Jenis Surat', '071720231643492123242.pdf', '2023-07-17', 'Sudah Dikirim', 'Belum'),
+(11, '12345', 'Perihal', 'Senin', '2023-07-18 23:52:00', 'Kampus 2', 'Jenis Surat', '0717202316525312345.pdf', '2023-07-17', 'Sudah Dikirim', 'Belum'),
+(12, '00000', 'Perihal', 'Senin', '2023-07-19 00:17:00', 'Kampus', 'Jenis Surat', '0717202317173200000.pdf', '2023-07-17', 'Sudah Dikirim', 'Belum');
 
 -- --------------------------------------------------------
 
@@ -344,8 +354,8 @@ INSERT INTO `users` (`id_user`, `nama`, `nip`, `email`, `password`, `nomor_telep
 (23, 'Kajur Agro & Gelar', '222222222222222222', 'kajur_agro@gmail.com', '$2y$10$PBCYTQOSTl8cRLFrewtX5uLYY50RXK87.yZzPJdShXJajMz4C0LS.', '0895336928026', 'Ketua Jurusan', '06142023120027Kajur & Gelar.jpg'),
 (24, 'Kajur Mesin & Gelar', '333333333333333333', 'kajur_mesin@gmail.com', '$2y$10$tzyWPGz4DLK3zWqzpdbl6uczBRnQWIVGk4kfWmg3EdY4YRbXtgaBG', '0895336928026', 'Ketua Jurusan', '06142023120447Kajur Mesin & Gelar.jpg'),
 (25, 'Kajur Kesehatan & Gelar', '444444444444444444', 'kajur_kep@gmail.com', '$2y$10$jdD3qNcRMQ529ZGNFssdYO5/Z6w2VkIgOMgpshBES6OJuHWTR8VMK', '0895336928026', 'Ketua Jurusan', '06142023120700Kajur Kesehatan & Gelar.jpg'),
-(26, 'Wadir 1 & Gelar', '555555555555555555', 'wadir1@gmail.com', '$2y$10$R0NL3dWHCiqj/xXCcX8QBeAN2BfM9uwh9X41xpYwPv.4XCKp/d3nS', '08989784353', 'Wakil Direktur', '06142023120923Wadir 1 & Gelar.jpg'),
-(27, 'Wadir 2 & Gelar', '666666666666666666', 'wadir2@gmail.com', '$2y$10$a2GjSaHsMx3G7TEW34DX2OawQM3zIs7./zZgnoai25OAWs7uCb3tG', '08989784353', 'Wakil Direktur', '06142023121041Wadir 2 & Gelar.jpg'),
+(26, 'Wadir 1 & Gelar', '555555555555555555', 'wadir1@gmail.com', '$2y$10$R0NL3dWHCiqj/xXCcX8QBeAN2BfM9uwh9X41xpYwPv.4XCKp/d3nS', '0895336928026', 'Wakil Direktur', '06142023120923Wadir 1 & Gelar.jpg'),
+(27, 'Wadir 2 & Gelar', '666666666666666666', 'wadir2@gmail.com', '$2y$10$a2GjSaHsMx3G7TEW34DX2OawQM3zIs7./zZgnoai25OAWs7uCb3tG', '0895336928026', 'Wakil Direktur', '06142023121041Wadir 2 & Gelar.jpg'),
 (29, 'Pegawai 1', '121212121212121212', 'pegawai_1@gmail.com', '$2y$10$dC1xDFO5xakOhrfzgQG.L.X/Bx5IJAhdAKRCZv4onCLHhMagn7vfG', '0895336928026', 'Pegawai', '06142023121503Pegawai 1.jpg'),
 (30, 'Pegawai 2', '131313131313131313', 'pegawai_2@gmail.com', '$2y$10$0xYc2rQAtEPiJXxlASoQ6ejGObx0VE0egZ4Fq54c.zkNcjzBnFmXO', '0895336928026', 'Pegawai', '06142023164358Pegawai 2.jpg'),
 (35, 'sisnawati', '2345678973245678', 'sisna@gmail.com', '$2y$10$CoO1viAsI2wp.G2jiZsoBuTFkcDhS7N907cDNMhM8HfW0bZNzNN/q', '0895336928026', 'Pegawai', '07062023020950sisnawati.png'),
@@ -429,7 +439,7 @@ ALTER TABLE `artikel`
 -- AUTO_INCREMENT for table `detail_surat`
 --
 ALTER TABLE `detail_surat`
-  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -453,7 +463,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tambah_surat`

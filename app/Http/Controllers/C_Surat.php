@@ -166,30 +166,64 @@ class C_Surat extends Controller
             $tanggal = date('d F Y', strtotime($item->tanggal));
             $pdfUrl = "https://sistem-kepegawaian.elearningpolsub.com/file_surat/" . $fileSurat;
 
+            // SENDTALK
+            $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+            $whatsapp_phone = '+62' . $noHp;
+
+
+            $message = "Hallo {$item->nama}!\n\nAda pemberitahuan surat buat Anda dengan deskripsi sebagai berikut:\n\nNo. Surat : {$item->no_surat}\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nUntuk lebih jelasnya Anda bisa cek di website SIMPEG POLSUB!!!\n\nTerima kasih.";
+
+            $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+            $data = [
+                "phone" => $whatsapp_phone,
+                "messageType" => "text",
+                "documentUrl" => $message
+            ];
+
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+            $headers = array(
+                "API-Key: $token",
+                "Content-Type: application/json",
+            );
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+            //for debug only!
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+            curl_exec($curl);
+            curl_close($curl);
+
+            // twilio
             // $sid    = "AC944f941fef8a459f011bb10c3236df78";
             // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
-            $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-            $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-            $twilio = new Client($sid, $token);
+            // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+            // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+            // $twilio = new Client($sid, $token);
 
-            $message = $twilio->messages
-                ->create(
-                    "whatsapp:+62" . $noHp, // to
-                    array(
-                        "from" => "whatsapp:+14155238886",
-                        "body" => "Hallo {$item->nama}!\n\nAda pemberitahuan surat buat Anda dengan deskripsi sebagai berikut:\n\nNo. Surat : {$item->no_surat}\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nUntuk lebih jelasnya Anda bisa cek suratnya dibawah ini!!!\n\nTerima kasih."
-                    )
-                );
+            // $message = $twilio->messages
+            //     ->create(
+            //         "whatsapp:+62" . $noHp, // to
+            //         array(
+            //             "from" => "whatsapp:+14155238886",
+            //             "body" => "Hallo {$item->nama}!\n\nAda pemberitahuan surat buat Anda dengan deskripsi sebagai berikut:\n\nNo. Surat : {$item->no_surat}\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nUntuk lebih jelasnya Anda bisa cek suratnya dibawah ini!!!\n\nTerima kasih."
+            //         )
+            //     );
 
-            $message2 = $twilio->messages
-                ->create(
-                    "whatsapp:+62" . $noHp, // to
-                    array(
-                        "from" => "whatsapp:+14155238886",
-                        'mediaUrl' => $pdfUrl,
-                    )
-                );
+            // $message2 = $twilio->messages
+            //     ->create(
+            //         "whatsapp:+62" . $noHp, // to
+            //         array(
+            //             "from" => "whatsapp:+14155238886",
+            //             'mediaUrl' => $pdfUrl,
+            //         )
+            //     );
         }
 
         return redirect()->route('kelola-surat')->with('berhasil', 'Data surat berhasil ditambahkan !');
@@ -254,7 +288,7 @@ class C_Surat extends Controller
                 'tanggal'      => Request()->tanggal,
                 'tempat'      => Request()->tempat,
                 'jenis_surat'       => Request()->jenis_surat,
-                'status_terlaksana'       => Request()->status_terlaksana,
+                // 'status_terlaksana'       => Request()->status_terlaksana,
                 'file_surat'        => $fileSurat,
             ];
         } else {
@@ -267,7 +301,7 @@ class C_Surat extends Controller
                 'tanggal'      => Request()->tanggal,
                 'tempat'      => Request()->tempat,
                 'jenis_surat'       => Request()->jenis_surat,
-                'status_terlaksana'       => Request()->status_terlaksana,
+                // 'status_terlaksana'       => Request()->status_terlaksana,
             ];
         }
 
@@ -415,22 +449,55 @@ class C_Surat extends Controller
                 $jam = date('H:i', strtotime($item->tanggal));
                 $tanggal = date('d F Y', strtotime($item->tanggal));
 
+                // SENDTALK
+                $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+                $whatsapp_phone = '+62' . $noHp;
+
+
+                $message = "Hallo {$item->nama}!\n\nAda pemberitahuan rapat buat Anda dengan deskripsi sebagai berikut:\n\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nWaktu rapat memasuki 30 menit terakhir, dimohon segera datang ke tempat rapat!!!\nTerima kasih.";
+
+                $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+                $data = [
+                    "phone" => $whatsapp_phone,
+                    "messageType" => "text",
+                    "documentUrl" => $message
+                ];
+
+                $curl = curl_init($url);
+                curl_setopt($curl, CURLOPT_URL, $url);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+                $headers = array(
+                    "API-Key: $token",
+                    "Content-Type: application/json",
+                );
+                curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+                //for debug only!
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+                curl_exec($curl);
+                curl_close($curl);
+
                 // $sid    = "AC944f941fef8a459f011bb10c3236df78";
                 // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
-                $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-                $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-                $twilio = new Client($sid, $token);
+                // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+                // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+                // $twilio = new Client($sid, $token);
 
-                $message = $twilio->messages
-                    ->create(
-                        "whatsapp:+62" . $noHp, // to
-                        array(
-                            "from" => "whatsapp:+14155238886",
-                            "body" => "Hallo {$item->nama}!\n\nAda pemberitahuan rapat buat Anda dengan deskripsi sebagai berikut:\n\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nWaktu rapat memasuki 30 menit terakhir, dimohon segera datang ke tempat rapat!!!\nTerima kasih."
-                        )
-                    );
+                // $message = $twilio->messages
+                //     ->create(
+                //         "whatsapp:+62" . $noHp, // to
+                //         array(
+                //             "from" => "whatsapp:+14155238886",
+                //             "body" => "Hallo {$item->nama}!\n\nAda pemberitahuan rapat buat Anda dengan deskripsi sebagai berikut:\n\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nWaktu rapat memasuki 30 menit terakhir, dimohon segera datang ke tempat rapat!!!\nTerima kasih."
+                //         )
+                //     );
 
-                print($message->sid);
+                // print($message->sid);
             }
         }
 

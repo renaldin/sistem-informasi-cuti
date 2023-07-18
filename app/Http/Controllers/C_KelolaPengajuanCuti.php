@@ -144,13 +144,10 @@ class C_KelolaPengajuanCuti extends Controller
 
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
-        // $sid    = "AC944f941fef8a459f011bb10c3236df78";
-        // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
 
         // SENDTALK
-        $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+        $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
         $whatsapp_phone = '+62' . $noHp;
-
 
         $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Ketua Jurusan. Silahkan di cek di website SIMPEG Polsub!";
 
@@ -159,7 +156,7 @@ class C_KelolaPengajuanCuti extends Controller
         $data = [
             "phone" => $whatsapp_phone,
             "messageType" => "text",
-            "documentUrl" => $message
+            "body" => $message
         ];
 
         $curl = curl_init($url);
@@ -217,9 +214,8 @@ class C_KelolaPengajuanCuti extends Controller
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
         // SENDTALK
-        $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+        $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
         $whatsapp_phone = '+62' . $noHp;
-
 
         $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Admin. Silahkan di cek di website SIMPEG Polsub!";
 
@@ -228,7 +224,7 @@ class C_KelolaPengajuanCuti extends Controller
         $data = [
             "phone" => $whatsapp_phone,
             "messageType" => "text",
-            "documentUrl" => $message
+            "body" => $message
         ];
 
         $curl = curl_init($url);
@@ -339,9 +335,8 @@ class C_KelolaPengajuanCuti extends Controller
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
         // SENDTALK
-        $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+        $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
         $whatsapp_phone = '+62' . $noHp;
-
 
         $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Ketua Jurusan. Silahkan cek di website SIMPEG Polsub!";
 
@@ -350,7 +345,7 @@ class C_KelolaPengajuanCuti extends Controller
         $data = [
             "phone" => $whatsapp_phone,
             "messageType" => "text",
-            "documentUrl" => $message
+            "body" => $message
         ];
 
         $curl = curl_init($url);
@@ -431,9 +426,8 @@ class C_KelolaPengajuanCuti extends Controller
                 $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
                 // SENDTALK
-                $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+                $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
                 $whatsapp_phone = '+62' . $noHp;
-
 
                 $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda tidak disetujui oleh Ketua Jurusan. Silahkan cek di website SIMPEG Polsub!";
 
@@ -442,7 +436,7 @@ class C_KelolaPengajuanCuti extends Controller
                 $data = [
                     "phone" => $whatsapp_phone,
                     "messageType" => "text",
-                    "documentUrl" => $message
+                    "body" => $message
                 ];
 
                 $curl = curl_init($url);
@@ -487,9 +481,8 @@ class C_KelolaPengajuanCuti extends Controller
                 $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
                 // SENDTALK
-                $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+                $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
                 $whatsapp_phone = '+62' . $noHp;
-
 
                 $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Wakil Direktur. Silahkan cek di website SIMPEG Polsub!";
 
@@ -498,7 +491,7 @@ class C_KelolaPengajuanCuti extends Controller
                 $data = [
                     "phone" => $whatsapp_phone,
                     "messageType" => "text",
-                    "documentUrl" => $message
+                    "body" => $message
                 ];
 
                 $curl = curl_init($url);
@@ -597,9 +590,8 @@ class C_KelolaPengajuanCuti extends Controller
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
         // SENDTALK
-        $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+        $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
         $whatsapp_phone = '+62' . $noHp;
-
 
         $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Wakil Direktur. Silahkan cek di website SIMPEG Polsub!";
 
@@ -608,7 +600,7 @@ class C_KelolaPengajuanCuti extends Controller
         $data = [
             "phone" => $whatsapp_phone,
             "messageType" => "text",
-            "documentUrl" => $message
+            "body" => $message
         ];
 
         $curl = curl_init($url);
@@ -686,9 +678,8 @@ class C_KelolaPengajuanCuti extends Controller
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
         // SENDTALK
-        $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+        $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
         $whatsapp_phone = '+62' . $noHp;
-
 
         $message = "Hallo {$pengajuanCuti->nama}!\n\nPengajuan cuti Anda sudah selesai. Silahkan cek hasilnya di website SIMPEG Polsub!";
 
@@ -697,7 +688,7 @@ class C_KelolaPengajuanCuti extends Controller
         $data = [
             "phone" => $whatsapp_phone,
             "messageType" => "text",
-            "documentUrl" => $message
+            "body" => $message
         ];
 
         $curl = curl_init($url);

@@ -167,9 +167,8 @@ class C_Surat extends Controller
             $pdfUrl = "https://sistem-kepegawaian.elearningpolsub.com/file_surat/" . $fileSurat;
 
             // SENDTALK
-            $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+            $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
             $whatsapp_phone = '+62' . $noHp;
-
 
             $message = "Hallo {$item->nama}!\n\nAda pemberitahuan surat buat Anda dengan deskripsi sebagai berikut:\n\nNo. Surat : {$item->no_surat}\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nUntuk lebih jelasnya Anda bisa cek di website SIMPEG POLSUB!!!\n\nTerima kasih.";
 
@@ -178,7 +177,7 @@ class C_Surat extends Controller
             $data = [
                 "phone" => $whatsapp_phone,
                 "messageType" => "text",
-                "documentUrl" => $message
+                "body" => $message
             ];
 
             $curl = curl_init($url);
@@ -198,32 +197,6 @@ class C_Surat extends Controller
 
             curl_exec($curl);
             curl_close($curl);
-
-            // twilio
-            // $sid    = "AC944f941fef8a459f011bb10c3236df78";
-            // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
-
-            // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-            // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-            // $twilio = new Client($sid, $token);
-
-            // $message = $twilio->messages
-            //     ->create(
-            //         "whatsapp:+62" . $noHp, // to
-            //         array(
-            //             "from" => "whatsapp:+14155238886",
-            //             "body" => "Hallo {$item->nama}!\n\nAda pemberitahuan surat buat Anda dengan deskripsi sebagai berikut:\n\nNo. Surat : {$item->no_surat}\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nUntuk lebih jelasnya Anda bisa cek suratnya dibawah ini!!!\n\nTerima kasih."
-            //         )
-            //     );
-
-            // $message2 = $twilio->messages
-            //     ->create(
-            //         "whatsapp:+62" . $noHp, // to
-            //         array(
-            //             "from" => "whatsapp:+14155238886",
-            //             'mediaUrl' => $pdfUrl,
-            //         )
-            //     );
         }
 
         return redirect()->route('kelola-surat')->with('berhasil', 'Data surat berhasil ditambahkan !');
@@ -419,6 +392,99 @@ class C_Surat extends Controller
         return redirect()->route('kelola-surat')->with('berhasil', 'Data surat berhasil dikirim ke pegawai !');
     }
 
+    // public function reminder()
+    // {
+    //     if (!Session()->get('email')) {
+    //         return redirect()->route('login');
+    //     }
+
+    //     $detail = $this->ModelSurat->detailSuratPegawai($id_surat);
+    //     $pegawai = $this->ModelSurat->getDataPegawai();
+
+    //     // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+    //     // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+    //     // $twilio = new Client($sid, $token);
+
+    //     // $message = $twilio->messages
+    //     //     ->create(
+    //     //         "whatsapp:+6288222245385", // to
+    //     //         array(
+    //     //             "from" => "whatsapp:+14155238886",
+    //     //             "body" => "Datang Rapat"
+    //     //         )
+    //     //     );
+
+    //     // print($message->sid);
+
+    //     $now = time(); // Waktu sekarang dalam detik sejak UNIX Epoch
+    //     $lessThan30Minutes = $now - (30 * 60); // Kurangi 30 menit (30 * 60 detik)
+
+    //     // WA GATEWAY
+    //     foreach ($pegawai as $row) {
+    //         if ($row->tanggal > date('Y-m-d H:i:s', $lessThan30Minutes)) {
+    //             $detail = $this->ModelSurat->detailSuratPegawai($row->id_surat);
+    //             foreach ($detail as $item) {
+    //                 if ($item->status_terlaksana === 'Belum') {
+    //                     $noHp = substr($item->nomor_telepon, 1);
+    //                     $jam = date('H:i', strtotime($item->tanggal));
+    //                     $tanggal = date('d F Y', strtotime($item->tanggal));
+
+    //                     // SENDTALK
+    //                     $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+    //                     $whatsapp_phone = '+62' . $noHp;
+
+
+    //                     $message = "Hallo {$item->nama}!\n\nAda pemberitahuan rapat buat Anda dengan deskripsi sebagai berikut:\n\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nWaktu rapat memasuki 30 menit terakhir, dimohon segera datang ke tempat rapat!!!\nTerima kasih.";
+
+    //                     $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+    //                     $data = [
+    //                         "phone" => $whatsapp_phone,
+    //                         "messageType" => "text",
+    //                         "documentUrl" => $message
+    //                     ];
+
+    //                     $curl = curl_init($url);
+    //                     curl_setopt($curl, CURLOPT_URL, $url);
+    //                     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    //                     $headers = array(
+    //                         "API-Key: $token",
+    //                         "Content-Type: application/json",
+    //                     );
+    //                     curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+    //                     //for debug only!
+    //                     curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+    //                     curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    //                     curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+    //                     curl_exec($curl);
+    //                     curl_close($curl);
+
+    //                     // $sid    = "AC944f941fef8a459f011bb10c3236df78";
+    //                     // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
+    //                     // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
+    //                     // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
+    //                     // $twilio = new Client($sid, $token);
+
+    //                     // $message = $twilio->messages
+    //                     //     ->create(
+    //                     //         "whatsapp:+62" . $noHp, // to
+    //                     //         array(
+    //                     //             "from" => "whatsapp:+14155238886",
+    //                     //             "body" => "Hallo {$item->nama}!\n\nAda pemberitahuan rapat buat Anda dengan deskripsi sebagai berikut:\n\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nWaktu rapat memasuki 30 menit terakhir, dimohon segera datang ke tempat rapat!!!\nTerima kasih."
+    //                     //         )
+    //                     //     );
+
+    //                     // print($message->sid);
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     return redirect()->route('kelola-surat')->with('berhasil', 'Anda berhasil reminder pegawai !');
+    // }
     public function reminder($id_surat)
     {
         if (!Session()->get('email')) {
@@ -449,10 +515,8 @@ class C_Surat extends Controller
                 $jam = date('H:i', strtotime($item->tanggal));
                 $tanggal = date('d F Y', strtotime($item->tanggal));
 
-                // SENDTALK
-                $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+                $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
                 $whatsapp_phone = '+62' . $noHp;
-
 
                 $message = "Hallo {$item->nama}!\n\nAda pemberitahuan rapat buat Anda dengan deskripsi sebagai berikut:\n\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nWaktu rapat memasuki 30 menit terakhir, dimohon segera datang ke tempat rapat!!!\nTerima kasih.";
 
@@ -461,7 +525,7 @@ class C_Surat extends Controller
                 $data = [
                     "phone" => $whatsapp_phone,
                     "messageType" => "text",
-                    "documentUrl" => $message
+                    "body" => $message
                 ];
 
                 $curl = curl_init($url);
@@ -482,26 +546,76 @@ class C_Surat extends Controller
                 curl_exec($curl);
                 curl_close($curl);
 
-                // $sid    = "AC944f941fef8a459f011bb10c3236df78";
-                // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
-                // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-                // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-                // $twilio = new Client($sid, $token);
+                // SENDTALK
+                // $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
+                // $whatsapp_phone = '+6282249025414';
 
-                // $message = $twilio->messages
-                //     ->create(
-                //         "whatsapp:+62" . $noHp, // to
-                //         array(
-                //             "from" => "whatsapp:+14155238886",
-                //             "body" => "Hallo {$item->nama}!\n\nAda pemberitahuan rapat buat Anda dengan deskripsi sebagai berikut:\n\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nWaktu rapat memasuki 30 menit terakhir, dimohon segera datang ke tempat rapat!!!\nTerima kasih."
-                //         )
-                //     );
 
-                // print($message->sid);
+                // $message = "Hallo {$item->nama}!\n\nAda pemberitahuan rapat buat Anda dengan deskripsi sebagai berikut:\n\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nWaktu rapat memasuki 30 menit terakhir, dimohon segera datang ke tempat rapat!!!\nTerima kasih.";
+
+                // $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+                // $data = [
+                //     "phone" => $whatsapp_phone,
+                //     "messageType" => "text",
+                //     "documentUrl" => $message
+                // ];
+
+                // $curl = curl_init($url);
+                // curl_setopt($curl, CURLOPT_URL, $url);
+                // curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+                // $headers = array(
+                //     "API-Key: $token",
+                //     "Content-Type: application/json",
+                // );
+                // curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+                // //for debug only!
+                // curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+                // curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+                // curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+                // curl_exec($curl);
+                // curl_close($curl);
+
             }
         }
 
         return redirect()->route('kelola-surat')->with('berhasil', 'Anda berhasil reminder pegawai !');
+    }
+
+    public function Whatsapp()
+    {
+        $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
+        $whatsapp_phone = '+62895336928026';
+        $message = "1 Peminjaman Masuk! \n\n Perlu persetujuan anda";
+
+        $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+        $data = [
+            "phone" => $whatsapp_phone,
+            "messageType" => "text",
+            "body" => $message
+        ];
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = array(
+            "API-Key: $token",
+            "Content-Type: application/json",
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        //for debug only!
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+        curl_exec($curl);
+        curl_close($curl);
     }
 
     public function print()

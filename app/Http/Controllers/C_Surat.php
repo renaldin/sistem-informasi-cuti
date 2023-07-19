@@ -164,15 +164,24 @@ class C_Surat extends Controller
             $noHp = substr($item->nomor_telepon, 1);
             $jam = date('H:i', strtotime($item->tanggal));
             $tanggal = date('d F Y', strtotime($item->tanggal));
-            $pdfUrl = "https://sistem-kepegawaian.elearningpolsub.com/file_surat/" . $fileSurat;
+            // $pdfUrl = "https://sistem-kepegawaian.elearningpolsub.com/file_surat/" . $fileSurat;
+            $pdfUrl = "https://sistem-kepegawaian.elearningpolsub.com/gambar/dok.pdf";
 
             // SENDTALK
-            $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
+            $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
             $whatsapp_phone = '+62' . $noHp;
 
             $message = "Hallo {$item->nama}!\n\nAda pemberitahuan surat buat Anda dengan deskripsi sebagai berikut:\n\nNo. Surat : {$item->no_surat}\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nUntuk lebih jelasnya Anda bisa cek di website SIMPEG POLSUB!!!\n\nTerima kasih.";
 
             $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+            // $data = [
+            //     "phone" => $whatsapp_phone,
+            //     "messageType" => "pdf",
+            //     "body" => $pdfUrl,
+            //     "filename" => "dok.pdf",
+            //     "caption" => $message
+            // ];
 
             $data = [
                 "phone" => $whatsapp_phone,
@@ -515,18 +524,34 @@ class C_Surat extends Controller
                 $jam = date('H:i', strtotime($item->tanggal));
                 $tanggal = date('d F Y', strtotime($item->tanggal));
 
-                $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
+                $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
                 $whatsapp_phone = '+62' . $noHp;
 
                 $message = "Hallo {$item->nama}!\n\nAda pemberitahuan rapat buat Anda dengan deskripsi sebagai berikut:\n\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nWaktu rapat memasuki 30 menit terakhir, dimohon segera datang ke tempat rapat!!!\nTerima kasih.";
 
                 $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
 
+                $pdfUrl = "https://sistem-kepegawaian.elearningpolsub.com/gambar/dok.pdf";
+
+                // $file_data = file_get_contents($pdfUrl);
+                // $file_base64 = base64_encode($file_data);
+
                 $data = [
                     "phone" => $whatsapp_phone,
                     "messageType" => "text",
                     "body" => $message
                 ];
+
+
+
+                // $data = [
+                //     "phone" => $whatsapp_phone,
+                //     "messageType" => "image",
+                //     "body" => $pdfUrl,
+                //     "filename" => basename($pdfUrl),
+                //     "caption" => $message
+                // ];
+
 
                 $curl = curl_init($url);
                 curl_setopt($curl, CURLOPT_URL, $url);
@@ -587,7 +612,7 @@ class C_Surat extends Controller
 
     public function Whatsapp()
     {
-        $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
+        $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
         $whatsapp_phone = '+62895336928026';
         $message = "1 Peminjaman Masuk! \n\n Perlu persetujuan anda";
 

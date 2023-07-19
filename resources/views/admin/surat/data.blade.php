@@ -148,7 +148,7 @@
 {{-- Pegawai --}}
 @foreach ($dataSurat as $item)
 <div class="modal fade" id="pegawai{{ $item->id_surat }}"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Penerima</h5>
@@ -162,7 +162,7 @@
                     <div class="form-box">
                         <div class="form-content">
                             <div class="table-form table-responsive">
-                                <table class="table" id="example2">
+                                <table class="table" id="">
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>

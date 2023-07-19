@@ -146,7 +146,7 @@ class C_KelolaPengajuanCuti extends Controller
 
 
         // SENDTALK
-        $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
+        $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
         $whatsapp_phone = '+62' . $noHp;
 
         $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Ketua Jurusan. Silahkan di cek di website SIMPEG Polsub!";
@@ -214,7 +214,7 @@ class C_KelolaPengajuanCuti extends Controller
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
         // SENDTALK
-        $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
+        $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
         $whatsapp_phone = '+62' . $noHp;
 
         $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Admin. Silahkan di cek di website SIMPEG Polsub!";
@@ -335,7 +335,7 @@ class C_KelolaPengajuanCuti extends Controller
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
         // SENDTALK
-        $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
+        $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
         $whatsapp_phone = '+62' . $noHp;
 
         $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Ketua Jurusan. Silahkan cek di website SIMPEG Polsub!";
@@ -426,7 +426,7 @@ class C_KelolaPengajuanCuti extends Controller
                 $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
                 // SENDTALK
-                $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
+                $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
                 $whatsapp_phone = '+62' . $noHp;
 
                 $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda tidak disetujui oleh Ketua Jurusan. Silahkan cek di website SIMPEG Polsub!";
@@ -481,7 +481,7 @@ class C_KelolaPengajuanCuti extends Controller
                 $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
                 // SENDTALK
-                $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
+                $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
                 $whatsapp_phone = '+62' . $noHp;
 
                 $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Wakil Direktur. Silahkan cek di website SIMPEG Polsub!";
@@ -590,7 +590,7 @@ class C_KelolaPengajuanCuti extends Controller
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
         // SENDTALK
-        $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
+        $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
         $whatsapp_phone = '+62' . $noHp;
 
         $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Wakil Direktur. Silahkan cek di website SIMPEG Polsub!";
@@ -678,7 +678,7 @@ class C_KelolaPengajuanCuti extends Controller
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
         // SENDTALK
-        $token = '8233afc8ddee3653c46b286b9ee646bdad641929648039544f80a615edc2cd25';
+        $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
         $whatsapp_phone = '+62' . $noHp;
 
         $message = "Hallo {$pengajuanCuti->nama}!\n\nPengajuan cuti Anda sudah selesai. Silahkan cek hasilnya di website SIMPEG Polsub!";

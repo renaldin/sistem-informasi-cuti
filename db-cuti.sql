@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 17, 2023 at 08:40 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.0.19
+-- Host: localhost:3306
+-- Generation Time: Jul 19, 2023 at 08:19 PM
+-- Server version: 10.6.14-MariaDB-cll-lve
+-- PHP Version: 8.1.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db-cuti`
+-- Database: `u7437287_sistem-kepegawaian`
 --
 
 -- --------------------------------------------------------
@@ -40,7 +40,7 @@ CREATE TABLE `absensi` (
   `created_at` datetime DEFAULT NULL,
   `alasan` varchar(255) DEFAULT NULL,
   `file_absensi` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `absensi`
@@ -125,7 +125,7 @@ CREATE TABLE `artikel` (
   `gambar` text DEFAULT NULL,
   `tanggal_upload` datetime DEFAULT NULL,
   `status` enum('Aktif','Tidak Aktif') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `artikel`
@@ -146,29 +146,15 @@ CREATE TABLE `detail_surat` (
   `id_detail_surat` int(11) NOT NULL,
   `id_surat` int(11) NOT NULL,
   `id_pegawai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `detail_surat`
 --
 
 INSERT INTO `detail_surat` (`id_detail_surat`, `id_surat`, `id_pegawai`) VALUES
-(1, 1, 9),
-(6, 4, 9),
-(7, 4, 8),
-(8, 5, 1),
-(9, 6, 14),
-(10, 7, 14),
-(11, 7, 9),
-(12, 8, 14),
-(13, 8, 9),
-(14, 8, 8),
-(15, 9, 9),
-(16, 9, 8),
-(17, 10, 9),
-(18, 10, 8),
-(19, 11, 9),
-(20, 12, 8);
+(21, 13, 9),
+(22, 14, 9);
 
 -- --------------------------------------------------------
 
@@ -194,7 +180,7 @@ CREATE TABLE `pegawai` (
   `cuti_karena_alasan_penting` varchar(50) DEFAULT NULL,
   `cuti_diluar_tanggungan_negara` varchar(50) DEFAULT NULL,
   `tanda_tangan` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pegawai`
@@ -207,7 +193,6 @@ INSERT INTO `pegawai` (`id_pegawai`, `id_user`, `jabatan`, `unit_kerja`, `masa_k
 (4, 25, 'Ketua Jurusan', 'Kesehatan', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', '06242023151425 Tanda Tangan Kajur Kesehatan & Gelar.png'),
 (5, 26, 'Wakil Direktur 1', 'Wakil Direktur', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', '06242023151356 Tanda Tangan Wadir 1 & Gelar.png'),
 (6, 27, 'Wakil Direktur 2', 'Wakil Direktur', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', NULL, 'Tidak', 'Tidak', 'Tidak', '06242023151329 Tanda Tangan Wadir 2 & Gelar.png'),
-(7, 28, 'Bagian Umum', 'Bagian Umum', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', '06242023151227 Tanda Tangan Bagian Umum & Gelar.png'),
 (8, 29, 'Dosen', 'Manajemen Informatika', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', NULL, 'Tidak', 'Tidak', '06242023151159 Tanda Tangan Pegawai 1.png'),
 (9, 30, 'Dosen', 'Manajemen Informatika', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', NULL, 'Tidak', 'Tidak', '06242023151118 Tanda Tangan Pegawai 2.png'),
 (14, 35, 'Dosen Pengajar', 'Manajemen Informatika', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '07062023020950 Tanda Tangan sisnawati.png'),
@@ -242,18 +227,7 @@ CREATE TABLE `pengajuan_cuti` (
   `tanda_tangan_wadir` text DEFAULT NULL,
   `tanda_tangan_kajur` text DEFAULT NULL,
   `tanda_tangan_pegawai` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pengajuan_cuti`
---
-
-INSERT INTO `pengajuan_cuti` (`id_pengajuan_cuti`, `id_pegawai`, `jenis_cuti`, `alasan_cuti`, `lama_cuti`, `jenis_waktu`, `mulai_tanggal`, `akhir_tanggal`, `alamat_selama_cuti`, `pertimbangan_ketua_jurusan`, `alasan_pertimbangan_ketua_jurusan`, `ketua_jurusan`, `nip_ketua_jurusan`, `keputusan_wakil_direktur`, `alasan_keputusan_wakil_direktur`, `wakil_direktur`, `nip_wakil_direktur`, `status_pengajuan`, `tanggal_pengajuan`, `tanda_tangan_wadir`, `tanda_tangan_kajur`, `tanda_tangan_pegawai`) VALUES
-(1, 8, 'Cuti Sakit', 'Alasannya sakit', 3, 'hari', '2023-06-26', '2023-06-29', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-06-26', '06242023151356 Tanda Tangan Wadir 1 & Gelar.png', '06242023151614 Tanda Tangan Kajur MI & gelar.png', '06242023151159 Tanda Tangan Pegawai 1.png'),
-(2, 8, 'Cuti Karena Alasan Penting', 'keluarga nikah', 1, 'hari', '2023-07-04', '2023-07-05', 'jakarta', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', NULL, NULL, NULL, NULL, 'Dikirim ke Wakil Direktur', '2023-07-03', NULL, '06242023151614 Tanda Tangan Kajur MI & gelar.png', '06242023151159 Tanda Tangan Pegawai 1.png'),
-(5, 9, 'Cuti Sakit', 'sakit lambung', 1, 'minggu', '2023-07-04', '2023-07-11', 'rumah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dikirim ke Admin', '2023-07-04', NULL, NULL, '06242023151118 Tanda Tangan Pegawai 2.png'),
-(6, 1, 'Cuti Sakit', 'sakit lambung', 2, 'hari', '2023-07-04', '2023-07-06', 'rumah', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-07-04', '06242023151356 Tanda Tangan Wadir 1 & Gelar.png', NULL, '06242023151614 Tanda Tangan Kajur MI & gelar.png'),
-(7, 8, 'Cuti Sakit', 'Alasannya sakit', 4, 'hari', '2023-07-11', '2023-07-14', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 1 & Gelar', '555555555555555555', 'Selesai', '2023-07-10', '06242023151356 Tanda Tangan Wadir 1 & Gelar.png', '06242023151614 Tanda Tangan Kajur MI & gelar.png', '06242023151159 Tanda Tangan Pegawai 1.png');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -268,7 +242,7 @@ CREATE TABLE `setting` (
   `nomor_telepon` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
   `logo` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `setting`
@@ -295,23 +269,15 @@ CREATE TABLE `surat` (
   `tanggal_upload` date DEFAULT NULL,
   `status_surat` enum('Belum Dikirim','Sudah Dikirim','Sudah Dibaca') NOT NULL,
   `status_terlaksana` enum('Belum','Sudah','Tidak') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `surat`
 --
 
 INSERT INTO `surat` (`id_surat`, `no_surat`, `perihal_surat`, `hari`, `tanggal`, `tempat`, `jenis_surat`, `file_surat`, `tanggal_upload`, `status_surat`, `status_terlaksana`) VALUES
-(1, '00000', 'Perihal', 'Senin', '2023-06-21 13:00:00', 'Kampus', 'Jenis Surat', '06212023011344 00000.pdf', '2023-06-21', 'Sudah Dikirim', 'Sudah'),
-(4, '11111', 'Perihal', 'Senin', '2023-07-11 08:33:00', 'Kampus', 'Jenis Surat', '06212023013344 11111.pdf', '2023-06-21', 'Sudah Dikirim', 'Sudah'),
-(5, '22222222', 'Perihal Surat', 'Senin', '2023-07-11 00:00:00', 'Kampus 2', 'Jenis Surat', '06292023074940 22222222.pdf', '2023-06-29', 'Sudah Dikirim', 'Belum'),
-(6, '12345678', 'akreditasi', 'Kamis', '2023-07-06 09:30:00', 'gkb', 'surat edaran', '07062023021126 12345678.pdf', '2023-07-06', 'Sudah Dikirim', 'Sudah'),
-(7, '12345678', 'akreditasi', 'Kamis', '2023-07-06 10:20:00', 'gkb', 'surat edaran', '07062023031651 12345678.pdf', '2023-07-06', 'Sudah Dikirim', 'Sudah'),
-(8, '121212', 'Perihal Surat', 'Senin', '2023-07-10 11:00:00', 'Kampus', 'Jenis Surat', '07092023195831 121212.pdf', '2023-07-09', 'Sudah Dikirim', 'Belum'),
-(9, '111111222', 'Perihal', 'Senin', '2023-07-18 23:41:00', 'Kampus', 'Jenis Surat', '07172023164219111111222.pdf', '2023-07-17', 'Sudah Dikirim', 'Belum'),
-(10, '2123242', 'Perihal', 'Senin', '2023-07-18 23:43:00', 'Kampus', 'Jenis Surat', '071720231643492123242.pdf', '2023-07-17', 'Sudah Dikirim', 'Belum'),
-(11, '12345', 'Perihal', 'Senin', '2023-07-18 23:52:00', 'Kampus 2', 'Jenis Surat', '0717202316525312345.pdf', '2023-07-17', 'Sudah Dikirim', 'Belum'),
-(12, '00000', 'Perihal', 'Senin', '2023-07-19 00:17:00', 'Kampus', 'Jenis Surat', '0717202317173200000.pdf', '2023-07-17', 'Sudah Dikirim', 'Belum');
+(13, '11111', 'Perihal', 'Senin', '2023-07-19 10:00:00', 'Kampus', 'Jenis Surat', '0719202301401511111.pdf', '2023-07-19', 'Sudah Dikirim', 'Belum'),
+(14, '2342354235', 'Perihal', 'Senin', '2023-07-19 11:59:00', 'Kampus', 'Jenis Surat', '071920230257312342354235.pdf', '2023-07-19', 'Sudah Dikirim', 'Belum');
 
 -- --------------------------------------------------------
 
@@ -325,7 +291,7 @@ CREATE TABLE `tambah_surat` (
   `no_surat` varchar(30) DEFAULT NULL,
   `tujuan_surat` varchar(100) DEFAULT NULL,
   `file_surat` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -342,7 +308,7 @@ CREATE TABLE `users` (
   `nomor_telepon` varchar(30) NOT NULL,
   `role` enum('Admin','Pegawai','Ketua Jurusan','Wakil Direktur','Bagian Umum') NOT NULL,
   `foto` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
@@ -350,16 +316,16 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `nama`, `nip`, `email`, `password`, `nomor_telepon`, `role`, `foto`) VALUES
 (2, 'Admin Sistem Cuti', '1111111111', 'admincuti@gmail.com', '$2y$10$sa7tb26ENoS9eD5/DreXoOimImMBkdNrhNA55GXA/Gngs6iinLA4e', '0896775651', 'Admin', '04212023145559Admin Sistem Cuti.jpg'),
-(22, 'Kajur MI & gelar', '111111111111111111', 'kajur_mi@gmail.com', '$2y$10$wZ1rqxuvoyVeXNp//XAfTuqarECvIO41RPOd/0KvMrGG5nWkJRiGy', '0895336928026', 'Ketua Jurusan', '06142023115234Kajur MI & gelar.jpg'),
-(23, 'Kajur Agro & Gelar', '222222222222222222', 'kajur_agro@gmail.com', '$2y$10$PBCYTQOSTl8cRLFrewtX5uLYY50RXK87.yZzPJdShXJajMz4C0LS.', '0895336928026', 'Ketua Jurusan', '06142023120027Kajur & Gelar.jpg'),
-(24, 'Kajur Mesin & Gelar', '333333333333333333', 'kajur_mesin@gmail.com', '$2y$10$tzyWPGz4DLK3zWqzpdbl6uczBRnQWIVGk4kfWmg3EdY4YRbXtgaBG', '0895336928026', 'Ketua Jurusan', '06142023120447Kajur Mesin & Gelar.jpg'),
-(25, 'Kajur Kesehatan & Gelar', '444444444444444444', 'kajur_kep@gmail.com', '$2y$10$jdD3qNcRMQ529ZGNFssdYO5/Z6w2VkIgOMgpshBES6OJuHWTR8VMK', '0895336928026', 'Ketua Jurusan', '06142023120700Kajur Kesehatan & Gelar.jpg'),
-(26, 'Wadir 1 & Gelar', '555555555555555555', 'wadir1@gmail.com', '$2y$10$R0NL3dWHCiqj/xXCcX8QBeAN2BfM9uwh9X41xpYwPv.4XCKp/d3nS', '0895336928026', 'Wakil Direktur', '06142023120923Wadir 1 & Gelar.jpg'),
-(27, 'Wadir 2 & Gelar', '666666666666666666', 'wadir2@gmail.com', '$2y$10$a2GjSaHsMx3G7TEW34DX2OawQM3zIs7./zZgnoai25OAWs7uCb3tG', '0895336928026', 'Wakil Direktur', '06142023121041Wadir 2 & Gelar.jpg'),
+(22, 'Kajur MI & gelar', '111111111111111111', 'kajur_mi@gmail.com', '$2y$10$wZ1rqxuvoyVeXNp//XAfTuqarECvIO41RPOd/0KvMrGG5nWkJRiGy', '085321307758', 'Ketua Jurusan', '06142023115234Kajur MI & gelar.jpg'),
+(23, 'Kajur Agro & Gelar', '222222222222222222', 'kajur_agro@gmail.com', '$2y$10$PBCYTQOSTl8cRLFrewtX5uLYY50RXK87.yZzPJdShXJajMz4C0LS.', '085321307758', 'Ketua Jurusan', '06142023120027Kajur & Gelar.jpg'),
+(24, 'Kajur Mesin & Gelar', '333333333333333333', 'kajur_mesin@gmail.com', '$2y$10$tzyWPGz4DLK3zWqzpdbl6uczBRnQWIVGk4kfWmg3EdY4YRbXtgaBG', '085321307758', 'Ketua Jurusan', '06142023120447Kajur Mesin & Gelar.jpg'),
+(25, 'Kajur Kesehatan & Gelar', '444444444444444444', 'kajur_kep@gmail.com', '$2y$10$jdD3qNcRMQ529ZGNFssdYO5/Z6w2VkIgOMgpshBES6OJuHWTR8VMK', '085321307758', 'Ketua Jurusan', '06142023120700Kajur Kesehatan & Gelar.jpg'),
+(26, 'Wadir 1 & Gelar', '555555555555555555', 'wadir1@gmail.com', '$2y$10$R0NL3dWHCiqj/xXCcX8QBeAN2BfM9uwh9X41xpYwPv.4XCKp/d3nS', '085321307758', 'Wakil Direktur', '06142023120923Wadir 1 & Gelar.jpg'),
+(27, 'Wadir 2 & Gelar', '666666666666666666', 'wadir2@gmail.com', '$2y$10$a2GjSaHsMx3G7TEW34DX2OawQM3zIs7./zZgnoai25OAWs7uCb3tG', '085321307758', 'Wakil Direktur', '06142023121041Wadir 2 & Gelar.jpg'),
 (29, 'Pegawai 1', '121212121212121212', 'pegawai_1@gmail.com', '$2y$10$dC1xDFO5xakOhrfzgQG.L.X/Bx5IJAhdAKRCZv4onCLHhMagn7vfG', '0895336928026', 'Pegawai', '06142023121503Pegawai 1.jpg'),
 (30, 'Pegawai 2', '131313131313131313', 'pegawai_2@gmail.com', '$2y$10$0xYc2rQAtEPiJXxlASoQ6ejGObx0VE0egZ4Fq54c.zkNcjzBnFmXO', '0895336928026', 'Pegawai', '06142023164358Pegawai 2.jpg'),
-(35, 'sisnawati', '2345678973245678', 'sisna@gmail.com', '$2y$10$CoO1viAsI2wp.G2jiZsoBuTFkcDhS7N907cDNMhM8HfW0bZNzNN/q', '0895336928026', 'Pegawai', '07062023020950sisnawati.png'),
-(36, 'Bagian Umum & Gelar', '77777777777777777', 'bagianumum1@gmail.com', '$2y$10$/97TP7/SfqnEFkLJE29BKuU9M3mxXUCz8Unep2Ne/.8NO.lxbkmSm', '0895336928026', 'Bagian Umum', '07092023203545Bagian Umum & Gelar.png');
+(35, 'sisnawati', '2345678973245678', 'sisna@gmail.com', '$2y$10$CoO1viAsI2wp.G2jiZsoBuTFkcDhS7N907cDNMhM8HfW0bZNzNN/q', '085321307758', 'Pegawai', '07062023020950sisnawati.png'),
+(36, 'Bagian Umum & Gelar', '77777777777777777', 'bagianumum1@gmail.com', '$2y$10$/97TP7/SfqnEFkLJE29BKuU9M3mxXUCz8Unep2Ne/.8NO.lxbkmSm', '085321307758', 'Bagian Umum', '07092023203545Bagian Umum & Gelar.png');
 
 --
 -- Indexes for dumped tables
@@ -439,7 +405,7 @@ ALTER TABLE `artikel`
 -- AUTO_INCREMENT for table `detail_surat`
 --
 ALTER TABLE `detail_surat`
-  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -463,7 +429,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tambah_surat`

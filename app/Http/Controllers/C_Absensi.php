@@ -56,9 +56,15 @@ class C_Absensi extends Controller
 
         $file = Request()->file('file');
 
-        Excel::import(new AbsensiImport, $file);
+        $ekstensi = $file->extension();
 
-        return redirect()->back()->with('berhasil', 'Data absensi berhasil diimport !');
+        if ($ekstensi === 'xls' || $ekstensi === 'xlsx') {
+            Excel::import(new AbsensiImport, $file);
+
+            return redirect()->back()->with('berhasil', 'Data absensi berhasil diimport !');
+        } else {
+            return redirect()->back()->with('gagal', 'File yang di import bukan file Excel, harusnya file Excel !');
+        }
     }
 
     public function addProcess()

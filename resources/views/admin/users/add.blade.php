@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="input-box">
-                                            <label class="label-text">Foto <span class="text-danger">* File format .jpg/jpeg/png</span></label>
+                                            <label class="label-text">Foto <span>* File format .jpg/jpeg/png</span></label>
                                             <div class="form-group">
                                                 <input class="form-control" type="file" name="foto_user">
                                             </div>

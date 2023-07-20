@@ -130,7 +130,7 @@
                                     </div><!-- end col-lg-6 -->
                                     <div class="col-lg-12 responsive-column">
                                         <div class="input-box">
-                                            <label class="label-text">Foto <span class="text-danger">* File format .jpg/jpeg/png</span></label>
+                                            <label class="label-text">Foto <span>* File format .jpg/jpeg/png</span></label>
                                             <div class="form-group">
                                                 <input class="form-control" name="foto_user" type="file">
                                                 @error('foto_user')

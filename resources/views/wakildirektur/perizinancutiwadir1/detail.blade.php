@@ -236,7 +236,7 @@
                                     </table>
                                 </div>
                                 <div class="col-lg-12 mt-3 text-center">
-                                    <a href="@if($user->role == 'Pegawai') /pengajuan-cuti @elseif($user->role == 'Ketua Jurusan') /pengajuan-cuti-ketua-jurusan @endif" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
+                                    <a href="@if($user->role == 'Pegawai') /pengajuan-cuti @elseif($user->role == 'Ketua Jurusan') /pengajuan-cuti-ketua-jurusan @elseif($user->role == 'Wakil Direktur 2') /perizinan-cuti-wakil-direktur2 @elseif($user->role == 'Wakil Direktur 1') /perizinan-cuti-wakil-direktur1 @endif" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
                                 </div>
                             </div>
                         </div>

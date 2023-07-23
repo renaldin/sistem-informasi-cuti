@@ -35,7 +35,7 @@ class C_Surat extends Controller
 
         $data = [
             'title'     => 'Data Surat',
-            'subTitle'  => 'Kelola Surat',
+            'subTitle'  => 'Arsip Surat',
             'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'dataSurat' => $this->ModelSurat->getData(),
@@ -60,7 +60,10 @@ class C_Surat extends Controller
         } elseif ($user->role == 'Bagian Umum') {
             $route = 'bagianumum.surat.filter';
             $dataUser = $this->ModelSurat->getDataPegawai();
-        } elseif ($user->role == 'Wakil Direktur') {
+        } elseif ($user->role == 'Wakil Direktur 2') {
+            $route = 'wakildirektur.surat.filter';
+            $dataUser = $this->ModelSurat->getDataPegawai();
+        } elseif ($user->role == 'Wakil Direktur 1') {
             $route = 'wakildirektur.surat.filter';
             $dataUser = $this->ModelSurat->getDataPegawai();
         } elseif ($user->role == 'Ketua Jurusan') {
@@ -74,7 +77,7 @@ class C_Surat extends Controller
         if (Request()->jenis_filter === 'Jenis Surat') {
             $data = [
                 'title'     => 'Data Surat',
-                'subTitle'  => 'Kelola Surat',
+                'subTitle'  => 'Arsip Surat',
                 'biodata'   => $this->ModelSetting->detail(1),
                 'user'      => $user,
                 'dataSurat' => $dataUser,
@@ -681,7 +684,9 @@ class C_Surat extends Controller
             $route = 'pegawai.surat.data';
         } elseif ($user->role == 'Bagian Umum') {
             $route = 'bagianumum.surat.data';
-        } elseif ($user->role == 'Wakil Direktur') {
+        } elseif ($user->role == 'Wakil Direktur 2') {
+            $route = 'wakildirektur.surat.data';
+        } elseif ($user->role == 'Wakil Direktur 1') {
             $route = 'wakildirektur.surat.data';
         } elseif ($user->role == 'Ketua Jurusan') {
             $route = 'ketuajurusan.surat.data';

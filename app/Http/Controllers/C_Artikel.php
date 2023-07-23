@@ -13,6 +13,7 @@ class C_Artikel extends Controller
     private $ModelSetting;
     private $ModelArtikel;
     private $public_path;
+    private $public_path_file;
 
     public function __construct()
     {
@@ -20,6 +21,7 @@ class C_Artikel extends Controller
         $this->ModelSetting = new ModelSetting();
         $this->ModelArtikel = new ModelArtikel();
         $this->public_path = 'foto_artikel';
+        $this->public_path_file = 'file_artikel';
     }
 
     public function index()
@@ -91,12 +93,12 @@ class C_Artikel extends Controller
         // Upload Dokumen
         $file1 = Request()->dokumen;
         $fileDokumen = date('mdYHis') . Request()->judul . '.' . $file1->extension();
-        $file1->move(public_path($this->public_path), $fileDokumen);
+        $file1->move(public_path($this->public_path_file), $fileDokumen);
 
         // Upload Gambar Artikel
         $file2 = Request()->gambar;
         $fileGambar = date('mdYHis') . Request()->judul . '.' . $file2->extension();
-        $file2->move(public_path('foto_artikel'), $fileGambar);
+        $file2->move(public_path($this->public_path), $fileGambar);
 
         $data = [
             'judul'             => Request()->judul,
@@ -148,23 +150,23 @@ class C_Artikel extends Controller
         // Upload Dokumen
         if (Request()->dokumen) {
             if ($detail->dokumen <> "") {
-                unlink(public_path($this->public_path) . '/' . $detail->dokumen);
+                unlink(public_path($this->public_path_file) . '/' . $detail->dokumen);
             }
 
             $file1 = Request()->dokumen;
             $fileDokumen = date('mdYHis') . Request()->judul . '.' . $file1->extension();
-            $file1->move(public_path($this->public_path), $fileDokumen);
+            $file1->move(public_path($this->public_path_file), $fileDokumen);
         }
 
         // Upload Gambar Artikel
         if (Request()->gambar) {
             if ($detail->gambar <> "") {
-                unlink(public_path('foto_artikel') . '/' . $detail->gambar);
+                unlink(public_path($this->public_path) . '/' . $detail->gambar);
             }
 
             $file2 = Request()->gambar;
             $fileGambar = date('mdYHis') . Request()->judul . '.' . $file2->extension();
-            $file2->move(public_path('foto_artikel'), $fileGambar);
+            $file2->move(public_path($this->public_path), $fileGambar);
         }
 
         if (Request()->dokumen && Request()->gambar) {
@@ -210,11 +212,11 @@ class C_Artikel extends Controller
         $detail = $this->ModelArtikel->detail($id_artikel);
 
         if ($detail->dokumen <> "") {
-            unlink(public_path($this->public_path) . '/' . $detail->dokumen);
+            unlink(public_path($this->public_path_file) . '/' . $detail->dokumen);
         }
 
         if ($detail->gambar <> "") {
-            unlink(public_path('foto_artikel') . '/' . $detail->gambar);
+            unlink(public_path($this->public_path) . '/' . $detail->gambar);
         }
 
         $this->ModelArtikel->deleteData($id_artikel);

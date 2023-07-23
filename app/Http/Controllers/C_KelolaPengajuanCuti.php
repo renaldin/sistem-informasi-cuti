@@ -55,8 +55,11 @@ class C_KelolaPengajuanCuti extends Controller
         } elseif (Session()->get('role') === 'Ketua Jurusan') {
             $page = 'ketuajurusan.perizinancuti.detail';
             $title = 'Perizinan Cuti';
-        } elseif (Session()->get('role') === 'Wakil Direktur') {
+        } elseif (Session()->get('role') === 'Wakil Direktur 2') {
             $page = 'wakildirektur.perizinancuti.detail';
+            $title = 'Perizinan Cuti';
+        } elseif (Session()->get('role') === 'Wakil Direktur 1') {
+            $page = 'wakildirektur.perizinancutiwadir1.detail';
             $title = 'Perizinan Cuti';
         }
 
@@ -143,7 +146,6 @@ class C_KelolaPengajuanCuti extends Controller
         $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
 
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
-
 
         // SENDTALK
         $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
@@ -474,6 +476,54 @@ class C_KelolaPengajuanCuti extends Controller
                 //         )
                 //     );
 
+                $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+                $detailPegawai = $this->ModelPegawai->detail($pengajuanCuti->id_pegawai);
+
+                if ($pengajuanCuti->jenis_cuti === 'Cuti Tahunan') {
+                    if ($pengajuanCuti->tahun_cuti === '(N-2) 2 Tahun Sebelumnya') {
+                        $pegawai = [
+                            'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                            'cuti_n_2'        => $detailPegawai->cuti_n_2 + $pengajuanCuti->lama_cuti,
+                        ];
+                    } elseif ($pengajuanCuti->tahun_cuti === '(N-1) 1 Tahun Sebelumnya') {
+                        $pegawai = [
+                            'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                            'cuti_n_1'        => $detailPegawai->cuti_n_1 + $pengajuanCuti->lama_cuti,
+                        ];
+                    } elseif ($pengajuanCuti->tahun_cuti === '(N) Tahun Berjalan') {
+                        $pegawai = [
+                            'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                            'cuti_n'        => $detailPegawai->cuti_n + $pengajuanCuti->lama_cuti,
+                        ];
+                    }
+                } elseif ($pengajuanCuti->jenis_cuti === 'Cuti Besar') {
+                    $pegawai = [
+                        'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                        'cuti_besar'        => $detailPegawai->cuti_besar - $pengajuanCuti->lama_cuti,
+                    ];
+                } elseif ($pengajuanCuti->jenis_cuti === 'Cuti Sakit') {
+                    $pegawai = [
+                        'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                        'cuti_sakit'        => $detailPegawai->cuti_sakit - $pengajuanCuti->lama_cuti,
+                    ];
+                } elseif ($pengajuanCuti->jenis_cuti === 'Cuti Melahirkan') {
+                    $pegawai = [
+                        'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                        'cuti_melahirkan'        => $detailPegawai->cuti_melahirkan - $pengajuanCuti->lama_cuti,
+                    ];
+                } elseif ($pengajuanCuti->jenis_cuti === 'Cuti Karena Alasan Penting') {
+                    $pegawai = [
+                        'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                        'cuti_karena_alasan_penting'        => $detailPegawai->cuti_karena_alasan_penting - $pengajuanCuti->lama_cuti,
+                    ];
+                } elseif ($pengajuanCuti->jenis_cuti === 'Cuti di Luar Tanggungan Negara') {
+                    $pegawai = [
+                        'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                        'cuti_diluar_tanggungan_negara'        => $detailPegawai->cuti_diluar_tanggungan_negara - $pengajuanCuti->lama_cuti,
+                    ];
+                }
+                $this->ModelPegawai->edit($pegawai);
+
                 $status_pengajuan = 'Selesai';
             } else {
                 $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
@@ -484,7 +534,7 @@ class C_KelolaPengajuanCuti extends Controller
                 $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
                 $whatsapp_phone = '+62' . $noHp;
 
-                $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Wakil Direktur. Silahkan cek di website SIMPEG Polsub!";
+                $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Wakil Direktur 2. Silahkan cek di website SIMPEG Polsub!";
 
                 $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
 
@@ -530,7 +580,7 @@ class C_KelolaPengajuanCuti extends Controller
                 //         )
                 //     );
 
-                $status_pengajuan = 'Dikirim ke Wakil Direktur';
+                $status_pengajuan = 'Dikirim ke Wakil Direktur 2';
             }
 
             $data = [
@@ -550,13 +600,54 @@ class C_KelolaPengajuanCuti extends Controller
                 'ketua_jurusan'                     => $cuti->nama,
                 'nip_ketua_jurusan'                 => $cuti->nip,
                 'pertimbangan_ketua_jurusan'        => 'DISETUJUI',
-                'status_pengajuan'                  => 'Dikirim ke Wakil Direktur'
+                'tanda_tangan_kajur'   => $user->tanda_tangan,
+                'status_pengajuan'                  => 'Dikirim ke Wakil Direktur 2'
             ];
 
             $route = 'kelola-pengajuan-cuti';
         }
 
         $this->ModelPengajuanCuti->edit($data);
+
+        $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+        foreach ($this->ModelPegawai->getData() as $item) {
+            if ($item->unit_kerja === $pengajuanCuti->unit_kerja && $item->role === 'Ketua Jurusan') {
+                $noHp = substr($item->nomor_telepon, 1);
+
+                // SENDTALK
+                $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
+                $whatsapp_phone = '+62' . $noHp;
+
+                $message = "Hallo {$item->nama}!\n\nAda pegawai yang melakukan pengajuan cuti. Silahkan di cek di website SIMPEG Polsub!";
+
+                $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+                $data = [
+                    "phone" => $whatsapp_phone,
+                    "messageType" => "text",
+                    "body" => $message
+                ];
+
+                $curl = curl_init($url);
+                curl_setopt($curl, CURLOPT_URL, $url);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+                $headers = array(
+                    "API-Key: $token",
+                    "Content-Type: application/json",
+                );
+                curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+                //for debug only!
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+                curl_exec($curl);
+                curl_close($curl);
+            }
+        }
+
         return redirect()->route($route)->with('berhasil', 'Data pengajuan cuti berhasil diberi izin !');
     }
     // tutup ketua jurusan
@@ -573,7 +664,7 @@ class C_KelolaPengajuanCuti extends Controller
             'subTitle'          => 'Data Perizinan Cuti',
             'biodata'           => $this->ModelSetting->detail(1),
             'user'              => $this->ModelUser->detail(Session()->get('id_user')),
-            'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataByTwoStatus('Dikirim ke Wakil Direktur', 'Diterima Wakil Direktur')
+            'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataByTwoStatus('Dikirim ke Wakil Direktur 2', 'Diterima Wakil Direktur 2')
         ];
 
         return view('wakildirektur.perizinancuti.data', $data);
@@ -593,7 +684,7 @@ class C_KelolaPengajuanCuti extends Controller
         $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
         $whatsapp_phone = '+62' . $noHp;
 
-        $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Wakil Direktur. Silahkan cek di website SIMPEG Polsub!";
+        $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Wakil Direktur 2. Silahkan cek di website SIMPEG Polsub!";
 
         $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
 
@@ -641,11 +732,11 @@ class C_KelolaPengajuanCuti extends Controller
 
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
-            'status_pengajuan'  => 'Diterima Wakil Direktur',
+            'status_pengajuan'  => 'Diterima Wakil Direktur 2',
         ];
 
         $this->ModelPengajuanCuti->edit($data);
-        return redirect()->route('perizinan-cuti-wakil-direktur')->with('berhasil', 'Data pengajuan cuti berhasil diterima !');
+        return redirect()->route('perizinan-cuti-wakil-direktur2')->with('berhasil', 'Data pengajuan cuti berhasil diterima !');
     }
 
     public function permissionWakilDirektur($id_pengajuan_cuti)
@@ -675,13 +766,222 @@ class C_KelolaPengajuanCuti extends Controller
 
         $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
 
+        $keputusan_wakil_direktur = Request()->keputusan_wakil_direktur;
+
+        if ($keputusan_wakil_direktur !== 'DISETUJUI') {
+
+            $noHp = substr($pengajuanCuti->nomor_telepon, 1);
+
+            // SENDTALK
+            $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
+            $whatsapp_phone = '+62' . $noHp;
+
+            $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda tidak disetujui oleh Wakil Direktur 2. Silahkan cek di website SIMPEG Polsub!";
+
+            $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+            $data = [
+                "phone" => $whatsapp_phone,
+                "messageType" => "text",
+                "body" => $message
+            ];
+
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+            $headers = array(
+                "API-Key: $token",
+                "Content-Type: application/json",
+            );
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+            //for debug only!
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+            curl_exec($curl);
+            curl_close($curl);
+
+            $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+            $detailPegawai = $this->ModelPegawai->detail($pengajuanCuti->id_pegawai);
+
+            if ($pengajuanCuti->jenis_cuti === 'Cuti Tahunan') {
+                if ($pengajuanCuti->tahun_cuti === '(N-2) 2 Tahun Sebelumnya') {
+                    $pegawai = [
+                        'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                        'cuti_n_2'        => $detailPegawai->cuti_n_2 + $pengajuanCuti->lama_cuti,
+                    ];
+                } elseif ($pengajuanCuti->tahun_cuti === '(N-1) 1 Tahun Sebelumnya') {
+                    $pegawai = [
+                        'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                        'cuti_n_1'        => $detailPegawai->cuti_n_1 + $pengajuanCuti->lama_cuti,
+                    ];
+                } elseif ($pengajuanCuti->tahun_cuti === '(N) Tahun Berjalan') {
+                    $pegawai = [
+                        'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                        'cuti_n'        => $detailPegawai->cuti_n + $pengajuanCuti->lama_cuti,
+                    ];
+                }
+            } elseif ($pengajuanCuti->jenis_cuti === 'Cuti Besar') {
+                $pegawai = [
+                    'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                    'cuti_besar'        => $detailPegawai->cuti_besar - $pengajuanCuti->lama_cuti,
+                ];
+            } elseif ($pengajuanCuti->jenis_cuti === 'Cuti Sakit') {
+                $pegawai = [
+                    'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                    'cuti_sakit'        => $detailPegawai->cuti_sakit - $pengajuanCuti->lama_cuti,
+                ];
+            } elseif ($pengajuanCuti->jenis_cuti === 'Cuti Melahirkan') {
+                $pegawai = [
+                    'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                    'cuti_melahirkan'        => $detailPegawai->cuti_melahirkan - $pengajuanCuti->lama_cuti,
+                ];
+            } elseif ($pengajuanCuti->jenis_cuti === 'Cuti Karena Alasan Penting') {
+                $pegawai = [
+                    'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                    'cuti_karena_alasan_penting'        => $detailPegawai->cuti_karena_alasan_penting - $pengajuanCuti->lama_cuti,
+                ];
+            } elseif ($pengajuanCuti->jenis_cuti === 'Cuti di Luar Tanggungan Negara') {
+                $pegawai = [
+                    'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                    'cuti_diluar_tanggungan_negara'        => $detailPegawai->cuti_diluar_tanggungan_negara - $pengajuanCuti->lama_cuti,
+                ];
+            }
+            $this->ModelPegawai->edit($pegawai);
+
+            $status_pengajuan = 'Selesai';
+        } else {
+            $noHp = substr($pengajuanCuti->nomor_telepon, 1);
+
+            // SENDTALK
+            $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
+            $whatsapp_phone = '+62' . $noHp;
+
+            $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Wakil Direktur 1. Silahkan cek di website SIMPEG Polsub!";
+
+            $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+            $data = [
+                "phone" => $whatsapp_phone,
+                "messageType" => "text",
+                "body" => $message
+            ];
+
+            $curl = curl_init($url);
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+            $headers = array(
+                "API-Key: $token",
+                "Content-Type: application/json",
+            );
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+            //for debug only!
+            curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+            curl_exec($curl);
+            curl_close($curl);
+
+            $status_pengajuan = 'Dikirim ke Wakil Direktur 1';
+        }
+
+
+        $data = [
+            'id_pengajuan_cuti'                => $id_pengajuan_cuti,
+            'wakil_direktur'                   => $user->nama,
+            'nip_wakil_direktur'               => $user->nip,
+            'keputusan_wakil_direktur'         => Request()->keputusan_wakil_direktur,
+            'alasan_keputusan_wakil_direktur'  => Request()->alasan_keputusan_wakil_direktur,
+            'tanda_tangan_wadir'                => $user->tanda_tangan,
+            'status_pengajuan'                 => $status_pengajuan,
+        ];
+
+        $this->ModelPengajuanCuti->edit($data);
+
+        $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+        foreach ($this->ModelPegawai->getData() as $item) {
+            if ($item->unit_kerja === $pengajuanCuti->unit_kerja && $item->role === 'Ketua Jurusan') {
+                $noHp = substr($item->nomor_telepon, 1);
+
+                // SENDTALK
+                $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
+                $whatsapp_phone = '+62' . $noHp;
+
+                $message = "Hallo {$item->nama}!\n\nAda pegawai yang melakukan pengajuan cuti. Silahkan di cek di website SIMPEG Polsub!";
+
+                $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+                $data = [
+                    "phone" => $whatsapp_phone,
+                    "messageType" => "text",
+                    "body" => $message
+                ];
+
+                $curl = curl_init($url);
+                curl_setopt($curl, CURLOPT_URL, $url);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+                $headers = array(
+                    "API-Key: $token",
+                    "Content-Type: application/json",
+                );
+                curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+                //for debug only!
+                curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+                curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+                curl_exec($curl);
+                curl_close($curl);
+            }
+        }
+
+        return redirect()->route('perizinan-cuti-wakil-direktur2')->with('berhasil', 'Data pengajuan cuti berhasil diberi izin !');
+    }
+    // tutup wakil direktur 2
+
+
+
+    // WAKIL DIREKTUR 1
+    public function dataCutiWakilDirekturSatu()
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $data = [
+            'title'             => 'Perizinan Cuti',
+            'subTitle'          => 'Data Perizinan Cuti',
+            'biodata'           => $this->ModelSetting->detail(1),
+            'user'              => $this->ModelUser->detail(Session()->get('id_user')),
+            'dataPengajuanCuti' => $this->ModelPengajuanCuti->getDataByTwoStatus('Dikirim ke Wakil Direktur 1', 'Diterima Wakil Direktur 1')
+        ];
+
+        return view('wakildirektur.perizinancutiwadir1.data', $data);
+    }
+
+    public function acceptWakilDirekturSatu($id_pengajuan_cuti)
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+
         $noHp = substr($pengajuanCuti->nomor_telepon, 1);
 
         // SENDTALK
         $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
         $whatsapp_phone = '+62' . $noHp;
 
-        $message = "Hallo {$pengajuanCuti->nama}!\n\nPengajuan cuti Anda sudah selesai. Silahkan cek hasilnya di website SIMPEG Polsub!";
+        $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sudah diterima oleh Wakil Direktur 1. Silahkan cek di website SIMPEG Polsub!";
 
         $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
 
@@ -709,36 +1009,161 @@ class C_KelolaPengajuanCuti extends Controller
         curl_exec($curl);
         curl_close($curl);
 
-        // TWILIO
-
-        // $sid    = "AC944f941fef8a459f011bb10c3236df78";
-        // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
-
-        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-        // $twilio = new Client($sid, $token);
-
-        // $message = $twilio->messages
-        //     ->create(
-        //         "whatsapp:+62" . $noHp, // to
-        //         array(
-        //             "from" => "whatsapp:+14155238886",
-        //             "body" => "Hallo {$pengajuanCuti->nama}!\n\nPengajuan cuti Anda sudah selesai. Silahkan cek hasilnya di website SIMPEG Polsub!"
-        //         )
-        //     );
-
         $data = [
-            'id_pengajuan_cuti'                => $id_pengajuan_cuti,
-            'wakil_direktur'                   => $user->nama,
-            'nip_wakil_direktur'               => $user->nip,
-            'keputusan_wakil_direktur'         => Request()->keputusan_wakil_direktur,
-            'alasan_keputusan_wakil_direktur'  => Request()->alasan_keputusan_wakil_direktur,
-            'tanda_tangan_wadir'   => $user->tanda_tangan,
-            'status_pengajuan'                 => 'Selesai',
+            'id_pengajuan_cuti' => $id_pengajuan_cuti,
+            'status_pengajuan'  => 'Diterima Wakil Direktur 1',
         ];
 
         $this->ModelPengajuanCuti->edit($data);
-        return redirect()->route('perizinan-cuti-wakil-direktur')->with('berhasil', 'Data pengajuan cuti berhasil diberi izin !');
+        return redirect()->route('perizinan-cuti-wakil-direktur1')->with('berhasil', 'Data pengajuan cuti berhasil diterima !');
     }
-    // tutup wakil direktur
+
+    public function notApproveWadirSatu($id_pengajuan_cuti)
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+        $detailPegawai = $this->ModelPegawai->detail($pengajuanCuti->id_pegawai);
+
+        if ($pengajuanCuti->jenis_cuti === 'Cuti Tahunan') {
+            if ($pengajuanCuti->tahun_cuti === '(N-2) 2 Tahun Sebelumnya') {
+                $pegawai = [
+                    'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                    'cuti_n_2'        => $detailPegawai->cuti_n_2 + $pengajuanCuti->lama_cuti,
+                ];
+            } elseif ($pengajuanCuti->tahun_cuti === '(N-1) 1 Tahun Sebelumnya') {
+                $pegawai = [
+                    'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                    'cuti_n_1'        => $detailPegawai->cuti_n_1 + $pengajuanCuti->lama_cuti,
+                ];
+            } elseif ($pengajuanCuti->tahun_cuti === '(N) Tahun Berjalan') {
+                $pegawai = [
+                    'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                    'cuti_n'        => $detailPegawai->cuti_n + $pengajuanCuti->lama_cuti,
+                ];
+            }
+        } elseif ($pengajuanCuti->jenis_cuti === 'Cuti Besar') {
+            $pegawai = [
+                'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                'cuti_besar'        => $detailPegawai->cuti_besar - $pengajuanCuti->lama_cuti,
+            ];
+        } elseif ($pengajuanCuti->jenis_cuti === 'Cuti Sakit') {
+            $pegawai = [
+                'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                'cuti_sakit'        => $detailPegawai->cuti_sakit - $pengajuanCuti->lama_cuti,
+            ];
+        } elseif ($pengajuanCuti->jenis_cuti === 'Cuti Melahirkan') {
+            $pegawai = [
+                'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                'cuti_melahirkan'        => $detailPegawai->cuti_melahirkan - $pengajuanCuti->lama_cuti,
+            ];
+        } elseif ($pengajuanCuti->jenis_cuti === 'Cuti Karena Alasan Penting') {
+            $pegawai = [
+                'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                'cuti_karena_alasan_penting'        => $detailPegawai->cuti_karena_alasan_penting - $pengajuanCuti->lama_cuti,
+            ];
+        } elseif ($pengajuanCuti->jenis_cuti === 'Cuti di Luar Tanggungan Negara') {
+            $pegawai = [
+                'id_pegawai'    => $pengajuanCuti->id_pegawai,
+                'cuti_diluar_tanggungan_negara'        => $detailPegawai->cuti_diluar_tanggungan_negara - $pengajuanCuti->lama_cuti,
+            ];
+        }
+        $this->ModelPegawai->edit($pegawai);
+
+        $noHp = substr($pengajuanCuti->nomor_telepon, 1);
+
+        // SENDTALK
+        $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
+        $whatsapp_phone = '+62' . $noHp;
+
+        $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda tidak disetujui oleh Wakil Direktur 1. Silahkan cek di website SIMPEG Polsub!";
+
+        $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+        $data = [
+            "phone" => $whatsapp_phone,
+            "messageType" => "text",
+            "body" => $message
+        ];
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = array(
+            "API-Key: $token",
+            "Content-Type: application/json",
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        //for debug only!
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+        curl_exec($curl);
+        curl_close($curl);
+
+        $data = [
+            'id_pengajuan_cuti' => $id_pengajuan_cuti,
+            'status_pengajuan'  => 'Selesai',
+        ];
+
+        $this->ModelPengajuanCuti->edit($data);
+        return redirect()->route('perizinan-cuti-wakil-direktur1')->with('berhasil', 'Data pengajuan cuti tidak disetujui !');
+    }
+
+    public function approveWadirSatu($id_pengajuan_cuti)
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+
+        $noHp = substr($pengajuanCuti->nomor_telepon, 1);
+
+        // SENDTALK
+        $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
+        $whatsapp_phone = '+62' . $noHp;
+
+        $message = "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda disetujui oleh Wakil Direktur 1. Silahkan cek di website SIMPEG Polsub!";
+
+        $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
+
+        $data = [
+            "phone" => $whatsapp_phone,
+            "messageType" => "text",
+            "body" => $message
+        ];
+
+        $curl = curl_init($url);
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        $headers = array(
+            "API-Key: $token",
+            "Content-Type: application/json",
+        );
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+        //for debug only!
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
+
+        curl_exec($curl);
+        curl_close($curl);
+
+        $data = [
+            'id_pengajuan_cuti' => $id_pengajuan_cuti,
+            'status_pengajuan'  => 'Selesai',
+        ];
+
+        $this->ModelPengajuanCuti->edit($data);
+        return redirect()->route('perizinan-cuti-wakil-direktur1')->with('berhasil', 'Data pengajuan cuti disetujui !');
+    }
+    // TUTUP WAKIL DIREKTUR 1
 }

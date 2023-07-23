@@ -26,8 +26,8 @@ class C_Landing extends Controller
                 return redirect()->route('dashboardPegawai');
             } elseif (Session()->get('role') === 'Ketua Jurusan') {
                 return redirect()->route('dashboardKetuaJurusan');
-            } elseif (Session()->get('role') === 'Wakil Direktur') {
-                return redirect()->route('dashboardWakilDirektur');
+            } elseif (Session()->get('role') === 'Wakil Direktur 2') {
+                return redirect()->route('dashboardWakilDirektur2');
             } elseif (Session()->get('role') === 'Bagian Umum') {
                 return redirect()->route('dashboardBagianUmum');
             }
@@ -52,8 +52,8 @@ class C_Landing extends Controller
                 return redirect()->route('dashboardPegawai');
             } elseif (Session()->get('role') === 'Ketua Jurusan') {
                 return redirect()->route('dashboardKetuaJurusan');
-            } elseif (Session()->get('role') === 'Wakil Direktur') {
-                return redirect()->route('dashboardWakilDirektur');
+            } elseif (Session()->get('role') === 'Wakil Direktur 2') {
+                return redirect()->route('dashboardWakilDirektur2');
             } elseif (Session()->get('role') === 'Bagian Umum') {
                 return redirect()->route('dashboardBagianUmum');
             }

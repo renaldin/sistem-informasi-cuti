@@ -291,7 +291,8 @@
                     </tr>
                     <tr>
                         <td >Selama</td>
-                        <td >{{$detail->lama_cuti}} (<span @if($detail->jenis_waktu !== 'hari') style="text-decoration: line-through;" @endif>hari</span>/<span @if($detail->jenis_waktu !== 'bulan') style="text-decoration: line-through;" @endif>bulan</span>/<span @if($detail->jenis_waktu !== 'tahun') style="text-decoration: line-through;" @endif>tahun</span>)*</td>
+                        <td >{{$detail->lama_cuti}} hari*</td>
+                        {{-- <td >{{$detail->lama_cuti}} (<span @if($detail->jenis_waktu !== 'hari') style="text-decoration: line-through;" @endif>hari</span>/<span @if($detail->jenis_waktu !== 'bulan') style="text-decoration: line-through;" @endif>bulan</span>/<span @if($detail->jenis_waktu !== 'tahun') style="text-decoration: line-through;" @endif>tahun</span>)*</td> --}}
                         <td >Mulai Tanggal</td>
                         <td >{{$detail->mulai_tanggal}}</td>
                         <td >s.d</td>

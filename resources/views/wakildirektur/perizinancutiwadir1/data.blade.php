@@ -9,16 +9,16 @@
                     <div class="form-title-wrap">
                         <div>
                             <h3 class="title">{{ $subTitle }}</h3>
-                            <p class="font-size-14">Silahkan data pengajuan cuti di tabel bawah!</p>
+                            <p class="font-size-14">Silahkan lihat data perizinan cuti di tabel bawah!</p>
                         </div>
                     </div>
                     <div class="form-content">
                         <div class="table-form table-responsive">
-                            <div class="row mb-2">
+                            {{-- <div class="row mb-2">
                                 <div class="col-lg-12">
                                     <a href="/download-semua-pengajuan-cuti" class="theme-btn theme-btn-small"><i class="la la-download"></i> Download Semua Data</a>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="mb-2">
                                 @if (session('berhasil'))    
                                     <div class="alert bg-primary text-white alert-dismissible">
@@ -41,43 +41,42 @@
                                         <th scope="col">No</th>
                                         <th scope="col">Nama</th>
                                         <th scope="col">Jenis Cuti</th>
-                                        <th scope="col">Status Pengajuan</th>
+                                        <th scope="col">Unit Kerja</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $no = 1;?>
                                     @foreach ($dataPengajuanCuti as $item)
-                                    @if ($item->status_pengajuan === 'Selesai')
-                                        @if ($item->status_pengajuan === 'Dikirim ke Admin')
-                                            <tr>
-                                                <td colspan="5">
-                                                    <div class="table-content text-center">
-                                                        <button type="button" data-toggle="modal" data-target="#terima{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small"><i class="la la-check"></i> Terima</button>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @else
-                                            <tr>
-                                                <th scope="row">{{ $no++ }}</th>
-                                                <td>{{ $item->nama }}</td>
-                                                <td>{{ $item->jenis_cuti }}</td>
-                                                <td><span class="badge badge-primary py-1 px-2">{{ $item->status_pengajuan }}</span></td>
-                                                <td>
-                                                    <div class="table-content">
-                                                        <a href="/detail-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
-                                                        @if ($item->status_pengajuan === 'Diterima Admin')
-                                                            <button type="button" data-toggle="modal" data-target="#kirim-atasan{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Kirim ke Atasan"><i class="la la-check"></i></button>
-                                                        @endif
-                                                        <a href="/download-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Download"><i class="la la-download"></i></a>
-                                                        @if ($item->status_pengajuan === 'Diterima Admin')
-                                                            <a href="/edit-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
-                                                            <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
-                                                        @endif
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endif
+                                    @if ($item->status_pengajuan === 'Dikirim ke Wakil Direktur 1')
+                                        <tr>
+                                            <td colspan="5">
+                                                <div class="table-content text-center">
+                                                    <button type="button" data-toggle="modal" data-target="#terima{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small"><i class="la la-check"></i> Terima</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @else
+                                        <tr>
+                                            <th scope="row">{{ $no++ }}</th>
+                                            <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->jenis_cuti }}</td>
+                                            <td>{{ $item->unit_kerja }}</td>
+                                            {{-- <td><span class="badge badge-primary py-1 px-2">{{ $item->status_pengajuan }}</span></td> --}}
+                                            <td>
+                                                <div class="table-content">
+                                                    @if ($item->status_pengajuan === 'Diterima Wakil Direktur 1')
+                                                        <button type="button" data-toggle="modal" data-target="#izin-atasan{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Persetujuan Pejabat"><i class="la la-check"></i></button>
+                                                    @endif
+                                                    <a href="/detail-pengajuan-cuti-wakil-direktur1/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
+                                                    {{-- <a href="/download-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Download"><i class="la la-download"></i></a> --}}
+                                                    {{-- @if ($item->status_pengajuan === 'Diterima Admin')
+                                                        <a href="/edit-kelola-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a>
+                                                        <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
+                                                    @endif --}}
+                                                </div>
+                                            </td>
+                                        </tr>
                                     @endif
                                     @endforeach
                                 </tbody>
@@ -94,7 +93,7 @@
 </div>
 
 {{-- Hapus --}}
-@foreach ($dataPengajuanCuti as $item)
+{{-- @foreach ($dataPengajuanCuti as $item)
 <div class="modal fade" id="hapus{{ $item->id_pengajuan_cuti }}"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -118,7 +117,7 @@
         </div>
     </div>
 </div>
-@endforeach
+@endforeach --}}
 
 {{-- Terima --}}
 @foreach ($dataPengajuanCuti as $item)
@@ -140,20 +139,20 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-            <a href="/terima-pengajuan-cuti/{{ $item->id_pengajuan_cuti }}" class="btn btn-primary">Terima</a>
+            <a href="/terima-pengajuan-cuti-wakil-direktur1/{{ $item->id_pengajuan_cuti }}" class="btn btn-primary">Terima</a>
         </div>
         </div>
     </div>
 </div>
 @endforeach
 
-{{-- Kirim --}}
+{{-- beri izin --}}
 @foreach ($dataPengajuanCuti as $item)
-<div class="modal fade" id="kirim-atasan{{ $item->id_pengajuan_cuti }}"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="izin-atasan{{ $item->id_pengajuan_cuti }}"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Kirim Pengajuan Cuti ke Atasan</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Perizinan Cuti</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -161,13 +160,13 @@
         <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <p>Apakah Anda yakin akan kirim data pengajuan cuti <strong>{{$item->nama}}</strong> ?</p>
+                        <p>Apakah Anda yakin akan menyetujui untuk pengajuan cuti <strong>{{$item->nama}}</strong> ?</p>
                     </div>
                 </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-            <a href="@if($item->role === 'Pegawai')/kirim-ketua-jurusan/{{ $item->id_pengajuan_cuti }}@elseif($item->role === 'Ketua Jurusan')/kirim-ke-wadir/{{ $item->id_pengajuan_cuti }}@endif" class="btn btn-primary">Kirim</a>
+            <a href="/tidak-setuju-wakil-direktur1/{{ $item->id_pengajuan_cuti }}" class="btn btn-danger">Tidak</a>
+            <a href="/setuju-wakil-direktur1/{{ $item->id_pengajuan_cuti }}" class="btn btn-primary">Ya</a>
         </div>
         </div>
     </div>

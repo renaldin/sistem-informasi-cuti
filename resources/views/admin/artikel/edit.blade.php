@@ -52,7 +52,6 @@
                                             <label class="label-text">Dokumen <span>* File format .pdf</span></label>
                                             <div class="form-group">
                                                 <input type="file" name="dokumen" class="form-control" maxlength="3">
-                                                <span class="file-upload-text"><i class="la la-upload mr-2"></i>Upload File</span>
                                             </div>
                                             @error('dokumen')
                                             <div style="margin-top: -16px">
@@ -66,7 +65,6 @@
                                             <label class="label-text">Gambar <span>* File format .jpg/jpeg/png</span></label>
                                             <div class="form-group">
                                                 <input type="file" name="gambar" class="form-control" maxlength="3">
-                                                <span class="file-upload-text"><i class="la la-upload mr-2"></i>Upload File</span>
                                             </div>
                                             @error('gambar')
                                             <div style="margin-top: -16px">

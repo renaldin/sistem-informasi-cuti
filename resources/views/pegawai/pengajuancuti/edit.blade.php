@@ -113,42 +113,42 @@
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <label for="cuti_tahunan" class="radio-trigger mb-0 font-size-14 mr-3">
-                                                            <input type="radio" id="cuti_tahunan" name="jenis_cuti" @if($detail->jenis_cuti === 'Cuti Tahunan') checked @endif value="Cuti Tahunan">
+                                                            <input type="radio" id="cuti_tahunan" onclick="jenisCuti(event)" name="jenis_cuti" @if($detail->jenis_cuti === 'Cuti Tahunan') checked @endif value="Cuti Tahunan">
                                                             <span class="checkmark"></span>
                                                             <span>1. Cuti Tahunan</span>
                                                         </label>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label for="cuti_besar" class="radio-trigger mb-0 font-size-14 mr-3">
-                                                            <input type="radio" id="cuti_besar" name="jenis_cuti" @if($detail->jenis_cuti === 'Cuti Besar') checked @endif value="Cuti Besar">
+                                                            <input type="radio" id="cuti_besar" onclick="jenisCuti(event)" name="jenis_cuti" @if($detail->jenis_cuti === 'Cuti Besar') checked @endif value="Cuti Besar">
                                                             <span class="checkmark"></span>
                                                             <span>2. Cuti Besar</span>
                                                         </label>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label for="cuti_sakit" class="radio-trigger mb-0 font-size-14 mr-3">
-                                                            <input type="radio" id="cuti_sakit" name="jenis_cuti" @if($detail->jenis_cuti === 'Cuti Sakit') checked @endif value="Cuti Sakit">
+                                                            <input type="radio" id="cuti_sakit" onclick="jenisCuti(event)" name="jenis_cuti" @if($detail->jenis_cuti === 'Cuti Sakit') checked @endif value="Cuti Sakit">
                                                             <span class="checkmark"></span>
                                                             <span>3. Cuti Sakit</span>
                                                         </label>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label for="cuti_melahirkan" class="radio-trigger mb-0 font-size-14">
-                                                            <input type="radio" id="cuti_melahirkan" name="jenis_cuti" @if($detail->jenis_cuti === 'Cuti Melahirkan') checked @endif value="Cuti Melahirkan">
+                                                            <input type="radio" id="cuti_melahirkan" onclick="jenisCuti(event)" name="jenis_cuti" @if($detail->jenis_cuti === 'Cuti Melahirkan') checked @endif value="Cuti Melahirkan">
                                                             <span class="checkmark"></span>
                                                             <span>4. Cuti Melahirkan</span>
                                                         </label>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label for="cuti_karena_alasan_penting" class="radio-trigger mb-0 font-size-14">
-                                                            <input type="radio" id="cuti_karena_alasan_penting" name="jenis_cuti" @if($detail->jenis_cuti === 'Cuti Karena Alasan Penting') checked @endif value="Cuti Karena Alasan Penting">
+                                                            <input type="radio" id="cuti_karena_alasan_penting" onclick="jenisCuti(event)" name="jenis_cuti" @if($detail->jenis_cuti === 'Cuti Karena Alasan Penting') checked @endif value="Cuti Karena Alasan Penting">
                                                             <span class="checkmark"></span>
                                                             <span>5. Cuti Karena Alasan Penting</span>
                                                         </label>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label for="cuti_di_luar_tanggungan_negara" class="radio-trigger mb-0 font-size-14">
-                                                            <input type="radio" id="cuti_di_luar_tanggungan_negara" name="jenis_cuti"  @if($detail->jenis_cuti === 'Cuti di Luar Tanggungan Negara') checked @endif value="Cuti di Luar Tanggungan Negara">
+                                                            <input type="radio" id="cuti_di_luar_tanggungan_negara" onclick="jenisCuti(event)" name="jenis_cuti"  @if($detail->jenis_cuti === 'Cuti di Luar Tanggungan Negara') checked @endif value="Cuti di Luar Tanggungan Negara">
                                                             <span class="checkmark"></span>
                                                             <span>6. Cuti di Luar Tanggungan Negara</span>
                                                         </label>
@@ -161,6 +161,28 @@
                                             </div>
                                             @enderror
                                         </div>
+                                    </div>
+                                    <div class="col-lg-6" id="tahun_cuti" @if ($detail->tahun_cuti === null)style="display: none;"@elsestyle="display: block;"@endif>
+                                        <div class="input-box">
+                                            <label class="label-text">Tahun Cuti</label>
+                                            <div class="form-group select-contain w-100">
+                                                <select class="select-contain-select" name="tahun_cuti">
+                                                    @if ($detail->tahun_cuti)
+                                                    <option value="{{$detail->tahun_cuti}}">{{$detail->tahun_cuti}}</option>
+                                                    @else
+                                                    <option value="">--Pilih--</option>
+                                                    @endif
+                                                    <option value="(N) Tahun Berjalan">(N) Tahun Berjalan</option>
+                                                    <option value="(N-1) 1 Tahun Sebelumnya">(N-1) 1 Tahun Sebelumnya</option>
+                                                    <option value="(N-2) 2 Tahun Sebelumnya">(N-2) 2 Tahun Sebelumnya</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        @error('tahun_cuti')
+                                        <div style="margin-top: -16px">
+                                            <small class="text-danger">{{ $message }}</small>
+                                        </div>
+                                        @enderror
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="input-box">
@@ -191,7 +213,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
     
-                                                        <input class="form-control" type="number" name="lama_cuti" value="{{ $detail->lama_cuti }}">
+                                                        <input class="form-control" type="number" name="lama_cuti" placeholder="Jumlah" value="{{ $detail->lama_cuti }}">
                                                     </div>
                                                     @error('lama_cuti')
                                                     <div style="margin-top: -16px">
@@ -200,7 +222,10 @@
                                                     @enderror
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <div class="form-group select-contain w-100">
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="text" name="jenis_waktu" value="{{ $detail->jenis_waktu }}">
+                                                    </div>
+                                                    {{-- <div class="form-group select-contain w-100">
                                                         <select class="select-contain-select" name="jenis_waktu">
                                                             <option value="{{$detail->jenis_waktu}}">{{$detail->jenis_waktu}}</option>
                                                             <option value="hari">hari</option>
@@ -208,7 +233,7 @@
                                                             <option value="bulan">bulan</option>
                                                             <option value="tahun">tahun</option>
                                                         </select>
-                                                    </div>
+                                                    </div> --}}
                                                     @error('jenis_waktu')
                                                     <div style="margin-top: -16px">
                                                         <small class="text-danger">{{ $message }}</small>
@@ -229,15 +254,37 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
+                                {{-- <div class="row">
                                     <div class="col-lg-12">
                                         <div class="input-box">
                                             <label class="label-text"><strong>Catatan Cuti</strong></label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    {{-- <div class="col-lg-6">
+                                        <div class="input-box">
+                                            <label class="label-text">Tahun Cuti</label>
+                                            <div class="form-group select-contain w-100">
+                                                <select class="select-contain-select" name="tahun_cuti" required>
+                                                    @if ($detail->tahun_cuti)
+                                                    <option value="{{$detail->tahun_cuti}}">{{$detail->tahun_cuti}}</option>
+                                                    @else
+                                                    <option value="">--Pilih--</option>
+                                                    @endif
+                                                    <option value="(N) Tahun Berjalan">(N) Tahun Berjalan</option>
+                                                    <option value="(N-1) 1 Tahun Sebelumnya">(N-1) 1 Tahun Sebelumnya</option>
+                                                    <option value="(N-2) 2 Tahun Sebelumnya">(N-2) 2 Tahun Sebelumnya</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        @error('tahun_cuti')
+                                        <div style="margin-top: -16px">
+                                            <small class="text-danger">{{ $message }}</small>
+                                        </div>
+                                        @enderror
+                                    </div> --}}
+                                    {{-- <div class="col-lg-6">
                                         <div class="input-box">
                                             <label class="label-text">Sisa Cuti 2 Tahun Sebelumnya (N-2)</label>
                                             <div class="form-group">
@@ -379,7 +426,7 @@
                                             </div>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-12">
                                         <div class="input-box">
                                             <label class="label-text"><strong>Alamat Selama Menjalankan Cuti</strong></label>
@@ -410,4 +457,16 @@
         {{-- end footer --}}
     </div>
 </div>
+
+<script>
+    function jenisCuti(event) {
+        var selectedValue = event.target.value;
+        var cutiTahun = document.getElementById("tahun_cuti");
+        if(selectedValue === 'Cuti Tahunan'){
+            cutiTahun.style.display = 'block'
+        } else {
+            cutiTahun.style.display = 'none'
+        }
+      }
+  </script>
 @endsection

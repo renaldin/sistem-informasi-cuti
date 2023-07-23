@@ -57,7 +57,8 @@
                                             <div class="form-group select-contain w-100">
                                                 <select class="select-contain-select" name="role">
                                                     <option value="">-- Pilih Role --</option>
-                                                    <option value="Wakil Direktur">Wakil Direktur</option>
+                                                    <option value="Wakil Direktur 1">Wakil Direktur 1</option>
+                                                    <option value="Wakil Direktur 2">Wakil Direktur 2</option>
                                                     <option value="Ketua Jurusan">Ketua Jurusan</option>
                                                     <option value="Pegawai">Pegawai</option>
                                                     <option value="Bagian Umum">Bagian Umum</option>
@@ -204,7 +205,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Sisa Cuti 2 Tahun Sebelumnya (N-2)</label>
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="cuti_n_2" placeholder="Masukkan N-2" value="{{ old('cuti_n_2') }}">
+                                                <input class="form-control" type="number" name="cuti_n_2" placeholder="Masukkan N-2" value="{{ old('cuti_n_2') }}">
                                             </div>
                                             @error('cuti_n_2')
                                             <div style="margin-top: -16px">
@@ -230,7 +231,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Sisa Cuti 1 Tahun Sebelumnya (N-1)</label>
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="cuti_n_1" placeholder="Masukkan N-1" value="{{ old('cuti_n_1') }}">
+                                                <input class="form-control" type="number" name="cuti_n_1" placeholder="Masukkan N-1" value="{{ old('cuti_n_1') }}">
                                             </div>
                                             @error('cuti_n_1')
                                             <div style="margin-top: -16px">
@@ -256,7 +257,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Sisa Cuti Tahun Berjalan (N)</label>
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="cuti_n" placeholder="Masukkan N" value="{{ old('cuti_n') }}">
+                                                <input class="form-control" type="number" name="cuti_n" placeholder="Masukkan N" value="{{ old('cuti_n') }}">
                                             </div>
                                             @error('cuti_n')
                                             <div style="margin-top: -16px">
@@ -282,7 +283,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Cuti Besar</label>
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="cuti_besar" placeholder="Masukkan Cuti Besar" value="{{ old('cuti_besar') }}">
+                                                <input class="form-control" type="number" name="cuti_besar" placeholder="Masukkan Cuti Besar" value="{{ old('cuti_besar') }}">
                                             </div>
                                             @error('cuti_besar')
                                             <div style="margin-top: -16px">
@@ -295,7 +296,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Cuti Sakit</label>
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="cuti_sakit" placeholder="Masukkan Cuti Sakit" value="{{ old('cuti_sakit') }}">
+                                                <input class="form-control" type="number" name="cuti_sakit" placeholder="Masukkan Cuti Sakit" value="{{ old('cuti_sakit') }}">
                                             </div>
                                             @error('cuti_sakit')
                                             <div style="margin-top: -16px">
@@ -308,7 +309,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Cuti Melahirkan</label>
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="cuti_melahirkan" placeholder="Masukkan Cuti Melahirkan" value="{{ old('cuti_melahirkan') }}">
+                                                <input class="form-control" type="number" name="cuti_melahirkan" placeholder="Masukkan Cuti Melahirkan" value="{{ old('cuti_melahirkan') }}">
                                             </div>
                                             @error('cuti_melahirkan')
                                             <div style="margin-top: -16px">
@@ -321,7 +322,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Cuti Karena Alasan Penting</label>
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="cuti_karena_alasan_penting" placeholder="Masukkan Cuti Karena Alasan Penting" value="{{ old('cuti_karena_alasan_penting') }}">
+                                                <input class="form-control" type="number" name="cuti_karena_alasan_penting" placeholder="Masukkan Cuti Karena Alasan Penting" value="{{ old('cuti_karena_alasan_penting') }}">
                                             </div>
                                             @error('cuti_karena_alasan_penting')
                                             <div style="margin-top: -16px">
@@ -334,7 +335,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Cuti Di Luar Tanggungan Negara</label>
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="cuti_diluar_tanggungan_negara" placeholder="Masukkan Cuti Di Luar Tanggungan Negara" value="{{ old('cuti_diluar_tanggungan_negara') }}">
+                                                <input class="form-control" type="number" name="cuti_diluar_tanggungan_negara" placeholder="Masukkan Cuti Di Luar Tanggungan Negara" value="{{ old('cuti_diluar_tanggungan_negara') }}">
                                             </div>
                                             @error('cuti_diluar_tanggungan_negara')
                                             <div style="margin-top: -16px">

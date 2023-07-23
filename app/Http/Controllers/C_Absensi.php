@@ -130,7 +130,9 @@ class C_Absensi extends Controller
             $route = 'pegawai.absensi.data';
         } elseif ($user->role == 'Bagian Umum') {
             $route = 'bagianumum.absensi.data';
-        } elseif ($user->role == 'Wakil Direktur') {
+        } elseif ($user->role == 'Wakil Direktur 2') {
+            $route = 'wakildirektur.absensi.data';
+        } elseif ($user->role == 'Wakil Direktur 1') {
             $route = 'wakildirektur.absensi.data';
         } elseif ($user->role == 'Ketua Jurusan') {
             $route = 'ketuajurusan.absensi.data';
@@ -165,7 +167,9 @@ class C_Absensi extends Controller
             $route = 'pegawai.absensi.data';
         } elseif ($user->role == 'Bagian Umum') {
             $route = 'bagianumum.absensi.data';
-        } elseif ($user->role == 'Wakil Direktur') {
+        } elseif ($user->role == 'Wakil Direktur 2') {
+            $route = 'wakildirektur.absensi.data';
+        } elseif ($user->role == 'Wakil Direktur 1') {
             $route = 'wakildirektur.absensi.data';
         } elseif ($user->role == 'Ketua Jurusan') {
             $route = 'ketuajurusan.absensi.data';

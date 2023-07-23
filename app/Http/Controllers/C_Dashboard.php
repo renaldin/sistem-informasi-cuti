@@ -41,6 +41,7 @@ class C_Dashboard extends Controller
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
                 'jumlahUser'            => $this->ModelUser->jumlahUser(),
                 'jumlahPegawai'         => $this->ModelPegawai->jumlahPegawai(),
+                'surat'        => $this->ModelSurat->getData(),
                 'jumlahPengajuanCuti'   => $this->ModelPengajuanCuti->jumlahPengajuanCuti(),
                 'selesaiPengajuanCuti'  => $this->ModelPengajuanCuti->jumlahByStatus('Selesai'),
             ];
@@ -56,11 +57,21 @@ class C_Dashboard extends Controller
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
                 'biodata'               => $this->ModelSetting->detail(1),
                 'dataSurat'             => $this->ModelSurat->getDataPegawai(),
+                'detailPegawai'       => $this->ModelPegawai->detailByIdUser(Session()->get('id_user')),
                 'jumlahPengajuanCuti'   => $this->ModelPengajuanCuti->jumlahByUser($pegawai->id_pegawai),
                 'selesaiPengajuanCuti'  => $this->ModelPengajuanCuti->jumlahByUserStatus($pegawai->id_pegawai, 'Selesai'),
             ];
             return view('pegawai.dashboard', $data);
-        } elseif (Session()->get('role') === 'Wakil Direktur') {
+        } elseif (Session()->get('role') === 'Wakil Direktur 1') {
+            $data = [
+                'title'                 => null,
+                'subTitle'              => 'Dashboard',
+                'dataSurat'             => $this->ModelSurat->getDataPegawai(),
+                'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
+                'biodata'               => $this->ModelSetting->detail(1),
+            ];
+            return view('wakildirektur.dashboard', $data);
+        } elseif (Session()->get('role') === 'Wakil Direktur 2') {
             $data = [
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
@@ -74,6 +85,7 @@ class C_Dashboard extends Controller
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
                 'dataSurat'             => $this->ModelSurat->getDataPegawai(),
+                'detailPegawai'       => $this->ModelPegawai->detailByIdUser(Session()->get('id_user')),
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
                 'biodata'               => $this->ModelSetting->detail(1),
             ];
@@ -82,6 +94,7 @@ class C_Dashboard extends Controller
             $data = [
                 'title'                 => null,
                 'subTitle'              => 'Dashboard',
+                'surat'        => $this->ModelSurat->getData(),
                 'user'                  => $this->ModelUser->detail(Session()->get('id_user')),
                 'biodata'               => $this->ModelSetting->detail(1),
             ];

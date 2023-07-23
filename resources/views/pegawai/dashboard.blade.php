@@ -50,6 +50,21 @@
                     <a href="/riwayat-pengajuan-cuti" class="d-flex align-items-center justify-content-between view-all">Lihat Semua <i class="la la-angle-right"></i></a>
                 </div>
             </div><!-- end col-lg-3 -->
+            <div class="col-lg-3 responsive-column-l">
+                <div class="icon-box icon-layout-2 dashboard-icon-box pb-0">
+                    <div class="d-flex pb-3 justify-content-between">
+                        <div class="info-content">
+                            <p class="info__desc">Sisa Cuti Tahunan (N)</p>
+                            <h4 class="info__title">{{$detailPegawai->cuti_n}}</h4>
+                        </div><!-- end info-content -->
+                        <div class="info-icon icon-element bg-2">
+                            <i class="la la-circle"></i>
+                        </div><!-- end info-icon-->
+                    </div>
+                    <div class="section-block"></div>
+                    <a href="#" data-toggle="modal" data-target="#sisaCuti" class="d-flex align-items-center justify-content-between view-all">Lihat <i class="la la-angle-right"></i></a>
+                </div>
+            </div><!-- end col-lg-3 -->
         </div>
         <div class="row">
             <div class="col-lg-12">
@@ -235,4 +250,41 @@
 </div>
 @endforeach
 {{-- Ttup --}}
+
+
+<div class="modal fade" id="sisaCuti"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Sisa Cuti</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <table>
+                <tr>
+                    <th>(N) Tahun Berjalan</th>
+                    <td width="20px">:</td>
+                    <td>{{$detailPegawai->cuti_n}} hari</td>
+                </tr>
+                <tr>
+                    <th>(N-1) 1 Tahun Sebelumnya</th>
+                    <td>:</td>
+                    <td>{{$detailPegawai->cuti_n_1}} hari</td>
+                </tr>
+                <tr>
+                    <th>(N-2) 2 Tahun Sebelumnya</th>
+                    <td>:</td>
+                    <td>{{$detailPegawai->cuti_n_2}} hari</td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+        </div>
+        </form>
+        </div>
+    </div>
+</div>
 @endsection

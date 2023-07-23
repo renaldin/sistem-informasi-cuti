@@ -14,7 +14,7 @@
                     </div>
                     <div class="form-content">
                         <div class="contact-form-action">
-                            <form action="/izin-wakil-direktur/{{$detail->id_pengajuan_cuti}}" method="POST" enctype="multipart/form-data">
+                            <form action="/izin-wakil-direktur2/{{$detail->id_pengajuan_cuti}}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 mt-3 text-center">
-                                    <a href="/perizinan-cuti-pejabat" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
+                                    <a href="/perizinan-cuti-wakil-direktur2" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
                                     <button type="submit" class="theme-btn theme-btn-small">Simpan</button>
                                 </div>
                             </form>

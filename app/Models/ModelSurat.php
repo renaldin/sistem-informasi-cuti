@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use DateInterval;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -100,5 +102,24 @@ class ModelSurat extends Model
     public function lastData()
     {
         return DB::table($this->table)->orderBy('id_surat', 'DESC')->limit(1)->first();
+    }
+
+    public function jumlahReminder()
+    {
+        date_default_timezone_set('Asia/Jakarta');
+        // Waktu sekarang
+        $waktu_sekarang = date('Y-m-d H:i:s');
+
+        // Konversi ke objek DateTime
+        $datetime_sekarang = new DateTime($waktu_sekarang);
+
+        // Pengurangan 30 menit
+        $datetime_sekarang->sub(new DateInterval('PT30M'));
+
+        // Hasil waktu setelah pengurangan 30 menit
+        $hasil = $datetime_sekarang->format('Y-m-d H:i:s');
+        dd($hasil);
+
+        return DB::table($this->table)->where('tanggal', '<', $hasil)->count();
     }
 }

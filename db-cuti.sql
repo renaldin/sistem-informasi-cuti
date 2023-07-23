@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jul 19, 2023 at 08:19 PM
--- Server version: 10.6.14-MariaDB-cll-lve
--- PHP Version: 8.1.16
+-- Host: 127.0.0.1
+-- Generation Time: Jul 23, 2023 at 11:45 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `u7437287_sistem-kepegawaian`
+-- Database: `db-cuti`
 --
 
 -- --------------------------------------------------------
@@ -40,76 +40,7 @@ CREATE TABLE `absensi` (
   `created_at` datetime DEFAULT NULL,
   `alasan` varchar(255) DEFAULT NULL,
   `file_absensi` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `absensi`
---
-
-INSERT INTO `absensi` (`id_absensi`, `nama`, `nip`, `tanggal`, `masuk`, `pulang`, `keterangan`, `tanggal_import`, `updated_at`, `created_at`, `alasan`, `file_absensi`) VALUES
-(1, 'Kajur MI & gelar', '111111111111111111', '2022-07-03', NULL, NULL, 'Bleave', '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(2, 'Pegawai 1', '121212121212121212', '2022-11-04', '04/01/2022 07:51:31', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(3, 'Pegawai 1', '121212121212121212', '2022-01-05', '05/01/2022 07:35:00', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(4, 'Pegawai 1', '121212121212121212', '2022-01-06', '06/01/2022 07:34:09', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(5, 'Pegawai 1', '121212121212121212', '2022-01-07', '07/01/2022 07:20:15', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(6, 'Pegawai 1', '121212121212121212', '2022-01-10', '10/01/2022 07:26:44', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(7, 'Pegawai 1', '121212121212121212', '2022-01-11', NULL, NULL, 'Bleave', '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(8, 'Pegawai 1', '121212121212121212', '2022-01-12', '12/01/2022 07:34:33', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(9, 'Pegawai 1', '121212121212121212', '2022-01-13', '13/01/2022 07:32:44', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(10, 'Pegawai 1', '121212121212121212', '2022-01-14', NULL, NULL, 'Bleave', '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(11, 'Pegawai 1', '121212121212121212', '2022-01-17', '17/01/2022 07:46:15', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(12, 'Pegawai 1', '121212121212121212', '2022-01-18', '18/01/2022 07:13:11', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(13, 'Pegawai 1', '121212121212121212', '2022-01-19', '19/01/2022 07:44:42', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(14, 'Pegawai 1', '121212121212121212', '2022-01-20', '20/01/2022 01:15:43', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(15, 'Pegawai 1', '121212121212121212', '2022-01-21', '21/01/2022 01:19:32', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(16, 'Pegawai 1', '121212121212121212', '2022-01-24', NULL, NULL, 'Bleave', '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(17, 'Pegawai 1', '121212121212121212', '2022-01-25', NULL, NULL, 'Bleave', '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(18, 'Pegawai 1', '121212121212121212', '2022-01-26', '26/01/2022 08:07:36', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(19, 'Pegawai 1', '121212121212121212', '2022-01-27', '27/01/2022 07:43:01', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(20, 'Pegawai 1', '121212121212121212', '2022-01-28', '28/01/2022 07:40:46', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(21, 'Pegawai 1', '121212121212121212', '2022-01-31', '31/01/2022 07:49:42', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(22, 'Pegawai 1', '121212121212121212', '2022-01-03', '03/01/2022 06:32:07', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', 'Alasan edit', '06222023234055Pegawai 1.pdf'),
-(23, 'Pegawai 2', '131313131313131313', '2022-01-04', '04-Jan-22 07:18 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(24, 'Pegawai 2', '131313131313131313', '2022-01-05', NULL, NULL, 'Sick', '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(25, 'Pegawai 2', '131313131313131313', '2022-01-06', '06/01/2022 07:00:03', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(26, 'Pegawai 2', '131313131313131313', '2022-01-07', '07/01/2022 06:16:59', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(27, 'Pegawai 2', '131313131313131313', '2022-01-10', '10-Jan-22 07:20 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(28, 'Pegawai 2', '131313131313131313', '2022-01-11', '11-Jan-22 07:10 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(29, 'Pegawai 2', '131313131313131313', '2022-01-12', '12-Jan-22 07:22 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(30, 'Pegawai 2', '131313131313131313', '2022-01-13', '13-Jan-22 07:34 AM', NULL, NULL, '2023-06-20 21:14:50', '2023-06-20 21:14:50', '2023-06-20 21:14:50', NULL, NULL),
-(31, 'Pegawai 1', '121212121212121212', '2023-06-23', '23-Jun-23 13:00:00', '23-Jun-23 13:00:00', 'Bleave', '2023-06-23 06:00:18', NULL, NULL, 'Alasan', NULL),
-(32, 'Pegawai 2', '131313131313131313', '2023-06-23', '23-Jun-23 15:25:00', '23-Jun-23 19:29:00', 'Bleave', '2023-06-23 08:25:29', NULL, NULL, NULL, NULL),
-(33, 'Pegawai 2', '131313131313131313', '2023-07-01', '01-Jul-23 08:20:00', '01-Jul-23 16:20:00', 'masuk', '2023-07-03 01:21:14', NULL, NULL, NULL, NULL),
-(34, 'Pegawai 1', '121212121212121212', '2022-01-03', NULL, NULL, 'Bleave', '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(35, 'Pegawai 1', '121212121212121212', '2022-01-04', '04/01/2022 07:51:31', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(36, 'Pegawai 1', '121212121212121212', '2022-01-05', '05/01/2022 07:35:00', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(37, 'Pegawai 1', '121212121212121212', '2022-01-06', '06/01/2022 07:34:09', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(38, 'Pegawai 1', '121212121212121212', '2022-01-07', '07/01/2022 07:20:15', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(39, 'Pegawai 1', '121212121212121212', '2022-01-10', '10/01/2022 07:26:44', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(40, 'Pegawai 1', '121212121212121212', '2022-01-11', NULL, NULL, 'Bleave', '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(41, 'Pegawai 1', '121212121212121212', '2022-01-12', '12/01/2022 07:34:33', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(42, 'Pegawai 1', '121212121212121212', '2022-01-13', '13/01/2022 07:32:44', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(43, 'Pegawai 1', '121212121212121212', '2022-01-14', NULL, NULL, 'Bleave', '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(44, 'Pegawai 1', '121212121212121212', '2022-01-17', '17/01/2022 07:46:15', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(45, 'Pegawai 1', '121212121212121212', '2022-01-18', '18/01/2022 07:13:11', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(46, 'Pegawai 1', '121212121212121212', '2022-01-19', '19/01/2022 07:44:42', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(47, 'Pegawai 1', '121212121212121212', '2022-01-20', '20/01/2022 01:15:43', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(48, 'Pegawai 1', '121212121212121212', '2022-01-21', '21/01/2022 01:19:32', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(49, 'Pegawai 1', '121212121212121212', '2022-01-24', NULL, NULL, 'Bleave', '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(50, 'Pegawai 1', '121212121212121212', '2022-01-25', NULL, NULL, 'Bleave', '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(51, 'Pegawai 1', '121212121212121212', '2022-01-26', '26/01/2022 08:07:36', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(52, 'Pegawai 1', '121212121212121212', '2022-01-27', '27/01/2022 07:43:01', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(53, 'Pegawai 1', '121212121212121212', '2022-01-28', '28/01/2022 07:40:46', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(54, 'Pegawai 1', '121212121212121212', '2022-01-31', '31/01/2022 07:49:42', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(55, 'Pegawai 1', '121212121212121212', '2022-01-03', '03/01/2022 06:32:07', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(56, 'Pegawai 2', '131313131313131313', '2022-01-04', '04-Jan-22 07:18 AM', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(57, 'Pegawai 2', '131313131313131313', '2022-01-05', NULL, NULL, 'Sick', '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(58, 'Pegawai 2', '131313131313131313', '2022-01-06', '06/01/2022 07:00:03', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(59, 'Pegawai 2', '131313131313131313', '2022-01-07', '07/01/2022 06:16:59', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(60, 'Pegawai 2', '131313131313131313', '2022-01-10', '10-Jan-22 07:20 AM', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(61, 'Pegawai 2', '131313131313131313', '2022-01-11', '11-Jan-22 07:10 AM', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(62, 'Pegawai 2', '131313131313131313', '2022-01-12', '12-Jan-22 07:22 AM', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL),
-(63, 'Pegawai 2', '131313131313131313', '2022-01-13', '13-Jan-22 07:34 AM', NULL, NULL, '2023-07-03 01:27:27', '2023-07-03 01:27:27', '2023-07-03 01:27:27', NULL, NULL);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -125,7 +56,7 @@ CREATE TABLE `artikel` (
   `gambar` text DEFAULT NULL,
   `tanggal_upload` datetime DEFAULT NULL,
   `status` enum('Aktif','Tidak Aktif') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `artikel`
@@ -134,7 +65,8 @@ CREATE TABLE `artikel` (
 INSERT INTO `artikel` (`id_artikel`, `judul`, `deskripsi`, `dokumen`, `gambar`, `tanggal_upload`, `status`) VALUES
 (7, 'Edaran KP Oktober', 'edaran bulan oktober', '07062023033141Edaran KP Oktober.pdf', '07062023033141Edaran KP Oktober.png', '2023-07-06 03:31:41', 'Aktif'),
 (8, 'Upacara HARDIKNAS', 'Menghadiri upacara Hari Pendidikan Nasional', '07062023033552Upacara HARDIKNAS.pdf', '07062023033552Upacara HARDIKNAS.png', '2023-07-06 03:35:52', 'Aktif'),
-(9, 'Pengumuman Peserta', 'Pengumuman Peserta POLSUB', '07062023033754Pengumuman Peserta.pdf', '07062023033754Pengumuman Peserta.png', '2023-07-06 03:37:54', 'Aktif');
+(9, 'Pengumuman Peserta', 'Pengumuman Peserta POLSUB', '07062023033754Pengumuman Peserta.pdf', '07062023033754Pengumuman Peserta.png', '2023-07-06 03:37:54', 'Aktif'),
+(11, 'Judul Artikel 4', 'Deskripsi Judul Ariktel 4', '07232023024958Judul Artikel 4.pdf', '07232023024958Judul Artikel 4.png', '2023-07-23 02:49:58', 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -146,7 +78,7 @@ CREATE TABLE `detail_surat` (
   `id_detail_surat` int(11) NOT NULL,
   `id_surat` int(11) NOT NULL,
   `id_pegawai` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `detail_surat`
@@ -154,7 +86,10 @@ CREATE TABLE `detail_surat` (
 
 INSERT INTO `detail_surat` (`id_detail_surat`, `id_surat`, `id_pegawai`) VALUES
 (21, 13, 9),
-(22, 14, 9);
+(22, 14, 9),
+(23, 1, 19),
+(24, 1, 18),
+(25, 2, 19);
 
 -- --------------------------------------------------------
 
@@ -174,29 +109,29 @@ CREATE TABLE `pegawai` (
   `keterangan_n_2` varchar(255) DEFAULT NULL,
   `keterangan_n_1` varchar(255) DEFAULT NULL,
   `keterangan_n` varchar(255) DEFAULT NULL,
-  `cuti_besar` varchar(50) DEFAULT NULL,
-  `cuti_sakit` varchar(50) DEFAULT NULL,
-  `cuti_melahirkan` varchar(50) DEFAULT NULL,
-  `cuti_karena_alasan_penting` varchar(50) DEFAULT NULL,
-  `cuti_diluar_tanggungan_negara` varchar(50) DEFAULT NULL,
+  `cuti_besar` varchar(50) DEFAULT '0',
+  `cuti_sakit` varchar(50) DEFAULT '0',
+  `cuti_melahirkan` varchar(50) DEFAULT '0',
+  `cuti_karena_alasan_penting` varchar(50) DEFAULT '0',
+  `cuti_diluar_tanggungan_negara` varchar(50) DEFAULT '0',
   `tanda_tangan` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `id_user`, `jabatan`, `unit_kerja`, `masa_kerja`, `cuti_n_2`, `cuti_n_1`, `cuti_n`, `keterangan_n_2`, `keterangan_n_1`, `keterangan_n`, `cuti_besar`, `cuti_sakit`, `cuti_melahirkan`, `cuti_karena_alasan_penting`, `cuti_diluar_tanggungan_negara`, `tanda_tangan`) VALUES
-(1, 22, 'Ketua Jurusan', 'Manajemen Informatika', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', '06242023151614 Tanda Tangan Kajur MI & gelar.png'),
-(2, 23, 'Ketua Jurusan', 'Agroindustri', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', '06242023151550 Tanda Tangan Kajur Agro & Gelar.png'),
-(3, 24, 'Ketua Jurusan', 'Teknik Perawatan dan Perbaikan Mesin', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', '06242023151455 Tanda Tangan Kajur Mesin & Gelar.png'),
-(4, 25, 'Ketua Jurusan', 'Kesehatan', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', '06242023151425 Tanda Tangan Kajur Kesehatan & Gelar.png'),
-(5, 26, 'Wakil Direktur 1', 'Wakil Direktur', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', '06242023151356 Tanda Tangan Wadir 1 & Gelar.png'),
-(6, 27, 'Wakil Direktur 2', 'Wakil Direktur', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', NULL, 'Tidak', 'Tidak', 'Tidak', '06242023151329 Tanda Tangan Wadir 2 & Gelar.png'),
-(8, 29, 'Dosen', 'Manajemen Informatika', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', NULL, 'Tidak', 'Tidak', '06242023151159 Tanda Tangan Pegawai 1.png'),
-(9, 30, 'Dosen', 'Manajemen Informatika', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', 'Tidak', 'Tidak', NULL, 'Tidak', 'Tidak', '06242023151118 Tanda Tangan Pegawai 2.png'),
-(14, 35, 'Dosen Pengajar', 'Manajemen Informatika', '5', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '07062023020950 Tanda Tangan sisnawati.png'),
-(15, 36, 'Bagian Umum', 'Bagian Umum', '5 tahun', '2', '5', '3', 'Keterangan 2', 'Keterangan 5', 'Keterangan 3', 'Tidak', 'Tidak', 'Tidak', 'Tidak', 'Tidak', '07092023203546 Tanda Tangan Bagian Umum & Gelar.png');
+(1, 22, 'Ketua Jurusan', 'Manajemen Informatika', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', '0', '3', '0', '0', '0', '06242023151614 Tanda Tangan Kajur MI & gelar.png'),
+(2, 23, 'Ketua Jurusan', 'Agroindustri', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', '0', '0', '0', '0', '0', '06242023151550 Tanda Tangan Kajur Agro & Gelar.png'),
+(3, 24, 'Ketua Jurusan', 'Teknik Perawatan dan Perbaikan Mesin', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', '0', '0', '0', '0', '0', '06242023151455 Tanda Tangan Kajur Mesin & Gelar.png'),
+(4, 25, 'Ketua Jurusan', 'Kesehatan', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', '0', '0', '0', '0', '0', '06242023151425 Tanda Tangan Kajur Kesehatan & Gelar.png'),
+(5, 26, 'Wakil Direktur 1', 'Wakil Direktur', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', '0', '0', '0', '0', '0', '06242023151356 Tanda Tangan Wadir 1 & Gelar.png'),
+(6, 27, 'Wakil Direktur 2', 'Wakil Direktur', '5 tahun', '10', '10', '10', 'Keterangan 0', 'Keterangan 0', 'Keterangan 0', '0', '0', '0', '0', '0', '06242023151329 Tanda Tangan Wadir 2 & Gelar.png'),
+(15, 36, 'Bagian Umum', 'Bagian Umum', '5 tahun', '2', '5', '3', 'Keterangan 2', 'Keterangan 5', 'Keterangan 3', '0', '0', '0', '0', '0', '07092023203546 Tanda Tangan Bagian Umum & Gelar.png'),
+(17, 2, 'Admin', 'Bagian Umum', '5 tahun', '12', '12', '12', 'Keterangan 12', 'Keterangan 12', 'Keterangan 12', '0', '0', '0', '0', '0', NULL),
+(18, 38, 'Dosen Pengajar', 'Manajemen Informatika', '5 tahun', '12', '12', '6', 'Keterangan 12', 'Keterangan 12', 'Keterangan 12', '0', '0', '0', '0', '0', '07232023073122 Tanda Tangan Pegawai 1.png'),
+(19, 39, 'Dosen Pengajar', 'Agroindustri', '5 tahun', '12', '12', '12', 'Keterangan 12', 'Keterangan 12', 'Keterangan 12', '0', '0', '0', '0', '0', '07232023073422 Tanda Tangan Pegawai 2.png');
 
 -- --------------------------------------------------------
 
@@ -208,6 +143,7 @@ CREATE TABLE `pengajuan_cuti` (
   `id_pengajuan_cuti` int(11) NOT NULL,
   `id_pegawai` int(11) DEFAULT NULL,
   `jenis_cuti` enum('Cuti Tahunan','Cuti Besar','Cuti Sakit','Cuti Melahirkan','Cuti Karena Alasan Penting','Cuti di Luar Tanggungan Negara') DEFAULT NULL,
+  `tahun_cuti` enum('(N-2) 2 Tahun Sebelumnya','(N-1) 1 Tahun Sebelumnya','(N) Tahun Berjalan') DEFAULT NULL,
   `alasan_cuti` text DEFAULT NULL,
   `lama_cuti` int(11) DEFAULT NULL,
   `jenis_waktu` enum('hari','bulan','tahun','minggu') DEFAULT NULL,
@@ -222,12 +158,21 @@ CREATE TABLE `pengajuan_cuti` (
   `alasan_keputusan_wakil_direktur` text DEFAULT NULL,
   `wakil_direktur` varchar(50) DEFAULT NULL,
   `nip_wakil_direktur` varchar(50) DEFAULT NULL,
-  `status_pengajuan` enum('Diterima Admin','Diterima Ketua Jurusan','Diterima Wakil Direktur','Persiapan','Dikirim ke Admin','Dikirim ke Ketua Jurusan','Dikirim ke Wakil Direktur','Selesai') DEFAULT NULL,
+  `status_pengajuan` enum('Diterima Admin','Diterima Ketua Jurusan','Diterima Wakil Direktur 2','Persiapan','Dikirim ke Admin','Dikirim ke Ketua Jurusan','Dikirim ke Wakil Direktur 2','Selesai','Diterima Wakil Direktur 1','Dikirim ke Wakil Direktur 1') DEFAULT NULL,
   `tanggal_pengajuan` date DEFAULT NULL,
   `tanda_tangan_wadir` text DEFAULT NULL,
   `tanda_tangan_kajur` text DEFAULT NULL,
   `tanda_tangan_pegawai` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengajuan_cuti`
+--
+
+INSERT INTO `pengajuan_cuti` (`id_pengajuan_cuti`, `id_pegawai`, `jenis_cuti`, `tahun_cuti`, `alasan_cuti`, `lama_cuti`, `jenis_waktu`, `mulai_tanggal`, `akhir_tanggal`, `alamat_selama_cuti`, `pertimbangan_ketua_jurusan`, `alasan_pertimbangan_ketua_jurusan`, `ketua_jurusan`, `nip_ketua_jurusan`, `keputusan_wakil_direktur`, `alasan_keputusan_wakil_direktur`, `wakil_direktur`, `nip_wakil_direktur`, `status_pengajuan`, `tanggal_pengajuan`, `tanda_tangan_wadir`, `tanda_tangan_kajur`, `tanda_tangan_pegawai`) VALUES
+(1, 18, 'Cuti Tahunan', '(N) Tahun Berjalan', 'Alasannya sakit', 4, 'hari', '2023-07-24', '2023-07-27', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 2 & Gelar', '666666666666666666', 'Selesai', '2023-07-23', '06242023151329 Tanda Tangan Wadir 2 & Gelar.png', '06242023151614 Tanda Tangan Kajur MI & gelar.png', '07232023073122 Tanda Tangan Pegawai 1.png'),
+(4, 1, 'Cuti Sakit', NULL, 'Alasannya sakit', 3, 'hari', '2023-07-24', '2023-07-26', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 2 & Gelar', '666666666666666666', 'Selesai', '2023-07-23', '06242023151329 Tanda Tangan Wadir 2 & Gelar.png', NULL, '06242023151614 Tanda Tangan Kajur MI & gelar.png'),
+(5, 18, 'Cuti Tahunan', '(N) Tahun Berjalan', 'Alasannya sakit', 2, 'hari', '2023-07-25', '2023-07-26', 'rumah saya', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dikirim ke Ketua Jurusan', '2023-07-23', NULL, NULL, '07232023073122 Tanda Tangan Pegawai 1.png');
 
 -- --------------------------------------------------------
 
@@ -242,7 +187,7 @@ CREATE TABLE `setting` (
   `nomor_telepon` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
   `logo` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `setting`
@@ -269,15 +214,15 @@ CREATE TABLE `surat` (
   `tanggal_upload` date DEFAULT NULL,
   `status_surat` enum('Belum Dikirim','Sudah Dikirim','Sudah Dibaca') NOT NULL,
   `status_terlaksana` enum('Belum','Sudah','Tidak') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `surat`
 --
 
 INSERT INTO `surat` (`id_surat`, `no_surat`, `perihal_surat`, `hari`, `tanggal`, `tempat`, `jenis_surat`, `file_surat`, `tanggal_upload`, `status_surat`, `status_terlaksana`) VALUES
-(13, '11111', 'Perihal', 'Senin', '2023-07-19 10:00:00', 'Kampus', 'Jenis Surat', '0719202301401511111.pdf', '2023-07-19', 'Sudah Dikirim', 'Belum'),
-(14, '2342354235', 'Perihal', 'Senin', '2023-07-19 11:59:00', 'Kampus', 'Jenis Surat', '071920230257312342354235.pdf', '2023-07-19', 'Sudah Dikirim', 'Belum');
+(1, '11111', 'Perihal', 'Senin', '2023-07-24 04:40:00', 'Kampus', 'Jenis Surat', '0723202321255711111.pdf', '2023-07-23', 'Sudah Dikirim', 'Belum'),
+(2, '12345', 'Perihal', 'Senin', '2023-07-24 04:43:00', 'Kampus', 'Jenis Surat', '0723202321380312345.pdf', '2023-07-23', 'Sudah Dikirim', 'Belum');
 
 -- --------------------------------------------------------
 
@@ -291,7 +236,7 @@ CREATE TABLE `tambah_surat` (
   `no_surat` varchar(30) DEFAULT NULL,
   `tujuan_surat` varchar(100) DEFAULT NULL,
   `file_surat` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -306,26 +251,25 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `password` text NOT NULL,
   `nomor_telepon` varchar(30) NOT NULL,
-  `role` enum('Admin','Pegawai','Ketua Jurusan','Wakil Direktur','Bagian Umum') NOT NULL,
+  `role` enum('Admin','Pegawai','Ketua Jurusan','Wakil Direktur 2','Bagian Umum','Wakil Direktur 1') NOT NULL,
   `foto` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id_user`, `nama`, `nip`, `email`, `password`, `nomor_telepon`, `role`, `foto`) VALUES
-(2, 'Admin Sistem Cuti', '1111111111', 'admincuti@gmail.com', '$2y$10$sa7tb26ENoS9eD5/DreXoOimImMBkdNrhNA55GXA/Gngs6iinLA4e', '0896775651', 'Admin', '04212023145559Admin Sistem Cuti.jpg'),
-(22, 'Kajur MI & gelar', '111111111111111111', 'kajur_mi@gmail.com', '$2y$10$wZ1rqxuvoyVeXNp//XAfTuqarECvIO41RPOd/0KvMrGG5nWkJRiGy', '085321307758', 'Ketua Jurusan', '06142023115234Kajur MI & gelar.jpg'),
-(23, 'Kajur Agro & Gelar', '222222222222222222', 'kajur_agro@gmail.com', '$2y$10$PBCYTQOSTl8cRLFrewtX5uLYY50RXK87.yZzPJdShXJajMz4C0LS.', '085321307758', 'Ketua Jurusan', '06142023120027Kajur & Gelar.jpg'),
-(24, 'Kajur Mesin & Gelar', '333333333333333333', 'kajur_mesin@gmail.com', '$2y$10$tzyWPGz4DLK3zWqzpdbl6uczBRnQWIVGk4kfWmg3EdY4YRbXtgaBG', '085321307758', 'Ketua Jurusan', '06142023120447Kajur Mesin & Gelar.jpg'),
-(25, 'Kajur Kesehatan & Gelar', '444444444444444444', 'kajur_kep@gmail.com', '$2y$10$jdD3qNcRMQ529ZGNFssdYO5/Z6w2VkIgOMgpshBES6OJuHWTR8VMK', '085321307758', 'Ketua Jurusan', '06142023120700Kajur Kesehatan & Gelar.jpg'),
-(26, 'Wadir 1 & Gelar', '555555555555555555', 'wadir1@gmail.com', '$2y$10$R0NL3dWHCiqj/xXCcX8QBeAN2BfM9uwh9X41xpYwPv.4XCKp/d3nS', '085321307758', 'Wakil Direktur', '06142023120923Wadir 1 & Gelar.jpg'),
-(27, 'Wadir 2 & Gelar', '666666666666666666', 'wadir2@gmail.com', '$2y$10$a2GjSaHsMx3G7TEW34DX2OawQM3zIs7./zZgnoai25OAWs7uCb3tG', '085321307758', 'Wakil Direktur', '06142023121041Wadir 2 & Gelar.jpg'),
-(29, 'Pegawai 1', '121212121212121212', 'pegawai_1@gmail.com', '$2y$10$dC1xDFO5xakOhrfzgQG.L.X/Bx5IJAhdAKRCZv4onCLHhMagn7vfG', '0895336928026', 'Pegawai', '06142023121503Pegawai 1.jpg'),
-(30, 'Pegawai 2', '131313131313131313', 'pegawai_2@gmail.com', '$2y$10$0xYc2rQAtEPiJXxlASoQ6ejGObx0VE0egZ4Fq54c.zkNcjzBnFmXO', '0895336928026', 'Pegawai', '06142023164358Pegawai 2.jpg'),
-(35, 'sisnawati', '2345678973245678', 'sisna@gmail.com', '$2y$10$CoO1viAsI2wp.G2jiZsoBuTFkcDhS7N907cDNMhM8HfW0bZNzNN/q', '085321307758', 'Pegawai', '07062023020950sisnawati.png'),
-(36, 'Bagian Umum & Gelar', '77777777777777777', 'bagianumum1@gmail.com', '$2y$10$/97TP7/SfqnEFkLJE29BKuU9M3mxXUCz8Unep2Ne/.8NO.lxbkmSm', '085321307758', 'Bagian Umum', '07092023203545Bagian Umum & Gelar.png');
+(2, 'Admin Sistem Cuti', '1111111111', 'admincuti@gmail.com', '$2y$10$sa7tb26ENoS9eD5/DreXoOimImMBkdNrhNA55GXA/Gngs6iinLA4e', '0895336928026', 'Admin', '04212023145559Admin Sistem Cuti.jpg'),
+(22, 'Kajur MI & gelar', '111111111111111111', 'kajur_mi@gmail.com', '$2y$10$wZ1rqxuvoyVeXNp//XAfTuqarECvIO41RPOd/0KvMrGG5nWkJRiGy', '0895336928026', 'Ketua Jurusan', '06142023115234Kajur MI & gelar.jpg'),
+(23, 'Kajur Agro & Gelar', '222222222222222222', 'kajur_agro@gmail.com', '$2y$10$PBCYTQOSTl8cRLFrewtX5uLYY50RXK87.yZzPJdShXJajMz4C0LS.', '0895336928026', 'Ketua Jurusan', '06142023120027Kajur & Gelar.jpg'),
+(24, 'Kajur Mesin & Gelar', '333333333333333333', 'kajur_mesin@gmail.com', '$2y$10$tzyWPGz4DLK3zWqzpdbl6uczBRnQWIVGk4kfWmg3EdY4YRbXtgaBG', '0895336928026', 'Ketua Jurusan', '06142023120447Kajur Mesin & Gelar.jpg'),
+(25, 'Kajur Kesehatan & Gelar', '444444444444444444', 'kajur_kep@gmail.com', '$2y$10$jdD3qNcRMQ529ZGNFssdYO5/Z6w2VkIgOMgpshBES6OJuHWTR8VMK', '0895336928026', 'Ketua Jurusan', '06142023120700Kajur Kesehatan & Gelar.jpg'),
+(26, 'Wadir 1 & Gelar', '555555555555555555', 'wadir1@gmail.com', '$2y$10$R0NL3dWHCiqj/xXCcX8QBeAN2BfM9uwh9X41xpYwPv.4XCKp/d3nS', '0895336928026', 'Wakil Direktur 1', '06142023120923Wadir 1 & Gelar.jpg'),
+(27, 'Wadir 2 & Gelar', '666666666666666666', 'wadir2@gmail.com', '$2y$10$a2GjSaHsMx3G7TEW34DX2OawQM3zIs7./zZgnoai25OAWs7uCb3tG', '0895336928026', 'Wakil Direktur 2', '06142023121041Wadir 2 & Gelar.jpg'),
+(36, 'Bagian Umum & Gelar', '77777777777777777', 'bagianumum1@gmail.com', '$2y$10$0xYc2rQAtEPiJXxlASoQ6ejGObx0VE0egZ4Fq54c.zkNcjzBnFmXO', '085321307758', 'Bagian Umum', '07092023203545Bagian Umum & Gelar.png'),
+(38, 'Pegawai 1', '11111111111111111', 'pegawai_1@gmail.com', '$2y$10$xpQ9A4N05JX2YrZvaLSnsuuxFK6qPgoRYhTINTfoqDauVWIXaNSIC', '0895336928026', 'Pegawai', '07232023073122Pegawai 1.png'),
+(39, 'Pegawai 2', '11111111111111112', 'pegawai_2@gmail.com', '$2y$10$JX52k7wbQLKnZvkO9oFCj.vgXvE5tO6ZYPwpvTRwPGfy/8v0T1qPq', '0895336928026', 'Pegawai', '07232023073422Pegawai 2.png');
 
 --
 -- Indexes for dumped tables
@@ -393,31 +337,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id_absensi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `artikel`
 --
 ALTER TABLE `artikel`
-  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_artikel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `detail_surat`
 --
 ALTER TABLE `detail_surat`
-  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_pegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `pengajuan_cuti`
 --
 ALTER TABLE `pengajuan_cuti`
-  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -429,7 +373,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tambah_surat`
@@ -441,7 +385,7 @@ ALTER TABLE `tambah_surat`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

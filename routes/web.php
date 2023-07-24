@@ -27,6 +27,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/unduh-format-excel', [C_Absensi::class, 'unduhFormatExcel']);
+Route::post('/cetak-excel-absensi', [C_Absensi::class, 'exportExcel']);
+
 Route::group(['middleware' => 'revalidate'], function () {
 
     // Landing
@@ -157,6 +160,8 @@ Route::group(['middleware' => 'revalidate'], function () {
         Route::post('/import-absensi', [C_Absensi::class, 'import']);
         Route::post('/tambah-absensi', [C_Absensi::class, 'addProcess']);
         Route::post('/edit-absensi/{id}', [C_Absensi::class, 'editProcess']);
+        Route::post('/cetak-pdf-absensi', [C_Absensi::class, 'exportPdf']);
+
 
         // Cetak PDF
         Route::post('/cetak-pdf', [Cetak::class, 'index']);

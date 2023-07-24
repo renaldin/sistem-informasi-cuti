@@ -33,9 +33,15 @@ class C_Surat extends Controller
             return redirect()->route('login');
         }
 
+        if (Session()->get('role') === 'Bagian Umum') {
+            $subtitle = 'Kelola Surat';
+        } else {
+            $subtitle = 'Arsip Surat';
+        }
+
         $data = [
             'title'     => 'Data Surat',
-            'subTitle'  => 'Arsip Surat',
+            'subTitle'  => $subtitle,
             'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
             'dataSurat' => $this->ModelSurat->getData(),
@@ -75,9 +81,15 @@ class C_Surat extends Controller
         }
 
         if (Request()->jenis_filter === 'Jenis Surat') {
+            if (Session()->get('role') === 'Bagian Umum') {
+                $subtitle = 'Kelola Surat';
+            } else {
+                $subtitle = 'Arsip Surat';
+            }
+
             $data = [
                 'title'     => 'Data Surat',
-                'subTitle'  => 'Arsip Surat',
+                'subTitle'  => $subtitle,
                 'biodata'   => $this->ModelSetting->detail(1),
                 'user'      => $user,
                 'dataSurat' => $dataUser,
@@ -673,7 +685,7 @@ class C_Surat extends Controller
 
         $data = [
             'title'         => 'Data Surat',
-            'subTitle'      => 'Riwayat Surat Tugas',
+            'subTitle'      => 'Riwayat Surat',
             'biodata'       => $this->ModelSetting->detail(1),
             'user'          => $this->ModelUser->detail(Session()->get('id_user')),
             'jenisSurat' => $this->ModelSurat->filter('jenis_surat'),

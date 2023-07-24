@@ -17,6 +17,7 @@
                             <div class="row mb-2">
                                 <div class="col-lg-12">
                                     <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#absen"><i class="la la-plus"></i> Tambah</button>
+                                    <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#export"><i class="la la-download"></i> Export</button>
                                     {{-- <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#cetak"><i class="la la-print"></i> Cetak</button> --}}
                                 </div>
                             </div>
@@ -93,7 +94,8 @@
         </div>
         <div class="modal-body">
             <center>
-                <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#tambah"><i class="la la-plus"></i> Tambah Satu</button>
+                {{-- <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#tambah"><i class="la la-plus"></i> Tambah Satu</button> --}}
+                <a href="/unduh-format-excel" class="theme-btn theme-btn-small"><i class="la la-download"></i> Template</a>
                 <button type="button" class="theme-btn theme-btn-small" data-toggle="modal" data-target="#import"><i class="la la-plus"></i> Import</button>
             </center>
         </div>
@@ -104,6 +106,102 @@
     </div>
 </div>
 {{-- Tutup --}}
+
+{{-- Modal Export --}}
+<div class="modal fade" id="export"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Export</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <center>
+                <button type="button" class="theme-btn theme-btn-small" data-dismiss="modal" data-toggle="modal" data-target="#pdf"><i class="la la-download"></i> PDF</button>
+                <button type="button" class="theme-btn theme-btn-small" data-dismiss="modal" data-toggle="modal" data-target="#excel"><i class="la la-download"></i> Excel</button>
+            </center>
+        </div>
+        <div class="modal-footer">
+        </div>
+        </form>
+        </div>
+    </div>
+</div>
+{{-- Tutup --}}
+
+<div class="modal fade" id="pdf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Export PDF</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/cetak-pdf-absensi" method="POST">
+            @csrf
+            <div class="form-group">
+              <label for="tanggal_mulai">Mulai Dari Tanggal</label>
+              <input type="date" class="form-control @error('tanggal_mulai') is-invalid @enderror" name="tanggal_mulai" id="tanggal_mulai" placeholder="Masukkan Tanggal Mulai" required>
+              @error('tanggal_mulai')
+                  <small class="form-text text-danger">{{$message}}</small>
+              @enderror
+            </div>
+            <div class="form-group">
+              <label for="tanggal_akhir">Sampai Dengan</label>
+              <input type="date" class="form-control @error('tanggal_akhir') is-invalid @enderror" name="tanggal_akhir" id="tanggal_akhir" placeholder="Masukkan Tanggal Akhir" required>
+              @error('tanggal_akhir')
+                  <small class="form-text text-danger">{{$message}}</small>
+              @enderror
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+          <button type="submit" class="btn btn-primary">Export</button>
+        </div>
+      </form>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="excel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Export Excel</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="/cetak-excel-absensi" method="POST">
+            @csrf
+            <div class="form-group">
+              <label for="tanggal_mulai">Mulai Dari Tanggal</label>
+              <input type="date" class="form-control @error('tanggal_mulai') is-invalid @enderror" name="tanggal_mulai" id="tanggal_mulai" placeholder="Masukkan Tanggal Mulai" required>
+              @error('tanggal_mulai')
+                  <small class="form-text text-danger">{{$message}}</small>
+              @enderror
+            </div>
+            <div class="form-group">
+              <label for="tanggal_akhir">Sampai Dengan</label>
+              <input type="date" class="form-control @error('tanggal_akhir') is-invalid @enderror" name="tanggal_akhir" id="tanggal_akhir" placeholder="Masukkan Tanggal Akhir" required>
+              @error('tanggal_akhir')
+                  <small class="form-text text-danger">{{$message}}</small>
+              @enderror
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+          <button type="submit" class="btn btn-primary">Export</button>
+        </div>
+      </form>
+      </div>
+    </div>
+</div>
 
 {{-- Modal Import --}}
 <div class="modal fade" id="import"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

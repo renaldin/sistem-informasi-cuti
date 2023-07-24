@@ -10,7 +10,10 @@ use App\Models\ModelAbsensi;
 use Illuminate\Support\Facades\Hash;
 // use Maatwebsite\Excel\Facades\Excel;
 use Excel;
+use PDF;
+use App\Exports\AbsensiExport;
 use GuzzleHttp\Psr7\Request;
+use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
 
 class C_Absensi extends Controller
 {
@@ -245,5 +248,42 @@ class C_Absensi extends Controller
 
         $this->ModelAbsensi->edit($data);
         return redirect()->back()->with('berhasil', 'Data absensi berhasil diedit !');
+    }
+
+    public function exportPdf()
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        $data = [
+            'title'     => 'Data Absensi',
+            'biodata'   => $this->ModelSetting->detail(1),
+            'user'      => $this->ModelUser->detail(Session()->get('id_user')),
+            'dataAbsensi' => $this->ModelAbsensi->getDataByDate(Request()->tanggal_mulai, Request()->tanggal_akhir)
+        ];
+
+        $pdf = PDF::loadview('admin.cetak.cetak_absensi_pdf', $data);
+        return $pdf->download($data['title'] . ' ' . date('d F Y') . '.pdf');
+    }
+
+    public function exportExcel()
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        return FacadesExcel::download(new AbsensiExport(Request()->tanggal_mulai, Request()->tanggal_akhir), 'absensi_polsub.xlsx');
+    }
+
+    public function unduhFormatExcel()
+    {
+        if (!Session()->get('email')) {
+            return redirect()->route('login');
+        }
+
+        // dd('masuk');
+        $filepath = 'Format Absensi.xlsx';
+        return response()->download(public_path('gambar') . '/' . $filepath);
     }
 }

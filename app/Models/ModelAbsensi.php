@@ -11,6 +11,7 @@ class ModelAbsensi extends Model
     use HasFactory;
     protected $guarded = ['id_absensi'];
     public $table = 'absensi';
+    protected $fillable = ['nama', 'nip', 'tanggal', 'masuk', 'pulang', 'keterangan'];
 
     public function getData()
     {

@@ -127,7 +127,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="section-heading text-center">
-                    <h2 class="sec__title line-height-55">Edaran</h2>
+                    <h2 class="sec__title line-height-55">Artikel</h2>
                 </div><!-- end section-heading -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->

@@ -276,7 +276,7 @@
             <div style="margin-top: 10px;">
                 <table class="table" style="width: 100%; border: #424141 1px solid;">
                     <tr>
-                        <th style="text-align: left; border-left: 0;">III. ALASAN CUTIL</th>
+                        <th style="text-align: left; border-left: 0;">III. ALASAN CUTI</th>
                     </tr>
                     <tr>
                         <td >{{$detail->alasan_cuti}}</td>

@@ -611,7 +611,7 @@ class C_KelolaPengajuanCuti extends Controller
 
         $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
         foreach ($this->ModelPegawai->getData() as $item) {
-            if ($item->unit_kerja === $pengajuanCuti->unit_kerja && $item->role === 'Ketua Jurusan') {
+            if ($item->role === 'Wakil Direktur 2') {
                 $noHp = substr($item->nomor_telepon, 1);
 
                 // SENDTALK
@@ -906,7 +906,7 @@ class C_KelolaPengajuanCuti extends Controller
 
         $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
         foreach ($this->ModelPegawai->getData() as $item) {
-            if ($item->unit_kerja === $pengajuanCuti->unit_kerja && $item->role === 'Ketua Jurusan') {
+            if ($item->role === 'Wakil Direktur 1') {
                 $noHp = substr($item->nomor_telepon, 1);
 
                 // SENDTALK

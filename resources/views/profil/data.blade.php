@@ -78,7 +78,7 @@
                                 <div class="row">
                                     <div class="col-lg-6 responsive-column">
                                         <div class="input-box">
-                                            <label class="label-text">Nama Lengkap {{$user->id_user}}</label>
+                                            <label class="label-text">Nama Lengkap</label>
                                             <div class="form-group">
                                                 <input class="form-control" name="nama" type="text" value="{{ $user->nama }}">
                                                 @error('nama')

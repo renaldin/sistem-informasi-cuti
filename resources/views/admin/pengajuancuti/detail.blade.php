@@ -73,7 +73,7 @@
                                 <div class="col-lg-12 mt-3">
                                     <table style="width: 100%; border: #424141 1px solid;">
                                         <tr style="padding-left: 20px;">
-                                            <th style="text-align: left; padding-left: 15px; border-left: 0;">III. ALASAN CUTIL</th>
+                                            <th style="text-align: left; padding-left: 15px; border-left: 0;">III. ALASAN CUTI</th>
                                         </tr>
                                         <tr style="padding-left: 20px;">
                                             <td style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">{{$detail->alasan_cuti}}</td>
@@ -236,7 +236,7 @@
                                     </table>
                                 </div>
                                 <div class="col-lg-12 mt-3 text-center">
-                                    <a href="@if($user->role == 'Pegawai') /pengajuan-cuti @elseif($user->role == 'Ketua Jurusan') /pengajuan-cuti-ketua-jurusan @endif" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
+                                    <a href="{{route('kelola-pengajuan-cuti')}}" class="theme-btn theme-btn-small theme-btn-transparent">Kembali</a>
                                 </div>
                             </div>
                         </div>

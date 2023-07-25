@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/unduh-format-excel', [C_Absensi::class, 'unduhFormatExcel']);
 Route::post('/cetak-excel-absensi', [C_Absensi::class, 'exportExcel']);
+Route::get('generateQrPegawai/{id}', [C_PengajuanCuti::class, 'generateQrPegawai'])->name('generateQrPegawai');
 
 Route::group(['middleware' => 'revalidate'], function () {
 

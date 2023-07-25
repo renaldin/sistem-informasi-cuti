@@ -357,6 +357,7 @@
                             Hormat saya,
                             <br>
                             @if ($detail->nip !== null)
+                            {{-- {!! $QRPegawai !!} --}}
                                 <img src="https://sistem-kepegawaian.elearningpolsub.com/tanda_tangan/{{$detail->tanda_tangan_pegawai }}" width="29%" alt="">
                             @endif
                             <br>
@@ -390,6 +391,7 @@
                             Hormat saya,
                             <br>
                             @if ($detail->ketua_jurusan !== null)
+                            {{-- {!! $QRKajur !!} --}}
                                 <img src="https://sistem-kepegawaian.elearningpolsub.com/tanda_tangan/{{$detail->tanda_tangan_kajur }}" width="29%" alt="">
                             @endif
                             <br>
@@ -423,6 +425,7 @@
                             Hormat saya,
                             <br>
                             @if ($detail->wakil_direktur !== null)
+                            {{-- {!! $QRWadir2 !!} --}}
                                 <img src="https://sistem-kepegawaian.elearningpolsub.com/tanda_tangan/{{$detail->tanda_tangan_wadir }}" width="29%" alt="">
                             @endif
                             <br>

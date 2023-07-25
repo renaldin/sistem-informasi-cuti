@@ -6,6 +6,7 @@ use App\Models\ModelUser;
 use App\Models\ModelSetting;
 use App\Models\ModelPengajuanCuti;
 use App\Models\ModelPegawai;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class C_PengajuanCuti extends Controller
 {
@@ -167,12 +168,35 @@ class C_PengajuanCuti extends Controller
             return redirect()->route('login');
         }
 
+        $detail = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+        if ($detail->tanggal_pegawai) {
+            $tanggalPegawai = date('d F Y', strtotime($detail->tanggal_pegawai));
+            $QRPegawai = QrCode::size(100)->generate("Mengajukan\nTanggal : {$tanggalPegawai}\n\nNama Pegawai : {$detail->nama}\nNIP : {$detail->nip}");
+        } else {
+            $QRPegawai = null;
+        }
+        if ($detail->tanggal_kajur) {
+            $tanggalKajur = date('d F Y', strtotime($detail->tanggal_kajur));
+            $QRKajur = QrCode::size(100)->generate("Menyetujui\nTanggal : {$tanggalKajur}\n\nNama Ketua Jurusan : {$detail->ketua_jurusan}\nNIP : {$detail->nip_ketua_jurusan}");
+        } else {
+            $QRKajur = null;
+        }
+        if ($detail->tanggal_wadir2) {
+            $tanggalWadir2 = date('d F Y', strtotime($detail->tanggal_wadir2));
+            $QRWadir2 = QrCode::size(100)->generate("Menyetujui\nTanggal : {$tanggalWadir2}\n\nNama Wakil Direktur 2 : {$detail->wakil_direktur}\nNIP : {$detail->nip_wakil_direktur}");
+        } else {
+            $QRWadir2 = null;
+        }
+
         $data = [
             'title'     => 'Pengajuan Cuti',
             'subTitle'  => 'Detail Pengajuan Cuti',
             'biodata'   => $this->ModelSetting->detail(1),
             'user'      => $this->ModelUser->detail(Session()->get('id_user')),
-            'detail'    => $this->ModelPengajuanCuti->detail($id_pengajuan_cuti)
+            'QRPegawai' => $QRPegawai,
+            'QRKajur' => $QRKajur,
+            'QRWadir2' => $QRWadir2,
+            'detail'    => $detail
         ];
 
         return view('pegawai.pengajuancuti.detail', $data);
@@ -510,6 +534,7 @@ class C_PengajuanCuti extends Controller
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
             'status_pengajuan'  => 'Dikirim ke Ketua Jurusan',
             'tanda_tangan_pegawai'   => $user->tanda_tangan,
+            'tanggal_pegawai'   => date('Y-m-d'),
         ];
         $this->ModelPengajuanCuti->edit($data);
 
@@ -559,5 +584,13 @@ class C_PengajuanCuti extends Controller
 
 
         return redirect()->route($route)->with('berhasil', 'Data pengajuan cuti berhasil dikirim !');
+    }
+
+    public function generateQrPegawai($id_pengajuan_cuti)
+    {
+        $data = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+
+        $qrcode = QrCode::size(400)->generate($data->nama);
+        return view('qrcode.pegawai', compact('qrcode'));
     }
 }

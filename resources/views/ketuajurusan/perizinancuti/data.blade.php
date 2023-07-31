@@ -51,8 +51,12 @@
                                     @if ($item->unit_kerja == $user->unit_kerja)
                                         @if ($item->status_pengajuan === 'Dikirim ke Ketua Jurusan')
                                             <tr>
+                                                <th scope="row">{{ $no++ }}</th>
+                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ $item->jenis_cuti }}</td>
+                                                <td>{{ $item->unit_kerja }}</td>
                                                 <td colspan="5">
-                                                    <div class="table-content text-center">
+                                                    <div class="table-content">
                                                         <button type="button" data-toggle="modal" data-target="#terima{{$item->id_pengajuan_cuti}}" class="theme-btn theme-btn-small"><i class="la la-check"></i> Terima</button>
                                                     </div>
                                                 </td>

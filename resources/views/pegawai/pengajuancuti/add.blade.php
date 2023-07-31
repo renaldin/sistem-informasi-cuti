@@ -208,7 +208,7 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <input class="form-control" type="number" id="lama_cuti" name="lama_cuti" value="{{ old('lama_cuti') }}" placeholder="Jumlah" required>
+                                                        <input class="form-control" type="number" id="lama_cuti" name="lama_cuti" onchange="handleLamaCuti()" value="{{ old('lama_cuti') }}" placeholder="Jumlah" required>
                                                     </div>
                                                     @error('lama_cuti')
                                                     <div style="margin-top: -16px">
@@ -241,9 +241,9 @@
                                         <div class="input-box">
                                             <label class="label-text">Tanggal Cuti</label>
                                             <div class="form-group d-flex align-items-center">
-                                                <input class="form-control pl-3" type="date" name="mulai_tanggal" placeholder="Tanggal Mulai" required>
+                                                <input class="form-control pl-3" type="date" name="mulai_tanggal" id="mulai_tanggal" onchange="mulaiTanggal()" placeholder="Tanggal Mulai" required>
                                                 <span class="px-2">s/d</span>
-                                                <input class="form-control pl-3" type="date" name="akhir_tanggal" placeholder="Tanggal Akhir" required>
+                                                <input class="form-control pl-3" type="date" name="akhir_tanggal" id="akhir_tanggal" placeholder="Tanggal Akhir" readonly required>
                                             </div>
                                         </div>
                                     </div>
@@ -447,6 +447,56 @@
         {{-- end footer --}}
     </div>
 </div>
+
+<script>
+    function mulaiTanggal() {
+            // Dapatkan nilai tanggal yang baru
+            var tanggalMulai = document.getElementById("mulai_tanggal").value;
+            var tanggalAkhir = document.getElementById("akhir_tanggal");
+            var lamaCuti = document.getElementById("lama_cuti");
+
+            if(lamaCuti.value){
+                jumlahLamaCuti = parseInt(lamaCuti.value) - 1 
+            } else {
+                jumlahLamaCuti = 0
+            }
+
+            // Tanggal awal
+            var tanggalAwal = new Date(tanggalMulai);
+
+            // Jumlah hari yang ingin ditambahkan
+            var jumlahHariDitambahkan = jumlahLamaCuti; // Misalnya, ingin menambah 5 hari
+
+            // Menambahkan tanggal dengan jumlah hari yang diinginkan
+            tanggalAwal.setDate(tanggalAwal.getDate() + jumlahHariDitambahkan);
+
+            // Tampilkan tanggal yang sudah ditambahkan
+            tanggalAkhir.value = tanggalAwal.toISOString().slice(0, 10);
+        }
+
+    function handleLamaCuti() {
+            // Dapatkan nilai tanggal yang baru
+            var tanggalMulaiCuti = document.getElementById("mulai_tanggal").value;
+            var tanggalAkhirCuti = document.getElementById("akhir_tanggal");
+            var lamaCuti2 = document.getElementById("lama_cuti");
+
+            if(tanggalMulaiCuti){
+                jumlahLamaCuti2 = parseInt(lamaCuti2.value) - 1
+    
+                // Tanggal awal
+                var tanggalAwalCuti = new Date(tanggalMulaiCuti);
+    
+                // Jumlah hari yang ingin ditambahkan
+                var jumlahHariTambah = jumlahLamaCuti2; // Misalnya, ingin menambah 5 hari
+    
+                // Menambahkan tanggal dengan jumlah hari yang diinginkan
+                tanggalAwalCuti.setDate(tanggalAwalCuti.getDate() + jumlahHariTambah);
+    
+                // Tampilkan tanggal yang sudah ditambahkan
+                tanggalAkhirCuti.value = tanggalAwalCuti.toISOString().slice(0, 10);
+            }
+        }
+</script>
 
 <script>
     // Mendapatkan elemen input tanggal

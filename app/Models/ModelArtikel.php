@@ -17,6 +17,19 @@ class ModelArtikel extends Model
             ->orderBy('id_artikel', 'DESC')->get();
     }
 
+    public function getDataPaginate($paginate)
+    {
+        return DB::table($this->table)
+            ->orderBy('id_artikel', 'DESC')->paginate($paginate);
+    }
+
+    public function search($keyword, $paginate)
+    {
+        return DB::table($this->table)
+            ->orWhere('judul', 'like', "%" . $keyword . "%")
+            ->orderBy('id_artikel', 'DESC')->paginate($paginate);
+    }
+
     public function detail($id_artikel)
     {
         return DB::table($this->table)

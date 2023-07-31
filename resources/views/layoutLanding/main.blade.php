@@ -65,14 +65,24 @@
                                             <a href="#tentang">Tentang</a>
                                         </li>
                                         <li>
-                                            <a href="#edaran">Edaran</a>
+                                            <a href="#edaran">Artikel</a>
                                         </li>
                                         <li>
                                             <a href="#web">Web Polsub</a>
                                         </li>
-                                    @elseif($subTitle == 'Detail Edaran')
+                                    @elseif($subTitle == 'Detail Artikel')
                                         <li>
                                             <a href="/">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="/daftar-artikel">Artikel</a>
+                                        </li>
+                                    @elseif($subTitle == 'Daftar Artikel')
+                                        <li>
+                                            <a href="/">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="/daftar-artikel">Artikel</a>
                                         </li>
                                     @endif
                                         <li>

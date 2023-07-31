@@ -164,9 +164,14 @@
                                     </div>
                                     <div class="col-lg-6" id="tahun_cuti" style="display: none;">
                                         <div class="input-box">
-                                            <label class="label-text">Tahun Cuti</label>
+                                            <label class="label-text">Tahun Cuti</label><br>
+                                            <small>
+                                                Sisa Cuti (N) Tahun Berjalan <strong>{{$pegawai->cuti_n}}</strong> hari<br>
+                                                Sisa Cuti (N-1) 1 Tahun Sebelumnya <strong>{{$pegawai->cuti_n_1}}</strong> hari<br>
+                                                Sisa Cuti (N-2) 2 Tahun Sebelumnya <strong>{{$pegawai->cuti_n_2}}</strong> hari<br>
+                                            </small>
                                             <div class="form-group select-contain w-100">
-                                                <select class="select-contain-select" name="tahun_cuti">
+                                                <select class="select-contain-select" name="tahun_cuti" onchange="pilihCuti()" required="false">
                                                     <option value="">--Pilih--</option>
                                                     <option value="(N) Tahun Berjalan">(N) Tahun Berjalan</option>
                                                     <option value="(N-1) 1 Tahun Sebelumnya">(N-1) 1 Tahun Sebelumnya</option>
@@ -174,11 +179,6 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        @error('tahun_cuti')
-                                        <div style="margin-top: -16px">
-                                            <small class="text-danger">{{ $message }}</small>
-                                        </div>
-                                        @enderror
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="input-box">
@@ -208,8 +208,7 @@
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-    
-                                                        <input class="form-control" type="number" name="lama_cuti" value="{{ old('lama_cuti') }}" placeholder="Jumlah">
+                                                        <input class="form-control" type="number" id="lama_cuti" name="lama_cuti" value="{{ old('lama_cuti') }}" placeholder="Jumlah" required>
                                                     </div>
                                                     @error('lama_cuti')
                                                     <div style="margin-top: -16px">
@@ -242,7 +241,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Tanggal Cuti</label>
                                             <div class="form-group d-flex align-items-center">
-                                                <input class="form-control pl-3" type="date" name="mulai_tanggal" placeholder="Tanggal Mulai" required>
+                                                <input class="form-control pl-3" type="date" id="dates" multiple name="mulai_tanggal[]" placeholder="Tanggal Mulai" required>
                                                 <span class="px-2">s/d</span>
                                                 <input class="form-control pl-3" type="date" name="akhir_tanggal" placeholder="Tanggal Akhir" required>
                                             </div>
@@ -422,7 +421,7 @@
                                         <div class="input-box">
                                             <label class="label-text"><strong>Alamat Selama Menjalankan Cuti</strong></label>
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="alamat_selama_cuti" placeholder="Masukkan Alamat Selama Menjalankan Cuti" value="{{ old('alamat_selama_cuti') }}">
+                                                <input class="form-control" type="text" name="alamat_selama_cuti" placeholder="Masukkan Alamat Selama Menjalankan Cuti" value="{{ old('alamat_selama_cuti') }}" required>
                                             </div>
                                             @error('alamat_selama_cuti')
                                             <div style="margin-top: -16px">
@@ -450,14 +449,64 @@
 </div>
 
 <script>
+    // Mendapatkan elemen input tanggal
+    const dateInput = document.getElementById('dates');
+
+    // Mendengarkan event 'change' pada input tanggal
+    dateInput.addEventListener('change', () => {
+        // Mendapatkan semua tanggal yang dipilih dalam array
+        const selectedDates = Array.from(dateInput.selectedOptions, option => option.value);
+        console.log(selectedDates);
+    });
+</script>
+
+<script>
     function jenisCuti(event) {
         var selectedValue = event.target.value;
         var cutiTahun = document.getElementById("tahun_cuti");
         if(selectedValue === 'Cuti Tahunan'){
             cutiTahun.style.display = 'block'
+            cutiTahun.required = 'true'
+            
         } else {
             cutiTahun.style.display = 'none'
+            cutiTahun.required = 'false'
+
+            const inputAngka = document.getElementById("lama_cuti");
+            inputAngka.max = 'false'
         }
       }
+
+      function pilihCuti() {
+            var cuti = event.target.value;
+
+            if(cuti === '(N) Tahun Berjalan'){
+                var maksimal = <?= $pegawai->cuti_n ?>
+            } else if(cuti === '(N-1) 1 Tahun Sebelumnya'){
+                var maksimal = <?= $pegawai->cuti_n_1 ?>
+            } else if(cuti === '(N-2) 2 Tahun Sebelumnya'){
+                var maksimal = <?= $pegawai->cuti_n_2 ?>
+            }
+
+            const inputAngka = document.getElementById("lama_cuti");
+            inputAngka.max = maksimal
+
+            inputAngka.addEventListener("input", function () {
+                const min = 1;
+                const max = parseInt(this.max);
+                const value = parseInt(this.value);
+
+                if (isNaN(value)) {
+                // Jika nilai tidak valid, atur nilai ke nilai minimum
+                this.value = min;
+                } else if (value < min) {
+                // Jika nilai kurang dari minimum, atur nilai ke nilai minimum
+                this.value = min;
+                } else if (value > max) {
+                // Jika nilai lebih dari maksimum, atur nilai ke nilai maksimum
+                this.value = max;
+                }
+            });
+        }
   </script>
 @endsection

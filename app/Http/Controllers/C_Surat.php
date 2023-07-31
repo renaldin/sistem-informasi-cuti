@@ -6,6 +6,8 @@ use App\Models\ModelUser;
 use App\Models\ModelSurat;
 use App\Models\ModelSetting;
 use App\Models\ModelPegawai;
+use DateInterval;
+use DateTime;
 use PDF;
 use Twilio\Rest\Client;
 
@@ -155,7 +157,7 @@ class C_Surat extends Controller
             'tanggal_upload'    => Request()->tanggal_upload,
             'file_surat'        => $fileSurat,
             'tanggal_upload'    => date('Y-m-d'),
-            'status_surat'      => 'Sudah Dikirim',
+            'status_surat'      => 'Belum Dikirim',
         ];
 
         $this->ModelSurat->add($data);
@@ -425,21 +427,6 @@ class C_Surat extends Controller
     //     $detail = $this->ModelSurat->detailSuratPegawai($id_surat);
     //     $pegawai = $this->ModelSurat->getDataPegawai();
 
-    //     // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-    //     // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-    //     // $twilio = new Client($sid, $token);
-
-    //     // $message = $twilio->messages
-    //     //     ->create(
-    //     //         "whatsapp:+6288222245385", // to
-    //     //         array(
-    //     //             "from" => "whatsapp:+14155238886",
-    //     //             "body" => "Datang Rapat"
-    //     //         )
-    //     //     );
-
-    //     // print($message->sid);
-
     //     $now = time(); // Waktu sekarang dalam detik sejak UNIX Epoch
     //     $lessThan30Minutes = $now - (30 * 60); // Kurangi 30 menit (30 * 60 detik)
 
@@ -485,23 +472,6 @@ class C_Surat extends Controller
 
     //                     curl_exec($curl);
     //                     curl_close($curl);
-
-    //                     // $sid    = "AC944f941fef8a459f011bb10c3236df78";
-    //                     // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
-    //                     // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-    //                     // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-    //                     // $twilio = new Client($sid, $token);
-
-    //                     // $message = $twilio->messages
-    //                     //     ->create(
-    //                     //         "whatsapp:+62" . $noHp, // to
-    //                     //         array(
-    //                     //             "from" => "whatsapp:+14155238886",
-    //                     //             "body" => "Hallo {$item->nama}!\n\nAda pemberitahuan rapat buat Anda dengan deskripsi sebagai berikut:\n\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nWaktu rapat memasuki 30 menit terakhir, dimohon segera datang ke tempat rapat!!!\nTerima kasih."
-    //                     //         )
-    //                     //     );
-
-    //                     // print($message->sid);
     //                 }
     //             }
     //         }
@@ -515,6 +485,7 @@ class C_Surat extends Controller
             return redirect()->route('login');
         }
 
+        // $detail = $this->ModelSurat->getDataPegawai();
         $detail = $this->ModelSurat->detailSuratPegawai($id_surat);
 
         // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
@@ -534,6 +505,7 @@ class C_Surat extends Controller
 
         // WA GATEWAY
         foreach ($detail as $item) {
+
             if ($item->status_terlaksana === 'Belum') {
                 $noHp = substr($item->nomor_telepon, 1);
                 $jam = date('H:i', strtotime($item->tanggal));

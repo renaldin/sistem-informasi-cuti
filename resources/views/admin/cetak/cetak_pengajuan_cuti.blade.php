@@ -357,8 +357,8 @@
                             Hormat saya,
                             <br>
                             @if ($detail->nip !== null)
-                            {{-- {!! $QRPegawai !!} --}}
-                                <img src="https://sistem-kepegawaian.elearningpolsub.com/tanda_tangan/{{$detail->tanda_tangan_pegawai }}" width="29%" alt="">
+                            <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(100)->generate('QrCode as PNG image!')) !!}" alt="">
+                                {{-- <img src="https://sistem-kepegawaian.elearningpolsub.com/tanda_tangan/{{$detail->tanda_tangan_pegawai }}" width="29%" alt=""> --}}
                             @endif
                             <br>
                             ( {{$detail->nama}} ) <br>
@@ -391,8 +391,8 @@
                             Hormat saya,
                             <br>
                             @if ($detail->ketua_jurusan !== null)
-                            {{-- {!! $QRKajur !!} --}}
-                                <img src="https://sistem-kepegawaian.elearningpolsub.com/tanda_tangan/{{$detail->tanda_tangan_kajur }}" width="29%" alt="">
+                            {!! $QRKajur !!}
+                                {{-- <img src="https://sistem-kepegawaian.elearningpolsub.com/tanda_tangan/{{$detail->tanda_tangan_kajur }}" width="29%" alt=""> --}}
                             @endif
                             <br>
                             ( @if($detail->ketua_jurusan === null) .............................................. @else {{$detail->ketua_jurusan}} @endif ) <br>
@@ -425,12 +425,12 @@
                             Hormat saya,
                             <br>
                             @if ($detail->wakil_direktur !== null)
-                            {{-- {!! $QRWadir2 !!} --}}
-                                <img src="https://sistem-kepegawaian.elearningpolsub.com/tanda_tangan/{{$detail->tanda_tangan_wadir }}" width="29%" alt="">
+                            {!! $QRWadir2 !!}
+                                {{-- <img src="https://sistem-kepegawaian.elearningpolsub.com/tanda_tangan/{{$detail->tanda_tangan_wadir }}" width="29%" alt=""> --}}
                             @endif
                             <br>
                             ( @if($detail->wakil_direktur === null) .............................................. @else {{$detail->wakil_direktur}} @endif ) <br>
-                            NIP NIP @if($detail->nip_wakil_direktur === null) .............................................. @else {{$detail->nip_wakil_direktur}} @endif
+                            NIP @if($detail->nip_wakil_direktur === null) .............................................. @else {{$detail->nip_wakil_direktur}} @endif
                         </td>
                     </tr>
                 </table>

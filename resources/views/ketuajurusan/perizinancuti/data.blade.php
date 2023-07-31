@@ -134,6 +134,23 @@
         </div>
         <div class="modal-body">
                 <div class="row">
+                    <div class="col-lg-12 mb-3">
+                        <table>
+                            <tr>
+                                <th colspan="3">Pengajuan Cuti:</th>
+                            </tr>
+                            <tr>
+                                <th>Nama Pegawai</th>
+                                <td>:</td>
+                                <td>{{$item->nama}}</td>
+                            </tr>
+                            <tr>
+                                <th>Tanggal Pengajuan</th>
+                                <td>:</td>
+                                <td>{{ date('d F Y', strtotime($item->tanggal_pengajuan)) }}</td>
+                            </tr>
+                        </table>
+                    </div>
                     <div class="col-lg-12">
                         <p>Apakah Anda yakin akan terima data pengajuan cuti <strong>{{$item->nama}}</strong> ?</p>
                     </div>

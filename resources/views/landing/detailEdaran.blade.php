@@ -13,7 +13,7 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-content text-center">
                         <div class="section-heading">
-                            <h2 class="sec__title text-white">Detail Edaran</h2>
+                            <h2 class="sec__title text-white">Detail Artikel</h2>
                         </div>
                     </div><!-- end breadcrumb-content -->
                 </div><!-- end col-lg-12 -->

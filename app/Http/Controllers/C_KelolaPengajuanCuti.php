@@ -65,21 +65,23 @@ class C_KelolaPengajuanCuti extends Controller
         }
 
         $detail = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+        $tanggalPengajuan = date('d F Y', strtotime($detail->tanggal_pengajuan));
+
         if ($detail->tanggal_pegawai) {
-            $tanggalPegawai = date('d F Y', strtotime($detail->tanggal_pegawai));
-            $QRPegawai = QrCode::size(100)->generate("Mengajukan\nTanggal : {$tanggalPegawai}\n\nNama Pegawai : {$detail->nama}\nNIP : {$detail->nip}");
+            $tanggalPegawai = date('d F Y H:s', strtotime($detail->tanggal_pegawai));
+            $QRPegawai = QrCode::size(100)->generate("Pengajuan Cuti:\nNama Pegawai: {$detail->nama}\nTanggal Pengajuan: {$tanggalPengajuan}\n\nMengajukan\nTanggal : {$tanggalPegawai}\n\nNama Pegawai : {$detail->nama}\nNIP : {$detail->nip}");
         } else {
             $QRPegawai = null;
         }
         if ($detail->tanggal_kajur) {
-            $tanggalKajur = date('d F Y', strtotime($detail->tanggal_kajur));
-            $QRKajur = QrCode::size(100)->generate("Menyetujui\nTanggal : {$tanggalKajur}\n\nNama Ketua Jurusan : {$detail->ketua_jurusan}\nNIP : {$detail->nip_ketua_jurusan}");
+            $tanggalKajur = date('d F Y H:s', strtotime($detail->tanggal_kajur));
+            $QRKajur = QrCode::size(100)->generate("Pengajuan Cuti:\nNama Pegawai: {$detail->nama}\nTanggal Pengajuan: {$tanggalPengajuan}\n\nMenyetujui\nTanggal : {$tanggalKajur}\n\nNama Ketua Jurusan : {$detail->ketua_jurusan}\nNIP : {$detail->nip_ketua_jurusan}");
         } else {
             $QRKajur = null;
         }
         if ($detail->tanggal_wadir2) {
-            $tanggalWadir2 = date('d F Y', strtotime($detail->tanggal_wadir2));
-            $QRWadir2 = QrCode::size(100)->generate("Menyetujui\nTanggal : {$tanggalWadir2}\n\nNama Wakil Direktur 2 : {$detail->wakil_direktur}\nNIP : {$detail->nip_wakil_direktur}");
+            $tanggalWadir2 = date('d F Y H:s', strtotime($detail->tanggal_wadir2));
+            $QRWadir2 = QrCode::size(100)->generate("Pengajuan Cuti:\nNama Pegawai: {$detail->nama}\nTanggal Pengajuan: {$tanggalPengajuan}\n\nMenyetujui\nTanggal : {$tanggalWadir2}\n\nNama Wakil Direktur 2 : {$detail->wakil_direktur}\nNIP : {$detail->nip_wakil_direktur}");
         } else {
             $QRWadir2 = null;
         }
@@ -203,19 +205,6 @@ class C_KelolaPengajuanCuti extends Controller
         curl_exec($curl);
         curl_close($curl);
 
-        // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-        // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-        // $twilio = new Client($sid, $token);
-
-        // $message = $twilio->messages
-        //     ->create(
-        //         "whatsapp:+62" . $noHp, // to
-        //         array(
-        //             "from" => "whatsapp:+14155238886",
-        //             "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Ketua Jurusan. Silahkan di cek di website SIMPEG Polsub!"
-        //         )
-        //     );
-
         $data = [
             'id_pengajuan_cuti' => $id_pengajuan_cuti,
             'status_pengajuan'  => 'Dikirim ke Ketua Jurusan',
@@ -304,21 +293,23 @@ class C_KelolaPengajuanCuti extends Controller
         }
 
         $detail = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
+        $tanggalPengajuan = date('d F Y', strtotime($detail->tanggal_pengajuan));
+
         if ($detail->tanggal_pegawai) {
-            $tanggalPegawai = date('d F Y', strtotime($detail->tanggal_pegawai));
-            $QRPegawai = QrCode::size(100)->generate("Mengajukan\nTanggal : {$tanggalPegawai}\n\nNama Pegawai : {$detail->nama}\nNIP : {$detail->nip}");
+            $tanggalPegawai = date('d F Y H:s', strtotime($detail->tanggal_pegawai));
+            $QRPegawai = QrCode::size(100)->generate("Pengajuan Cuti:\nNama Pegawai: {$detail->nama}\nTanggal Pengajuan: {$tanggalPengajuan}\n\nMengajukan\nTanggal : {$tanggalPegawai}\n\nNama Pegawai : {$detail->nama}\nNIP : {$detail->nip}");
         } else {
             $QRPegawai = null;
         }
         if ($detail->tanggal_kajur) {
-            $tanggalKajur = date('d F Y', strtotime($detail->tanggal_kajur));
-            $QRKajur = QrCode::size(100)->generate("Menyetujui\nTanggal : {$tanggalKajur}\n\nNama Ketua Jurusan : {$detail->ketua_jurusan}\nNIP : {$detail->nip_ketua_jurusan}");
+            $tanggalKajur = date('d F Y H:s', strtotime($detail->tanggal_kajur));
+            $QRKajur = QrCode::size(100)->generate("Pengajuan Cuti:\nNama Pegawai: {$detail->nama}\nTanggal Pengajuan: {$tanggalPengajuan}\n\nMenyetujui\nTanggal : {$tanggalKajur}\n\nNama Ketua Jurusan : {$detail->ketua_jurusan}\nNIP : {$detail->nip_ketua_jurusan}");
         } else {
             $QRKajur = null;
         }
         if ($detail->tanggal_wadir2) {
-            $tanggalWadir2 = date('d F Y', strtotime($detail->tanggal_wadir2));
-            $QRWadir2 = QrCode::size(100)->generate("Menyetujui\nTanggal : {$tanggalWadir2}\n\nNama Wakil Direktur 2 : {$detail->wakil_direktur}\nNIP : {$detail->nip_wakil_direktur}");
+            $tanggalWadir2 = date('d F Y H:s', strtotime($detail->tanggal_wadir2));
+            $QRWadir2 = QrCode::size(100)->generate("Pengajuan Cuti:\nNama Pegawai: {$detail->nama}\nTanggal Pengajuan: {$tanggalPengajuan}\n\nMenyetujui\nTanggal : {$tanggalWadir2}\n\nNama Wakil Direktur 2 : {$detail->wakil_direktur}\nNIP : {$detail->nip_wakil_direktur}");
         } else {
             $QRWadir2 = null;
         }
@@ -504,23 +495,6 @@ class C_KelolaPengajuanCuti extends Controller
                 curl_exec($curl);
                 curl_close($curl);
 
-                // TWILIO
-                // $sid    = "AC944f941fef8a459f011bb10c3236df78";
-                // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
-
-                // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-                // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-                // $twilio = new Client($sid, $token);
-
-                // $message = $twilio->messages
-                //     ->create(
-                //         "whatsapp:+62" . $noHp, // to
-                //         array(
-                //             "from" => "whatsapp:+14155238886",
-                //             "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda tidak disetujui oleh Ketua Jurusan. Silahkan cek di website SIMPEG Polsub!"
-                //         )
-                //     );
-
                 $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
                 $detailPegawai = $this->ModelPegawai->detail($pengajuanCuti->id_pegawai);
 
@@ -608,26 +582,8 @@ class C_KelolaPengajuanCuti extends Controller
                 curl_exec($curl);
                 curl_close($curl);
 
-                // TWILIO
-
-                // $sid    = "AC944f941fef8a459f011bb10c3236df78";
-                // $token  = "df97bc683bb53f68b7bb6e2dd0274dc4";
-
-                // $sid    = "ACb89b89cd3003458d790d6031c6a042a1";
-                // $token  = "90d43b2449cc80c3123ca6bda966a0ce";
-                // $twilio = new Client($sid, $token);
-
-                // $message = $twilio->messages
-                //     ->create(
-                //         "whatsapp:+62" . $noHp, // to
-                //         array(
-                //             "from" => "whatsapp:+14155238886",
-                //             "body" => "Hallo {$pengajuanCuti->nama}!\n\nAnda sedang melakukan pengajuan cuti dan status pengajuan cuti Anda sedang dikirim ke Wakil Direktur. Silahkan cek di website SIMPEG Polsub!"
-                //         )
-                //     );
-
                 $status_pengajuan = 'Dikirim ke Wakil Direktur 2';
-                $tanggal_kajur = date('Y-m-d');
+                $tanggal_kajur = date('Y-m-d H:s:i');
             }
 
             $data = [
@@ -650,7 +606,7 @@ class C_KelolaPengajuanCuti extends Controller
                 'pertimbangan_ketua_jurusan'        => 'DISETUJUI',
                 'tanda_tangan_kajur'   => $user->tanda_tangan,
                 'status_pengajuan'                  => 'Dikirim ke Wakil Direktur 2',
-                'tanggal_kajur'   => date('Y-m-d'),
+                'tanggal_kajur'   => date('Y-m-d H:s:i'),
             ];
 
             $route = 'kelola-pengajuan-cuti';
@@ -939,7 +895,7 @@ class C_KelolaPengajuanCuti extends Controller
             curl_close($curl);
 
             $status_pengajuan = 'Dikirim ke Wakil Direktur 1';
-            $tanggal_wadir2 = date('Y-m-d');
+            $tanggal_wadir2 = date('Y-m-d H:s:i');
         }
 
 
@@ -951,7 +907,7 @@ class C_KelolaPengajuanCuti extends Controller
             'alasan_keputusan_wakil_direktur'  => Request()->alasan_keputusan_wakil_direktur,
             'tanda_tangan_wadir'                => $user->tanda_tangan,
             'status_pengajuan'                 => $status_pengajuan,
-            'tanggal_wadir2'   => $tanggal_wadir2,
+            'tanggal_wadir2'                    => $tanggal_wadir2,
         ];
 
         $this->ModelPengajuanCuti->edit($data);

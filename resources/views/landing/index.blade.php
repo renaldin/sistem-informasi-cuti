@@ -147,7 +147,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h3 class="card-title"><a href="hotel-single.html">{{$item->judul}}</a></h3>
-                                    <p class="card-meta">Tanggal Publikasi: {{$item->tanggal_upload}}</p>
+                                    {{-- <p class="card-meta">Tanggal Publikasi: {{$item->tanggal_upload}}</p> --}}
                                     <div class="card-price mt-3 d-flex align-items-right justify-content-right">
                                         <a href="/detail-edaran/{{$item->id_artikel}}" class="btn-text">Buka<i class="la la-angle-right"></i></a>
                                     </div>
@@ -158,6 +158,13 @@
                         @endforeach
                     </div>
                 </div>
+            </div><!-- end col-lg-12 -->
+        </div><!-- end row -->
+        <div class="row mt-2">
+            <div class="col-lg-12">
+                <div class="section-heading text-center">
+                    <a href="/daftar-artikel" class="btn btn-primary">Lihat Semua</a>
+                </div><!-- end section-heading -->
             </div><!-- end col-lg-12 -->
         </div><!-- end row -->
     </div><!-- end container-fluid -->

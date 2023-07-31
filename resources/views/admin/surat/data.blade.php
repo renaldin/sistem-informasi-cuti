@@ -119,15 +119,10 @@
                                         </td>
                                         <td>
                                             <div class="table-content">
-                                                @if ($item->status_surat === 'Sudah Dikirim')
                                                     <button type="button" data-toggle="modal" data-target="#reminder{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Reminder ke WA"><i class="la la-send"></i></button>
                                                     {{-- <a href="/edit-surat/{{ $item->id_surat }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a> --}}
                                                     <a href="/detail-surat/{{ $item->id_surat }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Detail"><i class="la la-eye"></i></a>
                                                     <button type="button" data-toggle="modal" data-target="#hapus{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Hapus"><i class="la la-trash"></i></button>
-                                                @else
-                                                    {{-- <a href="/edit-surat/{{ $item->id_surat }}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Edit"><i class="la la-edit"></i></a> --}}
-                                                    {{-- <button type="button" data-toggle="modal" data-target="#kirim{{$item->id_surat}}" class="theme-btn theme-btn-small mb-1" data-toggle="tooltip" data-placement="top" title="Kirim Surat"><i class="la la-check"></i></button> --}}
-                                                @endif
                                             </div>
                                         </td>
                                     </tr>

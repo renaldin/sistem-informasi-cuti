@@ -35,6 +35,8 @@ Route::group(['middleware' => 'revalidate'], function () {
 
     // Landing
     Route::get('/', [C_Landing::class, 'index'])->name('landing');
+    Route::get('/daftar-artikel', [C_Landing::class, 'daftarArtikel'])->name('daftar-artikel');
+    Route::post('/daftar-artikel', [C_Landing::class, 'daftarArtikel']);
     Route::get('/detail-edaran/{id}', [C_Landing::class, 'detailEdaran'])->name('detail-edaran');
 
     // Home

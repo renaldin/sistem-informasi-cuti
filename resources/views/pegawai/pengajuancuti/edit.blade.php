@@ -162,11 +162,16 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-lg-6" id="tahun_cuti" @if ($detail->tahun_cuti === null)style="display: none;"@elsestyle="display: block;"@endif>
+                                    <div class="col-lg-6" id="tahun_cuti" @if ($detail->tahun_cuti === null)style="display: none;" @else style="display: block;"@endif>
                                         <div class="input-box">
-                                            <label class="label-text">Tahun Cuti</label>
+                                            <label class="label-text">Tahun Cuti</label><br>
+                                            <small>
+                                                Sisa Cuti (N) Tahun Berjalan <strong>{{$pegawai->cuti_n}}</strong> hari<br>
+                                                Sisa Cuti (N-1) 1 Tahun Sebelumnya <strong>{{$pegawai->cuti_n_1}}</strong> hari<br>
+                                                Sisa Cuti (N-2) 2 Tahun Sebelumnya <strong>{{$pegawai->cuti_n_2}}</strong> hari<br>
+                                            </small>
                                             <div class="form-group select-contain w-100">
-                                                <select class="select-contain-select" name="tahun_cuti">
+                                                <select class="select-contain-select" name="tahun_cuti" onchange="pilihCuti()" required="false">
                                                     @if ($detail->tahun_cuti)
                                                     <option value="{{$detail->tahun_cuti}}">{{$detail->tahun_cuti}}</option>
                                                     @else
@@ -213,7 +218,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
     
-                                                        <input class="form-control" type="number" name="lama_cuti" placeholder="Jumlah" value="{{ $detail->lama_cuti }}">
+                                                        <input class="form-control" type="number" id="lama_cuti" name="lama_cuti" placeholder="Jumlah" value="{{ $detail->lama_cuti }}" required>
                                                     </div>
                                                     @error('lama_cuti')
                                                     <div style="margin-top: -16px">
@@ -431,7 +436,7 @@
                                         <div class="input-box">
                                             <label class="label-text"><strong>Alamat Selama Menjalankan Cuti</strong></label>
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="alamat_selama_cuti" placeholder="Masukkan Alamat Selama Menjalankan Cuti" value="{{ $detail->alamat_selama_cuti }}">
+                                                <input class="form-control" type="text" name="alamat_selama_cuti" placeholder="Masukkan Alamat Selama Menjalankan Cuti" value="{{ $detail->alamat_selama_cuti }}" required>
                                             </div>
                                             @error('alamat_selama_cuti')
                                             <div style="margin-top: -16px">
@@ -458,15 +463,54 @@
     </div>
 </div>
 
+
 <script>
     function jenisCuti(event) {
         var selectedValue = event.target.value;
         var cutiTahun = document.getElementById("tahun_cuti");
         if(selectedValue === 'Cuti Tahunan'){
             cutiTahun.style.display = 'block'
+            cutiTahun.required = 'true'
+            
         } else {
             cutiTahun.style.display = 'none'
+            cutiTahun.required = 'false'
+
+            const inputAngka = document.getElementById("lama_cuti");
+            inputAngka.max = 'false'
         }
       }
+
+      function pilihCuti() {
+            var cuti = event.target.value;
+
+            if(cuti === '(N) Tahun Berjalan'){
+                var maksimal = <?= $pegawai->cuti_n ?>
+            } else if(cuti === '(N-1) 1 Tahun Sebelumnya'){
+                var maksimal = <?= $pegawai->cuti_n_1 ?>
+            } else if(cuti === '(N-2) 2 Tahun Sebelumnya'){
+                var maksimal = <?= $pegawai->cuti_n_2 ?>
+            }
+
+            const inputAngka = document.getElementById("lama_cuti");
+            inputAngka.max = maksimal
+
+            inputAngka.addEventListener("input", function () {
+                const min = 1;
+                const max = parseInt(this.max);
+                const value = parseInt(this.value);
+
+                if (isNaN(value)) {
+                // Jika nilai tidak valid, atur nilai ke nilai minimum
+                this.value = min;
+                } else if (value < min) {
+                // Jika nilai kurang dari minimum, atur nilai ke nilai minimum
+                this.value = min;
+                } else if (value > max) {
+                // Jika nilai lebih dari maksimum, atur nilai ke nilai maksimum
+                this.value = max;
+                }
+            });
+        }
   </script>
 @endsection

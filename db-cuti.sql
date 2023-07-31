@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2023 at 06:34 AM
+-- Generation Time: Jul 31, 2023 at 07:06 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -84,17 +84,19 @@ INSERT INTO `artikel` (`id_artikel`, `judul`, `deskripsi`, `dokumen`, `gambar`, 
 CREATE TABLE `detail_surat` (
   `id_detail_surat` int(11) NOT NULL,
   `id_surat` int(11) NOT NULL,
-  `id_pegawai` int(11) NOT NULL
+  `id_pegawai` int(11) NOT NULL,
+  `status_kirim` enum('Belum','Sudah') NOT NULL DEFAULT 'Belum'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `detail_surat`
 --
 
-INSERT INTO `detail_surat` (`id_detail_surat`, `id_surat`, `id_pegawai`) VALUES
-(1, 1, 18),
-(2, 2, 19),
-(3, 2, 18);
+INSERT INTO `detail_surat` (`id_detail_surat`, `id_surat`, `id_pegawai`, `status_kirim`) VALUES
+(1, 1, 18, 'Belum'),
+(2, 2, 19, 'Belum'),
+(3, 2, 18, 'Belum'),
+(4, 3, 18, 'Belum');
 
 -- --------------------------------------------------------
 
@@ -229,7 +231,8 @@ CREATE TABLE `surat` (
 
 INSERT INTO `surat` (`id_surat`, `no_surat`, `perihal_surat`, `hari`, `tanggal`, `tempat`, `jenis_surat`, `file_surat`, `tanggal_upload`, `status_surat`, `status_terlaksana`) VALUES
 (1, '12345', 'Perihal', 'Rabu', '2023-07-30 02:50:00', 'Kampus', 'Jenis Surat', '0729202319034912345.pdf', '2023-07-29', 'Sudah Dikirim', 'Belum'),
-(2, '12345', 'Perihal', 'Senin', '2023-07-30 15:30:00', 'Kampus', 'Jenis Surat', '0730202307454812345.pdf', '2023-07-30', 'Belum Dikirim', 'Belum');
+(2, '12345', 'Perihal', 'Senin', '2023-07-30 15:30:00', 'Kampus', 'Jenis Surat', '0730202307454812345.pdf', '2023-07-30', 'Belum Dikirim', 'Belum'),
+(3, '123458', 'Perihal', 'Selasa', '2023-07-31 12:10:00', 'Kampus', 'Jenis Surat', '07312023044016123458.pdf', '2023-07-31', 'Belum Dikirim', 'Belum');
 
 -- --------------------------------------------------------
 
@@ -356,7 +359,7 @@ ALTER TABLE `artikel`
 -- AUTO_INCREMENT for table `detail_surat`
 --
 ALTER TABLE `detail_surat`
-  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_detail_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -380,7 +383,7 @@ ALTER TABLE `setting`
 -- AUTO_INCREMENT for table `surat`
 --
 ALTER TABLE `surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tambah_surat`

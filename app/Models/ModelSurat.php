@@ -89,6 +89,11 @@ class ModelSurat extends Model
         DB::table($this->table)->where('id_surat', $data['id_surat'])->update($data);
     }
 
+    public function editDetailSurat($data)
+    {
+        DB::table('detail_surat')->where('id_detail_surat', $data['id_detail_surat'])->update($data);
+    }
+
     public function deleteData($id_surat)
     {
         DB::table($this->table)->where('id_surat', $id_surat)->delete();

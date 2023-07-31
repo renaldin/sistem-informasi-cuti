@@ -51,13 +51,14 @@ class generatesurat extends Command
 
         foreach ($pegawai as $item) {
 
-            if ($item->status_surat == 'Belum Dikirim') {
+            if ($item->status_kirim == 'Belum') {
 
                 $datetime = new DateTime($item->tanggal);
                 $interval = new DateInterval('PT30M');
                 $datetime->sub($interval);
                 $hasil = $datetime->format('Y-m-d H:i:s');
-                $sekarang = date('Y-m-d H:s:i');
+                $sekarang = date('Y-m-d H:i:s');
+                // dd($sekarang);
 
                 // if ($sekarang > $hasil && $sekarang < $item->tanggal) {
                 //     dd(true);
@@ -71,8 +72,8 @@ class generatesurat extends Command
                     $jam = date('H:i', strtotime($item->tanggal));
                     $tanggal = date('d F Y', strtotime($item->tanggal));
 
-                    $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
-                    // $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
+                    // $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
+                    $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
 
                     $whatsapp_phone = "+62" . $noHp;
 
@@ -105,13 +106,11 @@ class generatesurat extends Command
                     curl_exec($curl);
                     curl_close($curl);
 
-                    $dataSurat = [
-                        'id_surat'      => $item->id_surat,
-                        'status_surat'  => 'Sudah Dikirim'
-                    ];
-                    $this->ModelSurat->edit($dataSurat);
-                } else {
-                    dd(false);
+                    // $dataSurat = [
+                    //     'id_detail_surat'      => $item->id_detail_surat,
+                    //     'status_kirim'  => 'Sudah'
+                    // ];
+                    // $this->ModelSurat->editDetailSurat($dataSurat);
                 }
             }
         }

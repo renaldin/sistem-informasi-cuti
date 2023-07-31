@@ -241,7 +241,7 @@
                                         <div class="input-box">
                                             <label class="label-text">Tanggal Cuti</label>
                                             <div class="form-group d-flex align-items-center">
-                                                <input class="form-control pl-3" type="date" id="dates" multiple name="mulai_tanggal[]" placeholder="Tanggal Mulai" required>
+                                                <input class="form-control pl-3" type="date" name="mulai_tanggal" placeholder="Tanggal Mulai" required>
                                                 <span class="px-2">s/d</span>
                                                 <input class="form-control pl-3" type="date" name="akhir_tanggal" placeholder="Tanggal Akhir" required>
                                             </div>

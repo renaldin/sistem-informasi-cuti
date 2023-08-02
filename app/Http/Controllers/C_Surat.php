@@ -185,20 +185,12 @@ class C_Surat extends Controller
             $pdfUrl = "https://sistem-kepegawaian.elearningpolsub.com/gambar/dok.pdf";
 
             // SENDTALK
-            $token = '44bb121d5766b78b889104626af2570d593678b01586ffac1a43e565e47cff33';
+            $token = '2a140a453e7620e84a6ad72dea40293b551de320989bd94c87a667d0b2c6a886';
             $whatsapp_phone = '+62' . $noHp;
 
             $message = "Hallo {$item->nama}!\n\nAda pemberitahuan surat buat Anda dengan deskripsi sebagai berikut:\n\nNo. Surat : {$item->no_surat}\nPerihal : {$item->perihal_surat}\nTanggal : {$item->hari}, {$tanggal}\nJam : {$jam}\nTempat : {$item->tempat}\n\nUntuk lebih jelasnya Anda bisa cek di website SIMPEG POLSUB!!!\n\nTerima kasih.";
 
             $url = "https://sendtalk-api.taptalk.io/api/v1/message/send_whatsapp";
-
-            // $data = [
-            //     "phone" => $whatsapp_phone,
-            //     "messageType" => "pdf",
-            //     "body" => $pdfUrl,
-            //     "filename" => "dok.pdf",
-            //     "caption" => $message
-            // ];
 
             $data = [
                 "phone" => $whatsapp_phone,

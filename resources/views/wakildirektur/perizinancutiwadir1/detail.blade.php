@@ -85,7 +85,7 @@
                                         <tr style="padding-left: 20px;">
                                             <th colspan="6" style="text-align: left; padding-left: 15px; border-left: 0;">IV. LAMANYA CUTI</th>
                                         </tr>
-                                        @php
+                                            @php
                                                 $lamaCuti = explode("|", $detail->lama_cuti);
                                                 $mulaiTanggal = explode("|", $detail->mulai_tanggal);
                                                 $akhirTanggal = explode("|", $detail->akhir_tanggal);

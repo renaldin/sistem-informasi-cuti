@@ -24,6 +24,7 @@ class C_KelolaPengajuanCuti extends Controller
         $this->ModelSetting = new ModelSetting();
         $this->ModelPengajuanCuti = new ModelPengajuanCuti();
         $this->ModelPegawai = new ModelPegawai();
+        date_default_timezone_set('Asia/Jakarta');
     }
 
     // admin

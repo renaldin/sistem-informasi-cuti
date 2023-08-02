@@ -85,15 +85,22 @@
                                         <tr style="padding-left: 20px;">
                                             <th colspan="6" style="text-align: left; padding-left: 15px; border-left: 0;">IV. LAMANYA CUTI</th>
                                         </tr>
-                                        <tr style="padding-left: 20px;">
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">Selama</td>
-                                            <td style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">{{$detail->lama_cuti}} hari*</td>
-                                            {{-- <td style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">{{$detail->lama_cuti}} (<span @if($detail->jenis_waktu !== 'hari') style="text-decoration: line-through;" @endif>hari</span>/<span @if($detail->jenis_waktu !== 'minggu') style="text-decoration: line-through;" @endif>minggu</span>/<span @if($detail->jenis_waktu !== 'bulan') style="text-decoration: line-through;" @endif>bulan</span>/<span @if($detail->jenis_waktu !== 'tahun') style="text-decoration: line-through;" @endif>tahun</span>)*</td> --}}
-                                            <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">Mulai Tanggal</td>
-                                            <td style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">{{$detail->mulai_tanggal}}</td>
-                                            <td width="50px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">s.d</td>
-                                            <td style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">{{$detail->akhir_tanggal}}</td>
-                                        </tr>
+                                        @php
+                                                $lamaCuti = explode("|", $detail->lama_cuti);
+                                                $mulaiTanggal = explode("|", $detail->mulai_tanggal);
+                                                $akhirTanggal = explode("|", $detail->akhir_tanggal);
+                                                $jumlah = count($lamaCuti);
+                                            @endphp
+                                            @for($i = 1; $i < $jumlah; $i++)
+                                            <tr style="padding-left: 20px;">
+                                                <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">Selama</td>
+                                                <td style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">{{$lamaCuti[$i]}} hari*</td>
+                                                <td width="130px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">Mulai Tanggal</td>
+                                                <td style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">{{$mulaiTanggal[$i]}}</td>
+                                                <td width="50px" style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">s.d</td>
+                                                <td style="text-align: left; padding-left: 15px; border-top: 1px solid #424141; border-bottom: 1px solid #424141; border-left: 1px solid #424141;">{{$akhirTanggal[$i]}}</td>
+                                            </tr>
+                                            @endfor
                                     </table>
                                 </div>
                                 <div class="col-lg-12 mt-3">

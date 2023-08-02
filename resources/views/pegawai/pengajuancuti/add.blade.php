@@ -171,7 +171,7 @@
                                                 Sisa Cuti (N-2) 2 Tahun Sebelumnya <strong>{{$pegawai->cuti_n_2}}</strong> hari<br>
                                             </small>
                                             <div class="form-group select-contain w-100">
-                                                <select class="select-contain-select" name="tahun_cuti" onchange="pilihCuti()" required="false">
+                                                <select class="select-contain-select" id="pilih_tahun_cuti" name="tahun_cuti" onchange="pilihCuti()" required="false">
                                                     <option value="">--Pilih--</option>
                                                     <option value="(N) Tahun Berjalan">(N) Tahun Berjalan</option>
                                                     <option value="(N-1) 1 Tahun Sebelumnya">(N-1) 1 Tahun Sebelumnya</option>
@@ -201,14 +201,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
+                                {{-- lAMA cUTI 1 --}}
+                                <div class="row" id="lama_tanggal_cuti_1">
+                                    <div class="col-lg-4">
                                         <div class="input-box">
                                             <label class="label-text">Selama</label>
                                             <div class="row">
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
-                                                        <input class="form-control" type="number" id="lama_cuti" name="lama_cuti" onchange="handleLamaCuti()" value="{{ old('lama_cuti') }}" placeholder="Jumlah" required>
+                                                        <input class="form-control" type="number" id="lama_cuti1" name="lama_cuti[]" onchange="handleLamaCuti1()" value="{{ old('lama_cuti') }}" placeholder="Jumlah" required>
                                                     </div>
                                                     @error('lama_cuti')
                                                     <div style="margin-top: -16px">
@@ -241,12 +242,171 @@
                                         <div class="input-box">
                                             <label class="label-text">Tanggal Cuti</label>
                                             <div class="form-group d-flex align-items-center">
-                                                <input class="form-control pl-3" type="date" name="mulai_tanggal" id="mulai_tanggal" onchange="mulaiTanggal()" placeholder="Tanggal Mulai" required>
+                                                <input class="form-control pl-3" type="date" name="mulai_tanggal[]" id="mulai_tanggal1" onchange="mulaiTanggal1()" placeholder="Tanggal Mulai" required>
                                                 <span class="px-2">s/d</span>
-                                                <input class="form-control pl-3" type="date" name="akhir_tanggal" id="akhir_tanggal" placeholder="Tanggal Akhir" readonly required>
+                                                <input class="form-control pl-3" type="date" name="akhir_tanggal[]" id="akhir_tanggal1" placeholder="Tanggal Akhir" readonly required>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-lg-2">
+                                        <button type="button" id="tombol_lama_tanggal_cuti_1" onclick="lamaTanggalCuti1()" class="btn btn-primary"><i class="la la-plus"></i></button>
+                                    </div>
+                                </div>
+                                {{-- Lama Cuti 2 --}}
+                                <div id="lama_tanggal_cuti_2" style="display: none;">
+                                <div class="row" >
+                                    <div class="col-lg-4">
+                                        <div class="input-box">
+                                            <label class="label-text">Selama</label>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="number" id="lama_cuti2" onchange="handleLamaCuti2()" value="{{ old('lama_cuti') }}" placeholder="Jumlah">
+                                                    </div>
+                                                    @error('lama_cuti')
+                                                    <div style="margin-top: -16px">
+                                                        <small class="text-danger">{{ $message }}</small>
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="text" name="jenis_waktu" value="hari" readonly>
+                                                    </div>
+                                                    {{-- <div class="form-group select-contain w-100">
+                                                        <select class="select-contain-select" name="jenis_waktu">
+                                                            <option value="hari">hari</option>
+                                                            <option value="minggu">minggu</option>
+                                                            <option value="bulan">bulan</option>
+                                                            <option value="tahun">tahun</option>
+                                                        </select>
+                                                    </div> --}}
+                                                    @error('jenis_waktu')
+                                                    <div style="margin-top: -16px">
+                                                        <small class="text-danger">{{ $message }}</small>
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-box">
+                                            <label class="label-text">Tanggal Cuti</label>
+                                            <div class="form-group d-flex align-items-center">
+                                                <input class="form-control pl-3" type="date" id="mulai_tanggal2" onchange="mulaiTanggal2()" placeholder="Tanggal Mulai">
+                                                <span class="px-2">s/d</span>
+                                                <input class="form-control pl-3" type="date" id="akhir_tanggal2" placeholder="Tanggal Akhir" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button type="button" id="tombol_lama_tanggal_cuti_2" onclick="lamaTanggalCuti2()" class="btn btn-primary"><i class="la la-plus"></i></button>
+                                    </div>
+                                </div>
+                                </div>
+                                {{-- Lama Cuti 3 --}}
+                                <div id="lama_tanggal_cuti_3" style="display: none;">
+                                <div class="row" >
+                                    <div class="col-lg-4">
+                                        <div class="input-box">
+                                            <label class="label-text">Selama</label>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="number" id="lama_cuti3" onchange="handleLamaCuti3()" value="{{ old('lama_cuti') }}" placeholder="Jumlah">
+                                                    </div>
+                                                    @error('lama_cuti')
+                                                    <div style="margin-top: -16px">
+                                                        <small class="text-danger">{{ $message }}</small>
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="text" name="jenis_waktu" value="hari" readonly>
+                                                    </div>
+                                                    {{-- <div class="form-group select-contain w-100">
+                                                        <select class="select-contain-select" name="jenis_waktu">
+                                                            <option value="hari">hari</option>
+                                                            <option value="minggu">minggu</option>
+                                                            <option value="bulan">bulan</option>
+                                                            <option value="tahun">tahun</option>
+                                                        </select>
+                                                    </div> --}}
+                                                    @error('jenis_waktu')
+                                                    <div style="margin-top: -16px">
+                                                        <small class="text-danger">{{ $message }}</small>
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-box">
+                                            <label class="label-text">Tanggal Cuti</label>
+                                            <div class="form-group d-flex align-items-center">
+                                                <input class="form-control pl-3" type="date" id="mulai_tanggal3" onchange="mulaiTanggal3()" placeholder="Tanggal Mulai">
+                                                <span class="px-2">s/d</span>
+                                                <input class="form-control pl-3" type="date" id="akhir_tanggal3" placeholder="Tanggal Akhir" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button type="button" id="tombol_lama_tanggal_cuti_3" onclick="lamaTanggalCuti3()" class="btn btn-primary"><i class="la la-plus"></i></button>
+                                    </div>
+                                </div>
+                                </div>
+                                {{-- Lama Cuti 4 --}}
+                                <div id="lama_tanggal_cuti_4" style="display: none;">
+                                <div class="row" >
+                                    <div class="col-lg-4">
+                                        <div class="input-box">
+                                            <label class="label-text">Selama</label>
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="number" id="lama_cuti4" onchange="handleLamaCuti4()" value="{{ old('lama_cuti') }}" placeholder="Jumlah">
+                                                    </div>
+                                                    @error('lama_cuti')
+                                                    <div style="margin-top: -16px">
+                                                        <small class="text-danger">{{ $message }}</small>
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <input class="form-control" type="text" name="jenis_waktu" value="hari" readonly>
+                                                    </div>
+                                                    {{-- <div class="form-group select-contain w-100">
+                                                        <select class="select-contain-select" name="jenis_waktu">
+                                                            <option value="hari">hari</option>
+                                                            <option value="minggu">minggu</option>
+                                                            <option value="bulan">bulan</option>
+                                                            <option value="tahun">tahun</option>
+                                                        </select>
+                                                    </div> --}}
+                                                    @error('jenis_waktu')
+                                                    <div style="margin-top: -16px">
+                                                        <small class="text-danger">{{ $message }}</small>
+                                                    </div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-box">
+                                            <label class="label-text">Tanggal Cuti</label>
+                                            <div class="form-group d-flex align-items-center">
+                                                <input class="form-control pl-3" type="date" id="mulai_tanggal4" onchange="mulaiTanggal4()" placeholder="Tanggal Mulai">
+                                                <span class="px-2">s/d</span>
+                                                <input class="form-control pl-3" type="date" id="akhir_tanggal4" placeholder="Tanggal Akhir" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 </div>
                                 {{-- <div class="row">
                                     <div class="col-lg-12">
@@ -449,11 +609,63 @@
 </div>
 
 <script>
-    function mulaiTanggal() {
+    function lamaTanggalCuti1(){
+        var lamaTanggalCuti2 = document.getElementById("lama_tanggal_cuti_2")
+        var lamaCuti2 = document.getElementById("lama_cuti2")
+        var tanggalMulai2 = document.getElementById("mulai_tanggal2")
+        var tanggalAkhir2 = document.getElementById("akhir_tanggal2")
+        var tombol_lama_tanggal_cuti_1 = document.getElementById("tombol_lama_tanggal_cuti_1")
+
+        tombol_lama_tanggal_cuti_1.style.display = "none"
+        lamaTanggalCuti2.style.display = "block"
+        lamaCuti2.required = "true"
+        tanggalMulai2.required = "true"
+        tanggalAkhir2.required = "true"
+        lamaCuti2.name = "lama_cuti[]"
+        tanggalMulai2.name = "mulai_tanggal[]"
+        tanggalAkhir2.name = "akhir_tanggal[]"
+    }
+    function lamaTanggalCuti2(){
+        var lamaTanggalCuti3 = document.getElementById("lama_tanggal_cuti_3")
+        var lamaCuti3 = document.getElementById("lama_cuti3")
+        var tanggalMulai3 = document.getElementById("mulai_tanggal3")
+        var tanggalAkhir3 = document.getElementById("akhir_tanggal3")
+        var tombol_lama_tanggal_cuti_2 = document.getElementById("tombol_lama_tanggal_cuti_2")
+
+        tombol_lama_tanggal_cuti_2.style.display = "none"
+        lamaTanggalCuti3.style.display = "block"
+        lamaCuti3.required = "true"
+        tanggalMulai3.required = "true"
+        tanggalAkhir3.required = "true"
+        lamaCuti3.name = "lama_cuti[]"
+        tanggalMulai3.name = "mulai_tanggal[]"
+        tanggalAkhir3.name = "akhir_tanggal[]"
+    }
+    function lamaTanggalCuti3(){
+        var lamaTanggalCuti4 = document.getElementById("lama_tanggal_cuti_4")
+        var lamaCuti4 = document.getElementById("lama_cuti4")
+        var tanggalMulai4 = document.getElementById("mulai_tanggal4")
+        var tanggalAkhir4 = document.getElementById("akhir_tanggal4")
+        var tombol_lama_tanggal_cuti_3 = document.getElementById("tombol_lama_tanggal_cuti_3")
+
+        tombol_lama_tanggal_cuti_3.style.display = "none"
+        lamaTanggalCuti4.style.display = "block"
+        lamaCuti4.required = "true"
+        tanggalMulai4.required = "true"
+        tanggalAkhir4.required = "true"
+        lamaCuti4.name = "lama_cuti[]"
+        tanggalMulai4.name = "mulai_tanggal[]"
+        tanggalAkhir4.name = "akhir_tanggal[]"
+    }
+</script>
+
+{{-- LAMA CUTI 1 --}}
+<script>
+    function mulaiTanggal1() {
             // Dapatkan nilai tanggal yang baru
-            var tanggalMulai = document.getElementById("mulai_tanggal").value;
-            var tanggalAkhir = document.getElementById("akhir_tanggal");
-            var lamaCuti = document.getElementById("lama_cuti");
+            var tanggalMulai = document.getElementById("mulai_tanggal1").value;
+            var tanggalAkhir = document.getElementById("akhir_tanggal1");
+            var lamaCuti = document.getElementById("lama_cuti1");
 
             if(lamaCuti.value){
                 jumlahLamaCuti = parseInt(lamaCuti.value) - 1 
@@ -474,11 +686,11 @@
             tanggalAkhir.value = tanggalAwal.toISOString().slice(0, 10);
         }
 
-    function handleLamaCuti() {
+    function handleLamaCuti1() {
             // Dapatkan nilai tanggal yang baru
-            var tanggalMulaiCuti = document.getElementById("mulai_tanggal").value;
-            var tanggalAkhirCuti = document.getElementById("akhir_tanggal");
-            var lamaCuti2 = document.getElementById("lama_cuti");
+            var tanggalMulaiCuti = document.getElementById("mulai_tanggal1").value;
+            var tanggalAkhirCuti = document.getElementById("akhir_tanggal1");
+            var lamaCuti2 = document.getElementById("lama_cuti1");
 
             if(tanggalMulaiCuti){
                 jumlahLamaCuti2 = parseInt(lamaCuti2.value) - 1
@@ -495,6 +707,289 @@
                 // Tampilkan tanggal yang sudah ditambahkan
                 tanggalAkhirCuti.value = tanggalAwalCuti.toISOString().slice(0, 10);
             }
+
+            cuti = document.getElementById("pilih_tahun_cuti").value;
+            console.log(cuti)
+
+            if(cuti === '(N) Tahun Berjalan'){
+                var maksimal = <?= $pegawai->cuti_n ?>
+            } else if(cuti === '(N-1) 1 Tahun Sebelumnya'){
+                var maksimal = <?= $pegawai->cuti_n_1 ?>
+            } else if(cuti === '(N-2) 2 Tahun Sebelumnya'){
+                var maksimal = <?= $pegawai->cuti_n_2 ?>
+            }
+
+            const inputAngka2 = document.getElementById("lama_cuti2");
+            inputAngka2.max = parseInt(maksimal) - parseInt(lamaCuti2.value)
+
+            inputAngka2.addEventListener("input", function () {
+                const min = 1;
+                const max = parseInt(this.max);
+                const value = parseInt(this.value);
+
+                if (isNaN(value)) {
+                // Jika nilai tidak valid, atur nilai ke nilai minimum
+                this.value = min;
+                } else if (value < min) {
+                // Jika nilai kurang dari minimum, atur nilai ke nilai minimum
+                this.value = min;
+                } else if (value > max) {
+                // Jika nilai lebih dari maksimum, atur nilai ke nilai maksimum
+                this.value = max;
+                }
+            });
+        }
+</script>
+
+// lAMA cUTI 2
+<script>
+    function mulaiTanggal2() {
+            // Dapatkan nilai tanggal yang baru
+            var tanggalMulai = document.getElementById("mulai_tanggal2").value;
+            var tanggalAkhir = document.getElementById("akhir_tanggal2");
+            var lamaCuti = document.getElementById("lama_cuti2");
+
+            if(lamaCuti.value){
+                jumlahLamaCuti = parseInt(lamaCuti.value) - 1 
+            } else {
+                jumlahLamaCuti = 0
+            }
+
+            // Tanggal awal
+            var tanggalAwal = new Date(tanggalMulai);
+
+            // Jumlah hari yang ingin ditambahkan
+            var jumlahHariDitambahkan = jumlahLamaCuti; // Misalnya, ingin menambah 5 hari
+
+            // Menambahkan tanggal dengan jumlah hari yang diinginkan
+            tanggalAwal.setDate(tanggalAwal.getDate() + jumlahHariDitambahkan);
+
+            // Tampilkan tanggal yang sudah ditambahkan
+            tanggalAkhir.value = tanggalAwal.toISOString().slice(0, 10);
+        }
+
+    function handleLamaCuti2() {
+            // Dapatkan nilai tanggal yang baru
+            var tanggalMulaiCuti = document.getElementById("mulai_tanggal2").value;
+            var tanggalAkhirCuti = document.getElementById("akhir_tanggal2");
+            var lamaCuti1 = document.getElementById("lama_cuti1");
+            var lamaCuti2 = document.getElementById("lama_cuti2");
+
+            if(tanggalMulaiCuti){
+                jumlahLamaCuti2 = parseInt(lamaCuti2.value) - 1
+    
+                // Tanggal awal
+                var tanggalAwalCuti = new Date(tanggalMulaiCuti);
+    
+                // Jumlah hari yang ingin ditambahkan
+                var jumlahHariTambah = jumlahLamaCuti2; // Misalnya, ingin menambah 5 hari
+    
+                // Menambahkan tanggal dengan jumlah hari yang diinginkan
+                tanggalAwalCuti.setDate(tanggalAwalCuti.getDate() + jumlahHariTambah);
+    
+                // Tampilkan tanggal yang sudah ditambahkan
+                tanggalAkhirCuti.value = tanggalAwalCuti.toISOString().slice(0, 10);
+            }
+
+            cuti = document.getElementById("pilih_tahun_cuti").value;
+            console.log(cuti)
+
+            if(cuti === '(N) Tahun Berjalan'){
+                var maksimal = <?= $pegawai->cuti_n ?>
+            } else if(cuti === '(N-1) 1 Tahun Sebelumnya'){
+                var maksimal = <?= $pegawai->cuti_n_1 ?>
+            } else if(cuti === '(N-2) 2 Tahun Sebelumnya'){
+                var maksimal = <?= $pegawai->cuti_n_2 ?>
+            }
+
+            const inputAngka3 = document.getElementById("lama_cuti3");
+            inputAngka3.max = parseInt(maksimal) - parseInt(lamaCuti2.value) - parseInt(lamaCuti1.value)
+
+            inputAngka3.addEventListener("input", function () {
+                const min = 1;
+                const max = parseInt(this.max);
+                const value = parseInt(this.value);
+
+                if (isNaN(value)) {
+                // Jika nilai tidak valid, atur nilai ke nilai minimum
+                this.value = min;
+                } else if (value < min) {
+                // Jika nilai kurang dari minimum, atur nilai ke nilai minimum
+                this.value = min;
+                } else if (value > max) {
+                // Jika nilai lebih dari maksimum, atur nilai ke nilai maksimum
+                this.value = max;
+                }
+            });
+        }
+</script>
+
+// lAMA cUTI 3
+<script>
+    function mulaiTanggal3() {
+            // Dapatkan nilai tanggal yang baru
+            var tanggalMulai = document.getElementById("mulai_tanggal3").value;
+            var tanggalAkhir = document.getElementById("akhir_tanggal3");
+            var lamaCuti = document.getElementById("lama_cuti3");
+
+            if(lamaCuti.value){
+                jumlahLamaCuti = parseInt(lamaCuti.value) - 1 
+            } else {
+                jumlahLamaCuti = 0
+            }
+
+            // Tanggal awal
+            var tanggalAwal = new Date(tanggalMulai);
+
+            // Jumlah hari yang ingin ditambahkan
+            var jumlahHariDitambahkan = jumlahLamaCuti; // Misalnya, ingin menambah 5 hari
+
+            // Menambahkan tanggal dengan jumlah hari yang diinginkan
+            tanggalAwal.setDate(tanggalAwal.getDate() + jumlahHariDitambahkan);
+
+            // Tampilkan tanggal yang sudah ditambahkan
+            tanggalAkhir.value = tanggalAwal.toISOString().slice(0, 10);
+        }
+
+    function handleLamaCuti3() {
+            // Dapatkan nilai tanggal yang baru
+            var tanggalMulaiCuti = document.getElementById("mulai_tanggal3").value;
+            var tanggalAkhirCuti = document.getElementById("akhir_tanggal3");
+            var lamaCuti2 = document.getElementById("lama_cuti3");
+            var lamaCuti1 = document.getElementById("lama_cuti1");
+            var lamaCuti3 = document.getElementById("lama_cuti2");
+
+            if(tanggalMulaiCuti){
+                jumlahLamaCuti2 = parseInt(lamaCuti2.value) - 1
+    
+                // Tanggal awal
+                var tanggalAwalCuti = new Date(tanggalMulaiCuti);
+    
+                // Jumlah hari yang ingin ditambahkan
+                var jumlahHariTambah = jumlahLamaCuti2; // Misalnya, ingin menambah 5 hari
+    
+                // Menambahkan tanggal dengan jumlah hari yang diinginkan
+                tanggalAwalCuti.setDate(tanggalAwalCuti.getDate() + jumlahHariTambah);
+    
+                // Tampilkan tanggal yang sudah ditambahkan
+                tanggalAkhirCuti.value = tanggalAwalCuti.toISOString().slice(0, 10);
+            }
+
+            cuti = document.getElementById("pilih_tahun_cuti").value;
+            console.log(cuti)
+
+            if(cuti === '(N) Tahun Berjalan'){
+                var maksimal = <?= $pegawai->cuti_n ?>
+            } else if(cuti === '(N-1) 1 Tahun Sebelumnya'){
+                var maksimal = <?= $pegawai->cuti_n_1 ?>
+            } else if(cuti === '(N-2) 2 Tahun Sebelumnya'){
+                var maksimal = <?= $pegawai->cuti_n_2 ?>
+            }
+
+            const inputAngka4 = document.getElementById("lama_cuti4");
+            inputAngka4.max = parseInt(maksimal) - parseInt(lamaCuti2.value) - parseInt(lamaCuti1.value) - parseInt(lamaCuti3.value)
+
+            inputAngka4.addEventListener("input", function () {
+                const min = 1;
+                const max = parseInt(this.max);
+                const value = parseInt(this.value);
+
+                if (isNaN(value)) {
+                // Jika nilai tidak valid, atur nilai ke nilai minimum
+                this.value = min;
+                } else if (value < min) {
+                // Jika nilai kurang dari minimum, atur nilai ke nilai minimum
+                this.value = min;
+                } else if (value > max) {
+                // Jika nilai lebih dari maksimum, atur nilai ke nilai maksimum
+                this.value = max;
+                }
+            });
+        }
+</script>
+
+// lAMA cUTI 4
+<script>
+    function mulaiTanggal4() {
+            // Dapatkan nilai tanggal yang baru
+            var tanggalMulai = document.getElementById("mulai_tanggal4").value;
+            var tanggalAkhir = document.getElementById("akhir_tanggal4");
+            var lamaCuti = document.getElementById("lama_cuti4");
+
+            if(lamaCuti.value){
+                jumlahLamaCuti = parseInt(lamaCuti.value) - 1 
+            } else {
+                jumlahLamaCuti = 0
+            }
+
+            // Tanggal awal
+            var tanggalAwal = new Date(tanggalMulai);
+
+            // Jumlah hari yang ingin ditambahkan
+            var jumlahHariDitambahkan = jumlahLamaCuti; // Misalnya, ingin menambah 5 hari
+
+            // Menambahkan tanggal dengan jumlah hari yang diinginkan
+            tanggalAwal.setDate(tanggalAwal.getDate() + jumlahHariDitambahkan);
+
+            // Tampilkan tanggal yang sudah ditambahkan
+            tanggalAkhir.value = tanggalAwal.toISOString().slice(0, 10);
+        }
+
+    function handleLamaCuti4() {
+            // Dapatkan nilai tanggal yang baru
+            var tanggalMulaiCuti = document.getElementById("mulai_tanggal4").value;
+            var tanggalAkhirCuti = document.getElementById("akhir_tanggal4");
+            var lamaCuti2 = document.getElementById("lama_cuti4");
+            var lamaCuti1 = document.getElementById("lama_cuti1");
+            var lamaCuti3 = document.getElementById("lama_cuti2");
+            var lamaCuti4 = document.getElementById("lama_cuti4");
+
+            if(tanggalMulaiCuti){
+                jumlahLamaCuti2 = parseInt(lamaCuti2.value) - 1
+    
+                // Tanggal awal
+                var tanggalAwalCuti = new Date(tanggalMulaiCuti);
+    
+                // Jumlah hari yang ingin ditambahkan
+                var jumlahHariTambah = jumlahLamaCuti2; // Misalnya, ingin menambah 5 hari
+    
+                // Menambahkan tanggal dengan jumlah hari yang diinginkan
+                tanggalAwalCuti.setDate(tanggalAwalCuti.getDate() + jumlahHariTambah);
+    
+                // Tampilkan tanggal yang sudah ditambahkan
+                tanggalAkhirCuti.value = tanggalAwalCuti.toISOString().slice(0, 10);
+            }
+
+            cuti = document.getElementById("pilih_tahun_cuti").value;
+            console.log(cuti)
+
+            if(cuti === '(N) Tahun Berjalan'){
+                var maksimal = <?= $pegawai->cuti_n ?>
+            } else if(cuti === '(N-1) 1 Tahun Sebelumnya'){
+                var maksimal = <?= $pegawai->cuti_n_1 ?>
+            } else if(cuti === '(N-2) 2 Tahun Sebelumnya'){
+                var maksimal = <?= $pegawai->cuti_n_2 ?>
+            }
+
+            const inputAngka5 = document.getElementById("lama_cuti5");
+            inputAngka5.max = parseInt(maksimal) - parseInt(lamaCuti2.value) - parseInt(lamaCuti1.value) - parseInt(lamaCuti3.value) - parseInt(lamaCuti4.value)
+
+            inputAngka5.addEventListener("input", function () {
+                const min = 1;
+                const max = parseInt(this.max);
+                const value = parseInt(this.value);
+
+                if (isNaN(value)) {
+                // Jika nilai tidak valid, atur nilai ke nilai minimum
+                this.value = min;
+                } else if (value < min) {
+                // Jika nilai kurang dari minimum, atur nilai ke nilai minimum
+                this.value = min;
+                } else if (value > max) {
+                // Jika nilai lebih dari maksimum, atur nilai ke nilai maksimum
+                this.value = max;
+                }
+            });
         }
 </script>
 
@@ -538,10 +1033,10 @@
                 var maksimal = <?= $pegawai->cuti_n_2 ?>
             }
 
-            const inputAngka = document.getElementById("lama_cuti");
-            inputAngka.max = maksimal
+            const inputAngka1 = document.getElementById("lama_cuti1");
+            inputAngka1.max = maksimal
 
-            inputAngka.addEventListener("input", function () {
+            inputAngka1.addEventListener("input", function () {
                 const min = 1;
                 const max = parseInt(this.max);
                 const value = parseInt(this.value);

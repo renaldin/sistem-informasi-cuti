@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2023 at 09:17 AM
+-- Generation Time: Aug 02, 2023 at 08:43 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -138,7 +138,7 @@ INSERT INTO `pegawai` (`id_pegawai`, `id_user`, `jabatan`, `unit_kerja`, `masa_k
 (15, 36, 'Bagian Umum', 'Bagian Umum', '5 tahun', '2', '5', '3', 'Keterangan 2', 'Keterangan 5', 'Keterangan 3', '0', '0', '0', '0', '0', '07092023203546 Tanda Tangan Bagian Umum & Gelar.png'),
 (17, 2, 'Admin', 'Bagian Umum', '5 tahun', '12', '12', '12', 'Keterangan 12', 'Keterangan 12', 'Keterangan 12', '0', '0', '0', '0', '0', NULL),
 (18, 38, 'Dosen Pengajar', 'Manajemen Informatika', '5 tahun', '12', '12', '2', 'Keterangan 12', 'Keterangan 12', 'Keterangan 12', '0', '0', '0', '0', '0', '07232023073122 Tanda Tangan Pegawai 1.png'),
-(19, 39, 'Dosen Pengajar', 'Agroindustri', '5 tahun', '12', '12', '12', 'Keterangan 12', 'Keterangan 12', 'Keterangan 12', '0', '0', '0', '0', '0', '07232023073422 Tanda Tangan Pegawai 2.png');
+(19, 39, 'Dosen Pengajar', 'Agroindustri', '5 tahun', '12', '12', '7', 'Keterangan 12', 'Keterangan 12', 'Keterangan 12', '0', '0', '0', '0', '0', '07232023073422 Tanda Tangan Pegawai 2.png');
 
 -- --------------------------------------------------------
 
@@ -152,10 +152,10 @@ CREATE TABLE `pengajuan_cuti` (
   `jenis_cuti` enum('Cuti Tahunan','Cuti Besar','Cuti Sakit','Cuti Melahirkan','Cuti Karena Alasan Penting','Cuti di Luar Tanggungan Negara') DEFAULT NULL,
   `tahun_cuti` enum('(N-2) 2 Tahun Sebelumnya','(N-1) 1 Tahun Sebelumnya','(N) Tahun Berjalan') DEFAULT NULL,
   `alasan_cuti` text DEFAULT NULL,
-  `lama_cuti` int(11) DEFAULT NULL,
+  `lama_cuti` text DEFAULT NULL,
   `jenis_waktu` enum('hari','bulan','tahun','minggu') DEFAULT NULL,
-  `mulai_tanggal` date DEFAULT NULL,
-  `akhir_tanggal` date DEFAULT NULL,
+  `mulai_tanggal` text DEFAULT NULL,
+  `akhir_tanggal` text DEFAULT NULL,
   `alamat_selama_cuti` text DEFAULT NULL,
   `pertimbangan_ketua_jurusan` enum('DISETUJUI','PERUBAHAN','DITANGGUHKAN','TIDAK DISETUJUI') DEFAULT NULL,
   `alasan_pertimbangan_ketua_jurusan` text DEFAULT NULL,
@@ -180,8 +180,9 @@ CREATE TABLE `pengajuan_cuti` (
 --
 
 INSERT INTO `pengajuan_cuti` (`id_pengajuan_cuti`, `id_pegawai`, `jenis_cuti`, `tahun_cuti`, `alasan_cuti`, `lama_cuti`, `jenis_waktu`, `mulai_tanggal`, `akhir_tanggal`, `alamat_selama_cuti`, `pertimbangan_ketua_jurusan`, `alasan_pertimbangan_ketua_jurusan`, `ketua_jurusan`, `nip_ketua_jurusan`, `keputusan_wakil_direktur`, `alasan_keputusan_wakil_direktur`, `wakil_direktur`, `nip_wakil_direktur`, `status_pengajuan`, `tanggal_pengajuan`, `tanda_tangan_wadir`, `tanda_tangan_kajur`, `tanda_tangan_pegawai`, `tanggal_pegawai`, `tanggal_kajur`, `tanggal_wadir2`) VALUES
-(1, 18, 'Cuti Tahunan', '(N) Tahun Berjalan', 'Alasannya sakit', 1, 'hari', '2023-07-27', '2023-07-27', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 2 & Gelar', '666666666666666666', 'Selesai', '2023-07-25 00:00:00', '06242023151329 Tanda Tangan Wadir 2 & Gelar.png', '06242023151614 Tanda Tangan Kajur MI & gelar.png', '07232023073122 Tanda Tangan Pegawai 1.png', '2023-07-25 00:00:00', '2023-07-25 00:00:00', '2023-07-25 00:00:00'),
-(2, 18, 'Cuti Tahunan', '(N) Tahun Berjalan', 'Alasannya sakit', 3, 'hari', '2023-07-10', '2023-07-12', 'rumah saya', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dikirim ke Ketua Jurusan', '2023-07-29 14:01:24', NULL, NULL, '07232023073122 Tanda Tangan Pegawai 1.png', '2023-07-29 14:15:24', NULL, NULL);
+(1, 18, 'Cuti Tahunan', '(N) Tahun Berjalan', 'Alasannya sakit', '1', 'hari', '2023-07-27', '2023-07-27', 'rumah saya', 'DISETUJUI', NULL, 'Kajur MI & gelar', '111111111111111111', 'DISETUJUI', NULL, 'Wadir 2 & Gelar', '666666666666666666', 'Selesai', '2023-07-25 00:00:00', '06242023151329 Tanda Tangan Wadir 2 & Gelar.png', '06242023151614 Tanda Tangan Kajur MI & gelar.png', '07232023073122 Tanda Tangan Pegawai 1.png', '2023-07-25 00:00:00', '2023-07-25 00:00:00', '2023-07-25 00:00:00'),
+(2, 18, 'Cuti Tahunan', '(N) Tahun Berjalan', 'Alasannya sakit', '3', 'hari', '2023-07-10', '2023-07-12', 'rumah saya', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dikirim ke Ketua Jurusan', '2023-07-29 14:01:24', NULL, NULL, '07232023073122 Tanda Tangan Pegawai 1.png', '2023-07-29 14:15:24', NULL, NULL),
+(3, 19, 'Cuti Tahunan', '(N) Tahun Berjalan', 'Alasannya sakit', '|2|3', 'hari', '|2023-08-01|2023-08-07', '|2023-08-02|2023-08-09', 'rumah saya', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Persiapan', '2023-08-02 06:24:21', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -279,7 +280,7 @@ INSERT INTO `users` (`id_user`, `nama`, `nip`, `email`, `password`, `nomor_telep
 (27, 'Wadir 2 & Gelar', '666666666666666666', 'wadir2@gmail.com', '$2y$10$a2GjSaHsMx3G7TEW34DX2OawQM3zIs7./zZgnoai25OAWs7uCb3tG', '0895336928026', 'Wakil Direktur 2', '06142023121041Wadir 2 & Gelar.jpg'),
 (36, 'Bagian Umum & Gelar', '77777777777777777', 'bagianumum1@gmail.com', '$2y$10$0xYc2rQAtEPiJXxlASoQ6ejGObx0VE0egZ4Fq54c.zkNcjzBnFmXO', '085321307758', 'Bagian Umum', '07092023203545Bagian Umum & Gelar.png'),
 (38, 'Pegawai 1', '11111111111111111', 'pegawai_1@gmail.com', '$2y$10$xpQ9A4N05JX2YrZvaLSnsuuxFK6qPgoRYhTINTfoqDauVWIXaNSIC', '0895336928026', 'Pegawai', '07232023073122Pegawai 1.png'),
-(39, 'Pegawai 2', '11111111111111112', 'renaldinoviandi9@gmail.com', '$2y$10$JX52k7wbQLKnZvkO9oFCj.vgXvE5tO6ZYPwpvTRwPGfy/8v0T1qPq', '0895336928026', 'Pegawai', '07232023073422Pegawai 2.png');
+(39, 'Pegawai 2', '11111111111111112', 'pegawai_2@gmail.com', '$2y$10$xpQ9A4N05JX2YrZvaLSnsuuxFK6qPgoRYhTINTfoqDauVWIXaNSIC', '0895336928026', 'Pegawai', '07232023073422Pegawai 2.png');
 
 --
 -- Indexes for dumped tables
@@ -371,7 +372,7 @@ ALTER TABLE `pegawai`
 -- AUTO_INCREMENT for table `pengajuan_cuti`
 --
 ALTER TABLE `pengajuan_cuti`
-  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pengajuan_cuti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `setting`

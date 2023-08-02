@@ -22,6 +22,7 @@ class C_PengajuanCuti extends Controller
         $this->ModelSetting = new ModelSetting();
         $this->ModelPengajuanCuti = new ModelPengajuanCuti();
         $this->ModelPegawai = new ModelPegawai();
+        date_default_timezone_set('Asia/Jakarta');
     }
 
     // pegawai
@@ -66,24 +67,32 @@ class C_PengajuanCuti extends Controller
         Request()->validate([
             'jenis_cuti'            => 'required',
             'alasan_cuti'           => 'required',
-            'lama_cuti'             => 'required|numeric',
             'jenis_waktu'           => 'required',
-            'mulai_tanggal'         => 'required',
-            'akhir_tanggal'         => 'required',
             'alamat_selama_cuti'    => 'required',
 
         ], [
             'jenis_cuti.required'           => 'Jenis cuti harus diisi!',
             'alasan_cuti.required'          => 'Alasan cuti harus diisi!',
             'alasan_cuti.required'          => 'Alasan cuti harus diisi!',
-            'lama_cuti.required'            => 'Lama cuti harus diisi!',
-            'lama_cuti.numeric'             => 'Lama cuti harus angka!',
             'jenis_waktu.required'          => 'Jenis waktu harus diisi!',
-            'mulai_tanggal.required'        => 'Tanggal mulai harus diisi!',
-            'akhir_tanggal.required'        => 'Tanggal akhir harus diisi!',
             'alamat_selama_cuti.required'   => 'Alamat selama cuti harus diisi!',
 
         ]);
+
+        $jumlah_cuti = array_sum(Request()->lama_cuti);
+
+        $lama_cuti = "";
+        foreach (Request()->lama_cuti as $item) {
+            $lama_cuti = $lama_cuti . "|" . $item;
+        }
+        $mulai_tanggal = "";
+        foreach (Request()->mulai_tanggal as $item) {
+            $mulai_tanggal = $mulai_tanggal . "|" . $item;
+        }
+        $akhir_tanggal = "";
+        foreach (Request()->akhir_tanggal as $item) {
+            $akhir_tanggal = $akhir_tanggal . "|" . $item;
+        }
 
         $user = $this->ModelUser->detail(Session()->get('id_user'));
         $detailPegawai = $this->ModelPegawai->detail(Request()->id_pegawai);
@@ -93,17 +102,17 @@ class C_PengajuanCuti extends Controller
             if (Request()->tahun_cuti === '(N-2) 2 Tahun Sebelumnya') {
                 $pegawai = [
                     'id_pegawai'    => Request()->id_pegawai,
-                    'cuti_n_2'        => $detailPegawai->cuti_n_2 - Request()->lama_cuti,
+                    'cuti_n_2'        => $detailPegawai->cuti_n_2 - $jumlah_cuti,
                 ];
             } elseif (Request()->tahun_cuti === '(N-1) 1 Tahun Sebelumnya') {
                 $pegawai = [
                     'id_pegawai'    => Request()->id_pegawai,
-                    'cuti_n_1'        => $detailPegawai->cuti_n_1 - Request()->lama_cuti,
+                    'cuti_n_1'        => $detailPegawai->cuti_n_1 - $jumlah_cuti,
                 ];
             } elseif (Request()->tahun_cuti === '(N) Tahun Berjalan') {
                 $pegawai = [
                     'id_pegawai'    => Request()->id_pegawai,
-                    'cuti_n'        => $detailPegawai->cuti_n - Request()->lama_cuti,
+                    'cuti_n'        => $detailPegawai->cuti_n - $jumlah_cuti,
                 ];
             }
         } else {
@@ -112,27 +121,27 @@ class C_PengajuanCuti extends Controller
             if (Request()->jenis_cuti === 'Cuti Besar') {
                 $pegawai = [
                     'id_pegawai'    => Request()->id_pegawai,
-                    'cuti_besar'        => $detailPegawai->cuti_besar + Request()->lama_cuti,
+                    'cuti_besar'        => $detailPegawai->cuti_besar + $jumlah_cuti,
                 ];
             } elseif (Request()->jenis_cuti === 'Cuti Sakit') {
                 $pegawai = [
                     'id_pegawai'    => Request()->id_pegawai,
-                    'cuti_sakit'        => $detailPegawai->cuti_sakit + Request()->lama_cuti,
+                    'cuti_sakit'        => $detailPegawai->cuti_sakit + $jumlah_cuti,
                 ];
             } elseif (Request()->jenis_cuti === 'Cuti Melahirkan') {
                 $pegawai = [
                     'id_pegawai'    => Request()->id_pegawai,
-                    'cuti_melahirkan'        => $detailPegawai->cuti_melahirkan + Request()->lama_cuti,
+                    'cuti_melahirkan'        => $detailPegawai->cuti_melahirkan + $jumlah_cuti,
                 ];
             } elseif (Request()->jenis_cuti === 'Cuti Karena Alasan Penting') {
                 $pegawai = [
                     'id_pegawai'    => Request()->id_pegawai,
-                    'cuti_karena_alasan_penting'        => $detailPegawai->cuti_karena_alasan_penting + Request()->lama_cuti,
+                    'cuti_karena_alasan_penting'        => $detailPegawai->cuti_karena_alasan_penting + $jumlah_cuti,
                 ];
             } elseif (Request()->jenis_cuti === 'Cuti di Luar Tanggungan Negara') {
                 $pegawai = [
                     'id_pegawai'    => Request()->id_pegawai,
-                    'cuti_diluar_tanggungan_negara'        => $detailPegawai->cuti_diluar_tanggungan_negara + Request()->lama_cuti,
+                    'cuti_diluar_tanggungan_negara'        => $detailPegawai->cuti_diluar_tanggungan_negara + $jumlah_cuti,
                 ];
             }
         }
@@ -143,10 +152,10 @@ class C_PengajuanCuti extends Controller
             'jenis_cuti'        => Request()->jenis_cuti,
             'tahun_cuti'        => $tahun_cuti,
             'alasan_cuti'       => Request()->alasan_cuti,
-            'lama_cuti'         => Request()->lama_cuti,
+            'lama_cuti'         => $lama_cuti,
             'jenis_waktu'       => Request()->jenis_waktu,
-            'mulai_tanggal'     => Request()->mulai_tanggal,
-            'akhir_tanggal'     => Request()->akhir_tanggal,
+            'mulai_tanggal'     => $mulai_tanggal,
+            'akhir_tanggal'     => $akhir_tanggal,
             'alamat_selama_cuti' => Request()->alamat_selama_cuti,
             'status_pengajuan'  => 'Persiapan',
             'tanggal_pengajuan' => date('Y-m-d H:s:i'),
@@ -227,24 +236,30 @@ class C_PengajuanCuti extends Controller
         Request()->validate([
             'jenis_cuti'            => 'required',
             'alasan_cuti'           => 'required',
-            'lama_cuti'             => 'required|numeric',
             'jenis_waktu'           => 'required',
-            'mulai_tanggal'         => 'required',
-            'akhir_tanggal'         => 'required',
             'alamat_selama_cuti'    => 'required',
 
         ], [
             'jenis_cuti.required'           => 'Jenis cuti harus diisi!',
             'alasan_cuti.required'          => 'Alasan cuti harus diisi!',
             'alasan_cuti.required'          => 'Alasan cuti harus diisi!',
-            'lama_cuti.required'            => 'Lama cuti harus diisi!',
-            'lama_cuti.numeric'             => 'Lama cuti harus angka!',
             'jenis_waktu.required'          => 'Jenis waktu harus diisi!',
-            'mulai_tanggal.required'        => 'Tanggal mulai harus diisi!',
-            'akhir_tanggal.required'        => 'Tanggal akhir harus diisi!',
             'alamat_selama_cuti.required'   => 'Alamat selama cuti harus diisi!',
 
         ]);
+
+        $lama_cuti = "";
+        foreach (Request()->lama_cuti as $item) {
+            $lama_cuti = $lama_cuti . "|" . $item;
+        }
+        $mulai_tanggal = "";
+        foreach (Request()->mulai_tanggal as $item) {
+            $mulai_tanggal = $mulai_tanggal . "|" . $item;
+        }
+        $akhir_tanggal = "";
+        foreach (Request()->akhir_tanggal as $item) {
+            $akhir_tanggal = $akhir_tanggal . "|" . $item;
+        }
 
         $pengajuanCuti = $this->ModelPengajuanCuti->detail($id_pengajuan_cuti);
         $detailPegawai = $this->ModelPegawai->detail($pengajuanCuti->id_pegawai);
@@ -353,10 +368,10 @@ class C_PengajuanCuti extends Controller
             'jenis_cuti'        => Request()->jenis_cuti,
             'tahun_cuti'        => $tahun_cuti,
             'alasan_cuti'       => Request()->alasan_cuti,
-            'lama_cuti'         => Request()->lama_cuti,
+            'lama_cuti'         => $lama_cuti,
             'jenis_waktu'       => Request()->jenis_waktu,
-            'mulai_tanggal'     => Request()->mulai_tanggal,
-            'akhir_tanggal'     => Request()->akhir_tanggal,
+            'mulai_tanggal'     => $mulai_tanggal,
+            'akhir_tanggal'     => $akhir_tanggal,
             'alamat_selama_cuti' => Request()->alamat_selama_cuti,
         ];
 
